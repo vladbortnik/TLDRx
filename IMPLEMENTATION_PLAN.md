@@ -17,11 +17,11 @@ This plan divides the command card improvements into 4 testable phases, each wit
 - **1b**: Populate sample data for 3-5 commands (apt, rm, ls, grep, cp) with new fields
 - **1c**: Implement safety badge component (🟢 Safe, 🟡 Caution, 🔴 Destructive)
 
-### 🧪 **MANUAL TEST CHECKPOINT 1** (User verifies):
+### 🧪 **MANUAL TEST CHECKPOINT 1** ✅ **COMPLETED**:
 
-- [ ] Safety badges appear correctly on command cards
-- [ ] Different commands show appropriate safety levels (e.g., `rm` = destructive, `ls` = safe)
-- [ ] Badges are visually clear and well-positioned
+- [x] Safety badges appear correctly on command cards
+- [x] Different commands show appropriate safety levels (e.g., `rm` = destructive, `ls` = safe)
+- [x] Badges are visually clear and well-positioned
 
 ---
 
@@ -37,13 +37,13 @@ This plan divides the command card improvements into 4 testable phases, each wit
 - **2c**: Add prerequisites/permissions section to command cards
 - **2d**: Add platform selection filter near search field (self-explanatory button/dropdown)
 
-### 🧪 **MANUAL TEST CHECKPOINT 2** (User verifies):
+### 🧪 **MANUAL TEST CHECKPOINT 2** ✅ **COMPLETED**:
 
-- [ ] Platform badges display correctly for different commands
-- [ ] Common flags section is readable and informative
-- [ ] Prerequisites section clearly shows requirements
-- [ ] Platform filter works correctly (e.g., selecting macOS hides Linux-only commands like `apt`)
-- [ ] Platform filter is intuitive and self-explanatory
+- [x] Platform badges display correctly for different commands
+- [x] Common flags section is readable and informative
+- [x] Prerequisites section clearly shows requirements
+- [x] Platform filter works correctly (redesigned as horizontal toggle icons)
+- [x] Platform filter is intuitive and self-explanatory
 
 ---
 
@@ -74,13 +74,15 @@ This plan divides the command card improvements into 4 testable phases, each wit
 ### Tasks:
 
 - **4a**: Add syntax pattern templates (`command [options] <arguments>`)
-- **4b**: Implement "related commands" section
-- **4c**: Add brief troubleshooting tips section
-- **4d**: Final visual polish and spacing improvements
+- **4b**: Add "Popular Flag Combinations" section with copyable command snippets
+- **4c**: Implement "related commands" section
+- **4d**: Add brief troubleshooting tips section
+- **4e**: Final visual polish and spacing improvements
 
 ### 🧪 **MANUAL TEST CHECKPOINT 4** (User verifies):
 
 - [ ] Syntax patterns help understand command structure
+- [ ] Popular flag combinations are useful and copyable
 - [ ] Related commands provide useful cross-references
 - [ ] Overall design is clean and information is well-organized
 - [ ] All features work together harmoniously

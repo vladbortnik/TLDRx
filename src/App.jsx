@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
-import { FiChevronDown, FiChevronUp, FiTerminal } from "react-icons/fi";
-import "./index.css";
+import React, { useState, useEffect } from 'react';
+import { FiChevronDown, FiChevronUp, FiCopy, FiCheck, FiTerminal } from 'react-icons/fi';
+import commands from './data/commands';
+import './index.css';
 
 /**
  * Main TL;DR application component that displays a searchable command reference.
@@ -12,11 +13,13 @@ import "./index.css";
  */
 function App({ mockCommands }) {
   const [commands, setCommands] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedPlatform, setSelectedPlatform] = useState("all");
+  const [expandedCommands, setExpandedCommands] = useState(new Set());
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedPlatform, setSelectedPlatform] = useState('all');
   const [error, setError] = useState(null);
-  const [expandedCommands, setExpandedCommands] = useState(() => new Set());
+  const [isLoading, setIsLoading] = useState(true);
+  const [copiedExample, setCopiedExample] = useState(null);
+  const [expandedSections, setExpandedSections] = useState(new Set());
 
   useEffect(() => {
     /**
@@ -177,14 +180,66 @@ function App({ mockCommands }) {
    * @param {number} index - Index of the command in the display list
    */
   const toggleExpanded = (commandName, index) => {
-    const key = `${commandName}-${index}`;
+    const commandKey = `${commandName}-${index}`;
     const newExpanded = new Set(expandedCommands);
-    if (newExpanded.has(key)) {
-      newExpanded.delete(key);
+    if (newExpanded.has(commandKey)) {
+      newExpanded.delete(commandKey);
     } else {
-      newExpanded.add(key);
+      newExpanded.add(commandKey);
     }
     setExpandedCommands(newExpanded);
+  };
+
+  const copyToClipboard = async (text, exampleId) => {
+    try {
+      await navigator.clipboard.writeText(text.split(' #')[0].trim()); // Remove comment part
+      setCopiedExample(exampleId);
+      setTimeout(() => setCopiedExample(null), 2000); // Reset after 2 seconds
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
+
+  const toggleSection = (sectionId) => {
+    const newExpanded = new Set(expandedSections);
+    if (newExpanded.has(sectionId)) {
+      newExpanded.delete(sectionId);
+    } else {
+      newExpanded.add(sectionId);
+    }
+    setExpandedSections(newExpanded);
+  };
+
+  const getCategoryStyle = (category) => {
+    const styles = {
+      'file-system': 'bg-purple-500/20 text-purple-300 border-purple-500/30',
+      'package-management': 'bg-orange-500/20 text-orange-300 border-orange-500/30',
+      'networking': 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
+      'text-processing': 'bg-green-500/20 text-green-300 border-green-500/30',
+      'system': 'bg-red-500/20 text-red-300 border-red-500/30',
+      'development': 'bg-blue-500/20 text-blue-300 border-blue-500/30',
+      'search': 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30'
+    };
+    return styles[category] || 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
+  };
+
+  const getCategoryIcon = (category) => {
+    const icons = {
+      'file-system': '📁',
+      'package-management': '📦',
+      'networking': '🌐',
+      'text-processing': '📝',
+      'system': '⚙️',
+      'development': '💻',
+      'search': '🔍'
+    };
+    return icons[category] || '🔧';
+  };
+
+  const formatCategoryName = (category) => {
+    return category.split('-').map(word => 
+      word.charAt(0).toUpperCase() + word.slice(1)
+    ).join(' ');
   };
 
   return (
@@ -457,10 +512,12 @@ function App({ mockCommands }) {
                               </span>
                             );
                           })}
-                        {/* Category Badge */}
+                        {/* Enhanced Category Tags */}
                         {command.category && (
-                          <span className="bg-emerald-500/20 text-emerald-300 text-xs px-2 py-1 rounded-full border border-emerald-500/30">
-                            {command.category}
+                          <span className={`text-xs px-3 py-1 rounded-full border font-medium ${
+                            getCategoryStyle(command.category)
+                          }`}>
+                            {getCategoryIcon(command.category)} {formatCategoryName(command.category)}
                           </span>
                         )}
                       </div>
@@ -468,18 +525,15 @@ function App({ mockCommands }) {
 
                     {/* Enhanced Information Sections */}
                     <div className="mt-4 space-y-4">
-                      {/* Prerequisites Section */}
+                      {/* Prerequisites Section - Always Visible */}
                       {command.prerequisites && command.prerequisites.length > 0 && (
-                        <div className="bg-slate-800/50 rounded-lg p-3 border border-slate-600">
-                          <h4 className="text-sm font-semibold text-slate-300 mb-2 flex items-center gap-2">
-                            <span className="text-blue-400">⚡</span>
-                            Prerequisites
-                          </h4>
-                          <div className="flex flex-wrap gap-2">
+                        <div className="mt-4">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="text-sm font-semibold text-amber-400">Prerequisites:</span>
                             {command.prerequisites.map((prereq, prereqIndex) => (
                               <span 
                                 key={prereqIndex}
-                                className="text-xs bg-slate-700 text-slate-300 px-2 py-1 rounded border border-slate-600"
+                                className="bg-amber-500/20 text-amber-300 text-xs px-2 py-1 rounded-full border border-amber-500/30"
                               >
                                 {prereq}
                               </span>
@@ -488,69 +542,106 @@ function App({ mockCommands }) {
                         </div>
                       )}
 
-                      {/* Common Flags Section */}
+                      {/* Common Flags Section - Expandable */}
                       {command.commonFlags && command.commonFlags.length > 0 && (
-                        <div className="bg-slate-800/50 rounded-lg p-3 border border-slate-600">
-                          <h4 className="text-sm font-semibold text-slate-300 mb-2 flex items-center gap-2">
-                            <span className="text-green-400">🚩</span>
-                            Common Flags
-                          </h4>
-                          <div className="space-y-2">
-                            {command.commonFlags.map((flagInfo, flagIndex) => (
-                              <div key={flagIndex} className="flex items-start gap-3">
-                                <code className="text-xs bg-slate-700 text-emerald-300 px-2 py-1 rounded font-mono">
-                                  {flagInfo.flag}
-                                </code>
-                                <span className="text-xs text-slate-400 leading-5">
-                                  {flagInfo.description}
-                                </span>
+                        <div className="mt-4">
+                          <button
+                            onClick={() => toggleSection(`${commandKey}-flags`)}
+                            className="flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors"
+                          >
+                            {expandedSections.has(`${commandKey}-flags`) ? (
+                              <FiChevronUp className="w-4 h-4" />
+                            ) : (
+                              <FiChevronDown className="w-4 h-4" />
+                            )}
+                            Common Flags ({command.commonFlags.length})
+                          </button>
+                          {expandedSections.has(`${commandKey}-flags`) && (
+                            <div className="mt-2 p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+                              <div className="space-y-2">
+                                {command.commonFlags.map((flagInfo, flagIndex) => (
+                                  <div key={flagIndex} className="flex items-start gap-3">
+                                    <code className="bg-slate-700/50 text-cyan-300 text-xs px-2 py-1 rounded font-mono min-w-fit">
+                                      {flagInfo.flag}
+                                    </code>
+                                    <span className="text-slate-300 text-sm">
+                                      {flagInfo.description}
+                                    </span>
+                                  </div>
+                                ))}
                               </div>
-                            ))}
-                          </div>
+                            </div>
+                          )}
                         </div>
                       )}
 
                       {/* Examples Section */}
                       {hasExamples && (
-                        <div>
-                          <h4 className="text-sm font-semibold text-slate-300 mb-2 flex items-center gap-2">
-                            <span className="text-purple-400">💻</span>
-                            Examples
-                          </h4>
-                          <div className="bg-slate-900 rounded-lg p-4 border border-slate-700">
-                            {visibleExamples.map((example, exampleIndex) => (
-                              <div key={exampleIndex} className="flex items-start space-x-3 mb-2 last:mb-0">
-                                <span className="text-emerald-400 font-mono text-sm mt-0.5">$</span>
-                                <code className="text-sm font-mono text-slate-300 flex-1">
-                                  {example.split(' # ')[0]}
-                                  {example.includes(' # ') && (
-                                    <span className="text-slate-500 ml-2">
-                                      # {example.split(' # ')[1]}
-                                    </span>
-                                  )}
-                                </code>
-                              </div>
-                            ))}
-                            
-                            {hasMoreExamples && (
-                              <button
-                                onClick={() => toggleExpanded(command.name, index)}
-                                className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 text-sm mt-3 transition-colors duration-200"
-                              >
-                                {isExpanded ? (
-                                  <>
-                                    <FiChevronUp className="w-4 h-4" />
-                                    <span>Show less</span>
-                                  </>
-                                ) : (
-                                  <>
-                                    <FiChevronDown className="w-4 h-4" />
-                                    <span>+{command.examples.length - 2} more</span>
-                                  </>
-                                )}
-                              </button>
-                            )}
+                        <div className="mt-4">
+                          <h4 className="text-sm font-semibold text-emerald-400 mb-2">Examples:</h4>
+                          <div className="space-y-2">
+                            {visibleExamples.map((example, exampleIndex) => {
+                              const exampleId = `${commandKey}-example-${exampleIndex}`;
+                              const isCopied = copiedExample === exampleId;
+                              const [command, comment] = example.includes(' #') 
+                                ? example.split(' #') 
+                                : [example, null];
+                              
+                              return (
+                                <div key={exampleIndex} className="bg-slate-700/50 rounded-lg p-3 border border-slate-600 group relative">
+                                  <div className="flex items-start justify-between gap-3">
+                                    <code className="text-sm font-mono break-all flex-1">
+                                      <span className="text-green-300">{command}</span>
+                                      {comment && (
+                                        <span className="text-slate-400 ml-1">
+                                          # {comment.trim()}
+                                        </span>
+                                      )}
+                                    </code>
+                                    <button
+                                      onClick={() => copyToClipboard(example, exampleId)}
+                                      className={`flex items-center gap-1 px-2 py-1 rounded text-xs transition-all duration-200 ${
+                                        isCopied 
+                                          ? 'bg-green-500/20 text-green-300 border border-green-500/30' 
+                                          : 'bg-slate-600/50 text-slate-300 border border-slate-500/30 hover:bg-slate-600 hover:text-white opacity-0 group-hover:opacity-100'
+                                      }`}
+                                      title="Copy command"
+                                    >
+                                      {isCopied ? (
+                                        <>
+                                          <FiCheck className="w-3 h-3" />
+                                          Copied!
+                                        </>
+                                      ) : (
+                                        <>
+                                          <FiCopy className="w-3 h-3" />
+                                          Copy
+                                        </>
+                                      )}
+                                    </button>
+                                  </div>
+                                </div>
+                              );
+                            })}
                           </div>
+                          {hasExamples && command.examples.length > 2 && (
+                            <button
+                              onClick={() => toggleExpanded(command.name, index)}
+                              className="mt-3 flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm"
+                            >
+                              {isExpanded ? (
+                                <>
+                                  <FiChevronUp className="w-4 h-4" />
+                                  Show fewer examples
+                                </>
+                              ) : (
+                                <>
+                                  <FiChevronDown className="w-4 h-4" />
+                                  Show {command.examples.length - 2} more example{command.examples.length - 2 !== 1 ? 's' : ''}
+                                </>
+                              )}
+                            </button>
+                          )}
                         </div>
                       )}
                     </div>

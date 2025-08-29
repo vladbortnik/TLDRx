@@ -75,7 +75,11 @@ const commandsDatabase = [
     "commonFlags": [
       { "flag": "-y", "description": "Assume yes to prompts" },
       { "flag": "--dry-run", "description": "Simulate actions without executing" },
-      { "flag": "-f", "description": "Fix broken dependencies" }
+      { "flag": "-f", "description": "Fix broken dependencies" },
+      { "flag": "-q", "description": "Quiet mode, reduce output" },
+      { "flag": "--no-upgrade", "description": "Do not upgrade packages when installing" },
+      { "flag": "-s", "description": "Simulate action, don't actually perform it" },
+      { "flag": "--reinstall", "description": "Reinstall packages that are already up-to-date" }
     ],
     "syntaxPattern": "apt [options] <command> [package-name]",
     "relatedCommands": ["dpkg", "aptitude", "snap"],
@@ -212,8 +216,13 @@ const commandsDatabase = [
     "prerequisites": ["read permissions on source", "write permissions on destination"],
     "commonFlags": [
       { "flag": "-r", "description": "Copy directories recursively" },
-      { "flag": "-i", "description": "Prompt before overwriting" },
-      { "flag": "-a", "description": "Archive mode (preserve all attributes)" }
+      { "flag": "-i", "description": "Interactive mode, prompt before overwrite" },
+      { "flag": "-v", "description": "Verbose mode, show files being copied" },
+      { "flag": "-f", "description": "Force copy, overwrite existing files" },
+      { "flag": "-p", "description": "Preserve file attributes (permissions, timestamps)" },
+      { "flag": "-u", "description": "Copy only when source is newer than destination" },
+      { "flag": "-a", "description": "Archive mode, preserve all attributes recursively" },
+      { "flag": "-L", "description": "Follow symbolic links in source" }
     ],
     "syntaxPattern": "cp [options] <source> <destination>",
     "relatedCommands": ["mv", "rsync", "scp"],
@@ -712,9 +721,14 @@ const commandsDatabase = [
     "safety": "safe",
     "prerequisites": ["read permissions"],
     "commonFlags": [
-      { "flag": "-l", "description": "Long format with detailed info" },
-      { "flag": "-a", "description": "Show hidden files (starting with .)" },
-      { "flag": "-h", "description": "Human-readable file sizes" }
+      { "flag": "-l", "description": "Use long listing format" },
+      { "flag": "-a", "description": "Show all files including hidden ones" },
+      { "flag": "-h", "description": "Human readable file sizes" },
+      { "flag": "-t", "description": "Sort by modification time, newest first" },
+      { "flag": "-r", "description": "Reverse order while sorting" },
+      { "flag": "-S", "description": "Sort by file size, largest first" },
+      { "flag": "-R", "description": "List subdirectories recursively" },
+      { "flag": "--color", "description": "Colorize the output" }
     ],
     "syntaxPattern": "ls [options] [file-or-directory]",
     "relatedCommands": ["dir", "tree", "find"],
@@ -1016,9 +1030,13 @@ const commandsDatabase = [
     "safety": "destructive",
     "prerequisites": ["write permissions"],
     "commonFlags": [
-      { "flag": "-r", "description": "Remove directories recursively" },
-      { "flag": "-f", "description": "Force removal without prompts" },
-      { "flag": "-i", "description": "Prompt before each removal" }
+      { "flag": "-r", "description": "Remove directories and their contents recursively" },
+      { "flag": "-f", "description": "Force removal without prompting" },
+      { "flag": "-i", "description": "Prompt before every removal" },
+      { "flag": "-v", "description": "Verbose mode, explain what is being done" },
+      { "flag": "-d", "description": "Remove empty directories" },
+      { "flag": "--preserve-root", "description": "Do not remove root directory" },
+      { "flag": "-I", "description": "Prompt once before removing more than three files" }
     ],
     "syntaxPattern": "rm [options] <file-or-directory>",
     "relatedCommands": ["rmdir", "trash", "mv"],
