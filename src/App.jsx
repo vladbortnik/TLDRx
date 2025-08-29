@@ -129,6 +129,7 @@ function App({ mockCommands }) {
    * Returns filtered commands based on both search and platform criteria.
    */
   let displayCommands;
+  let isExactMatch = false;
 
   // First filter by platform
   let platformFilteredCommands = commands;
@@ -143,6 +144,12 @@ function App({ mockCommands }) {
     displayCommands = platformFilteredCommands.slice();
   } else {
     const query = searchQuery.toLowerCase();
+
+    // Check for exact command name match (Phase 4.1a)
+    const exactMatchCommand = platformFilteredCommands.find(command => 
+      command.name.toLowerCase() === query
+    );
+    isExactMatch = !!exactMatchCommand;
 
     const scoredCommands = platformFilteredCommands.map((command) => ({
       ...command,
@@ -208,6 +215,31 @@ function App({ mockCommands }) {
       newExpanded.add(sectionId);
     }
     setExpandedSections(newExpanded);
+  };
+
+  /**
+   * Handles clicking on a related command tag (Phase 4.1b)
+   * Sets search query to the related command and scrolls to it with auto-expand
+   */
+  const handleRelatedCommandClick = (relatedCommand) => {
+    setSearchQuery(relatedCommand);
+    
+    // Small delay to allow state update and re-render, then scroll to target
+    setTimeout(() => {
+      const targetElement = document.querySelector(`[data-command-name="${relatedCommand}"]`);
+      if (targetElement) {
+        targetElement.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start',
+          inline: 'nearest' 
+        });
+        // Add focus ring for better UX
+        targetElement.classList.add('ring-2', 'ring-blue-500', 'ring-opacity-50');
+        setTimeout(() => {
+          targetElement.classList.remove('ring-2', 'ring-blue-500', 'ring-opacity-50');
+        }, 2000);
+      }
+    }, 100);
   };
 
   const getCategoryStyle = (category) => {
@@ -404,13 +436,20 @@ function App({ mockCommands }) {
                 const commandKey = `${command.name}-${index}`;
                 const isExpanded = expandedCommands.has(commandKey);
                 const hasExamples = command.examples && command.examples.length > 0;
+                
+                // Auto-expand for exact matches (Phase 4.1a)
+                const shouldAutoExpand = isExactMatch && command.name.toLowerCase() === searchQuery.toLowerCase();
+                const effectivelyExpanded = isExpanded || shouldAutoExpand;
+                
                 const visibleExamples = hasExamples ? 
-                  (isExpanded ? command.examples : command.examples.slice(0, 2)) : [];
+                  (effectivelyExpanded ? command.examples : command.examples.slice(0, 2)) : [];
                 const hasMoreExamples = hasExamples && command.examples.length > 2;
                 
                 return (
                   <div
-                    key={commandKey} className="bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-slate-600 transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/10"
+                    key={commandKey}
+                    data-command-name={command.name}
+                    className="bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-slate-600 transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/10"
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
@@ -531,14 +570,14 @@ function App({ mockCommands }) {
                             onClick={() => toggleSection(`${commandKey}-flagcombos`)}
                             className="flex items-center gap-2 text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors"
                           >
-                            {expandedSections.has(`${commandKey}-flagcombos`) ? (
+                            {(expandedSections.has(`${commandKey}-flagcombos`) || shouldAutoExpand) ? (
                               <FiChevronUp className="w-4 h-4" />
                             ) : (
                               <FiChevronDown className="w-4 h-4" />
                             )}
                             Common Flag Combinations ({command.commonFlagCombinations.length})
                           </button>
-                          {expandedSections.has(`${commandKey}-flagcombos`) && (
+                          {(expandedSections.has(`${commandKey}-flagcombos`) || shouldAutoExpand) && (
                             <div className="mt-2 space-y-2">
                               {command.commonFlagCombinations.map((combo, comboIndex) => {
                                 const comboId = `${commandKey}-flagcombo-${comboIndex}`;
@@ -617,14 +656,14 @@ function App({ mockCommands }) {
                             onClick={() => toggleSection(`${commandKey}-flags`)}
                             className="flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors"
                           >
-                            {expandedSections.has(`${commandKey}-flags`) ? (
+                            {(expandedSections.has(`${commandKey}-flags`) || shouldAutoExpand) ? (
                               <FiChevronUp className="w-4 h-4" />
                             ) : (
                               <FiChevronDown className="w-4 h-4" />
                             )}
                             Common Flags ({command.commonFlags.length})
                           </button>
-                          {expandedSections.has(`${commandKey}-flags`) && (
+                          {(expandedSections.has(`${commandKey}-flags`) || shouldAutoExpand) && (
                             <div className="mt-2 p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg">
                               <div className="space-y-2">
                                 {command.commonFlags.map((flagInfo, flagIndex) => (
@@ -650,21 +689,22 @@ function App({ mockCommands }) {
                             onClick={() => toggleSection(`${commandKey}-related`)}
                             className="flex items-center gap-2 text-sm font-semibold text-teal-400 hover:text-teal-300 transition-colors"
                           >
-                            {expandedSections.has(`${commandKey}-related`) ? (
+                            {(expandedSections.has(`${commandKey}-related`) || shouldAutoExpand) ? (
                               <FiChevronUp className="w-4 h-4" />
                             ) : (
                               <FiChevronDown className="w-4 h-4" />
                             )}
                             Related Commands ({command.relatedCommands.length})
                           </button>
-                          {expandedSections.has(`${commandKey}-related`) && (
+                          {(expandedSections.has(`${commandKey}-related`) || shouldAutoExpand) && (
                             <div className="mt-2 p-3 bg-teal-500/10 border border-teal-500/30 rounded-lg">
                               <div className="flex flex-wrap gap-2">
                                 {command.relatedCommands.map((relatedCmd, relatedIndex) => (
                                   <span 
                                     key={relatedIndex}
                                     className="bg-teal-500/20 text-teal-300 text-xs px-2 py-1 rounded-full border border-teal-500/30 hover:bg-teal-500/30 transition-colors cursor-pointer"
-                                    title={`Search for ${relatedCmd}`}
+                                    title={`Click to search for ${relatedCmd}`}
+                                    onClick={() => handleRelatedCommandClick(relatedCmd)}
                                   >
                                     {relatedCmd}
                                   </span>
@@ -682,14 +722,14 @@ function App({ mockCommands }) {
                             onClick={() => toggleSection(`${commandKey}-troubleshooting`)}
                             className="flex items-center gap-2 text-sm font-semibold text-orange-400 hover:text-orange-300 transition-colors"
                           >
-                            {expandedSections.has(`${commandKey}-troubleshooting`) ? (
+                            {(expandedSections.has(`${commandKey}-troubleshooting`) || shouldAutoExpand) ? (
                               <FiChevronUp className="w-4 h-4" />
                             ) : (
                               <FiChevronDown className="w-4 h-4" />
                             )}
                             Troubleshooting Tips
                           </button>
-                          {expandedSections.has(`${commandKey}-troubleshooting`) && (
+                          {(expandedSections.has(`${commandKey}-troubleshooting`) || shouldAutoExpand) && (
                             <div className="mt-2 p-3 bg-orange-500/10 border border-orange-500/30 rounded-lg">
                               <ul className="text-orange-200 text-sm leading-relaxed space-y-1">
                                 {Array.isArray(command.troubleshooting) ? (
@@ -760,12 +800,12 @@ function App({ mockCommands }) {
                               );
                             })}
                           </div>
-                          {hasExamples && command.examples.length > 2 && (
+                          {hasExamples && command.examples.length > 2 && !shouldAutoExpand && (
                             <button
                               onClick={() => toggleExpanded(command.name, index)}
                               className="mt-3 flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm"
                             >
-                              {isExpanded ? (
+                              {effectivelyExpanded ? (
                                 <>
                                   <FiChevronUp className="w-4 h-4" />
                                   Show fewer examples
