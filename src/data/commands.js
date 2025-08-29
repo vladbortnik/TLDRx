@@ -82,8 +82,15 @@ const commandsDatabase = [
       { "flag": "--reinstall", "description": "Reinstall packages that are already up-to-date" }
     ],
     "syntaxPattern": "apt [options] <command> [package-name]",
-    "relatedCommands": ["dpkg", "aptitude", "snap"],
-    "troubleshooting": "Run 'apt update' first if you get package not found errors"
+    "commonFlagCombinations": [
+      { "flags": "-y", "usage": "apt install -y <package>", "description": "Install package without confirmation prompts" },
+      { "flags": "--dry-run", "usage": "apt install --dry-run <package>", "description": "Simulate installation without making changes" },
+      { "flags": "-f", "usage": "apt install -f", "description": "Fix broken dependencies" }
+    ],
+    "relatedCommands": [],  // TODO: Add dpkg, aptitude, snap commands to database
+    "troubleshooting": [
+      "Run 'apt update' first if you get package not found errors"
+    ]
   },
   {
     "name": "awk",
@@ -225,8 +232,16 @@ const commandsDatabase = [
       { "flag": "-L", "description": "Follow symbolic links in source" }
     ],
     "syntaxPattern": "cp [options] <source> <destination>",
+    "commonFlagCombinations": [
+      { "flags": "-r", "usage": "cp -r <source> <destination>", "description": "Copy directories recursively" },
+      { "flags": "-a", "usage": "cp -a <source> <destination>", "description": "Archive mode preserving all attributes" },
+      { "flags": "-u", "usage": "cp -u <source> <destination>", "description": "Copy only when source is newer" }
+    ],
     "relatedCommands": ["mv", "rsync", "scp"],
-    "troubleshooting": "Use -i to avoid accidental overwrites. Use -r for directories."
+    "troubleshooting": [
+      "Use -i to avoid accidental overwrites",
+      "Use -r for directories"
+    ]
   },
   {
     "name": "cron",
@@ -526,7 +541,7 @@ const commandsDatabase = [
       { "flag": "-v", "description": "Invert match (show non-matching lines)" }
     ],
     "syntaxPattern": "grep [options] <pattern> [file]",
-    "relatedCommands": ["egrep", "fgrep", "sed", "awk"],
+    "relatedCommands": ["sed", "awk"],  // TODO: Add egrep, fgrep to database
     "troubleshooting": "Use quotes around patterns with spaces. Try -i for case insensitive search."
   },
   {
@@ -731,8 +746,16 @@ const commandsDatabase = [
       { "flag": "--color", "description": "Colorize the output" }
     ],
     "syntaxPattern": "ls [options] [file-or-directory]",
-    "relatedCommands": ["dir", "tree", "find"],
-    "troubleshooting": "Use -a to see hidden files. Add -l for detailed information."
+    "commonFlagCombinations": [
+      { "flags": "-lah", "usage": "ls -lah", "description": "Long format, all files, human-readable sizes" },
+      { "flags": "-lt", "usage": "ls -lt", "description": "Long format sorted by modification time" },
+      { "flags": "-lS", "usage": "ls -lS", "description": "Long format sorted by file size" }
+    ],
+    "relatedCommands": ["find"],  // TODO: Add dir, tree commands to database
+    "troubleshooting": [
+      "Use -a to see hidden files",
+      "Add -l for detailed information"
+    ]
   },
   {
     "name": "lsof",
@@ -1039,8 +1062,16 @@ const commandsDatabase = [
       { "flag": "-I", "description": "Prompt once before removing more than three files" }
     ],
     "syntaxPattern": "rm [options] <file-or-directory>",
-    "relatedCommands": ["rmdir", "trash", "mv"],
-    "troubleshooting": "Use -i flag for confirmation prompts. Cannot undo rm operations!"
+    "commonFlagCombinations": [
+      { "flags": "-rf", "usage": "rm -rf <directory>", "description": "Recursively force remove directory and contents" },
+      { "flags": "-i", "usage": "rm -i <file>", "description": "Interactive mode with confirmation prompts" },
+      { "flags": "-v", "usage": "rm -v <file>", "description": "Verbose mode showing what's being removed" }
+    ],
+    "relatedCommands": ["mv"],  // TODO: Add rmdir, trash commands to database
+    "troubleshooting": [
+      "Use -i flag for confirmation prompts",
+      "Cannot undo rm operations!"
+    ]
   },
   {
     "name": "route",

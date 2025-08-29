@@ -410,37 +410,24 @@ function App({ mockCommands }) {
                 
                 return (
                   <div
-                    key={commandKey}
-                    className="bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-slate-600 transition-all duration-200"
+                    key={commandKey} className="bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-slate-600 transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/10"
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-1">
+                        <div className="flex items-center gap-3">
                           <h2 className="text-2xl font-bold text-blue-400">
                             {command.name}
                           </h2>
                           {/* Safety Badge */}
                           {command.safety && (
-                            <div className="flex items-center">
-                              {command.safety === 'safe' && (
-                                <span className="inline-flex items-center gap-1 bg-green-500/20 text-green-300 text-xs px-2 py-1 rounded-full border border-green-500/30">
-                                  <span className="text-green-400">🟢</span>
-                                  Safe
-                                </span>
-                              )}
-                              {command.safety === 'caution' && (
-                                <span className="inline-flex items-center gap-1 bg-yellow-500/20 text-yellow-300 text-xs px-2 py-1 rounded-full border border-yellow-500/30">
-                                  <span className="text-yellow-400">🟡</span>
-                                  Caution
-                                </span>
-                              )}
-                              {command.safety === 'destructive' && (
-                                <span className="inline-flex items-center gap-1 bg-red-500/20 text-red-300 text-xs px-2 py-1 rounded-full border border-red-500/30">
-                                  <span className="text-red-400">🔴</span>
-                                  Destructive
-                                </span>
-                              )}
-                            </div>
+                            <span className={`text-xs px-2 py-1 rounded-full font-medium ${
+                              command.safety === 'safe' ? 'bg-green-500/20 text-green-400 border border-green-500/30' :
+                              command.safety === 'caution' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' :
+                              'bg-red-500/20 text-red-400 border border-red-500/30'
+                            }`}>
+                              {command.safety === 'safe' ? '🟢 Safe' :
+                               command.safety === 'caution' ? '🟡 Caution' : '🔴 Destructive'}
+                            </span>
                           )}
                         </div>
                         {/* Display standsFor if available */}
@@ -449,7 +436,8 @@ function App({ mockCommands }) {
                             {command.standsFor}
                           </p>
                         )}
-                        <p className="text-slate-300 mb-4">{command.description}</p>
+                        {/* Command description */}
+                        <p className="text-slate-300 text-sm mt-3 leading-relaxed">{command.description}</p>
                       </div>
                       <div className="flex items-center flex-wrap gap-2 ml-4">
                         {/* Enhanced Platform Badges */}
@@ -525,9 +513,89 @@ function App({ mockCommands }) {
 
                     {/* Enhanced Information Sections */}
                     <div className="mt-4 space-y-4">
+                      {/* Syntax Pattern Section */}
+                      {command.syntaxPattern && (
+                        <div className="mt-5">
+                          <div className="bg-slate-800/50 rounded-lg p-3 border border-slate-600">
+                            <h4 className="text-sm font-semibold text-purple-400 mb-2">Syntax:</h4>
+                            <code className="text-purple-300 text-sm font-mono">
+                              {command.syntaxPattern}
+                            </code>
+                          </div>
+                        </div>
+                      )}
+                      {/* Common Flag Combinations Section - Expandable */}
+                      {command.commonFlagCombinations && command.commonFlagCombinations.length > 0 && (
+                        <div className="mt-5">
+                          <button
+                            onClick={() => toggleSection(`${commandKey}-flagcombos`)}
+                            className="flex items-center gap-2 text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors"
+                          >
+                            {expandedSections.has(`${commandKey}-flagcombos`) ? (
+                              <FiChevronUp className="w-4 h-4" />
+                            ) : (
+                              <FiChevronDown className="w-4 h-4" />
+                            )}
+                            Common Flag Combinations ({command.commonFlagCombinations.length})
+                          </button>
+                          {expandedSections.has(`${commandKey}-flagcombos`) && (
+                            <div className="mt-2 space-y-2">
+                              {command.commonFlagCombinations.map((combo, comboIndex) => {
+                                const comboId = `${commandKey}-flagcombo-${comboIndex}`;
+                                const isCopied = copiedExample === comboId;
+                                return (
+                                  <div key={comboIndex} className="bg-indigo-500/10 rounded-lg p-3 border border-indigo-500/30 group relative">
+                                    <div className="flex items-start justify-between gap-3">
+                                      <div className="flex-1">
+                                        <div className="mb-1">
+                                          <code className="text-slate-500 text-sm font-mono">
+                                            {command.name}
+                                          </code>
+                                          <code className="text-indigo-300 text-sm font-mono font-bold ml-1">
+                                            {combo.flags}
+                                          </code>
+                                          {combo.usage.replace(`${command.name} ${combo.flags}`, '').trim() && (
+                                            <code className="text-slate-400 text-sm font-mono ml-1">
+                                              {combo.usage.replace(`${command.name} ${combo.flags}`, '').trim()}
+                                            </code>
+                                          )}
+                                        </div>
+                                        <p className="text-slate-400 text-xs">
+                                          {combo.description}
+                                        </p>
+                                      </div>
+                                      <button
+                                        onClick={() => copyToClipboard(combo.usage, comboId)}
+                                        className={`flex items-center gap-1 px-2 py-1 rounded text-xs transition-all duration-200 ${
+                                          isCopied 
+                                            ? 'bg-green-500/20 text-green-300 border border-green-500/30' 
+                                            : 'bg-slate-600/50 text-slate-300 border border-slate-500/30 hover:bg-slate-600 hover:text-white opacity-0 group-hover:opacity-100'
+                                        }`}
+                                        title="Copy flag combination"
+                                      >
+                                        {isCopied ? (
+                                          <>
+                                            <FiCheck className="w-3 h-3" />
+                                            Copied!
+                                          </>
+                                        ) : (
+                                          <>
+                                            <FiCopy className="w-3 h-3" />
+                                            Copy
+                                          </>
+                                        )}
+                                      </button>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      )}
                       {/* Prerequisites Section - Always Visible */}
                       {command.prerequisites && command.prerequisites.length > 0 && (
-                        <div className="mt-4">
+                        <div className="mt-5">
                           <div className="flex flex-wrap items-center gap-2">
                             <span className="text-sm font-semibold text-amber-400">Prerequisites:</span>
                             {command.prerequisites.map((prereq, prereqIndex) => (
@@ -544,7 +612,7 @@ function App({ mockCommands }) {
 
                       {/* Common Flags Section - Expandable */}
                       {command.commonFlags && command.commonFlags.length > 0 && (
-                        <div className="mt-4">
+                        <div className="mt-5">
                           <button
                             onClick={() => toggleSection(`${commandKey}-flags`)}
                             className="flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors"
@@ -575,9 +643,77 @@ function App({ mockCommands }) {
                         </div>
                       )}
 
+                      {/* Related Commands Section - Expandable */}
+                      {command.relatedCommands && command.relatedCommands.length > 0 && (
+                        <div className="mt-5">
+                          <button
+                            onClick={() => toggleSection(`${commandKey}-related`)}
+                            className="flex items-center gap-2 text-sm font-semibold text-teal-400 hover:text-teal-300 transition-colors"
+                          >
+                            {expandedSections.has(`${commandKey}-related`) ? (
+                              <FiChevronUp className="w-4 h-4" />
+                            ) : (
+                              <FiChevronDown className="w-4 h-4" />
+                            )}
+                            Related Commands ({command.relatedCommands.length})
+                          </button>
+                          {expandedSections.has(`${commandKey}-related`) && (
+                            <div className="mt-2 p-3 bg-teal-500/10 border border-teal-500/30 rounded-lg">
+                              <div className="flex flex-wrap gap-2">
+                                {command.relatedCommands.map((relatedCmd, relatedIndex) => (
+                                  <span 
+                                    key={relatedIndex}
+                                    className="bg-teal-500/20 text-teal-300 text-xs px-2 py-1 rounded-full border border-teal-500/30 hover:bg-teal-500/30 transition-colors cursor-pointer"
+                                    title={`Search for ${relatedCmd}`}
+                                  >
+                                    {relatedCmd}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Troubleshooting Section - Expandable */}
+                      {command.troubleshooting && (
+                        <div className="mt-5">
+                          <button
+                            onClick={() => toggleSection(`${commandKey}-troubleshooting`)}
+                            className="flex items-center gap-2 text-sm font-semibold text-orange-400 hover:text-orange-300 transition-colors"
+                          >
+                            {expandedSections.has(`${commandKey}-troubleshooting`) ? (
+                              <FiChevronUp className="w-4 h-4" />
+                            ) : (
+                              <FiChevronDown className="w-4 h-4" />
+                            )}
+                            Troubleshooting Tips
+                          </button>
+                          {expandedSections.has(`${commandKey}-troubleshooting`) && (
+                            <div className="mt-2 p-3 bg-orange-500/10 border border-orange-500/30 rounded-lg">
+                              <ul className="text-orange-200 text-sm leading-relaxed space-y-1">
+                                {Array.isArray(command.troubleshooting) ? (
+                                  command.troubleshooting.map((tip, tipIndex) => (
+                                    <li key={tipIndex} className="flex items-start gap-2">
+                                      <span className="text-orange-400 mt-0.5">💡</span>
+                                      <span>{tip}</span>
+                                    </li>
+                                  ))
+                                ) : (
+                                  <li className="flex items-start gap-2">
+                                    <span className="text-orange-400 mt-0.5">💡</span>
+                                    <span>{command.troubleshooting}</span>
+                                  </li>
+                                )}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
+                      )}
+
                       {/* Examples Section */}
                       {hasExamples && (
-                        <div className="mt-4">
+                        <div className="mt-6">
                           <h4 className="text-sm font-semibold text-emerald-400 mb-2">Examples:</h4>
                           <div className="space-y-2">
                             {visibleExamples.map((example, exampleIndex) => {
@@ -644,6 +780,21 @@ function App({ mockCommands }) {
                           )}
                         </div>
                       )}
+
+                      {/* Man Page Link */}
+                      <div className="mt-6 pt-4 border-t border-slate-600">
+                        <a
+                          href={`https://man7.org/linux/man-pages/man1/${command.name}.1.html`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-blue-400 transition-colors"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                          View man page for {command.name}
+                        </a>
+                      </div>
                     </div>
                   </div>
                 );
