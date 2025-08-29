@@ -69,7 +69,17 @@ const commandsDatabase = [
     "platform": [
       "linux"
     ],
-    "category": "package-management"
+    "category": "package-management",
+    "safety": "caution",
+    "prerequisites": ["sudo access"],
+    "commonFlags": [
+      { "flag": "-y", "description": "Assume yes to prompts" },
+      { "flag": "--dry-run", "description": "Simulate actions without executing" },
+      { "flag": "-f", "description": "Fix broken dependencies" }
+    ],
+    "syntaxPattern": "apt [options] <command> [package-name]",
+    "relatedCommands": ["dpkg", "aptitude", "snap"],
+    "troubleshooting": "Run 'apt update' first if you get package not found errors"
   },
   {
     "name": "awk",
@@ -197,7 +207,17 @@ const commandsDatabase = [
       "linux",
       "mac"
     ],
-    "category": "file-operations"
+    "category": "file-operations",
+    "safety": "caution",
+    "prerequisites": ["read permissions on source", "write permissions on destination"],
+    "commonFlags": [
+      { "flag": "-r", "description": "Copy directories recursively" },
+      { "flag": "-i", "description": "Prompt before overwriting" },
+      { "flag": "-a", "description": "Archive mode (preserve all attributes)" }
+    ],
+    "syntaxPattern": "cp [options] <source> <destination>",
+    "relatedCommands": ["mv", "rsync", "scp"],
+    "troubleshooting": "Use -i to avoid accidental overwrites. Use -r for directories."
   },
   {
     "name": "cron",
@@ -488,7 +508,17 @@ const commandsDatabase = [
       "linux",
       "mac"
     ],
-    "category": "text-processing"
+    "category": "text-processing",
+    "safety": "safe",
+    "prerequisites": ["read permissions"],
+    "commonFlags": [
+      { "flag": "-r", "description": "Search recursively in directories" },
+      { "flag": "-i", "description": "Case insensitive search" },
+      { "flag": "-v", "description": "Invert match (show non-matching lines)" }
+    ],
+    "syntaxPattern": "grep [options] <pattern> [file]",
+    "relatedCommands": ["egrep", "fgrep", "sed", "awk"],
+    "troubleshooting": "Use quotes around patterns with spaces. Try -i for case insensitive search."
   },
   {
     "name": "gzip",
@@ -678,7 +708,17 @@ const commandsDatabase = [
       "linux",
       "mac"
     ],
-    "category": "file-operations"
+    "category": "file-operations",
+    "safety": "safe",
+    "prerequisites": ["read permissions"],
+    "commonFlags": [
+      { "flag": "-l", "description": "Long format with detailed info" },
+      { "flag": "-a", "description": "Show hidden files (starting with .)" },
+      { "flag": "-h", "description": "Human-readable file sizes" }
+    ],
+    "syntaxPattern": "ls [options] [file-or-directory]",
+    "relatedCommands": ["dir", "tree", "find"],
+    "troubleshooting": "Use -a to see hidden files. Add -l for detailed information."
   },
   {
     "name": "lsof",
@@ -972,7 +1012,17 @@ const commandsDatabase = [
       "linux",
       "mac"
     ],
-    "category": "file-operations"
+    "category": "file-operations",
+    "safety": "destructive",
+    "prerequisites": ["write permissions"],
+    "commonFlags": [
+      { "flag": "-r", "description": "Remove directories recursively" },
+      { "flag": "-f", "description": "Force removal without prompts" },
+      { "flag": "-i", "description": "Prompt before each removal" }
+    ],
+    "syntaxPattern": "rm [options] <file-or-directory>",
+    "relatedCommands": ["rmdir", "trash", "mv"],
+    "troubleshooting": "Use -i flag for confirmation prompts. Cannot undo rm operations!"
   },
   {
     "name": "route",

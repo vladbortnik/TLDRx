@@ -14,6 +14,7 @@ function App({ mockCommands }) {
   const [commands, setCommands] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedPlatform, setSelectedPlatform] = useState("all");
   const [error, setError] = useState(null);
   const [expandedCommands, setExpandedCommands] = useState(() => new Set());
 
@@ -121,17 +122,26 @@ function App({ mockCommands }) {
   };
 
   /**
-   * Filter and rank commands based on search query using fuzzy search.
-   * Returns all commands if no search query, otherwise returns filtered and sorted results.
+   * Filter and rank commands based on search query and platform selection.
+   * Returns filtered commands based on both search and platform criteria.
    */
   let displayCommands;
 
+  // First filter by platform
+  let platformFilteredCommands = commands;
+  if (selectedPlatform !== "all") {
+    platformFilteredCommands = commands.filter(command => 
+      command.platform && command.platform.includes(selectedPlatform)
+    );
+  }
+
+  // Then apply search filter
   if (searchQuery.trim() === "") {
-    displayCommands = commands.slice();
+    displayCommands = platformFilteredCommands.slice();
   } else {
     const query = searchQuery.toLowerCase();
 
-    const scoredCommands = commands.map((command) => ({
+    const scoredCommands = platformFilteredCommands.map((command) => ({
       ...command,
       score: searchCommand(query, command)
     }));
@@ -194,9 +204,10 @@ function App({ mockCommands }) {
           <p className="text-xl text-slate-400">Simplified command reference for developers</p>
         </header>
 
-        {/* Search box with logo */}
-        <div className="mb-8">
+        {/* Search box and logo */}
+        <div className="mb-6">
           <div className="flex items-center gap-3">
+            {/* Search Input */}
             <div className="relative flex-1">
               <input
                 type="text"
@@ -238,6 +249,72 @@ function App({ mockCommands }) {
               <div className="absolute inset-0 rounded-2xl border border-blue-400/20 animate-pulse"></div>
             </div>
           </div>
+          
+          {/* Platform Toggle Icons */}
+          <div className="mt-4 flex items-center justify-start gap-4">
+            {[
+              { 
+                key: 'linux', 
+                label: 'Linux',
+                icon: (
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.504 0C5.395 0 .456 5.125.456 12.253c0 4.584 2.415 8.611 6.015 10.86.451-.255.451-.679.451-1.02v-4.21c-3.15.686-3.796-1.336-3.796-1.336-.407-.966-.994-1.224-.994-1.224-.815-.555.061-.544.061-.544.9.064 1.375.926 1.375.926.8 1.383 2.103.984 2.616.752.082-.585.314-.984.571-1.211-1.993-.227-4.083-1.002-4.083-4.458 0-.985.35-1.789.925-2.419-.093-.227-.401-1.141.087-2.378 0 0 .754-.243 2.47.924.717-.2 1.485-.3 2.248-.303.762.003 1.532.103 2.25.303 1.715-1.167 2.468-.924 2.468-.924.489 1.237.181 2.151.089 2.378.576.63.924 1.434.924 2.419 0 3.464-2.094 4.227-4.093 4.451.321.278.607.825.607 1.662v2.465c0 .344 0 .771.454 1.021C19.143 20.858 21.544 16.835 21.544 12.253 21.544 5.125 16.608 0 12.504 0z"/>
+                  </svg>
+                )
+              },
+              { 
+                key: 'mac', 
+                label: 'macOS',
+                icon: (
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                  </svg>
+                )
+              },
+              { 
+                key: 'windows', 
+                label: 'Windows',
+                icon: (
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .15V5.21L20 3zM3 13l6-.09v6.44l-6-1.35V13zm17 .25V22l-10-1.91V13.1l10 .15z"/>
+                  </svg>
+                )
+              },
+              { 
+                key: 'bsd', 
+                label: 'BSD',
+                icon: (
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                )
+              }
+            ].map((platform) => {
+              const isSelected = selectedPlatform === platform.key;
+              const colorMap = {
+                linux: 'text-green-400 bg-green-500/20 border-green-500/50',
+                mac: 'text-slate-300 bg-slate-500/20 border-slate-400/50',
+                windows: 'text-cyan-400 bg-cyan-500/20 border-cyan-500/50',
+                bsd: 'text-red-400 bg-red-500/20 border-red-500/50'
+              };
+              const selectedColors = colorMap[platform.key] || 'text-slate-400 bg-slate-500/20 border-slate-500/50';
+              
+              return (
+                <button
+                  key={platform.key}
+                  onClick={() => setSelectedPlatform(isSelected ? 'all' : platform.key)}
+                  className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 border-2 ${
+                    isSelected 
+                      ? selectedColors
+                      : 'text-slate-500 bg-slate-800/50 border-slate-700 hover:text-slate-400 hover:border-slate-600'
+                  }`}
+                >
+                  {platform.icon}
+                  <span className="text-sm font-medium">{platform.label}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Error state */}
@@ -255,9 +332,16 @@ function App({ mockCommands }) {
         ) : (
           <div>
             {/* Results count */}
-            <p className="mb-6 text-sm text-slate-400">
-              {displayCommands.length} found
-            </p>
+            <div className="mb-6">
+              <p className="text-sm text-slate-400">
+                {displayCommands.length} command{displayCommands.length !== 1 ? 's' : ''} found
+                {selectedPlatform !== "all" && (
+                  <span className="ml-2 text-slate-500">
+                    • Filtered by {selectedPlatform === "mac" ? "macOS" : selectedPlatform}
+                  </span>
+                )}
+              </p>
+            </div>
 
             {/* Command list - with key to force re-render on search */}
             <div className="space-y-4" key={`search-results-${searchQuery}`}>
@@ -276,9 +360,34 @@ function App({ mockCommands }) {
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <h2 className="text-2xl font-bold text-blue-400 mb-1">
-                          {command.name}
-                        </h2>
+                        <div className="flex items-center gap-3 mb-1">
+                          <h2 className="text-2xl font-bold text-blue-400">
+                            {command.name}
+                          </h2>
+                          {/* Safety Badge */}
+                          {command.safety && (
+                            <div className="flex items-center">
+                              {command.safety === 'safe' && (
+                                <span className="inline-flex items-center gap-1 bg-green-500/20 text-green-300 text-xs px-2 py-1 rounded-full border border-green-500/30">
+                                  <span className="text-green-400">🟢</span>
+                                  Safe
+                                </span>
+                              )}
+                              {command.safety === 'caution' && (
+                                <span className="inline-flex items-center gap-1 bg-yellow-500/20 text-yellow-300 text-xs px-2 py-1 rounded-full border border-yellow-500/30">
+                                  <span className="text-yellow-400">🟡</span>
+                                  Caution
+                                </span>
+                              )}
+                              {command.safety === 'destructive' && (
+                                <span className="inline-flex items-center gap-1 bg-red-500/20 text-red-300 text-xs px-2 py-1 rounded-full border border-red-500/30">
+                                  <span className="text-red-400">🔴</span>
+                                  Destructive
+                                </span>
+                              )}
+                            </div>
+                          )}
+                        </div>
                         {/* Display standsFor if available */}
                         {command.standsFor && (
                           <p className="text-sm text-slate-500 italic mb-2">
@@ -287,65 +396,164 @@ function App({ mockCommands }) {
                         )}
                         <p className="text-slate-300 mb-4">{command.description}</p>
                       </div>
-                      <div className="flex items-center space-x-2 ml-4">
-                        {/* Display platforms/categories */}
+                      <div className="flex items-center flex-wrap gap-2 ml-4">
+                        {/* Enhanced Platform Badges */}
                         {command.platform &&
                           command.platform.length > 0 &&
-                          command.platform.map((platform) => (
-                            <span
-                              key={platform}
-                              className="bg-blue-500/20 text-blue-300 text-xs px-2 py-1 rounded-full"
-                            >
-                              {platform}
-                            </span>
-                          ))}
+                          command.platform.map((platform) => {
+                            const platformConfig = {
+                              linux: { 
+                                icon: (
+                                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12.504 0C5.395 0 .456 5.125.456 12.253c0 4.584 2.415 8.611 6.015 10.86.451-.255.451-.679.451-1.02v-4.21c-3.15.686-3.796-1.336-3.796-1.336-.407-.966-.994-1.224-.994-1.224-.815-.555.061-.544.061-.544.9.064 1.375.926 1.375.926.8 1.383 2.103.984 2.616.752.082-.585.314-.984.571-1.211-1.993-.227-4.083-1.002-4.083-4.458 0-.985.35-1.789.925-2.419-.093-.227-.401-1.141.087-2.378 0 0 .754-.243 2.47.924.717-.2 1.485-.3 2.248-.303.762.003 1.532.103 2.25.303 1.715-1.167 2.468-.924 2.468-.924.489 1.237.181 2.151.089 2.378.576.63.924 1.434.924 2.419 0 3.464-2.094 4.227-4.093 4.451.321.278.607.825.607 1.662v2.465c0 .344 0 .771.454 1.021C19.143 20.858 21.544 16.835 21.544 12.253 21.544 5.125 16.608 0 12.504 0z"/>
+                                  </svg>
+                                ), 
+                                color: 'linux', 
+                                label: 'Linux' 
+                              },
+                              mac: { 
+                                icon: (
+                                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                                  </svg>
+                                ), 
+                                color: 'mac', 
+                                label: 'macOS' 
+                              },
+                              windows: { 
+                                icon: (
+                                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .15V5.21L20 3zM3 13l6-.09v6.44l-6-1.35V13zm17 .25V22l-10-1.91V13.1l10 .15z"/>
+                                  </svg>
+                                ), 
+                                color: 'windows', 
+                                label: 'Windows' 
+                              },
+                              bsd: { 
+                                icon: (
+                                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                  </svg>
+                                ), 
+                                color: 'bsd', 
+                                label: 'BSD' 
+                              }
+                            };
+                            const config = platformConfig[platform] || { icon: '💻', color: 'slate', label: platform };
+                            const colorClasses = {
+                              linux: 'bg-slate-700/50 text-green-400 border-green-500/30',
+                              mac: 'bg-slate-700/50 text-slate-300 border-slate-400/30',
+                              windows: 'bg-slate-700/50 text-cyan-400 border-cyan-500/30',
+                              bsd: 'bg-slate-700/50 text-red-400 border-red-500/30',
+                              slate: 'bg-slate-500/20 text-slate-300 border-slate-500/30'
+                            };
+                            return (
+                              <span
+                                key={platform}
+                                className={`inline-flex items-center gap-1.5 text-xs px-2 py-1 rounded-md border ${colorClasses[config.color]}`}
+                              >
+                                {config.icon}
+                                {config.label}
+                              </span>
+                            );
+                          })}
+                        {/* Category Badge */}
                         {command.category && (
-                          <span className="bg-emerald-500/20 text-emerald-300 text-xs px-2 py-1 rounded-full">
+                          <span className="bg-emerald-500/20 text-emerald-300 text-xs px-2 py-1 rounded-full border border-emerald-500/30">
                             {command.category}
                           </span>
                         )}
                       </div>
                     </div>
 
-                    {/* Display examples if available */}
-                    {hasExamples && (
-                      <div className="mt-4">
-                        <div className="bg-slate-900 rounded-lg p-4 border border-slate-700">
-                          {visibleExamples.map((example, exampleIndex) => (
-                            <div key={exampleIndex} className="flex items-start space-x-3 mb-2 last:mb-0">
-                              <span className="text-emerald-400 font-mono text-sm mt-0.5">$</span>
-                              <code className="text-sm font-mono text-slate-300 flex-1">
-                                {example.split(' # ')[0]}
-                                {example.includes(' # ') && (
-                                  <span className="text-slate-500 ml-2">
-                                    # {example.split(' # ')[1]}
-                                  </span>
-                                )}
-                              </code>
-                            </div>
-                          ))}
-                          
-                          {hasMoreExamples && (
-                            <button
-                              onClick={() => toggleExpanded(command.name, index)}
-                              className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 text-sm mt-3 transition-colors duration-200"
-                            >
-                              {isExpanded ? (
-                                <>
-                                  <FiChevronUp className="w-4 h-4" />
-                                  <span>Show less</span>
-                                </>
-                              ) : (
-                                <>
-                                  <FiChevronDown className="w-4 h-4" />
-                                  <span>+{command.examples.length - 2} more</span>
-                                </>
-                              )}
-                            </button>
-                          )}
+                    {/* Enhanced Information Sections */}
+                    <div className="mt-4 space-y-4">
+                      {/* Prerequisites Section */}
+                      {command.prerequisites && command.prerequisites.length > 0 && (
+                        <div className="bg-slate-800/50 rounded-lg p-3 border border-slate-600">
+                          <h4 className="text-sm font-semibold text-slate-300 mb-2 flex items-center gap-2">
+                            <span className="text-blue-400">⚡</span>
+                            Prerequisites
+                          </h4>
+                          <div className="flex flex-wrap gap-2">
+                            {command.prerequisites.map((prereq, prereqIndex) => (
+                              <span 
+                                key={prereqIndex}
+                                className="text-xs bg-slate-700 text-slate-300 px-2 py-1 rounded border border-slate-600"
+                              >
+                                {prereq}
+                              </span>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
+
+                      {/* Common Flags Section */}
+                      {command.commonFlags && command.commonFlags.length > 0 && (
+                        <div className="bg-slate-800/50 rounded-lg p-3 border border-slate-600">
+                          <h4 className="text-sm font-semibold text-slate-300 mb-2 flex items-center gap-2">
+                            <span className="text-green-400">🚩</span>
+                            Common Flags
+                          </h4>
+                          <div className="space-y-2">
+                            {command.commonFlags.map((flagInfo, flagIndex) => (
+                              <div key={flagIndex} className="flex items-start gap-3">
+                                <code className="text-xs bg-slate-700 text-emerald-300 px-2 py-1 rounded font-mono">
+                                  {flagInfo.flag}
+                                </code>
+                                <span className="text-xs text-slate-400 leading-5">
+                                  {flagInfo.description}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Examples Section */}
+                      {hasExamples && (
+                        <div>
+                          <h4 className="text-sm font-semibold text-slate-300 mb-2 flex items-center gap-2">
+                            <span className="text-purple-400">💻</span>
+                            Examples
+                          </h4>
+                          <div className="bg-slate-900 rounded-lg p-4 border border-slate-700">
+                            {visibleExamples.map((example, exampleIndex) => (
+                              <div key={exampleIndex} className="flex items-start space-x-3 mb-2 last:mb-0">
+                                <span className="text-emerald-400 font-mono text-sm mt-0.5">$</span>
+                                <code className="text-sm font-mono text-slate-300 flex-1">
+                                  {example.split(' # ')[0]}
+                                  {example.includes(' # ') && (
+                                    <span className="text-slate-500 ml-2">
+                                      # {example.split(' # ')[1]}
+                                    </span>
+                                  )}
+                                </code>
+                              </div>
+                            ))}
+                            
+                            {hasMoreExamples && (
+                              <button
+                                onClick={() => toggleExpanded(command.name, index)}
+                                className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 text-sm mt-3 transition-colors duration-200"
+                              >
+                                {isExpanded ? (
+                                  <>
+                                    <FiChevronUp className="w-4 h-4" />
+                                    <span>Show less</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <FiChevronDown className="w-4 h-4" />
+                                    <span>+{command.examples.length - 2} more</span>
+                                  </>
+                                )}
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 );
               })}
