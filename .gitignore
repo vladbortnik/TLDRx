@@ -1,3 +1,7 @@
+# Project Specific
+_TEMP-*
+FIGMA-AI-AGENT-PROMPT.md
+
 # Logs
 logs
 *.log

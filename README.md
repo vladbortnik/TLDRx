@@ -1,11 +1,11 @@
-# CMD Lookup
+# TL;DRx
 
-A simple web app to search Unix/Linux commands.
+A web app to search Unix/Linux commands.
 
-**Live**: [CMD Lookup](http://cmd-lookup.vladbortnik.dev)
+**Live**: [TL;DRx](http://tldr.vladbortnik.dev)
 
-![React](https://img.shields.io/badge/React-19.1.0-blue) 
-![Vite](https://img.shields.io/badge/Vite-7.0.0-646CFF) 
+![React](https://img.shields.io/badge/React-19.1.0-blue)
+![Vite](https://img.shields.io/badge/Vite-7.0.0-646CFF)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.0-38B2AC)
 ![Node.js](https://img.shields.io/badge/Node.js-20+-green)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -31,17 +31,20 @@ A simple web app to search Unix/Linux commands.
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
-   cd tldr-react
+   cd TLDRx
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Start development server**
+
    ```bash
    npm run dev
    ```
@@ -51,19 +54,19 @@ A simple web app to search Unix/Linux commands.
 
 ## 🛠️ Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server with hot reload |
-| `npm run build` | Build for production |
-| `npm run preview` | Preview production build locally |
-| `npm run test` | Run all tests once |
-| `npm run test:watch` | Run tests in watch mode |
-| `npm run lint` | Run ESLint on the codebase |
+| Command              | Description                              |
+| -------------------- | ---------------------------------------- |
+| `npm run dev`        | Start development server with hot reload |
+| `npm run build`      | Build for production                     |
+| `npm run preview`    | Preview production build locally         |
+| `npm run test`       | Run all tests once                       |
+| `npm run test:watch` | Run tests in watch mode                  |
+| `npm run lint`       | Run ESLint on the codebase               |
 
 ## 🏗️ Project Structure
 
 ```
-cmd.lookup/
+TL;DRx/
 ├── public/                 # Static assets
 │   └── favicon.svg
 ├── src/
@@ -107,18 +110,24 @@ The application includes a comprehensive database of Unix/Linux commands with:
   name: "ls",
   standsFor: "List Directory Contents",
   description: "List information about files and directories",
-  examples: [
-    {
-      description: "List files in current directory",
-      command: "ls"
-    },
-    {
-      description: "List all files including hidden ones",
-      command: "ls -la"
-    }
-  ],
   platform: ["linux", "mac"],
-  category: "file-management"
+  category: "file-management",
+  safety: "safe", // "safe" | "caution" | "destructive"
+  prerequisites: [], // array of requirements
+  commonFlags: [ // common flag options
+    { flag: "-l", description: "Use long listing format" },
+    { flag: "-a", description: "Show hidden files" },
+    { flag: "-h", description: "Human readable file sizes" }
+  ],
+  syntaxPattern: "ls [options] [directory]", // command syntax
+  relatedCommands: ["dir", "find", "tree"], // related command suggestions
+  troubleshooting: "Use 'ls -la' if you don't see expected files", // helpful tips
+  examples: [
+    "ls # List files in current directory",
+    "ls -la # List all files including hidden ones with details",
+    "ls -lh /home # List files in /home with human readable sizes",
+    "ls *.txt # List only .txt files"
+  ]
 }
 ```
 
