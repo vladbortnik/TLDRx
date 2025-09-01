@@ -2,6 +2,7 @@
 _TEMP-*
 FIGMA-AI-AGENT-PROMPT.md
 Command-Reference-Lookup-Tool
+.windsurf/
 
 # Logs
 logs
