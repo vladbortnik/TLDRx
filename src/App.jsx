@@ -23,6 +23,7 @@ function App({ mockCommands }) {
   const [commands, setCommands] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedPlatform, setSelectedPlatform] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -151,19 +152,27 @@ function App({ mockCommands }) {
     );
   }
 
+  // Then filter by category
+  let filteredCommands = platformFilteredCommands;
+  if (selectedCategory !== "all") {
+    filteredCommands = platformFilteredCommands.filter(
+      (command) => command.category === selectedCategory
+    );
+  }
+
   // Then apply search filter
   if (searchQuery.trim() === "") {
-    displayCommands = platformFilteredCommands.slice();
+    displayCommands = filteredCommands.slice();
   } else {
     const query = searchQuery.toLowerCase();
 
     // Check for exact command name match (Phase 4.1a)
-    const exactMatchCommand = platformFilteredCommands.find(
+    const exactMatchCommand = filteredCommands.find(
       (command) => command.name.toLowerCase() === query
     );
     isExactMatch = !!exactMatchCommand;
 
-    const scoredCommands = platformFilteredCommands.map((command) => ({
+    const scoredCommands = filteredCommands.map((command) => ({
       ...command,
       score: searchCommand(query, command),
     }));
@@ -273,6 +282,7 @@ function App({ mockCommands }) {
 
           {/* Platform Toggle Icons */}
           <div className="mt-4 flex items-center justify-start gap-4">
+            <span className="text-sm text-slate-400">Platform:</span>
             {[
               {
                 key: "linux",
@@ -313,34 +323,38 @@ function App({ mockCommands }) {
                   </svg>
                 ),
               },
-            ].map((platform) => {
-              const isSelected = selectedPlatform === platform.key;
-              const colorMap = {
-                linux: "text-green-400 bg-green-500/20 border-green-500/50",
-                mac: "text-slate-300 bg-slate-500/20 border-slate-400/50",
-                windows: "text-cyan-400 bg-cyan-500/20 border-cyan-500/50",
-              };
-              const selectedColors =
-                colorMap[platform.key] ||
-                "text-slate-400 bg-slate-500/20 border-slate-500/50";
+            ].map(({ key, label, icon }) => (
+              <button
+                key={key}
+                onClick={() => setSelectedPlatform(key)}
+                className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  selectedPlatform === key
+                    ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
+                    : "bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white"
+                }`}
+              >
+                {icon}
+                {label}
+              </button>
+            ))}
+          </div>
 
-              return (
-                <button
-                  key={platform.key}
-                  onClick={() =>
-                    setSelectedPlatform(isSelected ? "all" : platform.key)
-                  }
-                  className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 border-2 ${
-                    isSelected
-                      ? selectedColors
-                      : "text-slate-500 bg-slate-800/50 border-slate-700 hover:text-slate-400 hover:border-slate-600"
-                  }`}
-                >
-                  {platform.icon}
-                  <span className="text-sm font-medium">{platform.label}</span>
-                </button>
-              );
-            })}
+          {/* Category Filter Tags */}
+          <div className="mt-4 flex flex-wrap items-center justify-start gap-2">
+            <span className="text-sm text-slate-400 mr-2">Category:</span>
+            {["all", "file-operations", "text-processing", "system", "networking", "shell", "development", "package-management", "security", "containers", "automation", "data-processing"].map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
+                  selectedCategory === category
+                    ? "bg-purple-600 text-white shadow-lg shadow-purple-500/25"
+                    : "bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white"
+                }`}
+              >
+                {category === "all" ? "All" : category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+              </button>
+            ))}
           </div>
         </div>
 
