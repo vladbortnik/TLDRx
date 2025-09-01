@@ -1,6 +1,5 @@
-import { ChevronDown, ChevronUp, Terminal } from "lucide-react";
+import { ChevronDown, ChevronRight, Terminal, Copy } from "lucide-react";
 import { Button } from "./button.jsx";
-import { CommandExample } from "./CommandExample.jsx";
 
 // Transform examples from string format to object format
 const transformExamples = (examples = []) => {
@@ -39,16 +38,19 @@ export function CommandCardExamples({
     return null;
   }
 
-  const visibleExamples = isExpanded ? transformedExamples : transformedExamples.slice(0, maxVisible);
-  const hasMoreExamples = transformedExamples.length > maxVisible;
+  const visibleExamples = isExpanded ? transformedExamples : [];
+  const hasMoreExamples = transformedExamples.length > 0;
 
   return (
-    <div className="mb-4">
-      <div className="flex items-center justify-between mb-3">
-        <h4 className="text-sm font-medium text-slate-300 flex items-center gap-2">
+    <div className="mb-4 border-l-2 border-emerald-500/30 pl-3">
+      <div className="flex items-center justify-between mb-2">
+        <button 
+          onClick={onToggleExpansion}
+          className="flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-slate-300 transition-colors cursor-pointer"
+        >
           <Terminal className="w-4 h-4" />
-          Usage Examples
-        </h4>
+          <span>Usage Examples</span>
+        </button>
         {hasMoreExamples && (
           <Button
             type="button"
@@ -64,7 +66,7 @@ export function CommandCardExamples({
               </>
             ) : (
               <>
-                <ChevronUp className="w-3 h-3 mr-1" />
+                <ChevronRight className="w-3 h-3 mr-1" />
                 Show All ({transformedExamples.length})
               </>
             )}
@@ -72,25 +74,39 @@ export function CommandCardExamples({
         )}
       </div>
       
-      <div className="space-y-3">
+      <div className="space-y-1">
         {visibleExamples.map((example, index) => {
           const exampleId = `example-${index}`;
           return (
-            <div key={index} className="bg-slate-900 rounded-md border border-slate-600 overflow-hidden">
-              {example.title && (
-                <div className="bg-slate-800 px-3 py-2 border-b border-slate-600">
-                  <h5 className="text-xs font-medium text-slate-300">{example.title}</h5>
+            <div key={index} className="group relative">
+              <div className="flex items-center justify-between p-2 rounded-md bg-gradient-to-r from-slate-900/40 to-slate-800/40 border border-slate-700/30 hover:border-slate-600/50 transition-all duration-200 hover:shadow-sm">
+                {/* Single line: command + description */}
+                <div className="flex-1 min-w-0 font-mono text-sm">
+                  <code className="text-emerald-400 font-semibold">
+                    {example.code}
+                  </code>
+                  {example.description && (
+                    <span className="text-slate-400 ml-2">
+                      # {example.description}
+                    </span>
+                  )}
                 </div>
-              )}
-              <div className="p-3">
-                <CommandExample
-                  code={example.code}
-                  description={example.description}
-                  output={example.output}
-                  exampleId={exampleId}
-                  isCopied={copiedExampleId === exampleId}
-                  onCopy={onCopy}
-                />
+                
+                {/* Copy button with text */}
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => onCopy(example.code, exampleId)}
+                  className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 text-slate-500 hover:text-slate-400 h-7 px-2 text-xs flex-shrink-0"
+                >
+                  <span>copy</span>
+                  {copiedExampleId === exampleId ? (
+                    <span className="text-green-400">✓</span>
+                  ) : (
+                    <Copy className="w-4 h-4" />
+                  )}
+                </Button>
               </div>
             </div>
           );
