@@ -1,4 +1,4 @@
-import { FiSearch } from 'react-icons/fi';
+import { Search } from 'lucide-react';
 import { Button } from './ui/button.jsx';
 
 export function NoResultsState({ searchQuery, onClearSearch }) {
@@ -6,7 +6,7 @@ export function NoResultsState({ searchQuery, onClearSearch }) {
     <div className="text-center py-12" role="status" aria-label="No search results found">
       <div className="flex justify-center mb-4">
         <div className="p-4 bg-slate-800 rounded-full border border-slate-700">
-          <FiSearch className="w-8 h-8 text-slate-400" />
+          <Search className="w-8 h-8 text-slate-400" />
         </div>
       </div>
       

@@ -1,8 +1,8 @@
-import { useRef, useEffect } from 'react';
-import { FiSearch, FiX } from 'react-icons/fi';
-import { Input } from './ui/input.jsx';
-import { Button } from './ui/button.jsx';
-import { PlatformFilter } from './PlatformFilter.jsx';
+import { useRef, useEffect } from "react";
+import { Search, X } from "lucide-react";
+import { Input } from "./input.jsx";
+import { Button } from "./button.jsx";
+import { PlatformFilter } from "./PlatformFilter.jsx";
 
 export function SearchSection({
   searchQuery,
@@ -33,7 +33,7 @@ export function SearchSection({
       <div className="space-y-6">
         {/* Search Bar */}
         <div className="relative max-w-2xl mx-auto">
-          <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
           <Input
             ref={searchInputRef}
             type="text"
@@ -55,7 +55,7 @@ export function SearchSection({
               className="absolute right-2 top-1/2 transform -translate-y-1/2 w-6 h-6 p-0 text-slate-400 hover:text-slate-300"
               aria-label="Clear search"
             >
-              <FiX className="w-4 h-4" />
+              <X className="w-4 h-4" />
             </Button>
           )}
         </div>

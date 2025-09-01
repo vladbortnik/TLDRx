@@ -1,4 +1,4 @@
-import { Button } from './ui/button.jsx';
+import { Button } from "./button.jsx";
 
 export function ManPageLink({ url, commandName }) {
   if (!url) return null;

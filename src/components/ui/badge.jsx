@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Slot } from "@radix-ui/react-slot@1.1.2";
-import { cva } from "class-variance-authority@0.7.1";
+import { Slot } from "@radix-ui/react-slot";
+import { cva } from "class-variance-authority";
 
 import { cn } from "./utils";
 
@@ -22,26 +22,23 @@ const badgeVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  },
+  }
 );
 
-const Badge = React.forwardRef(({
-  className,
-  variant,
-  asChild = false,
-  ...props
-}, ref) => {
-  const Comp = asChild ? Slot : "span";
+const Badge = React.forwardRef(
+  ({ className, variant, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "span";
 
-  return (
-    <Comp
-      ref={ref}
-      data-slot="badge"
-      className={cn(badgeVariants({ variant }), className)}
-      {...props}
-    />
-  );
-});
+    return (
+      <Comp
+        ref={ref}
+        data-slot="badge"
+        className={cn(badgeVariants({ variant }), className)}
+        {...props}
+      />
+    );
+  }
+);
 
 Badge.displayName = "Badge";
 

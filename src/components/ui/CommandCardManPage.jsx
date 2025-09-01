@@ -1,5 +1,5 @@
-import { FiExternalLink, FiBook } from 'react-icons/fi';
-import { Button } from './ui/button.jsx';
+import { ExternalLink, Book } from "lucide-react";
+import { Button } from "./button.jsx";
 
 export function CommandCardManPage({ url, commandName }) {
   if (!url) return null;
@@ -7,7 +7,7 @@ export function CommandCardManPage({ url, commandName }) {
   return (
     <div className="mb-4">
       <h4 className="text-sm font-medium text-slate-300 flex items-center gap-2 mb-2">
-        <FiBook className="w-4 h-4" />
+        <Book className="w-4 h-4" />
         Documentation
       </h4>
       <Button
@@ -22,7 +22,7 @@ export function CommandCardManPage({ url, commandName }) {
           rel="noopener noreferrer"
           className="flex items-center gap-2"
         >
-          <FiExternalLink className="w-4 h-4" />
+          <ExternalLink className="w-4 h-4" />
           View {commandName} manual page
         </a>
       </Button>

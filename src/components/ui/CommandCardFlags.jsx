@@ -1,5 +1,5 @@
-import { FiChevronDown, FiChevronUp, FiFlag } from 'react-icons/fi';
-import { Button } from './ui/button.jsx';
+import { ChevronDown, ChevronUp, Flag } from "lucide-react";
+import { Button } from "./button.jsx";
 
 export function CommandCardFlags({ 
   commonFlags = [],
@@ -16,7 +16,7 @@ export function CommandCardFlags({
     <div className="mb-4">
       <div className="flex items-center justify-between mb-2">
         <h4 className="text-sm font-medium text-slate-300 flex items-center gap-2">
-          <FiFlag className="w-4 h-4" />
+          <Flag className="w-4 h-4" />
           Common Flags
         </h4>
         {hasMoreFlags && (
@@ -29,12 +29,12 @@ export function CommandCardFlags({
           >
             {isExpanded ? (
               <>
-                <FiChevronDown className="w-3 h-3 mr-1" />
+                <ChevronDown className="w-3 h-3 mr-1" />
                 Show Less
               </>
             ) : (
               <>
-                <FiChevronUp className="w-3 h-3 mr-1" />
+                <ChevronUp className="w-3 h-3 mr-1" />
                 Show All ({commonFlags.length})
               </>
             )}

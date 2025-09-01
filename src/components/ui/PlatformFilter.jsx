@@ -1,5 +1,5 @@
-import { Button } from './ui/button.jsx';
-import { PlatformIcon } from './PlatformIcon.jsx';
+import { Button } from "./button.jsx";
+import { PlatformIcon } from "./PlatformIcon.jsx";
 
 export function PlatformFilter({ 
   platform, 

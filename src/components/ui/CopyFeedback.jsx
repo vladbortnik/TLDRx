@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { FiCheck, FiX, FiInfo } from 'react-icons/fi';
+import { useState, useEffect } from "react";
+import { Check, X, Info } from "lucide-react";
 
 export function CopyFeedback({ isVisible, isSuccess, onClose, message }) {
   useEffect(() => {
@@ -24,9 +24,9 @@ export function CopyFeedback({ isVisible, isSuccess, onClose, message }) {
         backdrop-blur-sm animate-in slide-in-from-right duration-300
       `}>
         {isSuccess ? (
-          <FiCheck className="w-5 h-5 flex-shrink-0" />
+          <Check className="w-5 h-5 flex-shrink-0" />
         ) : (
-          <FiInfo className="w-5 h-5 flex-shrink-0" />
+          <Info className="w-5 h-5 flex-shrink-0" />
         )}
         <p className="text-sm flex-1">
           {message || (isSuccess ? 'Copied to clipboard!' : 'Copy functionality not available in this environment')}
@@ -37,7 +37,7 @@ export function CopyFeedback({ isVisible, isSuccess, onClose, message }) {
           className="text-current hover:opacity-70 transition-opacity"
           aria-label="Close notification"
         >
-          <FiX className="w-4 h-4" />
+          <X className="w-4 h-4" />
         </button>
       </div>
     </div>

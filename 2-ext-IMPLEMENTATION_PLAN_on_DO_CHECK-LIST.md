@@ -93,6 +93,11 @@ echo "- Sample Data: $(node -e "console.log(Object.keys(require('./Command-Refer
 
 **Status Report Required**: Report findings and wait for explicit permission to proceed to 0.2
 
+**VERIFICATION ENFORCEMENT**:
+- **Run verification script**: `./scripts/verify-completion.sh` - before any completion claim
+- **Show screenshots**: Screenshots saved in `screenshots/` directory as proof
+- **Manual approval**: Only user can validate the visual results
+
 ### **0.2 Radix UI Dependencies Setup**
 
 - [x] Install Tool-2's Radix UI dependencies
@@ -139,6 +144,11 @@ echo "- Import Test: $(node -e "require('@radix-ui/react-accordion'); console.lo
 
 **Status Report Required**: Report installation status and wait for explicit permission to proceed to 0.3
 
+**VERIFICATION ENFORCEMENT**:
+- **Run verification script**: `./scripts/verify-completion.sh` - before any completion claim
+- **Show screenshots**: Screenshots saved in `screenshots/` directory as proof
+- **Manual approval**: Only user can validate the visual results
+
 ### **0.3 Component Migration Strategy**
 
 - [x] Create src/components/ui/ directory for Tool-2 UI components
@@ -176,6 +186,11 @@ echo "- Core Components: $(ls src/components/ui/ 2>/dev/null | grep -c 'CommandC
 4. Confirm Button.jsx and Badge.jsx have Tool-2 styling
 
 **Status Report Required**: Report migration status and wait for explicit permission to proceed to 0.4
+
+**VERIFICATION ENFORCEMENT**:
+- **Run verification script**: `./scripts/verify-completion.sh` - before any completion claim
+- **Show screenshots**: Screenshots saved in `screenshots/` directory as proof
+- **Manual approval**: Only user can validate the visual results
 
 ### **0.4 Data Structure Adaptation**
 
@@ -228,6 +243,11 @@ echo "- Data Conversion: $(node -e "const adapter = require('./src/utils/dataAda
 
 **Status Report Required**: Report adaptation status and wait for explicit permission to proceed to 0.5
 
+**VERIFICATION ENFORCEMENT**:
+- **Run verification script**: `./scripts/verify-completion.sh` - before any completion claim
+- **Show screenshots**: Screenshots saved in `screenshots/` directory as proof
+- **Manual approval**: Only user can validate the visual results
+
 ### **0.5 Component Integration**
 
 - [ ] Replace current CommandCard with Tool-2 CommandCard
@@ -266,6 +286,11 @@ echo "- Import Errors: $(npm run dev 2>&1 | grep -c 'error\|Error' || echo '0')"
 7. Check responsive design works on mobile viewport
 
 **Status Report Required**: Report integration status and wait for explicit permission to proceed to 0.6
+
+**VERIFICATION ENFORCEMENT**:
+- **Run verification script**: `./scripts/verify-completion.sh` - before any completion claim
+- **Show screenshots**: Screenshots saved in `screenshots/` directory as proof
+- **Manual approval**: Only user can validate the visual results
 
 ### **0.6 Styling Integration**
 
@@ -309,6 +334,11 @@ echo "- CSS Errors: $(npm run build 2>&1 | grep -c 'CSS\|style' || echo '0')"
 6. Validate color contrast meets WCAG guidelines
 
 **Status Report Required**: Report styling status and wait for explicit permission to proceed to Final Checkpoint
+
+**VERIFICATION ENFORCEMENT**:
+- **Run verification script**: `./scripts/verify-completion.sh` - before any completion claim
+- **Show screenshots**: Screenshots saved in `screenshots/` directory as proof
+- **Manual approval**: Only user can validate the visual results
 
 ### **🛡️ SENTINEL CHECKPOINT 0: TOOL-2 UI INTEGRATION VALIDATION**
 
@@ -371,6 +401,11 @@ REQUEST: Please provide explicit permission to proceed to Phase 0.5
 ```
 
 **🚨 USER APPROVAL REQUIRED**: After completing all automated tests and manual testing, provide completion report and wait for explicit user permission to proceed to Phase 0.5
+
+**VERIFICATION ENFORCEMENT**:
+- **Run verification script**: `./scripts/verify-completion.sh` - before any completion claim
+- **Show screenshots**: Screenshots saved in `screenshots/` directory as proof
+- **Manual approval**: Only user can validate the visual results
 
 ---
 
@@ -499,6 +534,11 @@ echo "- Build Success: $(npm run build >/dev/null 2>&1 && echo 'OK' || echo 'Fai
 echo "- Icons: $(find public/icons -name '*.png' 2>/dev/null | wc -l) icon files created" && \
 echo "- Installation: Manual test required on mobile/desktop browsers"
 ```
+
+**VERIFICATION ENFORCEMENT**:
+- **Run verification script**: `./scripts/verify-completion.sh` - before any completion claim
+- **Show screenshots**: Screenshots saved in `screenshots/` directory as proof
+- **Manual approval**: Only user can validate the visual results
 
 ---
 
@@ -633,6 +673,11 @@ echo "- Commands: $(node -e "console.log(require('./src/data/commands.js').lengt
 echo "- Directories: $(find . -maxdepth 1 -type d -name "backend" -o -name "scripts" -o -name "docker" | wc -l)/3"
 ```
 
+**VERIFICATION ENFORCEMENT**:
+- **Run verification script**: `./scripts/verify-completion.sh` - before any completion claim
+- **Show screenshots**: Screenshots saved in `screenshots/` directory as proof
+- **Manual approval**: Only user can validate the visual results
+
 ---
 
 ## 🐳 **PHASE 2: DOCKER ENVIRONMENT SETUP**
@@ -758,6 +803,11 @@ echo "- MongoDB: $(docker-compose exec -T mongodb mongosh -u admin -p password -
 echo "- Backend Network: $(docker-compose exec -T backend ping -c 1 -W 1 mongodb >/dev/null 2>&1 && echo "Connected" || echo "Failed")"
 ```
 
+**VERIFICATION ENFORCEMENT**:
+- **Run verification script**: `./scripts/verify-completion.sh` - before any completion claim
+- **Show screenshots**: Screenshots saved in `screenshots/` directory as proof
+- **Manual approval**: Only user can validate the visual results
+
 ---
 
 ## ⚙️ **PHASE 3: BACKEND FOUNDATION**
@@ -874,6 +924,11 @@ echo "- Database: $(curl -s http://localhost:3001/api/status | jq -r '.database'
 echo "- Schema: $(cd backend && node -e "require('./src/models/Command'); console.log('OK')" 2>/dev/null || echo "Failed")"
 ```
 
+**VERIFICATION ENFORCEMENT**:
+- **Run verification script**: `./scripts/verify-completion.sh` - before any completion claim
+- **Show screenshots**: Screenshots saved in `screenshots/` directory as proof
+- **Manual approval**: Only user can validate the visual results
+
 ---
 
 ## 📊 **PHASE 4: DATA MIGRATION**
@@ -979,6 +1034,11 @@ echo "- Search Working: $(curl -s 'http://localhost:3001/api/commands/search?q=g
 echo "- Schema Valid: $(node scripts/verify-migration.js 2>/dev/null | grep -c "PASS" || echo "Failed")"
 ```
 
+**VERIFICATION ENFORCEMENT**:
+- **Run verification script**: `./scripts/verify-completion.sh` - before any completion claim
+- **Show screenshots**: Screenshots saved in `screenshots/` directory as proof
+- **Manual approval**: Only user can validate the visual results
+
 ---
 
 ## 🔌 **PHASE 5: API DEVELOPMENT**
@@ -1061,6 +1121,11 @@ echo "- Filtering: $(curl -s 'http://localhost:3001/api/commands/search?platform
 echo "- Performance: $(time curl -s http://localhost:3001/api/commands/search >/dev/null 2>&1 && echo "OK" || echo "Failed")"
 ```
 
+**VERIFICATION ENFORCEMENT**:
+- **Run verification script**: `./scripts/verify-completion.sh` - before any completion claim
+- **Show screenshots**: Screenshots saved in `screenshots/` directory as proof
+- **Manual approval**: Only user can validate the visual results
+
 ---
 
 ## 🖥️ **PHASE 6: FRONTEND INTEGRATION**
@@ -1137,6 +1202,11 @@ echo "- Frontend Running: $(curl -s http://localhost:5173 >/dev/null 2>&1 && ech
 echo "- API Connection: $(curl -s http://localhost:5173/api/commands/search >/dev/null 2>&1 && echo "OK" || echo "Check Proxy")" && \
 echo "- Search Working: Manual browser test required"
 ```
+
+**VERIFICATION ENFORCEMENT**:
+- **Run verification script**: `./scripts/verify-completion.sh` - before any completion claim
+- **Show screenshots**: Screenshots saved in `screenshots/` directory as proof
+- **Manual approval**: Only user can validate the visual results
 
 ---
 
@@ -1229,6 +1299,11 @@ echo "- Total Commands: $(curl -s http://localhost:3001/api/commands/count | jq 
 echo "- Quality Score: $(node scripts/qa/validate-commands.js --score 2>/dev/null || echo "Failed")" && \
 echo "- Search Performance: $(time curl -s 'http://localhost:3001/api/commands/search?q=git' >/dev/null 2>&1 && echo "OK" || echo "Failed")"
 ```
+
+**VERIFICATION ENFORCEMENT**:
+- **Run verification script**: `./scripts/verify-completion.sh` - before any completion claim
+- **Show screenshots**: Screenshots saved in `screenshots/` directory as proof
+- **Manual approval**: Only user can validate the visual results
 
 ---
 
@@ -1379,6 +1454,11 @@ echo "- HTTPS Access: $(curl -s https://your-domain.com >/dev/null 2>&1 && echo 
 echo "- API Response: $(curl -s https://your-domain.com/api/commands/count | jq '.count' 2>/dev/null || echo "Failed")" && \
 echo "- SSL Certificate: $(curl -s -I https://your-domain.com | grep -c "200 OK" || echo "Failed")"
 ```
+
+**VERIFICATION ENFORCEMENT**:
+- **Run verification script**: `./scripts/verify-completion.sh` - before any completion claim
+- **Show screenshots**: Screenshots saved in `screenshots/` directory as proof
+- **Manual approval**: Only user can validate the visual results
 
 ---
 

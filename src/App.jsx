@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import {
-  FiChevronDown,
-  FiChevronUp,
-  FiCopy,
-  FiCheck,
-  FiTerminal,
-} from "react-icons/fi";
+  ChevronDown,
+  ChevronUp,
+  Copy,
+  Check,
+  Terminal,
+} from "lucide-react";
 import commands from "./data/commands";
-import { CommandCard } from "../Command-Reference-Lookup-Tool-2/src/components/CommandCard.jsx";
+import { CommandCard } from "./components/ui/CommandCard.jsx";
 import { adaptToEnhancedFormat } from "./utils/dataAdapter";
 import "./index.css";
 
@@ -187,7 +187,6 @@ function App({ mockCommands }) {
     );
   }
 
-
   return (
     <div className="min-h-screen bg-slate-900 text-white">
       <div className="container mx-auto max-w-6xl px-4 py-8">
@@ -233,9 +232,9 @@ function App({ mockCommands }) {
                 {/* Enhanced terminal icon */}
                 <div className="relative">
                   <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
-                    <FiTerminal
+                    <Terminal
                       className="text-white text-lg"
-                      style={{ strokeWidth: 2.5 }}
+                      strokeWidth={2.5}
                     />
                   </div>
                   <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-lg opacity-30 animate-ping"></div>
@@ -302,26 +301,12 @@ function App({ mockCommands }) {
                   </svg>
                 ),
               },
-              {
-                key: "bsd",
-                label: "BSD",
-                icon: (
-                  <svg
-                    className="w-5 h-5"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                  </svg>
-                ),
-              },
             ].map((platform) => {
               const isSelected = selectedPlatform === platform.key;
               const colorMap = {
                 linux: "text-green-400 bg-green-500/20 border-green-500/50",
                 mac: "text-slate-300 bg-slate-500/20 border-slate-400/50",
                 windows: "text-cyan-400 bg-cyan-500/20 border-cyan-500/50",
-                bsd: "text-red-400 bg-red-500/20 border-red-500/50",
               };
               const selectedColors =
                 colorMap[platform.key] ||
@@ -383,7 +368,17 @@ function App({ mockCommands }) {
                   <CommandCard
                     key={`${command.name}-${index}`}
                     {...enhancedCommand}
-                    maxVisibleExamples={isExactMatch && command.name.toLowerCase() === searchQuery.toLowerCase() ? undefined : 2}
+                    maxVisibleExamples={
+                      isExactMatch &&
+                      command.name.toLowerCase() === searchQuery.toLowerCase()
+                        ? undefined
+                        : 2
+                    }
+                    allCommands={commands}
+                    onCommandClick={(commandName) => {
+                      setSearchQuery(commandName);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
                   />
                 );
               })}

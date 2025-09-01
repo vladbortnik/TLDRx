@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import { CommandCardHeader } from './CommandCardHeader.jsx';
-import { CommandCardBadges } from './CommandCardBadges.jsx';
-import { CommandCardSyntax } from './CommandCardSyntax.jsx';
-import { CommandCardFlags } from './CommandCardFlags.jsx';
-import { CommandCardInfo } from './CommandCardInfo.jsx';
-import { CommandCardExamples } from './CommandCardExamples.jsx';
-import { CommandCardManPage } from './CommandCardManPage.jsx';
-import { CommandCardRelated } from './CommandCardRelated.jsx';
-import { copyToClipboard } from '../utils/copyToClipboard.js';
+import { useState } from "react";
+import { CommandCardHeader } from "./CommandCardHeader.jsx";
+import { CommandCardBadges } from "./CommandCardBadges.jsx";
+import { CommandCardSyntax } from "./CommandCardSyntax.jsx";
+import { CommandCardFlags } from "./CommandCardFlags.jsx";
+import { CommandCardInfo } from "./CommandCardInfo.jsx";
+import { CommandCardExamples } from "./CommandCardExamples.jsx";
+import { CommandCardManPage } from "./CommandCardManPage.jsx";
+import { CommandCardRelated } from "./CommandCardRelated.jsx";
+import { copyToClipboard } from "../../utils/copyToClipboard.js";
 
-export function CommandCard({ 
-  name, 
-  subtitle, 
-  description, 
+export function CommandCard({
+  name,
+  subtitle,
+  description,
   safety,
   platform,
   categories,
@@ -21,10 +21,12 @@ export function CommandCard({
   prerequisites,
   notes,
   warnings,
-  examples, 
+  examples,
   relatedCommands,
   manPageUrl,
-  maxVisibleExamples = 3 
+  maxVisibleExamples = 3,
+  allCommands = [],
+  onCommandClick,
 }) {
   const [isExamplesExpanded, setIsExamplesExpanded] = useState(false);
   const [isFlagsExpanded, setIsFlagsExpanded] = useState(false);
@@ -36,49 +38,47 @@ export function CommandCard({
       setCopiedExampleId(exampleId);
       setTimeout(() => setCopiedExampleId(null), 2000);
     } else {
-      console.error('Failed to copy text to clipboard');
+      console.error("Failed to copy text to clipboard");
       // Still show the check briefly to indicate the action was attempted
       setCopiedExampleId(exampleId);
       setTimeout(() => setCopiedExampleId(null), 1000);
     }
   };
   return (
-    <div className="bg-slate-800 rounded-lg border border-slate-700 p-6 hover:border-slate-600 transition-colors space-y-4">
+    <div 
+      className="bg-slate-800 rounded-lg border border-slate-700 p-6 hover:border-slate-600 transition-colors space-y-4"
+      data-command-name={name}
+    >
       {/* 1. Header - Command name, safety badge, description */}
-      <CommandCardHeader 
+      <CommandCardHeader
         name={name}
         subtitle={subtitle}
         description={description}
         safety={safety}
+        prerequisites={prerequisites}
       />
 
       {/* 2. Platform Badges - OS compatibility indicators */}
-      <CommandCardBadges 
-        platform={platform}
-        categories={categories}
-      />
+      <CommandCardBadges platform={platform} categories={categories} />
 
       {/* 3. Syntax Pattern - Command syntax display */}
-      <CommandCardSyntax 
-        syntaxPattern={syntaxPattern}
-      />
+      <CommandCardSyntax syntaxPattern={syntaxPattern} />
 
       {/* 4. Flag Combinations - Expandable common flags section */}
-      <CommandCardFlags 
+      <CommandCardFlags
         commonFlags={commonFlags}
         isExpanded={isFlagsExpanded}
         onToggleExpansion={() => setIsFlagsExpanded(!isFlagsExpanded)}
       />
 
-      {/* 5. Prerequisites - Required dependencies */}
-      <CommandCardInfo 
-        prerequisites={prerequisites}
+      {/* 5. Notes and Warnings */}
+      <CommandCardInfo
         notes={notes}
         warnings={warnings}
       />
 
       {/* 6. Examples - Expandable usage examples */}
-      <CommandCardExamples 
+      <CommandCardExamples
         examples={examples}
         maxVisible={maxVisibleExamples}
         isExpanded={isExamplesExpanded}
@@ -89,14 +89,13 @@ export function CommandCard({
 
       {/* 7. Related Commands - Command suggestions */}
       <CommandCardRelated 
-        relatedCommands={relatedCommands}
+        relatedCommands={relatedCommands} 
+        allCommands={allCommands}
+        onCommandClick={onCommandClick}
       />
 
       {/* 8. Link to the external 'man page' */}
-      <CommandCardManPage 
-        url={manPageUrl}
-        commandName={name}
-      />
+      <CommandCardManPage url={manPageUrl} commandName={name} />
     </div>
   );
 }

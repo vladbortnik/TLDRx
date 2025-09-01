@@ -1,7 +1,7 @@
-import { FiCopy, FiCheck } from 'react-icons/fi';
-import { useState } from 'react';
-import { Button } from './ui/button.jsx';
-import { copyToClipboard } from '../utils/copyToClipboard.js';
+import { Copy, Check } from "lucide-react";
+import { useState } from "react";
+import { Button } from "./button.jsx";
+import { copyToClipboard } from "../../utils/copyToClipboard.js";
 
 export function CommandCardSyntax({ syntaxPattern }) {
   const [copied, setCopied] = useState(false);
@@ -14,7 +14,7 @@ export function CommandCardSyntax({ syntaxPattern }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } else {
-      console.error('Failed to copy syntax to clipboard');
+      console.error("Failed to copy syntax to clipboard");
       // Still show feedback to indicate the action was attempted
       setCopied(true);
       setTimeout(() => setCopied(false), 1000);
@@ -37,9 +37,9 @@ export function CommandCardSyntax({ syntaxPattern }) {
           title="Copy syntax to clipboard"
         >
           {copied ? (
-            <FiCheck className="w-4 h-4" />
+            <Check className="w-4 h-4" />
           ) : (
-            <FiCopy className="w-4 h-4" />
+            <Copy className="w-4 h-4" />
           )}
         </Button>
       </div>

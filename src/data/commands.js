@@ -1067,7 +1067,13 @@ const commandsDatabase = [
       { "flags": "-i", "usage": "rm -i <file>", "description": "Interactive mode with confirmation prompts" },
       { "flags": "-v", "usage": "rm -v <file>", "description": "Verbose mode showing what's being removed" }
     ],
-    "relatedCommands": ["mv"],  // TODO: Add rmdir, trash commands to database
+    "relatedCommands": [
+      { "name": "trash", "relationship": "safer" },
+      { "name": "mv", "relationship": "similar" },
+      { "name": "find", "relationship": "combo" },
+      { "name": "shred", "relationship": "secure" },
+      { "name": "rmdir", "relationship": "limited" }
+    ],
     "troubleshooting": [
       "Use -i flag for confirmation prompts",
       "Cannot undo rm operations!"

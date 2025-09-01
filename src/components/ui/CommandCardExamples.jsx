@@ -1,6 +1,6 @@
-import { FiChevronDown, FiChevronUp, FiTerminal } from 'react-icons/fi';
-import { Button } from './ui/button.jsx';
-import { CommandExample } from './CommandExample.jsx';
+import { ChevronDown, ChevronUp, Terminal } from "lucide-react";
+import { Button } from "./button.jsx";
+import { CommandExample } from "./CommandExample.jsx";
 
 // Transform examples from string format to object format
 const transformExamples = (examples = []) => {
@@ -46,7 +46,7 @@ export function CommandCardExamples({
     <div className="mb-4">
       <div className="flex items-center justify-between mb-3">
         <h4 className="text-sm font-medium text-slate-300 flex items-center gap-2">
-          <FiTerminal className="w-4 h-4" />
+          <Terminal className="w-4 h-4" />
           Usage Examples
         </h4>
         {hasMoreExamples && (
@@ -59,12 +59,12 @@ export function CommandCardExamples({
           >
             {isExpanded ? (
               <>
-                <FiChevronDown className="w-3 h-3 mr-1" />
+                <ChevronDown className="w-3 h-3 mr-1" />
                 Show Less
               </>
             ) : (
               <>
-                <FiChevronUp className="w-3 h-3 mr-1" />
+                <ChevronUp className="w-3 h-3 mr-1" />
                 Show All ({transformedExamples.length})
               </>
             )}
