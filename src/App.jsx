@@ -211,10 +211,10 @@ function App({ mockCommands }) {
             </div>
           </div>
           <h1 className="text-5xl font-bold text-white mb-3 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-            TL;DR Commands
+            TL;DRx
           </h1>
           <p className="text-xl text-slate-400">
-            Simplified command reference for developers
+            Commands Made Simple
           </p>
         </header>
 

@@ -1,5 +1,5 @@
 /**
- * TL;DR Commands Database
+ * TL;DRx Commands Database
  * 
  * A comprehensive collection of Unix/Linux commands with descriptions, examples,
  * platform support information, and categorization. Commands are alphabetically

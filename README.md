@@ -1,6 +1,6 @@
 # TL;DRx
 
-A web app to search Unix/Linux commands.
+Commands Made Simple
 
 **Live**: [TL;DRx](http://tldr.vladbortnik.dev)
 

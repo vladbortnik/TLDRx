@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "A modern React web application for searching Unix/Linux commands with TL;DR explanations",
+  "description": "Commands Made Simple - Interactive Unix/Linux command reference with examples and use cases",
   "keywords": [
     "tldr",
     "commands",

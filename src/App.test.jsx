@@ -42,8 +42,8 @@ describe('App Component', () => {
     render(<App mockCommands={mockCommands} />);
     
     // Check for header elements
-    expect(screen.getByText('TL;DR Commands')).toBeInTheDocument();
-    expect(screen.getByText('Simplified command reference for developers')).toBeInTheDocument();
+    expect(screen.getByText('TL;DRx')).toBeInTheDocument();
+    expect(screen.getByText('Commands Made Simple')).toBeInTheDocument();
     
     // Check for search box
     expect(screen.getByPlaceholderText('Search commands...')).toBeInTheDocument();
