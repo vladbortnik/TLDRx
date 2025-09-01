@@ -51,9 +51,11 @@ export function CommandCardHeader({
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-1">
             <h3 className="text-xl font-semibold text-emerald-400">{name}</h3>
+            {description && (
+              <span className="text-slate-400 text-sm">- {description}</span>
+            )}
             {getSafetyBadge()}
           </div>
-          <p className="text-slate-300 text-sm font-medium">{subtitle}</p>
         </div>
         {prerequisites.length > 0 && (
           <div className="flex flex-wrap gap-1 ml-4">
@@ -84,7 +86,6 @@ export function CommandCardHeader({
           </div>
         )}
       </div>
-      <p className="text-slate-400 text-sm leading-relaxed">{description}</p>
     </div>
   );
 }

@@ -209,10 +209,29 @@ const commandsDatabase = [
     "standsFor": "copy",
     "description": "Copy files and directories",
     "examples": [
-      "cp file.txt copy.txt  # Copy a file",
-      "cp -r dir1/ dir2/     # Copy directory recursively",
-      "cp -i file.txt dest/  # Prompt before overwrite",
-      "cp -a source/ dest/   # Archive mode (preserve attributes)"
+      "cp file.txt backup.txt    # Create backup of important file",
+      "cp -r src/ backup/        # Copy entire directory tree",
+      "cp -i *.txt documents/    # Interactive copy to avoid overwrites",
+      "cp -a project/ archive/   # Archive with all attributes preserved",
+      "cp -u newer/* old/       # Update only newer files",
+      "cp -v *.log /var/log/    # Verbose copy showing progress"
+    ],
+    "commandCombinations": [
+      {
+        "scenario": "Backup with timestamp",
+        "commands": "cp -r important/ backup-$(date +%Y%m%d)/",
+        "explanation": "Create timestamped backup directory for version control"
+      },
+      {
+        "scenario": "Sync directories efficiently",
+        "commands": "rsync -av --delete src/ dest/",
+        "explanation": "Use rsync for more efficient directory synchronization"
+      },
+      {
+        "scenario": "Copy with progress indicator", 
+        "commands": "cp -r large_dir/ dest/ & watch -n 1 'du -sh dest/'",
+        "explanation": "Monitor copy progress by watching destination directory size"
+      }
     ],
     "platform": [
       "linux",
@@ -237,10 +256,21 @@ const commandsDatabase = [
       { "flags": "-a", "usage": "cp -a <source> <destination>", "description": "Archive mode preserving all attributes" },
       { "flags": "-u", "usage": "cp -u <source> <destination>", "description": "Copy only when source is newer" }
     ],
-    "relatedCommands": ["mv", "rsync", "scp"],
-    "troubleshooting": [
-      "Use -i to avoid accidental overwrites",
-      "Use -r for directories"
+    "relatedCommands": [
+      { "name": "mv", "relationship": "move" },
+      { "name": "rsync", "relationship": "advanced" },
+      { "name": "scp", "relationship": "remote" },
+      { "name": "tar", "relationship": "archive" }
+    ],
+    "notes": [
+      "Use rsync instead of cp for large directory trees (more efficient)",
+      "The -a flag is equivalent to -dR --preserve=all",
+      "For remote copies, consider scp or rsync over ssh"
+    ],
+    "warnings": [
+      "cp will overwrite existing files without -i flag",
+      "Large recursive copies can consume significant disk space",
+      "Always verify destination path to avoid copying to wrong location"
     ]
   },
   {
@@ -723,10 +753,29 @@ const commandsDatabase = [
     "standsFor": "list",
     "description": "List directory contents",
     "examples": [
-      "ls                    # List files and directories",
-      "ls -la                # List all files with detailed info",
-      "ls -lh                # List with human-readable file sizes",
-      "ls *.txt              # List only .txt files"
+      "ls                    # Quick directory overview",
+      "ls -la                # Detailed list including hidden files", 
+      "ls -lh                # Human-readable file sizes",
+      "ls -lt                # Sort by modification time",
+      "ls -lS                # Sort by file size (largest first)",
+      "ls -R                 # Recursive listing of subdirectories"
+    ],
+    "commandCombinations": [
+      {
+        "scenario": "Find largest files in directory tree",
+        "commands": "ls -laRS | head -20",
+        "explanation": "Combine recursive, detailed, and size-sorted listing"
+      },
+      {
+        "scenario": "Monitor directory changes",
+        "commands": "watch -n 2 'ls -la'",
+        "explanation": "Continuously monitor directory contents every 2 seconds"
+      },
+      {
+        "scenario": "Count files by type",
+        "commands": "ls -1 | grep -E '\.[^.]+$' | sort | uniq -c",
+        "explanation": "List files, extract extensions, and count by type"
+      }
     ],
     "platform": [
       "linux",
@@ -751,10 +800,16 @@ const commandsDatabase = [
       { "flags": "-lt", "usage": "ls -lt", "description": "Long format sorted by modification time" },
       { "flags": "-lS", "usage": "ls -lS", "description": "Long format sorted by file size" }
     ],
-    "relatedCommands": ["find"],  // TODO: Add dir, tree commands to database
-    "troubleshooting": [
-      "Use -a to see hidden files",
-      "Add -l for detailed information"
+    "relatedCommands": [
+      { "name": "find", "relationship": "advanced" },
+      { "name": "tree", "relationship": "visual" },
+      { "name": "du", "relationship": "sizes" },
+      { "name": "stat", "relationship": "detailed" }
+    ],
+    "notes": [
+      "Use --color=auto for colored output on supported terminals",
+      "Hidden files start with . (dot) - use -a to see them",
+      "Combine flags like -lah for maximum detail"
     ]
   },
   {
@@ -1040,10 +1095,35 @@ const commandsDatabase = [
     "standsFor": "remove",
     "description": "Remove files or directories",
     "examples": [
-      "rm file.txt            # Remove a file",
-      "rm -r dir/             # Remove directory recursively",
-      "rm -f file.txt         # Force remove without confirmation",
-      "rm -i *.txt            # Remove with confirmation for each file"
+      "rm *.log               # Clean up old log files",
+      "rm -rf build/          # Remove build directory and all contents", 
+      "rm -i important_*      # Interactive deletion for safety",
+      "rm -f temp.tmp         # Force delete temporary file",
+      "rm -v *.cache          # Verbose deletion showing what's removed",
+      "rm --preserve-root -rf # Safe recursive delete (won't delete root)"
+    ],
+    "commandCombinations": [
+      {
+        "scenario": "Find and delete old files by date",
+        "commands": "find . -mtime +30 -name '*.log' | xargs rm",
+        "explanation": "Chain find with rm to delete log files older than 30 days"
+      },
+      {
+        "scenario": "Safe cleanup with preview",
+        "commands": "find . -name '*.tmp' -print | head -10 && find . -name '*.tmp' -delete",
+        "explanation": "Preview files to delete first, then remove them"
+      },
+      {
+        "scenario": "Remove broken symbolic links",
+        "commands": "find . -xtype l -delete",
+        "explanation": "Find and remove all broken symlinks in current directory"
+      }
+    ],
+    "warnings": [
+      "rm is permanent - no undo or trash recovery available",
+      "rm -rf can destroy entire system if used incorrectly", 
+      "Always double-check paths before using -rf flags",
+      "Use -i flag for confirmation on important files"
     ],
     "platform": [
       "linux",
@@ -1074,9 +1154,10 @@ const commandsDatabase = [
       { "name": "shred", "relationship": "secure" },
       { "name": "rmdir", "relationship": "limited" }
     ],
-    "troubleshooting": [
-      "Use -i flag for confirmation prompts",
-      "Cannot undo rm operations!"
+    "notes": [
+      "Modern alternative: use 'trash' command for recoverable deletion",
+      "Some systems have rm aliased to 'rm -i' for safety",
+      "Use --preserve-root to prevent accidental root deletion"
     ]
   },
   {

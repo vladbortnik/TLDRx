@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CommandCardHeader } from "./CommandCardHeader.jsx";
 import { CommandCardBadges } from "./CommandCardBadges.jsx";
 import { CommandCardSyntax } from "./CommandCardSyntax.jsx";
-import { CommandCardFlags } from "./CommandCardFlags.jsx";
 import { CommandCardInfo } from "./CommandCardInfo.jsx";
-import { CommandCardExamples } from "./CommandCardExamples.jsx";
+import { CommandCardUseCases } from "./CommandCardExamples.jsx";
+import { CommandCardCombinations } from "./CommandCardCombinations.jsx";
 import { CommandCardManPage } from "./CommandCardManPage.jsx";
 import { CommandCardRelated } from "./CommandCardRelated.jsx";
 import { copyToClipboard } from "../../utils/copyToClipboard.js";
@@ -16,9 +16,9 @@ export function CommandCard({
   safety,
   platform,
   categories,
+  prerequisites,
   syntaxPattern,
   commonFlags,
-  prerequisites,
   notes,
   warnings,
   examples,
@@ -27,11 +27,18 @@ export function CommandCard({
   maxVisibleExamples = 3,
   allCommands = [],
   onCommandClick,
+  searchQuery = "",
 }) {
   const [isExamplesExpanded, setIsExamplesExpanded] = useState(false);
-  const [isFlagsExpanded, setIsFlagsExpanded] = useState(false);
+
+  // Auto-expand Use Cases when user types exact command name
+  useEffect(() => {
+    const shouldExpand = searchQuery.toLowerCase().trim() === name.toLowerCase();
+    setIsExamplesExpanded(shouldExpand);
+  }, [searchQuery, name]);
+  const [isCombinationsExpanded, setIsCombinationsExpanded] = useState(false);
   const [copiedExampleId, setCopiedExampleId] = useState(null);
-  const [copiedFlagId, setCopiedFlagId] = useState(null);
+  const [copiedCombinationId, setCopiedCombinationId] = useState(null);
 
   const handleCopy = async (code, exampleId) => {
     const success = await copyToClipboard(code);
@@ -65,17 +72,14 @@ export function CommandCard({
       {/* 3. Syntax Pattern - Command syntax display */}
       <CommandCardSyntax syntaxPattern={syntaxPattern} />
 
-      {/* 4. Flag Combinations - Expandable common flags section */}
-      <CommandCardFlags
-        commonFlags={commonFlags}
-        isExpanded={isFlagsExpanded}
-        onToggleExpansion={() => setIsFlagsExpanded(!isFlagsExpanded)}
-        copiedFlagId={copiedFlagId}
-        onCopy={(flag, flagId) => {
-          handleCopy(flag, flagId);
-          setCopiedFlagId(flagId);
-          setTimeout(() => setCopiedFlagId(null), 2000);
-        }}
+      {/* 4. Use Cases - Practical scenarios */}
+      <CommandCardUseCases
+        useCases={examples}
+        maxVisible={maxVisibleExamples}
+        isExpanded={isExamplesExpanded}
+        onToggleExpansion={() => setIsExamplesExpanded(!isExamplesExpanded)}
+        copiedExampleId={copiedExampleId}
+        onCopy={handleCopy}
       />
 
       {/* 5. Notes and Warnings */}
@@ -84,14 +88,17 @@ export function CommandCard({
         warnings={warnings}
       />
 
-      {/* 6. Examples - Expandable usage examples */}
-      <CommandCardExamples
-        examples={examples}
-        maxVisible={maxVisibleExamples}
-        isExpanded={isExamplesExpanded}
-        onToggleExpansion={() => setIsExamplesExpanded(!isExamplesExpanded)}
-        copiedExampleId={copiedExampleId}
-        onCopy={handleCopy}
+      {/* 5. Command Combinations - Multi-command workflows */}
+      <CommandCardCombinations
+        combinations={relatedCommands?.filter(cmd => typeof cmd === 'object' && cmd.commands) || []}
+        isExpanded={isCombinationsExpanded}
+        onToggleExpansion={() => setIsCombinationsExpanded(!isCombinationsExpanded)}
+        copiedCombinationId={copiedCombinationId}
+        onCopy={(commands, combinationId) => {
+          handleCopy(commands, combinationId);
+          setCopiedCombinationId(combinationId);
+          setTimeout(() => setCopiedCombinationId(null), 2000);
+        }}
       />
 
       {/* 7. Bottom section: Related Commands (left) and Manual Page link (right) */}

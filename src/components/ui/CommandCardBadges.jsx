@@ -5,8 +5,8 @@ export function CommandCardBadges({ platform, categories = [] }) {
     <div className="mb-4">
       <div className="flex flex-wrap gap-2">
         {/* Platform Badges */}
-        {platform && platform.map((platformItem) => (
-          <PlatformBadge key={platformItem.id} platform={platformItem} />
+        {platform && platform.map((platformItem, index) => (
+          <PlatformBadge key={`${platformItem}-${index}`} platform={platformItem} />
         ))}
         
         {/* Category Badges */}

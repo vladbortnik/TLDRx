@@ -1,29 +1,29 @@
 import { ChevronDown, ChevronRight, Terminal, Copy } from "lucide-react";
 import { Button } from "./button.jsx";
 
-// Transform examples from string format to object format
-const transformExamples = (examples = []) => {
-  if (!examples || examples.length === 0) return [];
+// Transform use cases from string format to object format
+const transformUseCases = (useCases = []) => {
+  if (!useCases || useCases.length === 0) return [];
 
-  return examples.map((example) => {
-    if (typeof example === "string") {
-      // Split on ' #' to separate command from comment
-      const [command, comment] = example.includes(" #")
-        ? example.split(" #")
-        : [example, ""];
+  return useCases.map((useCase) => {
+    if (typeof useCase === "string") {
+      // Split on ' #' to separate command from scenario
+      const [command, scenario] = useCase.includes(" #")
+        ? useCase.split(" #")
+        : [useCase, ""];
 
       return {
-        code: command.trim(),
-        description: comment.trim() || "",
-        output: "", // App doesn't provide output
+        scenario: scenario.trim() || "Common usage",
+        command: command.trim(),
+        explanation: "", // Will be enhanced with real data
       };
     }
-    return example; // Already in correct format
+    return useCase; // Already in correct format
   });
 };
 
-export function CommandCardExamples({ 
-  examples = [], 
+export function CommandCardUseCases({ 
+  useCases = [], 
   maxVisible = 3,
   isExpanded = false,
   onToggleExpansion,
@@ -31,15 +31,15 @@ export function CommandCardExamples({
   onCopy
 }) {
   
-  // Transform examples to the expected format
-  const transformedExamples = transformExamples(examples);
+  // Transform use cases to the expected format
+  const transformedUseCases = transformUseCases(useCases);
 
-  if (!transformedExamples || transformedExamples.length === 0) {
+  if (!transformedUseCases || transformedUseCases.length === 0) {
     return null;
   }
 
-  const visibleExamples = isExpanded ? transformedExamples : [];
-  const hasMoreExamples = transformedExamples.length > 0;
+  const visibleUseCases = isExpanded ? transformedUseCases : [];
+  const hasMoreUseCases = transformedUseCases.length > 0;
 
   return (
     <div className="mb-4 border-l-2 border-emerald-500/30 pl-3">
@@ -49,9 +49,9 @@ export function CommandCardExamples({
           className="flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-slate-300 transition-colors cursor-pointer"
         >
           <Terminal className="w-4 h-4" />
-          <span>Usage Examples</span>
+          <span>Use Cases</span>
         </button>
-        {hasMoreExamples && (
+        {hasMoreUseCases && (
           <Button
             type="button"
             variant="ghost"
@@ -67,7 +67,7 @@ export function CommandCardExamples({
             ) : (
               <>
                 <ChevronRight className="w-3 h-3 mr-1" />
-                Show All ({transformedExamples.length})
+                Show All ({transformedUseCases.length})
               </>
             )}
           </Button>
@@ -75,19 +75,19 @@ export function CommandCardExamples({
       </div>
       
       <div className="space-y-1">
-        {visibleExamples.map((example, index) => {
-          const exampleId = `example-${index}`;
+        {visibleUseCases.map((useCase, index) => {
+          const useCaseId = `usecase-${index}`;
           return (
             <div key={index} className="group relative">
               <div className="flex items-center justify-between p-2 rounded-md bg-gradient-to-r from-slate-900/40 to-slate-800/40 border border-slate-700/30 hover:border-slate-600/50 transition-all duration-200 hover:shadow-sm">
-                {/* Single line: command + description */}
+                {/* Single line: command # scenario */}
                 <div className="flex-1 min-w-0 font-mono text-sm">
                   <code className="text-emerald-400 font-semibold">
-                    {example.code}
+                    {useCase.command}
                   </code>
-                  {example.description && (
+                  {useCase.scenario && (
                     <span className="text-slate-400 ml-2">
-                      # {example.description}
+                      # {useCase.scenario}
                     </span>
                   )}
                 </div>
@@ -97,11 +97,11 @@ export function CommandCardExamples({
                   type="button"
                   variant="ghost"
                   size="sm"
-                  onClick={() => onCopy(example.code, exampleId)}
+                  onClick={() => onCopy(useCase.command, useCaseId)}
                   className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 text-slate-500 hover:text-slate-400 h-7 px-2 text-xs flex-shrink-0"
                 >
                   <span>copy</span>
-                  {copiedExampleId === exampleId ? (
+                  {copiedExampleId === useCaseId ? (
                     <span className="text-green-400">✓</span>
                   ) : (
                     <Copy className="w-4 h-4" />

@@ -42,7 +42,10 @@ function App({ mockCommands }) {
         }
 
         const module = await import("./data/commands.js");
-        setCommands(module.commands || module.default);
+        const rawCommands = module.commands || module.default;
+        // Process commands through adapter to add manPageUrl and other enhancements
+        const enhancedCommands = rawCommands.map(command => adaptToEnhancedFormat(command));
+        setCommands(enhancedCommands);
         setError(null);
       } catch (err) {
         console.error("Error loading commands:", err);
@@ -142,7 +145,9 @@ function App({ mockCommands }) {
   if (selectedPlatform !== "all") {
     platformFilteredCommands = commands.filter(
       (command) =>
-        command.platform && command.platform.includes(selectedPlatform)
+        command.platform && command.platform.some(p => 
+          typeof p === 'string' ? p === selectedPlatform : p.id === selectedPlatform
+        )
     );
   }
 
@@ -186,6 +191,11 @@ function App({ mockCommands }) {
       displayCommands.map((cmd) => cmd.name)
     );
   }
+
+  // Handle command click for navigation
+  const onCommandClick = (commandName) => {
+    setSearchQuery(commandName);
+  };
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">
@@ -360,28 +370,31 @@ function App({ mockCommands }) {
               </p>
             </div>
 
-            {/* Command list - with key to force re-render on search */}
-            <div className="space-y-4" key={`search-results-${searchQuery}`}>
-              {displayCommands.map((command, index) => {
-                const enhancedCommand = adaptToEnhancedFormat(command);
-                return (
-                  <CommandCard
-                    key={`${command.name}-${index}`}
-                    {...enhancedCommand}
-                    maxVisibleExamples={
-                      isExactMatch &&
-                      command.name.toLowerCase() === searchQuery.toLowerCase()
-                        ? undefined
-                        : 2
-                    }
-                    allCommands={commands}
-                    onCommandClick={(commandName) => {
-                      setSearchQuery(commandName);
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                  />
-                );
-              })}
+            {/* Command Cards */}
+            <div className="space-y-6">
+              {displayCommands.map((command) => (
+                <CommandCard
+                  key={command.name}
+                  data-command-name={command.name}
+                  name={command.name}
+                  subtitle={command.subtitle}
+                  description={command.description}
+                  safety={command.safety}
+                  platform={command.platform}
+                  categories={command.categories}
+                  prerequisites={command.prerequisites}
+                  syntaxPattern={command.syntaxPattern}
+                  commonFlags={command.commonFlags}
+                  notes={command.notes}
+                  warnings={command.warnings}
+                  examples={command.examples}
+                  relatedCommands={command.relatedCommands}
+                  manPageUrl={command.manPageUrl}
+                  allCommands={commands}
+                  onCommandClick={onCommandClick}
+                  searchQuery={searchQuery}
+                />
+              ))}
             </div>
           </div>
         )}
