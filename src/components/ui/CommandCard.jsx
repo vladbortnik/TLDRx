@@ -87,15 +87,19 @@ export function CommandCard({
         onCopy={handleCopy}
       />
 
-      {/* 7. Related Commands - Command suggestions */}
-      <CommandCardRelated 
-        relatedCommands={relatedCommands} 
-        allCommands={allCommands}
-        onCommandClick={onCommandClick}
-      />
-
-      {/* 8. Link to the external 'man page' */}
-      <CommandCardManPage url={manPageUrl} commandName={name} />
+      {/* 7. Bottom section: Related Commands (left) and Manual Page link (right) */}
+      <div className="flex items-end justify-between">
+        <div className="flex-1">
+          <CommandCardRelated 
+            relatedCommands={relatedCommands} 
+            allCommands={allCommands}
+            onCommandClick={onCommandClick}
+          />
+        </div>
+        <div className="flex-shrink-0 self-end">
+          <CommandCardManPage url={manPageUrl} commandName={name} />
+        </div>
+      </div>
     </div>
   );
 }

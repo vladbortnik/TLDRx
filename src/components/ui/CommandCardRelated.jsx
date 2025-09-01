@@ -53,16 +53,7 @@ export function CommandCardRelated({ relatedCommands = [], allCommands = [], onC
   };
 
   return (
-    <div className="mb-6">
-      <div className="flex items-center gap-3 mb-3">
-        <div className="flex items-center gap-2">
-          <div className="p-1 rounded-lg bg-gradient-to-br from-slate-700 to-slate-800 shadow-inner">
-            <Link className="w-4 h-4 text-slate-300" />
-          </div>
-          <span className="text-sm font-semibold text-slate-300 tracking-wide">Related Commands</span>
-        </div>
-      </div>
-      <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2">
         {processedCommands.map((command, index) => (
           <button
             key={index}
@@ -84,7 +75,6 @@ export function CommandCardRelated({ relatedCommands = [], allCommands = [], onC
             <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out"></div>
           </button>
         ))}
-      </div>
     </div>
   );
 }
