@@ -8,6 +8,15 @@ export function PlatformIcon({ platform }) {
     );
   }
   
+  // Special case for Windows - use Windows logo style
+  if (platform.id === 'windows') {
+    return (
+      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+        <path d="M3 5.45l7.9-1.15v7.6H3V5.45zm7.9 6.45v7.6l-7.9-1.15V11.9h7.9zm1-.01h9.1V5.45L12 3.95v7.94zm9.1 1.01L12 12.9v7.95l9.1-1.5V12.9z"/>
+      </svg>
+    );
+  }
+  
   // Handle both string emojis and JSX/SVG icons
   if (typeof platform.icon === 'string') {
     return <span className="text-base">{platform.icon}</span>;

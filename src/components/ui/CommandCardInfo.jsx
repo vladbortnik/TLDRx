@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Info, AlertCircle, ChevronRight, ChevronDown } from 'lucide-react';
+import { ChevronRight, ChevronDown } from 'lucide-react';
 
 export function CommandCardInfo({ notes = [], warnings = [] }) {
   const [isNotesExpanded, setIsNotesExpanded] = useState(false);
@@ -18,7 +18,6 @@ export function CommandCardInfo({ notes = [], warnings = [] }) {
             className="w-full text-left flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-slate-200 transition-colors duration-200 mb-2"
           >
             {isNotesExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-            <Info className="w-4 h-4" />
             Notes ({notes.length})
           </button>
           {isNotesExpanded && (
@@ -44,7 +43,6 @@ export function CommandCardInfo({ notes = [], warnings = [] }) {
             className="w-full text-left flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-slate-200 transition-colors duration-200 mb-2"
           >
             {isWarningsExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-            <AlertCircle className="w-4 h-4" />
             Warnings ({warnings.length})
           </button>
           {isWarningsExpanded && (
