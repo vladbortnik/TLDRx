@@ -31,6 +31,7 @@ export function CommandCard({
   const [isExamplesExpanded, setIsExamplesExpanded] = useState(false);
   const [isFlagsExpanded, setIsFlagsExpanded] = useState(false);
   const [copiedExampleId, setCopiedExampleId] = useState(null);
+  const [copiedFlagId, setCopiedFlagId] = useState(null);
 
   const handleCopy = async (code, exampleId) => {
     const success = await copyToClipboard(code);
@@ -69,6 +70,12 @@ export function CommandCard({
         commonFlags={commonFlags}
         isExpanded={isFlagsExpanded}
         onToggleExpansion={() => setIsFlagsExpanded(!isFlagsExpanded)}
+        copiedFlagId={copiedFlagId}
+        onCopy={(flag, flagId) => {
+          handleCopy(flag, flagId);
+          setCopiedFlagId(flagId);
+          setTimeout(() => setCopiedFlagId(null), 2000);
+        }}
       />
 
       {/* 5. Notes and Warnings */}
