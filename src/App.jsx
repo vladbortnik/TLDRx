@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { FiChevronDown, FiChevronUp, FiCopy, FiCheck, FiTerminal } from 'react-icons/fi';
-import commands from './data/commands';
-import './index.css';
+import React, { useState, useEffect } from "react";
+import {
+  FiChevronDown,
+  FiChevronUp,
+  FiCopy,
+  FiCheck,
+  FiTerminal,
+} from "react-icons/fi";
+import commands from "./data/commands";
+import "./index.css";
 
 /**
  * Main TL;DR application component that displays a searchable command reference.
  * Features fuzzy search, expandable examples, and responsive design.
- * 
+ *
  * @param {Object} props - Component props
  * @param {Array<Object>} [props.mockCommands] - Optional mock commands for testing
  * @returns {JSX.Element} The main application component
@@ -14,8 +20,8 @@ import './index.css';
 function App({ mockCommands }) {
   const [commands, setCommands] = useState([]);
   const [expandedCommands, setExpandedCommands] = useState(new Set());
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedPlatform, setSelectedPlatform] = useState('all');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedPlatform, setSelectedPlatform] = useState("all");
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [copiedExample, setCopiedExample] = useState(null);
@@ -53,7 +59,7 @@ function App({ mockCommands }) {
   /**
    * Enhanced fuzzy search algorithm that matches characters in sequence
    * with bonus scoring for consecutive matches and substring matches.
-   * 
+   *
    * @param {string} searchTerm - The search query to match against
    * @param {string} targetString - The target string to search within
    * @returns {number} Match score (0 for no match, higher numbers for better matches)
@@ -61,17 +67,17 @@ function App({ mockCommands }) {
   const fuzzySearch = (searchTerm, targetString) => {
     const search = searchTerm.toLowerCase();
     const target = targetString.toLowerCase();
-    
+
     // Exact match gets highest score
     if (target.includes(search)) {
       return 100 - (target.length - search.length);
     }
-    
+
     // Fuzzy matching: check if all characters from search appear in order in target
     let searchIndex = 0;
     let score = 0;
     let consecutiveMatches = 0;
-    
+
     for (let i = 0; i < target.length && searchIndex < search.length; i++) {
       if (target[i] === search[searchIndex]) {
         searchIndex++;
@@ -81,19 +87,19 @@ function App({ mockCommands }) {
         consecutiveMatches = 0;
       }
     }
-    
+
     // If we matched all search characters, return a score based on match quality
     if (searchIndex === search.length) {
       const matchRatio = search.length / target.length;
       return Math.floor(score * matchRatio * 10);
     }
-    
+
     return 0; // No match
   };
 
   /**
    * Searches a command by both name and description, with improved logic for short queries.
-   * 
+   *
    * @param {string} searchTerm - The search query
    * @param {Object} command - Command object with name and description properties
    * @returns {number} Combined search score with name matches getting priority
@@ -101,7 +107,7 @@ function App({ mockCommands }) {
   const searchCommand = (searchTerm, command) => {
     const nameScore = fuzzySearch(searchTerm, command.name);
     const descriptionScore = fuzzySearch(searchTerm, command.description);
-    
+
     // For short queries (1-2 characters), prioritize exact name matches heavily
     if (searchTerm.length <= 2) {
       if (command.name.toLowerCase().includes(searchTerm.toLowerCase())) {
@@ -113,14 +119,15 @@ function App({ mockCommands }) {
       }
       return 0;
     }
-    
+
     // For longer queries, use the original logic but be more selective
     if (nameScore > 0) {
       return nameScore + 1000; // Boost name matches significantly
-    } else if (descriptionScore > 30) { // Higher threshold for description matches
+    } else if (descriptionScore > 30) {
+      // Higher threshold for description matches
       return descriptionScore;
     }
-    
+
     return 0; // No match
   };
 
@@ -134,8 +141,9 @@ function App({ mockCommands }) {
   // First filter by platform
   let platformFilteredCommands = commands;
   if (selectedPlatform !== "all") {
-    platformFilteredCommands = commands.filter(command => 
-      command.platform && command.platform.includes(selectedPlatform)
+    platformFilteredCommands = commands.filter(
+      (command) =>
+        command.platform && command.platform.includes(selectedPlatform)
     );
   }
 
@@ -146,14 +154,14 @@ function App({ mockCommands }) {
     const query = searchQuery.toLowerCase();
 
     // Check for exact command name match (Phase 4.1a)
-    const exactMatchCommand = platformFilteredCommands.find(command => 
-      command.name.toLowerCase() === query
+    const exactMatchCommand = platformFilteredCommands.find(
+      (command) => command.name.toLowerCase() === query
     );
     isExactMatch = !!exactMatchCommand;
 
     const scoredCommands = platformFilteredCommands.map((command) => ({
       ...command,
-      score: searchCommand(query, command)
+      score: searchCommand(query, command),
     }));
 
     const matched = scoredCommands
@@ -170,7 +178,7 @@ function App({ mockCommands }) {
     });
   }
 
-  if (import.meta.env.MODE === 'development') {
+  if (import.meta.env.MODE === "development") {
     console.log(
       `Search: "${searchQuery}", Found: ${displayCommands.length} commands`
     );
@@ -182,7 +190,7 @@ function App({ mockCommands }) {
 
   /**
    * Toggles the expanded state of a command's examples section.
-   * 
+   *
    * @param {string} commandName - Name of the command
    * @param {number} index - Index of the command in the display list
    */
@@ -199,11 +207,11 @@ function App({ mockCommands }) {
 
   const copyToClipboard = async (text, exampleId) => {
     try {
-      await navigator.clipboard.writeText(text.split(' #')[0].trim()); // Remove comment part
+      await navigator.clipboard.writeText(text.split(" #")[0].trim()); // Remove comment part
       setCopiedExample(exampleId);
       setTimeout(() => setCopiedExample(null), 2000); // Reset after 2 seconds
     } catch (err) {
-      console.error('Failed to copy:', err);
+      console.error("Failed to copy:", err);
     }
   };
 
@@ -223,20 +231,30 @@ function App({ mockCommands }) {
    */
   const handleRelatedCommandClick = (relatedCommand) => {
     setSearchQuery(relatedCommand);
-    
+
     // Small delay to allow state update and re-render, then scroll to target
     setTimeout(() => {
-      const targetElement = document.querySelector(`[data-command-name="${relatedCommand}"]`);
+      const targetElement = document.querySelector(
+        `[data-command-name="${relatedCommand}"]`
+      );
       if (targetElement) {
-        targetElement.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'start',
-          inline: 'nearest' 
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+          inline: "nearest",
         });
         // Add focus ring for better UX
-        targetElement.classList.add('ring-2', 'ring-blue-500', 'ring-opacity-50');
+        targetElement.classList.add(
+          "ring-2",
+          "ring-blue-500",
+          "ring-opacity-50"
+        );
         setTimeout(() => {
-          targetElement.classList.remove('ring-2', 'ring-blue-500', 'ring-opacity-50');
+          targetElement.classList.remove(
+            "ring-2",
+            "ring-blue-500",
+            "ring-opacity-50"
+          );
         }, 2000);
       }
     }, 100);
@@ -244,34 +262,39 @@ function App({ mockCommands }) {
 
   const getCategoryStyle = (category) => {
     const styles = {
-      'file-system': 'bg-purple-500/20 text-purple-300 border-purple-500/30',
-      'package-management': 'bg-orange-500/20 text-orange-300 border-orange-500/30',
-      'networking': 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
-      'text-processing': 'bg-green-500/20 text-green-300 border-green-500/30',
-      'system': 'bg-red-500/20 text-red-300 border-red-500/30',
-      'development': 'bg-blue-500/20 text-blue-300 border-blue-500/30',
-      'search': 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30'
+      "file-system": "bg-purple-500/20 text-purple-300 border-purple-500/30",
+      "package-management":
+        "bg-orange-500/20 text-orange-300 border-orange-500/30",
+      networking: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
+      "text-processing": "bg-green-500/20 text-green-300 border-green-500/30",
+      system: "bg-red-500/20 text-red-300 border-red-500/30",
+      development: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+      search: "bg-yellow-500/20 text-yellow-300 border-yellow-500/30",
     };
-    return styles[category] || 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
+    return (
+      styles[category] ||
+      "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
+    );
   };
 
   const getCategoryIcon = (category) => {
     const icons = {
-      'file-system': '📁',
-      'package-management': '📦',
-      'networking': '🌐',
-      'text-processing': '📝',
-      'system': '⚙️',
-      'development': '💻',
-      'search': '🔍'
+      "file-system": "📁",
+      "package-management": "📦",
+      networking: "🌐",
+      "text-processing": "📝",
+      system: "⚙️",
+      development: "💻",
+      search: "🔍",
     };
-    return icons[category] || '🔧';
+    return icons[category] || "🔧";
   };
 
   const formatCategoryName = (category) => {
-    return category.split('-').map(word => 
-      word.charAt(0).toUpperCase() + word.slice(1)
-    ).join(' ');
+    return category
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
   };
 
   return (
@@ -281,14 +304,18 @@ function App({ mockCommands }) {
         <header className="mb-12 text-center">
           <div className="flex items-center justify-center mb-4">
             <div className="relative w-20 h-20 bg-gradient-to-br from-green-400 to-blue-500 rounded-2xl flex items-center justify-center shadow-2xl">
-              <span className="text-4xl text-white font-bold animate-bounce">$</span>
+              <span className="text-4xl text-white font-bold animate-bounce">
+                $
+              </span>
               <div className="absolute inset-0 rounded-2xl animate-pulse bg-green-400 opacity-30"></div>
             </div>
           </div>
           <h1 className="text-5xl font-bold text-white mb-3 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
             TL;DR Commands
           </h1>
-          <p className="text-xl text-slate-400">Simplified command reference for developers</p>
+          <p className="text-xl text-slate-400">
+            Simplified command reference for developers
+          </p>
         </header>
 
         {/* Search box and logo */}
@@ -309,91 +336,116 @@ function App({ mockCommands }) {
             <div className="relative overflow-hidden bg-gradient-to-br from-slate-800 via-blue-900 to-purple-900 border-2 border-blue-500/30 rounded-2xl h-16 px-6 shadow-2xl">
               {/* Background glow effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-cyan-500/10 animate-pulse"></div>
-              
+
               {/* Main content */}
               <div className="relative flex items-center gap-4 h-full">
                 {/* Enhanced terminal icon */}
                 <div className="relative">
                   <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
-                    <FiTerminal className="text-white text-lg" style={{strokeWidth: 2.5}} />
+                    <FiTerminal
+                      className="text-white text-lg"
+                      style={{ strokeWidth: 2.5 }}
+                    />
                   </div>
                   <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-lg opacity-30 animate-ping"></div>
                 </div>
-                
+
                 {/* Modern typography */}
                 <div className="flex items-center">
                   <span className="text-2xl font-black bg-gradient-to-r from-white via-cyan-200 to-blue-200 bg-clip-text text-transparent">
                     TL
                   </span>
-                  <span className="text-cyan-400 text-xl font-light mx-1">;</span>
+                  <span className="text-cyan-400 text-xl font-light mx-1">
+                    ;
+                  </span>
                   <span className="text-2xl font-black bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
                     DR
                   </span>
                 </div>
               </div>
-              
+
               {/* Subtle animated border */}
               <div className="absolute inset-0 rounded-2xl border border-blue-400/20 animate-pulse"></div>
             </div>
           </div>
-          
+
           {/* Platform Toggle Icons */}
           <div className="mt-4 flex items-center justify-start gap-4">
             {[
-              { 
-                key: 'linux', 
-                label: 'Linux',
+              {
+                key: "linux",
+                label: "Linux",
                 icon: (
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12.504 0C5.395 0 .456 5.125.456 12.253c0 4.584 2.415 8.611 6.015 10.86.451-.255.451-.679.451-1.02v-4.21c-3.15.686-3.796-1.336-3.796-1.336-.407-.966-.994-1.224-.994-1.224-.815-.555.061-.544.061-.544.9.064 1.375.926 1.375.926.8 1.383 2.103.984 2.616.752.082-.585.314-.984.571-1.211-1.993-.227-4.083-1.002-4.083-4.458 0-.985.35-1.789.925-2.419-.093-.227-.401-1.141.087-2.378 0 0 .754-.243 2.47.924.717-.2 1.485-.3 2.248-.303.762.003 1.532.103 2.25.303 1.715-1.167 2.468-.924 2.468-.924.489 1.237.181 2.151.089 2.378.576.63.924 1.434.924 2.419 0 3.464-2.094 4.227-4.093 4.451.321.278.607.825.607 1.662v2.465c0 .344 0 .771.454 1.021C19.143 20.858 21.544 16.835 21.544 12.253 21.544 5.125 16.608 0 12.504 0z"/>
+                  <svg
+                    className="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M12.504 0C5.395 0 .456 5.125.456 12.253c0 4.584 2.415 8.611 6.015 10.86.451-.255.451-.679.451-1.02v-4.21c-3.15.686-3.796-1.336-3.796-1.336-.407-.966-.994-1.224-.994-1.224-.815-.555.061-.544.061-.544.9.064 1.375.926 1.375.926.8 1.383 2.103.984 2.616.752.082-.585.314-.984.571-1.211-1.993-.227-4.083-1.002-4.083-4.458 0-.985.35-1.789.925-2.419-.093-.227-.401-1.141.087-2.378 0 0 .754-.243 2.47.924.717-.2 1.485-.3 2.248-.303.762.003 1.532.103 2.25.303 1.715-1.167 2.468-.924 2.468-.924.489 1.237.181 2.151.089 2.378.576.63.924 1.434.924 2.419 0 3.464-2.094 4.227-4.093 4.451.321.278.607.825.607 1.662v2.465c0 .344 0 .771.454 1.021C19.143 20.858 21.544 16.835 21.544 12.253 21.544 5.125 16.608 0 12.504 0z" />
                   </svg>
-                )
+                ),
               },
-              { 
-                key: 'mac', 
-                label: 'macOS',
+              {
+                key: "mac",
+                label: "macOS",
                 icon: (
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                  <svg
+                    className="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
                   </svg>
-                )
+                ),
               },
-              { 
-                key: 'windows', 
-                label: 'Windows',
+              {
+                key: "windows",
+                label: "Windows",
                 icon: (
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .15V5.21L20 3zM3 13l6-.09v6.44l-6-1.35V13zm17 .25V22l-10-1.91V13.1l10 .15z"/>
+                  <svg
+                    className="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .15V5.21L20 3zM3 13l6-.09v6.44l-6-1.35V13zm17 .25V22l-10-1.91V13.1l10 .15z" />
                   </svg>
-                )
+                ),
               },
-              { 
-                key: 'bsd', 
-                label: 'BSD',
+              {
+                key: "bsd",
+                label: "BSD",
                 icon: (
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  <svg
+                    className="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                   </svg>
-                )
-              }
+                ),
+              },
             ].map((platform) => {
               const isSelected = selectedPlatform === platform.key;
               const colorMap = {
-                linux: 'text-green-400 bg-green-500/20 border-green-500/50',
-                mac: 'text-slate-300 bg-slate-500/20 border-slate-400/50',
-                windows: 'text-cyan-400 bg-cyan-500/20 border-cyan-500/50',
-                bsd: 'text-red-400 bg-red-500/20 border-red-500/50'
+                linux: "text-green-400 bg-green-500/20 border-green-500/50",
+                mac: "text-slate-300 bg-slate-500/20 border-slate-400/50",
+                windows: "text-cyan-400 bg-cyan-500/20 border-cyan-500/50",
+                bsd: "text-red-400 bg-red-500/20 border-red-500/50",
               };
-              const selectedColors = colorMap[platform.key] || 'text-slate-400 bg-slate-500/20 border-slate-500/50';
-              
+              const selectedColors =
+                colorMap[platform.key] ||
+                "text-slate-400 bg-slate-500/20 border-slate-500/50";
+
               return (
                 <button
                   key={platform.key}
-                  onClick={() => setSelectedPlatform(isSelected ? 'all' : platform.key)}
+                  onClick={() =>
+                    setSelectedPlatform(isSelected ? "all" : platform.key)
+                  }
                   className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 border-2 ${
-                    isSelected 
+                    isSelected
                       ? selectedColors
-                      : 'text-slate-500 bg-slate-800/50 border-slate-700 hover:text-slate-400 hover:border-slate-600'
+                      : "text-slate-500 bg-slate-800/50 border-slate-700 hover:text-slate-400 hover:border-slate-600"
                   }`}
                 >
                   {platform.icon}
@@ -421,10 +473,12 @@ function App({ mockCommands }) {
             {/* Results count */}
             <div className="mb-6">
               <p className="text-sm text-slate-400">
-                {displayCommands.length} command{displayCommands.length !== 1 ? 's' : ''} found
+                {displayCommands.length} command
+                {displayCommands.length !== 1 ? "s" : ""} found
                 {selectedPlatform !== "all" && (
                   <span className="ml-2 text-slate-500">
-                    • Filtered by {selectedPlatform === "mac" ? "macOS" : selectedPlatform}
+                    • Filtered by{" "}
+                    {selectedPlatform === "mac" ? "macOS" : selectedPlatform}
                   </span>
                 )}
               </p>
@@ -435,16 +489,23 @@ function App({ mockCommands }) {
               {displayCommands.map((command, index) => {
                 const commandKey = `${command.name}-${index}`;
                 const isExpanded = expandedCommands.has(commandKey);
-                const hasExamples = command.examples && command.examples.length > 0;
-                
+                const hasExamples =
+                  command.examples && command.examples.length > 0;
+
                 // Auto-expand for exact matches (Phase 4.1a)
-                const shouldAutoExpand = isExactMatch && command.name.toLowerCase() === searchQuery.toLowerCase();
+                const shouldAutoExpand =
+                  isExactMatch &&
+                  command.name.toLowerCase() === searchQuery.toLowerCase();
                 const effectivelyExpanded = isExpanded || shouldAutoExpand;
-                
-                const visibleExamples = hasExamples ? 
-                  (effectivelyExpanded ? command.examples : command.examples.slice(0, 2)) : [];
-                const hasMoreExamples = hasExamples && command.examples.length > 2;
-                
+
+                const visibleExamples = hasExamples
+                  ? effectivelyExpanded
+                    ? command.examples
+                    : command.examples.slice(0, 2)
+                  : [];
+                const hasMoreExamples =
+                  hasExamples && command.examples.length > 2;
+
                 return (
                   <div
                     key={commandKey}
@@ -459,13 +520,20 @@ function App({ mockCommands }) {
                           </h2>
                           {/* Safety Badge */}
                           {command.safety && (
-                            <span className={`text-xs px-2 py-1 rounded-full font-medium ${
-                              command.safety === 'safe' ? 'bg-green-500/20 text-green-400 border border-green-500/30' :
-                              command.safety === 'caution' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' :
-                              'bg-red-500/20 text-red-400 border border-red-500/30'
-                            }`}>
-                              {command.safety === 'safe' ? '🟢 Safe' :
-                               command.safety === 'caution' ? '🟡 Caution' : '🔴 Destructive'}
+                            <span
+                              className={`text-xs px-2 py-1 rounded-full font-medium ${
+                                command.safety === "safe"
+                                  ? "bg-green-500/20 text-green-400 border border-green-500/30"
+                                  : command.safety === "caution"
+                                  ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
+                                  : "bg-red-500/20 text-red-400 border border-red-500/30"
+                              }`}
+                            >
+                              {command.safety === "safe"
+                                ? "🟢 Safe"
+                                : command.safety === "caution"
+                                ? "🟡 Caution"
+                                : "🔴 Destructive"}
                             </span>
                           )}
                         </div>
@@ -476,7 +544,9 @@ function App({ mockCommands }) {
                           </p>
                         )}
                         {/* Command description */}
-                        <p className="text-slate-300 text-sm mt-3 leading-relaxed">{command.description}</p>
+                        <p className="text-slate-300 text-sm mt-3 leading-relaxed">
+                          {command.description}
+                        </p>
                       </div>
                       <div className="flex items-center flex-wrap gap-2 ml-4">
                         {/* Enhanced Platform Badges */}
@@ -484,55 +554,80 @@ function App({ mockCommands }) {
                           command.platform.length > 0 &&
                           command.platform.map((platform) => {
                             const platformConfig = {
-                              linux: { 
+                              linux: {
                                 icon: (
-                                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12.504 0C5.395 0 .456 5.125.456 12.253c0 4.584 2.415 8.611 6.015 10.86.451-.255.451-.679.451-1.02v-4.21c-3.15.686-3.796-1.336-3.796-1.336-.407-.966-.994-1.224-.994-1.224-.815-.555.061-.544.061-.544.9.064 1.375.926 1.375.926.8 1.383 2.103.984 2.616.752.082-.585.314-.984.571-1.211-1.993-.227-4.083-1.002-4.083-4.458 0-.985.35-1.789.925-2.419-.093-.227-.401-1.141.087-2.378 0 0 .754-.243 2.47.924.717-.2 1.485-.3 2.248-.303.762.003 1.532.103 2.25.303 1.715-1.167 2.468-.924 2.468-.924.489 1.237.181 2.151.089 2.378.576.63.924 1.434.924 2.419 0 3.464-2.094 4.227-4.093 4.451.321.278.607.825.607 1.662v2.465c0 .344 0 .771.454 1.021C19.143 20.858 21.544 16.835 21.544 12.253 21.544 5.125 16.608 0 12.504 0z"/>
+                                  <svg
+                                    className="w-3 h-3"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                  >
+                                    <path d="M12.504 0C5.395 0 .456 5.125.456 12.253c0 4.584 2.415 8.611 6.015 10.86.451-.255.451-.679.451-1.02v-4.21c-3.15.686-3.796-1.336-3.796-1.336-.407-.966-.994-1.224-.994-1.224-.815-.555.061-.544.061-.544.9.064 1.375.926 1.375.926.8 1.383 2.103.984 2.616.752.082-.585.314-.984.571-1.211-1.993-.227-4.083-1.002-4.083-4.458 0-.985.35-1.789.925-2.419-.093-.227-.401-1.141.087-2.378 0 0 .754-.243 2.47.924.717-.2 1.485-.3 2.248-.303.762.003 1.532.103 2.25.303 1.715-1.167 2.468-.924 2.468-.924.489 1.237.181 2.151.089 2.378.576.63.924 1.434.924 2.419 0 3.464-2.094 4.227-4.093 4.451.321.278.607.825.607 1.662v2.465c0 .344 0 .771.454 1.021C19.143 20.858 21.544 16.835 21.544 12.253 21.544 5.125 16.608 0 12.504 0z" />
                                   </svg>
-                                ), 
-                                color: 'linux', 
-                                label: 'Linux' 
+                                ),
+                                color: "linux",
+                                label: "Linux",
                               },
-                              mac: { 
+                              mac: {
                                 icon: (
-                                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                                  <svg
+                                    className="w-3 h-3"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                  >
+                                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
                                   </svg>
-                                ), 
-                                color: 'mac', 
-                                label: 'macOS' 
+                                ),
+                                color: "mac",
+                                label: "macOS",
                               },
-                              windows: { 
+                              windows: {
                                 icon: (
-                                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .15V5.21L20 3zM3 13l6-.09v6.44l-6-1.35V13zm17 .25V22l-10-1.91V13.1l10 .15z"/>
+                                  <svg
+                                    className="w-3 h-3"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                  >
+                                    <path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .15V5.21L20 3zM3 13l6-.09v6.44l-6-1.35V13zm17 .25V22l-10-1.91V13.1l10 .15z" />
                                   </svg>
-                                ), 
-                                color: 'windows', 
-                                label: 'Windows' 
+                                ),
+                                color: "windows",
+                                label: "Windows",
                               },
-                              bsd: { 
+                              bsd: {
                                 icon: (
-                                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                  <svg
+                                    className="w-3 h-3"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                  >
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                                   </svg>
-                                ), 
-                                color: 'bsd', 
-                                label: 'BSD' 
-                              }
+                                ),
+                                color: "bsd",
+                                label: "BSD",
+                              },
                             };
-                            const config = platformConfig[platform] || { icon: '💻', color: 'slate', label: platform };
+                            const config = platformConfig[platform] || {
+                              icon: "💻",
+                              color: "slate",
+                              label: platform,
+                            };
                             const colorClasses = {
-                              linux: 'bg-slate-700/50 text-green-400 border-green-500/30',
-                              mac: 'bg-slate-700/50 text-slate-300 border-slate-400/30',
-                              windows: 'bg-slate-700/50 text-cyan-400 border-cyan-500/30',
-                              bsd: 'bg-slate-700/50 text-red-400 border-red-500/30',
-                              slate: 'bg-slate-500/20 text-slate-300 border-slate-500/30'
+                              linux:
+                                "bg-slate-700/50 text-green-400 border-green-500/30",
+                              mac: "bg-slate-700/50 text-slate-300 border-slate-400/30",
+                              windows:
+                                "bg-slate-700/50 text-cyan-400 border-cyan-500/30",
+                              bsd: "bg-slate-700/50 text-red-400 border-red-500/30",
+                              slate:
+                                "bg-slate-500/20 text-slate-300 border-slate-500/30",
                             };
                             return (
                               <span
                                 key={platform}
-                                className={`inline-flex items-center gap-1.5 text-xs px-2 py-1 rounded-md border ${colorClasses[config.color]}`}
+                                className={`inline-flex items-center gap-1.5 text-xs px-2 py-1 rounded-md border ${
+                                  colorClasses[config.color]
+                                }`}
                               >
                                 {config.icon}
                                 {config.label}
@@ -541,10 +636,13 @@ function App({ mockCommands }) {
                           })}
                         {/* Enhanced Category Tags */}
                         {command.category && (
-                          <span className={`text-xs px-3 py-1 rounded-full border font-medium ${
-                            getCategoryStyle(command.category)
-                          }`}>
-                            {getCategoryIcon(command.category)} {formatCategoryName(command.category)}
+                          <span
+                            className={`text-xs px-3 py-1 rounded-full border font-medium ${getCategoryStyle(
+                              command.category
+                            )}`}
+                          >
+                            {getCategoryIcon(command.category)}{" "}
+                            {formatCategoryName(command.category)}
                           </span>
                         )}
                       </div>
@@ -556,7 +654,9 @@ function App({ mockCommands }) {
                       {command.syntaxPattern && (
                         <div className="mt-5">
                           <div className="bg-slate-800/50 rounded-lg p-3 border border-slate-600">
-                            <h4 className="text-sm font-semibold text-purple-400 mb-2">Syntax:</h4>
+                            <h4 className="text-sm font-semibold text-purple-400 mb-2">
+                              Syntax:
+                            </h4>
                             <code className="text-purple-300 text-sm font-mono">
                               {command.syntaxPattern}
                             </code>
@@ -564,184 +664,254 @@ function App({ mockCommands }) {
                         </div>
                       )}
                       {/* Common Flag Combinations Section - Expandable */}
-                      {command.commonFlagCombinations && command.commonFlagCombinations.length > 0 && (
-                        <div className="mt-5">
-                          <button
-                            onClick={() => toggleSection(`${commandKey}-flagcombos`)}
-                            className="flex items-center gap-2 text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors"
-                          >
-                            {(expandedSections.has(`${commandKey}-flagcombos`) || shouldAutoExpand) ? (
-                              <FiChevronUp className="w-4 h-4" />
-                            ) : (
-                              <FiChevronDown className="w-4 h-4" />
-                            )}
-                            Common Flag Combinations ({command.commonFlagCombinations.length})
-                          </button>
-                          {(expandedSections.has(`${commandKey}-flagcombos`) || shouldAutoExpand) && (
-                            <div className="mt-2 space-y-2">
-                              {command.commonFlagCombinations.map((combo, comboIndex) => {
-                                const comboId = `${commandKey}-flagcombo-${comboIndex}`;
-                                const isCopied = copiedExample === comboId;
-                                return (
-                                  <div key={comboIndex} className="bg-indigo-500/10 rounded-lg p-3 border border-indigo-500/30 group relative">
-                                    <div className="flex items-start justify-between gap-3">
-                                      <div className="flex-1">
-                                        <div className="mb-1">
-                                          <code className="text-slate-500 text-sm font-mono">
-                                            {command.name}
-                                          </code>
-                                          <code className="text-indigo-300 text-sm font-mono font-bold ml-1">
-                                            {combo.flags}
-                                          </code>
-                                          {combo.usage.replace(`${command.name} ${combo.flags}`, '').trim() && (
-                                            <code className="text-slate-400 text-sm font-mono ml-1">
-                                              {combo.usage.replace(`${command.name} ${combo.flags}`, '').trim()}
-                                            </code>
-                                          )}
-                                        </div>
-                                        <p className="text-slate-400 text-xs">
-                                          {combo.description}
-                                        </p>
-                                      </div>
-                                      <button
-                                        onClick={() => copyToClipboard(combo.usage, comboId)}
-                                        className={`flex items-center gap-1 px-2 py-1 rounded text-xs transition-all duration-200 ${
-                                          isCopied 
-                                            ? 'bg-green-500/20 text-green-300 border border-green-500/30' 
-                                            : 'bg-slate-600/50 text-slate-300 border border-slate-500/30 hover:bg-slate-600 hover:text-white opacity-0 group-hover:opacity-100'
-                                        }`}
-                                        title="Copy flag combination"
+                      {command.commonFlagCombinations &&
+                        command.commonFlagCombinations.length > 0 && (
+                          <div className="mt-5">
+                            <button
+                              onClick={() =>
+                                toggleSection(`${commandKey}-flagcombos`)
+                              }
+                              className="flex items-center gap-2 text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors"
+                            >
+                              {expandedSections.has(
+                                `${commandKey}-flagcombos`
+                              ) || shouldAutoExpand ? (
+                                <FiChevronUp className="w-4 h-4" />
+                              ) : (
+                                <FiChevronDown className="w-4 h-4" />
+                              )}
+                              Common Flag Combinations (
+                              {command.commonFlagCombinations.length})
+                            </button>
+                            {(expandedSections.has(
+                              `${commandKey}-flagcombos`
+                            ) ||
+                              shouldAutoExpand) && (
+                              <div className="mt-2 space-y-2">
+                                {command.commonFlagCombinations.map(
+                                  (combo, comboIndex) => {
+                                    const comboId = `${commandKey}-flagcombo-${comboIndex}`;
+                                    const isCopied = copiedExample === comboId;
+                                    return (
+                                      <div
+                                        key={comboIndex}
+                                        className="bg-indigo-500/10 rounded-lg p-3 border border-indigo-500/30 group relative"
                                       >
-                                        {isCopied ? (
-                                          <>
-                                            <FiCheck className="w-3 h-3" />
-                                            Copied!
-                                          </>
-                                        ) : (
-                                          <>
-                                            <FiCopy className="w-3 h-3" />
-                                            Copy
-                                          </>
-                                        )}
-                                      </button>
-                                    </div>
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                      {/* Prerequisites Section - Always Visible */}
-                      {command.prerequisites && command.prerequisites.length > 0 && (
-                        <div className="mt-5">
-                          <div className="flex flex-wrap items-center gap-2">
-                            <span className="text-sm font-semibold text-amber-400">Prerequisites:</span>
-                            {command.prerequisites.map((prereq, prereqIndex) => (
-                              <span 
-                                key={prereqIndex}
-                                className="bg-amber-500/20 text-amber-300 text-xs px-2 py-1 rounded-full border border-amber-500/30"
-                              >
-                                {prereq}
-                              </span>
-                            ))}
+                                        <div className="flex items-start justify-between gap-3">
+                                          <div className="flex-1">
+                                            <div className="mb-1">
+                                              <code className="text-slate-500 text-sm font-mono">
+                                                {command.name}
+                                              </code>
+                                              <code className="text-indigo-300 text-sm font-mono font-bold ml-1">
+                                                {combo.flags}
+                                              </code>
+                                              {combo.usage
+                                                .replace(
+                                                  `${command.name} ${combo.flags}`,
+                                                  ""
+                                                )
+                                                .trim() && (
+                                                <code className="text-slate-400 text-sm font-mono ml-1">
+                                                  {combo.usage
+                                                    .replace(
+                                                      `${command.name} ${combo.flags}`,
+                                                      ""
+                                                    )
+                                                    .trim()}
+                                                </code>
+                                              )}
+                                            </div>
+                                            <p className="text-slate-400 text-xs">
+                                              {combo.description}
+                                            </p>
+                                          </div>
+                                          <button
+                                            onClick={() =>
+                                              copyToClipboard(
+                                                combo.usage,
+                                                comboId
+                                              )
+                                            }
+                                            className={`flex items-center gap-1 px-2 py-1 rounded text-xs transition-all duration-200 ${
+                                              isCopied
+                                                ? "bg-green-500/20 text-green-300 border border-green-500/30"
+                                                : "bg-slate-600/50 text-slate-300 border border-slate-500/30 hover:bg-slate-600 hover:text-white opacity-0 group-hover:opacity-100"
+                                            }`}
+                                            title="Copy flag combination"
+                                          >
+                                            {isCopied ? (
+                                              <>
+                                                <FiCheck className="w-3 h-3" />
+                                                Copied!
+                                              </>
+                                            ) : (
+                                              <>
+                                                <FiCopy className="w-3 h-3" />
+                                                Copy
+                                              </>
+                                            )}
+                                          </button>
+                                        </div>
+                                      </div>
+                                    );
+                                  }
+                                )}
+                              </div>
+                            )}
                           </div>
-                        </div>
-                      )}
+                        )}
+                      {/* Prerequisites Section - Always Visible */}
+                      {command.prerequisites &&
+                        command.prerequisites.length > 0 && (
+                          <div className="mt-5">
+                            <div className="flex flex-wrap items-center gap-2">
+                              <span className="text-sm font-semibold text-amber-400">
+                                Prerequisites:
+                              </span>
+                              {command.prerequisites.map(
+                                (prereq, prereqIndex) => (
+                                  <span
+                                    key={prereqIndex}
+                                    className="bg-amber-500/20 text-amber-300 text-xs px-2 py-1 rounded-full border border-amber-500/30"
+                                  >
+                                    {prereq}
+                                  </span>
+                                )
+                              )}
+                            </div>
+                          </div>
+                        )}
 
                       {/* Common Flags Section - Expandable */}
-                      {command.commonFlags && command.commonFlags.length > 0 && (
-                        <div className="mt-5">
-                          <button
-                            onClick={() => toggleSection(`${commandKey}-flags`)}
-                            className="flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors"
-                          >
-                            {(expandedSections.has(`${commandKey}-flags`) || shouldAutoExpand) ? (
-                              <FiChevronUp className="w-4 h-4" />
-                            ) : (
-                              <FiChevronDown className="w-4 h-4" />
-                            )}
-                            Common Flags ({command.commonFlags.length})
-                          </button>
-                          {(expandedSections.has(`${commandKey}-flags`) || shouldAutoExpand) && (
-                            <div className="mt-2 p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg">
-                              <div className="space-y-2">
-                                {command.commonFlags.map((flagInfo, flagIndex) => (
-                                  <div key={flagIndex} className="flex items-start gap-3">
-                                    <code className="bg-slate-700/50 text-cyan-300 text-xs px-2 py-1 rounded font-mono min-w-fit">
-                                      {flagInfo.flag}
-                                    </code>
-                                    <span className="text-slate-300 text-sm">
-                                      {flagInfo.description}
-                                    </span>
-                                  </div>
-                                ))}
+                      {command.commonFlags &&
+                        command.commonFlags.length > 0 && (
+                          <div className="mt-5">
+                            <button
+                              onClick={() =>
+                                toggleSection(`${commandKey}-flags`)
+                              }
+                              className="flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors"
+                            >
+                              {expandedSections.has(`${commandKey}-flags`) ||
+                              shouldAutoExpand ? (
+                                <FiChevronUp className="w-4 h-4" />
+                              ) : (
+                                <FiChevronDown className="w-4 h-4" />
+                              )}
+                              Common Flags ({command.commonFlags.length})
+                            </button>
+                            {(expandedSections.has(`${commandKey}-flags`) ||
+                              shouldAutoExpand) && (
+                              <div className="mt-2 p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+                                <div className="space-y-2">
+                                  {command.commonFlags.map(
+                                    (flagInfo, flagIndex) => (
+                                      <div
+                                        key={flagIndex}
+                                        className="flex items-start gap-3"
+                                      >
+                                        <code className="bg-slate-700/50 text-cyan-300 text-xs px-2 py-1 rounded font-mono min-w-fit">
+                                          {flagInfo.flag}
+                                        </code>
+                                        <span className="text-slate-300 text-sm">
+                                          {flagInfo.description}
+                                        </span>
+                                      </div>
+                                    )
+                                  )}
+                                </div>
                               </div>
-                            </div>
-                          )}
-                        </div>
-                      )}
+                            )}
+                          </div>
+                        )}
 
                       {/* Related Commands Section - Expandable */}
-                      {command.relatedCommands && command.relatedCommands.length > 0 && (
-                        <div className="mt-5">
-                          <button
-                            onClick={() => toggleSection(`${commandKey}-related`)}
-                            className="flex items-center gap-2 text-sm font-semibold text-teal-400 hover:text-teal-300 transition-colors"
-                          >
-                            {(expandedSections.has(`${commandKey}-related`) || shouldAutoExpand) ? (
-                              <FiChevronUp className="w-4 h-4" />
-                            ) : (
-                              <FiChevronDown className="w-4 h-4" />
-                            )}
-                            Related Commands ({command.relatedCommands.length})
-                          </button>
-                          {(expandedSections.has(`${commandKey}-related`) || shouldAutoExpand) && (
-                            <div className="mt-2 p-3 bg-teal-500/10 border border-teal-500/30 rounded-lg">
-                              <div className="flex flex-wrap gap-2">
-                                {command.relatedCommands.map((relatedCmd, relatedIndex) => (
-                                  <span 
-                                    key={relatedIndex}
-                                    className="bg-teal-500/20 text-teal-300 text-xs px-2 py-1 rounded-full border border-teal-500/30 hover:bg-teal-500/30 transition-colors cursor-pointer"
-                                    title={`Click to search for ${relatedCmd}`}
-                                    onClick={() => handleRelatedCommandClick(relatedCmd)}
-                                  >
-                                    {relatedCmd}
-                                  </span>
-                                ))}
+                      {command.relatedCommands &&
+                        command.relatedCommands.length > 0 && (
+                          <div className="mt-5">
+                            <button
+                              onClick={() =>
+                                toggleSection(`${commandKey}-related`)
+                              }
+                              className="flex items-center gap-2 text-sm font-semibold text-teal-400 hover:text-teal-300 transition-colors"
+                            >
+                              {expandedSections.has(`${commandKey}-related`) ||
+                              shouldAutoExpand ? (
+                                <FiChevronUp className="w-4 h-4" />
+                              ) : (
+                                <FiChevronDown className="w-4 h-4" />
+                              )}
+                              Related Commands ({command.relatedCommands.length}
+                              )
+                            </button>
+                            {(expandedSections.has(`${commandKey}-related`) ||
+                              shouldAutoExpand) && (
+                              <div className="mt-2 p-3 bg-teal-500/10 border border-teal-500/30 rounded-lg">
+                                <div className="flex flex-wrap gap-2">
+                                  {command.relatedCommands.map(
+                                    (relatedCmd, relatedIndex) => (
+                                      <span
+                                        key={relatedIndex}
+                                        className="bg-teal-500/20 text-teal-300 text-xs px-2 py-1 rounded-full border border-teal-500/30 hover:bg-teal-500/30 transition-colors cursor-pointer"
+                                        title={`Click to search for ${relatedCmd}`}
+                                        onClick={() =>
+                                          handleRelatedCommandClick(relatedCmd)
+                                        }
+                                      >
+                                        {relatedCmd}
+                                      </span>
+                                    )
+                                  )}
+                                </div>
                               </div>
-                            </div>
-                          )}
-                        </div>
-                      )}
+                            )}
+                          </div>
+                        )}
 
                       {/* Troubleshooting Section - Expandable */}
                       {command.troubleshooting && (
                         <div className="mt-5">
                           <button
-                            onClick={() => toggleSection(`${commandKey}-troubleshooting`)}
+                            onClick={() =>
+                              toggleSection(`${commandKey}-troubleshooting`)
+                            }
                             className="flex items-center gap-2 text-sm font-semibold text-orange-400 hover:text-orange-300 transition-colors"
                           >
-                            {(expandedSections.has(`${commandKey}-troubleshooting`) || shouldAutoExpand) ? (
+                            {expandedSections.has(
+                              `${commandKey}-troubleshooting`
+                            ) || shouldAutoExpand ? (
                               <FiChevronUp className="w-4 h-4" />
                             ) : (
                               <FiChevronDown className="w-4 h-4" />
                             )}
                             Troubleshooting Tips
                           </button>
-                          {(expandedSections.has(`${commandKey}-troubleshooting`) || shouldAutoExpand) && (
+                          {(expandedSections.has(
+                            `${commandKey}-troubleshooting`
+                          ) ||
+                            shouldAutoExpand) && (
                             <div className="mt-2 p-3 bg-orange-500/10 border border-orange-500/30 rounded-lg">
                               <ul className="text-orange-200 text-sm leading-relaxed space-y-1">
                                 {Array.isArray(command.troubleshooting) ? (
-                                  command.troubleshooting.map((tip, tipIndex) => (
-                                    <li key={tipIndex} className="flex items-start gap-2">
-                                      <span className="text-orange-400 mt-0.5">💡</span>
-                                      <span>{tip}</span>
-                                    </li>
-                                  ))
+                                  command.troubleshooting.map(
+                                    (tip, tipIndex) => (
+                                      <li
+                                        key={tipIndex}
+                                        className="flex items-start gap-2"
+                                      >
+                                        <span className="text-orange-400 mt-0.5">
+                                          💡
+                                        </span>
+                                        <span>{tip}</span>
+                                      </li>
+                                    )
+                                  )
                                 ) : (
                                   <li className="flex items-start gap-2">
-                                    <span className="text-orange-400 mt-0.5">💡</span>
+                                    <span className="text-orange-400 mt-0.5">
+                                      💡
+                                    </span>
                                     <span>{command.troubleshooting}</span>
                                   </li>
                                 )}
@@ -754,20 +924,27 @@ function App({ mockCommands }) {
                       {/* Examples Section */}
                       {hasExamples && (
                         <div className="mt-6">
-                          <h4 className="text-sm font-semibold text-emerald-400 mb-2">Examples:</h4>
+                          <h4 className="text-sm font-semibold text-emerald-400 mb-2">
+                            Examples:
+                          </h4>
                           <div className="space-y-2">
                             {visibleExamples.map((example, exampleIndex) => {
                               const exampleId = `${commandKey}-example-${exampleIndex}`;
                               const isCopied = copiedExample === exampleId;
-                              const [command, comment] = example.includes(' #') 
-                                ? example.split(' #') 
+                              const [command, comment] = example.includes(" #")
+                                ? example.split(" #")
                                 : [example, null];
-                              
+
                               return (
-                                <div key={exampleIndex} className="bg-slate-700/50 rounded-lg p-3 border border-slate-600 group relative">
+                                <div
+                                  key={exampleIndex}
+                                  className="bg-slate-700/50 rounded-lg p-3 border border-slate-600 group relative"
+                                >
                                   <div className="flex items-start justify-between gap-3">
                                     <code className="text-sm font-mono break-all flex-1">
-                                      <span className="text-green-300">{command}</span>
+                                      <span className="text-green-300">
+                                        {command}
+                                      </span>
                                       {comment && (
                                         <span className="text-slate-400 ml-1">
                                           # {comment.trim()}
@@ -775,11 +952,13 @@ function App({ mockCommands }) {
                                       )}
                                     </code>
                                     <button
-                                      onClick={() => copyToClipboard(example, exampleId)}
+                                      onClick={() =>
+                                        copyToClipboard(example, exampleId)
+                                      }
                                       className={`flex items-center gap-1 px-2 py-1 rounded text-xs transition-all duration-200 ${
-                                        isCopied 
-                                          ? 'bg-green-500/20 text-green-300 border border-green-500/30' 
-                                          : 'bg-slate-600/50 text-slate-300 border border-slate-500/30 hover:bg-slate-600 hover:text-white opacity-0 group-hover:opacity-100'
+                                        isCopied
+                                          ? "bg-green-500/20 text-green-300 border border-green-500/30"
+                                          : "bg-slate-600/50 text-slate-300 border border-slate-500/30 hover:bg-slate-600 hover:text-white opacity-0 group-hover:opacity-100"
                                       }`}
                                       title="Copy command"
                                     >
@@ -800,24 +979,32 @@ function App({ mockCommands }) {
                               );
                             })}
                           </div>
-                          {hasExamples && command.examples.length > 2 && !shouldAutoExpand && (
-                            <button
-                              onClick={() => toggleExpanded(command.name, index)}
-                              className="mt-3 flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm"
-                            >
-                              {effectivelyExpanded ? (
-                                <>
-                                  <FiChevronUp className="w-4 h-4" />
-                                  Show fewer examples
-                                </>
-                              ) : (
-                                <>
-                                  <FiChevronDown className="w-4 h-4" />
-                                  Show {command.examples.length - 2} more example{command.examples.length - 2 !== 1 ? 's' : ''}
-                                </>
-                              )}
-                            </button>
-                          )}
+                          {hasExamples &&
+                            command.examples.length > 2 &&
+                            !shouldAutoExpand && (
+                              <button
+                                onClick={() =>
+                                  toggleExpanded(command.name, index)
+                                }
+                                className="mt-3 flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm"
+                              >
+                                {effectivelyExpanded ? (
+                                  <>
+                                    <FiChevronUp className="w-4 h-4" />
+                                    Show fewer examples
+                                  </>
+                                ) : (
+                                  <>
+                                    <FiChevronDown className="w-4 h-4" />
+                                    Show {command.examples.length - 2} more
+                                    example
+                                    {command.examples.length - 2 !== 1
+                                      ? "s"
+                                      : ""}
+                                  </>
+                                )}
+                              </button>
+                            )}
                         </div>
                       )}
 
@@ -829,8 +1016,18 @@ function App({ mockCommands }) {
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-blue-400 transition-colors"
                         >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
                           </svg>
                           View man page for {command.name}
                         </a>
