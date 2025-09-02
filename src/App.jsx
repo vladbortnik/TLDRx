@@ -156,7 +156,13 @@ function App({ mockCommands }) {
   let filteredCommands = platformFilteredCommands;
   if (selectedCategory !== "all") {
     filteredCommands = platformFilteredCommands.filter(
-      (command) => command.category === selectedCategory
+      (command) => {
+        // Handle both adapted format (categories array) and original format (category string)
+        if (command.categories) {
+          return command.categories.some(cat => cat.name.toLowerCase().replace(/\s+/g, '-') === selectedCategory);
+        }
+        return command.category === selectedCategory;
+      }
     );
   }
 
@@ -326,7 +332,7 @@ function App({ mockCommands }) {
             ].map(({ key, label, icon }) => (
               <button
                 key={key}
-                onClick={() => setSelectedPlatform(key)}
+                onClick={() => setSelectedPlatform(selectedPlatform === key ? "all" : key)}
                 className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   selectedPlatform === key
                     ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
@@ -342,17 +348,17 @@ function App({ mockCommands }) {
           {/* Category Filter Tags */}
           <div className="mt-4 flex flex-wrap items-center justify-start gap-2">
             <span className="text-sm text-slate-400 mr-2">Category:</span>
-            {["all", "file-operations", "text-processing", "system", "networking", "shell", "development", "package-management", "security", "containers", "automation", "data-processing"].map((category) => (
+            {["file-operations", "text-processing", "system", "networking", "shell", "development", "package-management", "security", "containers", "automation", "data-processing"].map((category) => (
               <button
                 key={category}
-                onClick={() => setSelectedCategory(category)}
+                onClick={() => setSelectedCategory(selectedCategory === category ? "all" : category)}
                 className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
                   selectedCategory === category
                     ? "bg-purple-600 text-white shadow-lg shadow-purple-500/25"
                     : "bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white"
                 }`}
               >
-                {category === "all" ? "All" : category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                {category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
               </button>
             ))}
           </div>
