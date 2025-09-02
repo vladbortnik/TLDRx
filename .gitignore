@@ -1,8 +1,13 @@
 # Project Specific
+_TEMP/
 _TEMP-*
 FIGMA-AI-AGENT-PROMPT.md
-Command-Reference-Lookup-Tool
+_Command-Reference-Lookup-Tool
+_Command-Reference-Lookup-Tool-2
+_TLDR-DB-CLEAN
 .windsurf/
+scripts/
+_PLAN/
 
 # Logs
 logs
