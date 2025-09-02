@@ -8,6 +8,7 @@ _TLDR-DB-CLEAN
 .windsurf/
 scripts/
 _PLAN/
+.cascade-rules
 
 # Logs
 logs
