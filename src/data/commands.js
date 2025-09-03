@@ -34,22 +34,6 @@
  */
 const commandsDatabase = [
   {
-    "name": "3dsmax-batch",
-    "subtitle": "",
-    "description": "3ds Max command-line rendering and automation",
-    "examples": [],
-    "platform": [],
-    "category": "",
-    "safety": "unknown",
-    "syntaxPattern": "",
-    "prerequisites": [],
-    "commandCombinations": [],
-    "relatedCommands": [],
-    "warnings": [],
-    "documentation": [],
-    "distroNotes": {}
-  },
-  {
     "name": "7z",
     "subtitle": "7-Zip",
     "description": "High compression ratio archiver supporting many formats",

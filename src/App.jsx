@@ -6,8 +6,9 @@ import {
   Check,
   Terminal,
 } from "lucide-react";
-import commands from "./data/commands";
-import { CommandCard } from "./components/ui/CommandCard.jsx";
+import commandsDatabase from './data/commands';
+import { CommandCard } from './components/ui/CommandCard';
+import PWAInstall from './components/PWAInstall';
 import { adaptToEnhancedFormat } from "./utils/dataAdapter";
 import "./index.css";
 
@@ -304,7 +305,7 @@ function App({ mockCommands }) {
                 ),
               },
               {
-                key: "mac",
+                key: "macos",
                 label: "macOS",
                 icon: (
                   <svg
@@ -421,6 +422,7 @@ function App({ mockCommands }) {
           </div>
         )}
       </div>
+      <PWAInstall />
     </div>
   );
 }
