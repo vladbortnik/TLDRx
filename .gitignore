@@ -1,13 +1,14 @@
 # Project Specific
 _TEMP/
 _TEMP-*
+_PLAN/
+_PLAN-*
 FIGMA-AI-AGENT-PROMPT.md
 _Command-Reference-Lookup-Tool
 _Command-Reference-Lookup-Tool-2
 _TLDR-DB-CLEAN
 .windsurf/
 scripts/
-_PLAN/
 _scripts-temp/
 .cascade-rules
 

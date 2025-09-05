@@ -1,19 +1,19 @@
 /**
  * TL;DRx Commands Database - Comprehensive Edition
  * 
- * A comprehensive collection of 578 Unix/Linux commands with descriptions, examples,
+ * A comprehensive collection of 500 Unix/Linux commands with descriptions, examples,
  * platform support information, categorization, and advanced features.
  * 
  * Generated from 57 JSON source files on 2025-09-02
  * 
- * @fileoverview Comprehensive command database for the TL;DR application
+ * @fileoverview Comprehensive command database for the TL;DRx application
  * @version 2.0.0
  * @created 2025-09-02
- * @commands 578
+ * @commands 500
  */
 
 /**
- * Comprehensive commands database containing 578 unique Unix/Linux commands
+ * Comprehensive commands database containing 500 unique Unix/Linux commands
  * Each command includes name, description, examples, platform support, category, and advanced metadata
  * 
  * @type {Array<Object>}
@@ -23,14 +23,14 @@
  * @property {Array<string>} examples - Practical usage examples with comments
  * @property {Array<string>} platform - Supported platforms ['linux', 'mac', 'windows']
  * @property {string} category - Command category for organization
- * @property {string} safety - Safety level: 'safe', 'caution', 'dangerous', 'unknown'
+ * @property {string} safety - Safety level: 'safe', 'caution', 'dangerous', otherwise - 'unknown'
  * @property {string} syntaxPattern - Command syntax pattern
  * @property {Array} prerequisites - Prerequisites for using the command
  * @property {Array} commandCombinations - Complex command workflows
  * @property {Array} relatedCommands - Related commands and alternatives
  * @property {Array<string>} warnings - Important warnings and gotchas
  * @property {Array} documentation - Platform-specific documentation links
- * @property {Object} distroNotes - Distribution-specific notes
+ * @property {Object} distroNotes - Distribution-specific notes if any
  */
 const commandsDatabase = [
   {

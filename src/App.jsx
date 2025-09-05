@@ -13,7 +13,7 @@ import { adaptToEnhancedFormat } from "./utils/dataAdapter";
 import "./index.css";
 
 /**
- * Main TL;DR application component that displays a searchable command reference.
+ * Main TL;DRx application component that displays a searchable command reference.
  * Features fuzzy search, expandable examples, and responsive design.
  *
  * @param {Object} props - Component props
