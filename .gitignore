@@ -12,6 +12,10 @@ scripts/
 _scripts-temp/
 .cascade-rules
 
+# Claude Code
+CLAUDE.md
+.claude/
+
 # Logs
 logs
 *.log
@@ -75,3 +79,6 @@ debug-*.png
 # Temporary files
 .tmp/
 temp/
+
+# Backup files
+*.backup
