@@ -29,7 +29,7 @@ export function CommandGrid({
           warnings={command.warnings}
           examples={command.examples}
           relatedCommands={command.relatedCommands}
-          documentationUrl={command.documentationUrl}
+          manPageUrl={command.manPageUrl}
           allCommands={allCommands}
           onCommandClick={onCommandClick}
           searchQuery={searchQuery}

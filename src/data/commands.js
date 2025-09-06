@@ -102,7 +102,7 @@ const commandsDatabase = [
             "macos": "Install via Homebrew: brew install p7zip",
             "windows": "Built into Windows or download 7-Zip"
         }
-    },,
+    },
     {
         "name": "ab",
         "standsFor": "Apache Bench",
@@ -161,7 +161,7 @@ const commandsDatabase = [
             "macos": "Pre-installed with system",
             "windows": "Available with Apache HTTP Server installation"
         }
-    },,
+    },
     {
         "name": "act",
         "standsFor": "Act",
@@ -234,7 +234,7 @@ const commandsDatabase = [
             "macos": "Available via Homebrew: brew install act",
             "windows": "Available via Chocolatey: choco install act-cli"
         }
-    },,
+    },
     {
         "name": "aide",
         "standsFor": "Advanced Intrusion Detection Environment",
@@ -290,7 +290,7 @@ const commandsDatabase = [
             "ubuntu": "Available via apt package manager as 'aide' package",
             "debian": "Available in main repository, similar configuration to RHEL"
         }
-    },,
+    },
     {
         "name": "alembic",
         "standsFor": "Alembic",
@@ -350,7 +350,7 @@ const commandsDatabase = [
             "python": "Install via pip: pip install alembic",
             "requirements": "Requires SQLAlchemy and database driver packages"
         }
-    },,
+    },
     {
         "name": "alert-manager",
         "standsFor": "Prometheus AlertManager",
@@ -413,7 +413,7 @@ const commandsDatabase = [
             "kubernetes": "Often deployed as StatefulSet with persistent storage",
             "docker": "Official image: quay.io/prometheus/alertmanager"
         }
-    },,
+    },
     {
         "name": "alias",
         "standsFor": "Create command shortcuts",
@@ -468,7 +468,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL and Git Bash only"
         }
-    },,
+    },
     {
         "name": "ansible",
         "standsFor": "Configuration management and automation",
@@ -533,7 +533,7 @@ const commandsDatabase = [
             "linux": "Available in most distribution repositories",
             "macos": "Can be installed via pip or Homebrew"
         }
-    },,
+    },
     {
         "name": "ant",
         "standsFor": "Apache Ant build tool",
@@ -585,7 +585,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://ant.apache.org/manual/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "apache2",
         "standsFor": "Apache HTTP Server",
@@ -653,7 +653,7 @@ const commandsDatabase = [
             "macos": "Pre-installed or via Homebrew",
             "windows": "Download from Apache Lounge or use XAMPP"
         }
-    },,
+    },
     {
         "name": "apt",
         "standsFor": "Advanced Package Tool",
@@ -706,7 +706,7 @@ const commandsDatabase = [
         "distroNotes": {
             "linux": "Debian, Ubuntu, and derivatives only"
         }
-    },,
+    },
     {
         "name": "ar",
         "standsFor": "Archive",
@@ -743,7 +743,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/ar.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "arduino-cli",
         "standsFor": "Arduino Command Line Interface",
@@ -804,7 +804,7 @@ const commandsDatabase = [
             "linux": "Can be installed via package managers or direct download",
             "macos": "Available through Homebrew or Arduino IDE"
         }
-    },,
+    },
     {
         "name": "argocd",
         "standsFor": "Argo CD",
@@ -864,7 +864,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "arp",
         "standsFor": "Address Resolution Protocol",
@@ -909,7 +909,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/arp.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "artillery",
         "standsFor": "Artillery",
@@ -958,7 +958,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.artillery.io/docs",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "artisan",
         "standsFor": "Laravel Artisan",
@@ -1009,7 +1009,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://laravel.com/docs/artisan",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "at",
         "standsFor": "At",
@@ -1059,7 +1059,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://ss64.com/osx/at.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "auditd",
         "standsFor": "Audit Daemon",
@@ -1101,7 +1101,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/chap-system_auditing",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "autoconf",
         "standsFor": "Automatic Configuration",
@@ -1144,7 +1144,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "automake",
         "standsFor": "Automatic Make",
@@ -1187,7 +1187,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "awk",
         "standsFor": "Aho, Weinberger, Kernighan",
@@ -1250,7 +1250,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL or Git Bash"
         }
-    },,
+    },
     {
         "name": "aws",
         "standsFor": "AWS CLI Advanced",
@@ -1312,7 +1312,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.aws.amazon.com/cli/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "aws-cli",
         "standsFor": "AWS Command Line Interface",
@@ -1362,7 +1362,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.aws.amazon.com/cli/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "az",
         "standsFor": "Azure CLI Advanced",
@@ -1423,7 +1423,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.microsoft.com/en-us/cli/azure/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "banner",
         "standsFor": "Banner",
@@ -1465,7 +1465,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "basename",
         "standsFor": "base name",
@@ -1522,7 +1522,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL or Git Bash"
         }
-    },,
+    },
     {
         "name": "bash",
         "standsFor": "Bourne Again Shell",
@@ -1567,7 +1567,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "bat",
         "standsFor": "bat",
@@ -1623,7 +1623,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/sharkdp/bat",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "batch",
         "standsFor": "Batch",
@@ -1670,7 +1670,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "bazel",
         "standsFor": "Bazel",
@@ -1718,7 +1718,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://bazel.build/docs",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "bc",
         "standsFor": "Basic Calculator",
@@ -1779,7 +1779,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL"
         }
-    },,
+    },
     {
         "name": "binwalk",
         "standsFor": "Binary Walk",
@@ -1823,7 +1823,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/ReFirmLabs/binwalk",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "bitcoin-cli",
         "standsFor": "Bitcoin Command Line Interface",
@@ -1868,7 +1868,7 @@ const commandsDatabase = [
             "windows": "Included with Bitcoin Core installation",
             "macos": "Available through Bitcoin Core installation or Homebrew"
         }
-    },,
+    },
     {
         "name": "blender",
         "standsFor": "Blender 3D",
@@ -1934,7 +1934,7 @@ const commandsDatabase = [
             "windows": "Available as installer or portable version",
             "macos": "Available through official downloads or Homebrew"
         }
-    },,
+    },
     {
         "name": "brew",
         "standsFor": "Homebrew",
@@ -1988,7 +1988,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.brew.sh/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "btrfs",
         "standsFor": "B-tree Filesystem",
@@ -2032,7 +2032,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://btrfs.wiki.kernel.org/index.php/Main_Page",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "buildah",
         "standsFor": "Build-ah",
@@ -2093,7 +2093,7 @@ const commandsDatabase = [
             "macos": "Limited support, better to use Docker",
             "windows": "Limited support via WSL"
         }
-    },,
+    },
     {
         "name": "bun",
         "standsFor": "Bun",
@@ -2156,7 +2156,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://bun.sh/docs/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "bundler",
         "standsFor": "Bundler",
@@ -2207,7 +2207,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://bundler.io/man/bundle.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "burpsuite",
         "standsFor": "Burp Suite",
@@ -2257,7 +2257,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://portswigger.net/burp/documentation",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "bzip2",
         "standsFor": "Burrows-Wheeler block-sorting text compression",
@@ -2300,7 +2300,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://sourceware.org/bzip2/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "caddy",
         "standsFor": "Caddy",
@@ -2367,7 +2367,7 @@ const commandsDatabase = [
             "macos": "Install via Homebrew: brew install caddy",
             "windows": "Download from GitHub releases"
         }
-    },,
+    },
     {
         "name": "cal",
         "standsFor": "calendar",
@@ -2425,7 +2425,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL and Git Bash only"
         }
-    },,
+    },
     {
         "name": "cargo",
         "standsFor": "Cargo",
@@ -2491,7 +2491,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://doc.rust-lang.org/cargo/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "cat",
         "standsFor": "concatenate",
@@ -2557,7 +2557,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL and Git Bash only"
         }
-    },,
+    },
     {
         "name": "cd",
         "standsFor": "change directory",
@@ -2614,7 +2614,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/cd.1p.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "cdk",
         "standsFor": "Cloud Development Kit",
@@ -2674,7 +2674,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.aws.amazon.com/cdk/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "certbot",
         "standsFor": "Certificate Bot",
@@ -2742,7 +2742,7 @@ const commandsDatabase = [
             "macos": "Install via Homebrew: brew install certbot",
             "windows": "Available via WSL"
         }
-    },,
+    },
     {
         "name": "cgcreate",
         "standsFor": "Control Group Create",
@@ -2784,7 +2784,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "chage",
         "standsFor": "Change Age",
@@ -2828,7 +2828,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/chage.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "chgrp",
         "standsFor": "change group",
@@ -2884,7 +2884,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/chgrp.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "chkrootkit",
         "standsFor": "Check Rootkit",
@@ -2928,7 +2928,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "http://www.chkrootkit.org/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "chmod",
         "standsFor": "change mode",
@@ -2992,7 +2992,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL only - not applicable to Windows filesystem"
         }
-    },,
+    },
     {
         "name": "chown",
         "standsFor": "change owner",
@@ -3051,7 +3051,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL only - not applicable to Windows filesystem"
         }
-    },,
+    },
     {
         "name": "chroot",
         "standsFor": "Change Root",
@@ -3094,7 +3094,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/chroot.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "clamav",
         "standsFor": "Clam AntiVirus",
@@ -3144,7 +3144,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "cmake",
         "standsFor": "Cross-platform Make",
@@ -3197,7 +3197,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://cmake.org/cmake/help/latest/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "code",
         "standsFor": "VS Code",
@@ -3243,7 +3243,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://code.visualstudio.com/docs/editor/command-line",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "composer",
         "standsFor": "Composer",
@@ -3295,7 +3295,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://getcomposer.org/doc/03-cli.md",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "compress",
         "standsFor": "Compress",
@@ -3338,7 +3338,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "conda",
         "standsFor": "Conda",
@@ -3400,7 +3400,7 @@ const commandsDatabase = [
             "windows": "Available through Anaconda installer or command-line tools",
             "macos": "Available through Anaconda installer or Homebrew"
         }
-    },,
+    },
     {
         "name": "container-ci-cd-pipeline",
         "standsFor": "Container CI/CD Pipeline",
@@ -3463,7 +3463,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.gitlab.com/ee/ci/docker/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "container-development-workflow",
         "standsFor": "Container Development Workflow",
@@ -3516,7 +3516,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://code.visualstudio.com/docs/remote/containers",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "container-registry-management",
         "standsFor": "Container Registry Management",
@@ -3569,7 +3569,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.docker.com/docker-hub/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "container-security-scanning",
         "standsFor": "Container Security Scanning",
@@ -3627,7 +3627,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "containerd",
         "standsFor": "container daemon",
@@ -3685,7 +3685,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://containerd.io/docs/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "convert",
         "standsFor": "ImageMagick convert",
@@ -3742,7 +3742,7 @@ const commandsDatabase = [
             "macos": "Install via Homebrew: brew install imagemagick",
             "windows": "Download ImageMagick installer"
         }
-    },,
+    },
     {
         "name": "cosign",
         "standsFor": "Container Signing",
@@ -3803,7 +3803,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "cowsay",
         "standsFor": "Cow Say",
@@ -3855,7 +3855,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "cp",
         "standsFor": "copy",
@@ -3920,7 +3920,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL and Git Bash only"
         }
-    },,
+    },
     {
         "name": "cpio",
         "standsFor": "Copy Input/Output",
@@ -3966,7 +3966,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://ss64.com/osx/cpio.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "cqlsh",
         "standsFor": "Cassandra Query Language Shell",
@@ -4013,7 +4013,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "create-react-app",
         "standsFor": "Create React App",
@@ -4065,7 +4065,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://create-react-app.dev/docs/getting-started",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "crictl",
         "standsFor": "CRI control",
@@ -4128,7 +4128,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://kubernetes.io/docs/tasks/debug-application-cluster/crictl/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "cron",
         "standsFor": "Chronos",
@@ -4180,7 +4180,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man5/crontab.5.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "crontab",
         "standsFor": "Cron Table",
@@ -4231,7 +4231,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/crontab.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "csvkit",
         "standsFor": "CSV toolkit",
@@ -4294,7 +4294,7 @@ const commandsDatabase = [
             "macos": "Install via pip: pip install csvkit",
             "windows": "Install via pip: pip install csvkit"
         }
-    },,
+    },
     {
         "name": "curl",
         "standsFor": "client URL",
@@ -4357,7 +4357,7 @@ const commandsDatabase = [
             "windows": "Available in Windows 10+ or via package managers",
             "macos": "Pre-installed"
         }
-    },,
+    },
     {
         "name": "cut",
         "standsFor": "cut",
@@ -4423,7 +4423,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL and Git Bash only"
         }
-    },,
+    },
     {
         "name": "cypress",
         "standsFor": "Cypress",
@@ -4471,7 +4471,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.cypress.io/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "datadog",
         "standsFor": "Datadog CLI",
@@ -4519,7 +4519,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.datadoghq.com/api/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "date",
         "standsFor": "date",
@@ -4573,7 +4573,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/date.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "dbdeployer",
         "standsFor": "Database Deployer",
@@ -4625,7 +4625,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/datacharmer/dbdeployer",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "dc",
         "standsFor": "Desk Calculator",
@@ -4686,7 +4686,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL"
         }
-    },,
+    },
     {
         "name": "dd",
         "standsFor": "Data Definition/Disk Dump",
@@ -4733,7 +4733,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/dd.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "deno",
         "standsFor": "Deno",
@@ -4796,7 +4796,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://deno.land/manual/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "df",
         "standsFor": "disk free",
@@ -4853,7 +4853,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL only"
         }
-    },,
+    },
     {
         "name": "dig",
         "standsFor": "Domain Information Groper",
@@ -4900,7 +4900,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://ss64.com/osx/dig.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "dirname",
         "standsFor": "directory name",
@@ -4957,7 +4957,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL or Git Bash"
         }
-    },,
+    },
     {
         "name": "dmesg",
         "standsFor": "Display Message",
@@ -5003,7 +5003,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/dmesg.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "dnf",
         "standsFor": "Dandified YUM",
@@ -5056,7 +5056,7 @@ const commandsDatabase = [
         "distroNotes": {
             "linux": "Fedora, RHEL 8+, CentOS Stream"
         }
-    },,
+    },
     {
         "name": "docker",
         "standsFor": "Docker",
@@ -5124,7 +5124,7 @@ const commandsDatabase = [
             "windows": "Docker Desktop for Windows provides full functionality",
             "macos": "Docker Desktop for Mac provides full functionality"
         }
-    },,
+    },
     {
         "name": "docker-build-multistage",
         "standsFor": "Docker Multi-stage Build",
@@ -5171,7 +5171,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.docker.com/engine/reference/commandline/build/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "docker-compose",
         "standsFor": "Docker Compose",
@@ -5230,7 +5230,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.docker.com/compose/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "docker-compose-production",
         "standsFor": "Docker Compose Production",
@@ -5277,7 +5277,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.docker.com/compose/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "docker-network-advanced",
         "standsFor": "Docker Network Management",
@@ -5330,7 +5330,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.docker.com/engine/reference/commandline/network/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "docker-run-advanced",
         "standsFor": "Docker Run with Advanced Options",
@@ -5378,7 +5378,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.docker.com/engine/reference/commandline/run/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "docker-swarm-orchestration",
         "standsFor": "Docker Swarm Orchestration",
@@ -5436,7 +5436,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.docker.com/engine/swarm/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "docker-volume-management",
         "standsFor": "Docker Volume Management",
@@ -5489,7 +5489,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.docker.com/engine/reference/commandline/volume/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "dotnet",
         "standsFor": ".NET CLI",
@@ -5537,7 +5537,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.microsoft.com/en-us/dotnet/core/tools/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "drush",
         "standsFor": "Drupal Shell",
@@ -5607,7 +5607,7 @@ const commandsDatabase = [
             "linux": "Available through package managers or Composer",
             "macos": "Available through Homebrew or Composer"
         }
-    },,
+    },
     {
         "name": "dstat",
         "standsFor": "Dynamic Statistics",
@@ -5657,7 +5657,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "du",
         "standsFor": "disk usage",
@@ -5717,7 +5717,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL only"
         }
-    },,
+    },
     {
         "name": "duplicity",
         "standsFor": "Duplicity",
@@ -5766,7 +5766,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "dust",
         "standsFor": "dust",
@@ -5824,7 +5824,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/bootandy/dust",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "eksctl",
         "standsFor": "EKS Control",
@@ -5884,7 +5884,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://eksctl.io/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "elasticsearch",
         "standsFor": "Elasticsearch Search Engine",
@@ -5936,7 +5936,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.elastic.co/guide/en/elasticsearch/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "emacs",
         "standsFor": "Editor MACroS",
@@ -5982,7 +5982,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "env",
         "standsFor": "environment",
@@ -6037,7 +6037,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL and Git Bash only"
         }
-    },,
+    },
     {
         "name": "esbuild",
         "standsFor": "ESBuild",
@@ -6084,7 +6084,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://esbuild.github.io/api/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "eslint",
         "standsFor": "ESLint",
@@ -6132,7 +6132,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://eslint.org/docs/user-guide/command-line-interface",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "esptool",
         "standsFor": "ESP Tool",
@@ -6194,7 +6194,7 @@ const commandsDatabase = [
             "linux": "Can be installed via pip or package managers",
             "macos": "Available through pip or Homebrew"
         }
-    },,
+    },
     {
         "name": "ethtool",
         "standsFor": "Ethernet Tool",
@@ -6240,7 +6240,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/ethtool.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "exa",
         "standsFor": "exa",
@@ -6301,7 +6301,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available via scoop or cargo"
         }
-    },,
+    },
     {
         "name": "exiftool",
         "standsFor": "EXIF Tool",
@@ -6360,7 +6360,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://exiftool.org/exiftool_pod.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "expect",
         "standsFor": "Expect",
@@ -6407,7 +6407,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://core.tcl-lang.org/expect/index",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "export",
         "standsFor": "export",
@@ -6463,7 +6463,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL and Git Bash only"
         }
-    },,
+    },
     {
         "name": "factor",
         "standsFor": "Factor",
@@ -6515,7 +6515,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/factor.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "fail2ban",
         "standsFor": "Fail to Ban",
@@ -6560,7 +6560,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.fail2ban.org/wiki/index.php/Manual",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "fd",
         "standsFor": "fd",
@@ -6624,7 +6624,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/sharkdp/fd",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "ffmpeg",
         "standsFor": "Fast Forward MPEG",
@@ -6679,7 +6679,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://ffmpeg.org/documentation.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "ffprobe",
         "standsFor": "Fast Forward Probe",
@@ -6737,7 +6737,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://ffmpeg.org/ffprobe.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "figlet",
         "standsFor": "FIGlet (Frank, Ian & Glenn's Letters)",
@@ -6785,7 +6785,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "http://www.figlet.org/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "file",
         "standsFor": "file",
@@ -6846,7 +6846,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL or Git Bash"
         }
-    },,
+    },
     {
         "name": "filebeat",
         "standsFor": "Filebeat Log Shipper",
@@ -6899,7 +6899,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.elastic.co/guide/en/beats/filebeat/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "find",
         "standsFor": "find",
@@ -6965,7 +6965,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL and Git Bash only"
         }
-    },,
+    },
     {
         "name": "firewalld",
         "standsFor": "Firewall Daemon",
@@ -7010,7 +7010,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://firewalld.org/documentation/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "fish",
         "standsFor": "Friendly Interactive Shell",
@@ -7062,7 +7062,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://fishshell.com/docs/current/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "fluentd",
         "standsFor": "Fluent Daemon",
@@ -7104,7 +7104,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.fluentd.org/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "flutter",
         "standsFor": "Flutter",
@@ -7162,7 +7162,7 @@ const commandsDatabase = [
             "windows": "Android and Windows desktop development supported",
             "macos": "Full iOS, Android, and macOS development supported"
         }
-    },,
+    },
     {
         "name": "flux",
         "standsFor": "Flux v2",
@@ -7223,7 +7223,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://fluxcd.io/flux/cmd/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "fluxctl",
         "standsFor": "Flux Control",
@@ -7284,7 +7284,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://fluxcd.io/legacy/flux/references/fluxctl/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "flyway",
         "standsFor": "Flyway",
@@ -7337,7 +7337,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://flywaydb.org/documentation/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "fortune",
         "standsFor": "Fortune",
@@ -7384,7 +7384,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "free",
         "standsFor": "free memory",
@@ -7441,7 +7441,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/free.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "fsck",
         "standsFor": "File System Check",
@@ -7481,7 +7481,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/fsck.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "fuser",
         "standsFor": "File User",
@@ -7528,7 +7528,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/fuser.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "fzf",
         "standsFor": "fuzzy finder",
@@ -7587,7 +7587,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/junegunn/fzf",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "gcc",
         "standsFor": "GNU Compiler Collection",
@@ -7644,7 +7644,7 @@ const commandsDatabase = [
             "macos": "Install via Xcode Command Line Tools or Homebrew",
             "windows": "Available via WSL, MinGW, or MSYS2"
         }
-    },,
+    },
     {
         "name": "gcloud",
         "standsFor": "Google Cloud CLI Advanced",
@@ -7706,7 +7706,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://cloud.google.com/sdk/gcloud",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "gem",
         "standsFor": "RubyGems",
@@ -7759,7 +7759,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://guides.rubygems.org/command-reference/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "geth",
         "standsFor": "Go Ethereum",
@@ -7806,7 +7806,7 @@ const commandsDatabase = [
             "windows": "Available as installer or portable executable",
             "macos": "Available through Homebrew or direct download"
         }
-    },,
+    },
     {
         "name": "gifsicle",
         "standsFor": "GIF-sicle",
@@ -7865,7 +7865,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.lcdf.org/gifsicle/man.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git",
         "standsFor": "global information tracker",
@@ -7925,7 +7925,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-archive-operations",
         "standsFor": "Git Archive Operations",
@@ -7977,7 +7977,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-archive",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-bisect",
         "standsFor": "Git bisect",
@@ -8029,7 +8029,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-bisect",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-blame-advanced",
         "standsFor": "Git Blame Advanced",
@@ -8081,7 +8081,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-blame",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-bundle-operations",
         "standsFor": "Git Bundle Operations",
@@ -8127,7 +8127,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-bundle",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-cherry-pick",
         "standsFor": "Git cherry-pick",
@@ -8179,7 +8179,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-cherry-pick",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-daemon-server",
         "standsFor": "Git Daemon Server",
@@ -8231,7 +8231,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-daemon",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-fetch-strategies",
         "standsFor": "Git Fetch Strategies",
@@ -8277,7 +8277,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-fetch",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-filter-branch",
         "standsFor": "Git Filter Branch",
@@ -8331,7 +8331,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-filter-branch",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-flow-feature",
         "standsFor": "Git Flow Feature",
@@ -8378,7 +8378,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-flow-init",
         "standsFor": "Git Flow Initialize",
@@ -8422,7 +8422,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-gc-maintenance",
         "standsFor": "Git Garbage Collection",
@@ -8469,7 +8469,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-gc",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-hooks-management",
         "standsFor": "Git Hooks Management",
@@ -8516,7 +8516,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/githooks",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-lfs-management",
         "standsFor": "Git Large File Storage",
@@ -8563,7 +8563,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-log",
         "standsFor": "Git log",
@@ -8610,7 +8610,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-log",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-log-advanced",
         "standsFor": "Git Advanced Logging",
@@ -8657,7 +8657,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-log",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-merge-strategies",
         "standsFor": "Git Merge Strategies",
@@ -8716,7 +8716,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-merge",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-pull-strategies",
         "standsFor": "Git Pull Strategies",
@@ -8764,7 +8764,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-pull",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-push-strategies",
         "standsFor": "Git Push Strategies",
@@ -8812,7 +8812,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-push",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-rebase",
         "standsFor": "Git rebase",
@@ -8866,7 +8866,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-rebase",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-rebase-interactive",
         "standsFor": "Git Interactive Rebase",
@@ -8913,7 +8913,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-rebase",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-reflog-recovery",
         "standsFor": "Git Reference Log Recovery",
@@ -8967,7 +8967,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-reflog",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-remote-management",
         "standsFor": "Git Remote Management",
@@ -9015,7 +9015,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-remote",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-sparse-checkout",
         "standsFor": "Git Sparse Checkout",
@@ -9063,7 +9063,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-sparse-checkout",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-stash",
         "standsFor": "Git stash",
@@ -9112,7 +9112,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-stash",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-stash-advanced",
         "standsFor": "Git Advanced Stash",
@@ -9160,7 +9160,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-stash",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-submodule-advanced",
         "standsFor": "Git Advanced Submodule",
@@ -9207,7 +9207,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-submodule",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-subtree-operations",
         "standsFor": "Git Subtree Operations",
@@ -9254,7 +9254,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-tag-management",
         "standsFor": "Git Tag Management",
@@ -9301,7 +9301,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-tag",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-worktree",
         "standsFor": "Git worktree",
@@ -9348,7 +9348,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-worktree",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "git-worktree-advanced",
         "standsFor": "Git Advanced Worktree",
@@ -9395,7 +9395,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://git-scm.com/docs/git-worktree",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "github-cli",
         "standsFor": "GitHub CLI",
@@ -9455,7 +9455,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://cli.github.com/manual/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "go",
         "standsFor": "Go",
@@ -9516,7 +9516,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://golang.org/doc/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "gobuster",
         "standsFor": "Go Buster",
@@ -9557,7 +9557,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/OJ/gobuster",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "godot",
         "standsFor": "Godot Game Engine",
@@ -9622,7 +9622,7 @@ const commandsDatabase = [
             "windows": "Available as executable download or through Steam",
             "macos": "Available through official downloads or Homebrew"
         }
-    },,
+    },
     {
         "name": "gpg",
         "standsFor": "GNU Privacy Guard",
@@ -9669,7 +9669,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.gnupg.org/documentation/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "gradle",
         "standsFor": "Gradle",
@@ -9723,7 +9723,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.gradle.org/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "grafana",
         "standsFor": "Grafana Dashboard",
@@ -9774,7 +9774,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://grafana.com/docs/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "grep",
         "standsFor": "global regular expression print",
@@ -9840,7 +9840,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL and Git Bash only"
         }
-    },,
+    },
     {
         "name": "groupmod",
         "standsFor": "Group Modify",
@@ -9884,7 +9884,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/groupmod.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "grype",
         "standsFor": "Grype",
@@ -9944,7 +9944,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/anchore/grype",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "gunzip",
         "standsFor": "GNU unzip",
@@ -10009,7 +10009,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL and Git Bash only"
         }
-    },,
+    },
     {
         "name": "gzip",
         "standsFor": "GNU Zip",
@@ -10061,7 +10061,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://ss64.com/osx/gzip.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "haproxy",
         "standsFor": "High Availability Proxy",
@@ -10118,7 +10118,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "http://www.haproxy.org/download/2.4/doc/management.txt",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "hashcat",
         "standsFor": "Hash Catalyst",
@@ -10170,7 +10170,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://hashcat.net/wiki/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "head",
         "standsFor": "head",
@@ -10220,7 +10220,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/head.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "helm",
         "standsFor": "Helm",
@@ -10274,7 +10274,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://helm.sh/docs/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "helm-package-management",
         "standsFor": "Helm Package Manager",
@@ -10338,7 +10338,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://helm.sh/docs/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "history",
         "standsFor": "history",
@@ -10391,7 +10391,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL and Git Bash only"
         }
-    },,
+    },
     {
         "name": "htop",
         "standsFor": "H Top",
@@ -10438,7 +10438,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://htop.dev/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "httpd",
         "standsFor": "HTTP daemon",
@@ -10497,7 +10497,7 @@ const commandsDatabase = [
         "distroNotes": {
             "linux": "Red Hat, CentOS, Fedora use httpd instead of apache2"
         }
-    },,
+    },
     {
         "name": "hydra",
         "standsFor": "The Hydra",
@@ -10537,7 +10537,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/vanhauser-thc/thc-hydra",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "iftop",
         "standsFor": "Interface Top",
@@ -10586,7 +10586,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "imagemagick",
         "standsFor": "ImageMagick",
@@ -10640,7 +10640,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://imagemagick.org/script/command-line-tools.php",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "influxdb",
         "standsFor": "InfluxDB Time Series Database",
@@ -10687,7 +10687,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.influxdata.com/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "ionice",
         "standsFor": "I/O Nice",
@@ -10729,7 +10729,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/ionice.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "iostat",
         "standsFor": "I/O Statistics",
@@ -10780,7 +10780,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/iostat.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "iotop",
         "standsFor": "I/O Top",
@@ -10829,7 +10829,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/iotop.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "ip",
         "standsFor": "IP",
@@ -10872,7 +10872,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/ip.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "iperf3",
         "standsFor": "Internet Performance 3",
@@ -10914,7 +10914,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "iptables",
         "standsFor": "IP Tables",
@@ -10964,7 +10964,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/iptables.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "istio-service-mesh",
         "standsFor": "Istio Service Mesh",
@@ -11022,7 +11022,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://istio.io/latest/docs/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "istioctl",
         "standsFor": "Istio Control",
@@ -11083,7 +11083,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://istio.io/latest/docs/reference/commands/istioctl/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "iw",
         "standsFor": "Interface Wireless",
@@ -11134,7 +11134,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://wireless.wiki.kernel.org/en/users/documentation/iw",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "iwconfig",
         "standsFor": "Interface Wireless Config",
@@ -11179,7 +11179,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://wireless.wiki.kernel.org/en/users/documentation/iw",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "jaeger",
         "standsFor": "Jaeger Tracing",
@@ -11225,7 +11225,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.jaegertracing.io/docs/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "java",
         "standsFor": "Java",
@@ -11279,7 +11279,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "javac",
         "standsFor": "Java compiler",
@@ -11338,7 +11338,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javac.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "jenkins-cli",
         "standsFor": "Jenkins CLI",
@@ -11402,7 +11402,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "jest",
         "standsFor": "Jest",
@@ -11462,7 +11462,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://jestjs.io/docs/cli",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "jmeter",
         "standsFor": "Java Meter",
@@ -11509,7 +11509,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://jmeter.apache.org/usermanual/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "jobs",
         "standsFor": "Jobs",
@@ -11547,7 +11547,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://ss64.com/osx/jobs.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "john",
         "standsFor": "John the Ripper",
@@ -11599,7 +11599,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.openwall.com/john/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "journalctl",
         "standsFor": "Journal Control",
@@ -11651,7 +11651,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/journalctl.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "jpegoptim",
         "standsFor": "JPEG Optimizer",
@@ -11710,7 +11710,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/tjko/jpegoptim",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "jq",
         "standsFor": "JSON Query",
@@ -11776,7 +11776,7 @@ const commandsDatabase = [
             "macos": "Install via Homebrew: brew install jq",
             "windows": "Available in WSL or download binary"
         }
-    },,
+    },
     {
         "name": "julia",
         "standsFor": "Julia",
@@ -11835,7 +11835,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.julialang.org/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "jupyter",
         "standsFor": "Julia Python R",
@@ -11899,7 +11899,7 @@ const commandsDatabase = [
             "linux": "Available through package managers, pip, or conda",
             "macos": "Available through Homebrew, pip, or conda"
         }
-    },,
+    },
     {
         "name": "k6",
         "standsFor": "k6 Load Testing",
@@ -11951,7 +11951,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://k6.io/docs/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "k9s",
         "standsFor": "K9s",
@@ -12006,7 +12006,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://k9scli.io/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "kafka-console-consumer",
         "standsFor": "Kafka Console Consumer",
@@ -12063,7 +12063,7 @@ const commandsDatabase = [
             "linux": "Available through Kafka binary distribution or package managers",
             "macos": "Can be installed via Homebrew or Kafka binary distribution"
         }
-    },,
+    },
     {
         "name": "kafka-console-producer",
         "standsFor": "Kafka Console Producer",
@@ -12120,7 +12120,7 @@ const commandsDatabase = [
             "linux": "Available through Kafka binary distribution or package managers",
             "macos": "Can be installed via Homebrew or Kafka binary distribution"
         }
-    },,
+    },
     {
         "name": "kibana",
         "standsFor": "Kibana Analytics Platform",
@@ -12170,7 +12170,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.elastic.co/guide/en/kibana/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "kill",
         "standsFor": "kill",
@@ -12234,7 +12234,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL only"
         }
-    },,
+    },
     {
         "name": "killall",
         "standsFor": "kill all",
@@ -12296,7 +12296,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/killall.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "kubectl",
         "standsFor": "Kube Control",
@@ -12376,7 +12376,7 @@ const commandsDatabase = [
             "windows": "Available through Chocolatey or direct download",
             "macos": "Available through Homebrew or direct download"
         }
-    },,
+    },
     {
         "name": "kubectl-cluster-management",
         "standsFor": "Kubernetes Control",
@@ -12434,7 +12434,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://kubernetes.io/docs/reference/kubectl/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "kubectl-networking-services",
         "standsFor": "Kubernetes Networking",
@@ -12492,7 +12492,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://kubernetes.io/docs/concepts/services-networking/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "kubectl-secrets-config",
         "standsFor": "Kubernetes Secrets and Config",
@@ -12545,7 +12545,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://kubernetes.io/docs/concepts/configuration/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "kubectl-storage-management",
         "standsFor": "Kubernetes Storage Management",
@@ -12603,7 +12603,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://kubernetes.io/docs/concepts/storage/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "kubectl-workload-management",
         "standsFor": "Kubernetes Workload Management",
@@ -12666,7 +12666,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://kubernetes.io/docs/concepts/workloads/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "kubernetes-advanced-scheduling",
         "standsFor": "Kubernetes Advanced Scheduling",
@@ -12718,7 +12718,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://kubernetes.io/docs/concepts/scheduling-eviction/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "kubernetes-monitoring-observability",
         "standsFor": "Kubernetes Monitoring and Observability",
@@ -12780,7 +12780,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://kubernetes.io/docs/tasks/debug-application-cluster/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "kustomize",
         "standsFor": "Kustomize",
@@ -12841,7 +12841,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://kustomize.io/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "kustomize-configuration",
         "standsFor": "Kustomize Configuration Management",
@@ -12904,7 +12904,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://kubectl.docs.kubernetes.io/guides/introduction/kustomize/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "lein",
         "standsFor": "Leiningen",
@@ -12946,7 +12946,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://leiningen.org/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "lerna",
         "standsFor": "Lerna",
@@ -13000,7 +13000,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://lerna.js.org/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "less",
         "standsFor": "less is more",
@@ -13044,7 +13044,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/less.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "libvirt",
         "standsFor": "Library Virtualization",
@@ -13088,7 +13088,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://libvirt.org/manpages/virsh.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "lighttpd",
         "standsFor": "Lighty",
@@ -13148,7 +13148,7 @@ const commandsDatabase = [
             "macos": "Install via Homebrew: brew install lighttpd",
             "windows": "Available but less common"
         }
-    },,
+    },
     {
         "name": "linkerd",
         "standsFor": "Linkerd",
@@ -13209,7 +13209,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://linkerd.io/2/reference/cli/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "liquibase",
         "standsFor": "Liquibase",
@@ -13258,7 +13258,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.liquibase.com/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "ln",
         "standsFor": "link",
@@ -13322,7 +13322,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL; Windows has mklink for native linking"
         }
-    },,
+    },
     {
         "name": "locate",
         "standsFor": "locate",
@@ -13378,7 +13378,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/locate.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "locust",
         "standsFor": "Locust",
@@ -13429,7 +13429,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.locust.io/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "loginctl",
         "standsFor": "Login Control",
@@ -13467,7 +13467,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.freedesktop.org/software/systemd/man/loginctl.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "logrotate",
         "standsFor": "Log Rotate",
@@ -13516,7 +13516,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/logrotate.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "logstash",
         "standsFor": "Logstash Data Pipeline",
@@ -13566,7 +13566,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.elastic.co/guide/en/logstash/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "logwatch",
         "standsFor": "Log Watcher",
@@ -13615,7 +13615,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://sourceforge.net/projects/logwatch/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "loki",
         "standsFor": "Loki Log Aggregation",
@@ -13665,7 +13665,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://grafana.com/docs/loki/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "ls",
         "standsFor": "list",
@@ -13729,7 +13729,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL and Git Bash only"
         }
-    },,
+    },
     {
         "name": "lsblk",
         "standsFor": "list block devices",
@@ -13784,7 +13784,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/lsblk.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "lscpu",
         "standsFor": "list CPU",
@@ -13827,7 +13827,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/lscpu.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "lsof",
         "standsFor": "List Open Files",
@@ -13877,7 +13877,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/lsof.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "ltrace",
         "standsFor": "Library Trace",
@@ -13921,7 +13921,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/ltrace.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "lvm",
         "standsFor": "Logical Volume Manager",
@@ -13959,7 +13959,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/lvm.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "lynis",
         "standsFor": "Lynis",
@@ -14008,7 +14008,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://cisofy.com/lynis/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "lz4",
         "standsFor": "LZ4 compression",
@@ -14059,7 +14059,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://lz4.github.io/lz4/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "lzop",
         "standsFor": "Lempel-Ziv-Oberhumer Packer",
@@ -14105,7 +14105,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.lzop.org/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "make",
         "standsFor": "make",
@@ -14170,7 +14170,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL, MinGW, or MSYS2"
         }
-    },,
+    },
     {
         "name": "masscan",
         "standsFor": "Mass Scanner",
@@ -14214,7 +14214,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/robertdavidgraham/masscan",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "maven",
         "standsFor": "Maven",
@@ -14266,7 +14266,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://maven.apache.org/guides/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "maxima",
         "standsFor": "Maxima",
@@ -14322,7 +14322,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://maxima.sourceforge.io/documentation.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "mdadm",
         "standsFor": "Multiple Device Administrator",
@@ -14365,7 +14365,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/mdadm.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "meson",
         "standsFor": "Meson",
@@ -14427,7 +14427,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://mesonbuild.com/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "metasploit",
         "standsFor": "Metasploit Framework",
@@ -14472,7 +14472,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.rapid7.com/metasploit/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "miller",
         "standsFor": "Miller",
@@ -14538,7 +14538,7 @@ const commandsDatabase = [
             "macos": "Install via Homebrew: brew install miller",
             "windows": "Download from GitHub releases"
         }
-    },,
+    },
     {
         "name": "mix",
         "standsFor": "Mix",
@@ -14580,7 +14580,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://hexdocs.pm/mix/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "mkdir",
         "standsFor": "make directory",
@@ -14636,7 +14636,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/mkdir.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "mlflow",
         "standsFor": "Machine Learning Flow",
@@ -14696,7 +14696,7 @@ const commandsDatabase = [
             "windows": "Available through pip, some database backends may need configuration",
             "macos": "Available through pip installation"
         }
-    },,
+    },
     {
         "name": "mocha",
         "standsFor": "Mocha",
@@ -14742,7 +14742,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://mochajs.org/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "mongodump",
         "standsFor": "MongoDB Dump",
@@ -14795,7 +14795,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.mongodb.com/docs/database-tools/mongodump/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "mongoexport",
         "standsFor": "MongoDB Export",
@@ -14847,7 +14847,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.mongodb.com/docs/database-tools/mongoexport/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "mongoimport",
         "standsFor": "MongoDB Import",
@@ -14900,7 +14900,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.mongodb.com/docs/database-tools/mongoimport/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "mongorestore",
         "standsFor": "MongoDB Restore",
@@ -14953,7 +14953,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.mongodb.com/docs/database-tools/mongorestore/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "mongosh",
         "standsFor": "MongoDB Shell",
@@ -15010,7 +15010,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.mongodb.com/docs/mongodb-shell/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "mosquitto",
         "standsFor": "Mosquitto MQTT Broker",
@@ -15064,7 +15064,7 @@ const commandsDatabase = [
             "linux": "Available in most distribution repositories",
             "macos": "Can be installed via Homebrew"
         }
-    },,
+    },
     {
         "name": "mount",
         "standsFor": "Mount",
@@ -15114,7 +15114,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/mount.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "mtr",
         "standsFor": "My TraceRoute",
@@ -15164,7 +15164,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.bitwizard.nl/mtr/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "mv",
         "standsFor": "move",
@@ -15222,7 +15222,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL and Git Bash only"
         }
-    },,
+    },
     {
         "name": "mysql",
         "standsFor": "MySQL",
@@ -15268,7 +15268,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://dev.mysql.com/doc/refman/8.0/en/mysql.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "mysql_config_editor",
         "standsFor": "MySQL Configuration Editor",
@@ -15319,7 +15319,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "mysql_secure_installation",
         "standsFor": "MySQL Secure Installation",
@@ -15367,7 +15367,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "mysqladmin",
         "standsFor": "MySQL Admin",
@@ -15420,7 +15420,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://dev.mysql.com/doc/refman/8.0/en/mysqladmin.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "mysqladmin extended-status",
         "standsFor": "MySQL Admin Extended Status",
@@ -15466,7 +15466,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "mysqlcheck",
         "standsFor": "MySQL Check",
@@ -15518,7 +15518,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://dev.mysql.com/doc/refman/8.0/en/mysqlcheck.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "mysqldump",
         "standsFor": "MySQL Dump",
@@ -15566,7 +15566,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "nagios",
         "standsFor": "Nagios Monitoring",
@@ -15609,7 +15609,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://nagios.org/documentation/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "nano",
         "standsFor": "nano's another editor",
@@ -15665,7 +15665,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL or via package managers"
         }
-    },,
+    },
     {
         "name": "netcat",
         "standsFor": "Network Cat",
@@ -15713,7 +15713,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "netplan",
         "standsFor": "Network Plan",
@@ -15754,7 +15754,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://netplan.io/reference",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "netstat",
         "standsFor": "network statistics",
@@ -15815,7 +15815,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/netstat.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "newman",
         "standsFor": "Newman",
@@ -15867,7 +15867,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://learning.postman.com/docs/running-collections/using-newman-cli/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "newrelic",
         "standsFor": "New Relic Command Line Interface",
@@ -15913,7 +15913,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.datadoghq.com/api/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "next",
         "standsFor": "Next.js CLI",
@@ -15954,7 +15954,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://nextjs.org/docs/api-reference/cli",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "ng",
         "standsFor": "Angular CLI",
@@ -16001,7 +16001,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://angular.io/cli",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "nginx",
         "standsFor": "engine x",
@@ -16069,7 +16069,7 @@ const commandsDatabase = [
             "macos": "Install via Homebrew: brew install nginx",
             "windows": "Download from nginx.org or use WSL"
         }
-    },,
+    },
     {
         "name": "nice",
         "standsFor": "Nice",
@@ -16119,7 +16119,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/nice.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "nikto",
         "standsFor": "Nikto",
@@ -16164,7 +16164,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://cirt.net/Nikto2",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "ninja",
         "standsFor": "Ninja",
@@ -16216,7 +16216,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://ninja-build.org/manual.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "nmap",
         "standsFor": "Network Mapper",
@@ -16262,7 +16262,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://nmap.org/book/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "nmcli",
         "standsFor": "NetworkManager CLI",
@@ -16310,7 +16310,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "nmon",
         "standsFor": "Nigel's Monitor",
@@ -16364,7 +16364,7 @@ const commandsDatabase = [
         "distroNotes": {
             "linux": "Install via package manager or download from IBM"
         }
-    },,
+    },
     {
         "name": "node",
         "standsFor": "Node.js",
@@ -16428,7 +16428,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://nodejs.org/api/cli.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "node-red",
         "standsFor": "Node-RED",
@@ -16489,7 +16489,7 @@ const commandsDatabase = [
             "linux": "Available through npm or package managers",
             "macos": "Can be installed via npm or Homebrew"
         }
-    },,
+    },
     {
         "name": "nodetool",
         "standsFor": "Node Tool",
@@ -16537,7 +16537,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "nohup",
         "standsFor": "no hangup",
@@ -16594,7 +16594,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL and Git Bash only"
         }
-    },,
+    },
     {
         "name": "npm",
         "standsFor": "Node Package Manager",
@@ -16661,7 +16661,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.npmjs.com/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "npx",
         "standsFor": "Node Package Execute",
@@ -16724,7 +16724,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.npmjs.com/package/npx",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "npx react-native",
         "standsFor": "Node Package Execute React Native",
@@ -16775,7 +16775,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Requires Node.js and npm installed"
         }
-    },,
+    },
     {
         "name": "nslookup",
         "standsFor": "Name Server Lookup",
@@ -16821,7 +16821,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "nvm",
         "standsFor": "Node Version Manager",
@@ -16876,7 +16876,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Use nvm-windows or fnm for Windows"
         }
-    },,
+    },
     {
         "name": "octave",
         "standsFor": "GNU Octave",
@@ -16934,7 +16934,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://maxima.sourceforge.io/documentation.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "openresty",
         "standsFor": "OpenResty",
@@ -16979,7 +16979,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://openresty.org/en/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "openssl",
         "standsFor": "OpenSSL",
@@ -17034,7 +17034,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.openssl.org/docs/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "opentelemetry-collector",
         "standsFor": "OpenTelemetry Collector",
@@ -17083,7 +17083,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://opentelemetry.io/docs/collector/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "openvas",
         "standsFor": "Open Vulnerability Assessment System",
@@ -17126,7 +17126,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "optipng",
         "standsFor": "Optimize PNG",
@@ -17183,7 +17183,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "http://optipng.sourceforge.net/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "osquery",
         "standsFor": "Operating System Query",
@@ -17233,7 +17233,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://osquery.readthedocs.io/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "ossec",
         "standsFor": "Open Source HIDS SECurity",
@@ -17283,7 +17283,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "owasp-zap",
         "standsFor": "OWASP Zed Attack Proxy",
@@ -17334,7 +17334,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.zaproxy.org/docs/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pack",
         "standsFor": "Pack CLI",
@@ -17395,7 +17395,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://buildpacks.io/docs/tools/pack/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pacman",
         "standsFor": "package manager",
@@ -17444,7 +17444,7 @@ const commandsDatabase = [
         "distroNotes": {
             "linux": "Arch Linux, Manjaro, EndeavourOS"
         }
-    },,
+    },
     {
         "name": "pandoc",
         "standsFor": "Pan-document converter",
@@ -17497,7 +17497,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://pandoc.org/MANUAL.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "parallel",
         "standsFor": "GNU parallel",
@@ -17564,7 +17564,7 @@ const commandsDatabase = [
             "macos": "Install via Homebrew: brew install parallel",
             "windows": "Available in WSL"
         }
-    },,
+    },
     {
         "name": "parcel",
         "standsFor": "Parcel",
@@ -17627,7 +17627,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://parceljs.org/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "passwd",
         "standsFor": "password",
@@ -17682,7 +17682,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL; Windows uses net user command"
         }
-    },,
+    },
     {
         "name": "perf",
         "standsFor": "Performance",
@@ -17727,7 +17727,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://perf.wiki.kernel.org/index.php/Main_Page",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "perl",
         "standsFor": "Practical Extraction and Reporting Language",
@@ -17786,7 +17786,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://perldoc.perl.org/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pg_basebackup",
         "standsFor": "PostgreSQL Base Backup",
@@ -17824,7 +17824,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.postgresql.org/docs/current/app-pgbasebackup.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pg_dump",
         "standsFor": "PostgreSQL Dump",
@@ -17877,7 +17877,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.postgresql.org/docs/current/app-pgdump.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pg_restore",
         "standsFor": "PostgreSQL Restore",
@@ -17924,7 +17924,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.postgresql.org/docs/current/app-pgrestore.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pg_stat_activity",
         "standsFor": "PostgreSQL Statistics Activity",
@@ -17964,7 +17964,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ACTIVITY-VIEW",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pgbadger",
         "standsFor": "PostgreSQL Badger",
@@ -18012,7 +18012,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/darold/pgbadger",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pgbench",
         "standsFor": "PostgreSQL Benchmark",
@@ -18065,7 +18065,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.postgresql.org/docs/current/pgbench.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pgrep",
         "standsFor": "process grep",
@@ -18120,7 +18120,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/pgrep.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "php",
         "standsFor": "PHP: Hypertext Preprocessor",
@@ -18183,7 +18183,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.php.net/manual/en/features.commandline.php",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pidstat",
         "standsFor": "Process ID Statistics",
@@ -18232,7 +18232,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/pidstat.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "ping",
         "standsFor": "Packet Internet Groper",
@@ -18282,7 +18282,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/ping.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pip",
         "standsFor": "Pip Installs Packages",
@@ -18339,7 +18339,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://pip.pypa.io/en/stable/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pipenv",
         "standsFor": "Pip Environment",
@@ -18389,7 +18389,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://pipenv.pypa.io/en/latest/commands.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pkill",
         "standsFor": "process kill",
@@ -18450,7 +18450,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/pkill.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "platformio",
         "standsFor": "Platform Input/Output",
@@ -18513,7 +18513,7 @@ const commandsDatabase = [
             "linux": "Available through pip or package managers",
             "macos": "Can be installed via pip or Homebrew"
         }
-    },,
+    },
     {
         "name": "playwright",
         "standsFor": "Playwright",
@@ -18565,7 +18565,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://playwright.dev/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pnpm",
         "standsFor": "Performant NPM",
@@ -18630,7 +18630,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://pnpm.io/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "podman",
         "standsFor": "Pod Manager",
@@ -18692,7 +18692,7 @@ const commandsDatabase = [
             "macos": "Requires podman machine VM",
             "windows": "Requires podman machine VM"
         }
-    },,
+    },
     {
         "name": "poetry",
         "standsFor": "Poetry",
@@ -18750,7 +18750,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://python-poetry.org/docs/cli/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "postman",
         "standsFor": "Postman",
@@ -18795,7 +18795,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pprof",
         "standsFor": "Performance Profiler",
@@ -18846,7 +18846,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://pkg.go.dev/runtime/pprof",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "prettier",
         "standsFor": "Prettier",
@@ -18899,7 +18899,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://prettier.io/docs/en/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "prisma",
         "standsFor": "Prisma",
@@ -18951,7 +18951,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.prisma.io/docs/reference/api-reference/command-reference",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "prometheus",
         "standsFor": "Prometheus Monitoring System",
@@ -18997,7 +18997,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://prometheus.io/docs/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "promtail",
         "standsFor": "Prometheus Tail",
@@ -19047,7 +19047,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://grafana.com/docs/loki/latest/clients/promtail/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "ps",
         "standsFor": "process status",
@@ -19111,7 +19111,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL only"
         }
-    },,
+    },
     {
         "name": "psql",
         "standsFor": "PostgreSQL",
@@ -19168,7 +19168,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.postgresql.org/docs/current/app-psql.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pt-query-digest",
         "standsFor": "Percona Toolkit Query Digest",
@@ -19209,7 +19209,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.percona.com/percona-toolkit/pt-query-digest.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pt-table-checksum",
         "standsFor": "Percona Toolkit Table Checksum",
@@ -19254,7 +19254,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.percona.com/percona-toolkit/pt-table-checksum.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pulumi",
         "standsFor": "Pulumi",
@@ -19314,7 +19314,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.pulumi.com/docs/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "puppeteer",
         "standsFor": "Puppeteer",
@@ -19359,7 +19359,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pwd",
         "standsFor": "print working directory",
@@ -19413,7 +19413,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/pwd.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "pytest",
         "standsFor": "Python Test",
@@ -19455,7 +19455,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.pytest.org/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "python",
         "standsFor": "Python",
@@ -19512,7 +19512,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.python.org/3/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "python3",
         "standsFor": "Python 3",
@@ -19583,7 +19583,7 @@ const commandsDatabase = [
             "windows": "Available from Microsoft Store, python.org, or Anaconda",
             "macos": "Pre-installed, Homebrew provides latest versions"
         }
-    },,
+    },
     {
         "name": "qemu",
         "standsFor": "Quick Emulator",
@@ -19622,7 +19622,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.qemu.org/documentation/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "R",
         "standsFor": "R",
@@ -19686,7 +19686,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.r-project.org/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "rabbitmqctl",
         "standsFor": "RabbitMQ Control",
@@ -19737,7 +19737,7 @@ const commandsDatabase = [
             "linux": "Available through package managers or RabbitMQ installation",
             "macos": "Included with Homebrew RabbitMQ installation"
         }
-    },,
+    },
     {
         "name": "rails",
         "standsFor": "Ruby on Rails",
@@ -19788,7 +19788,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://guides.rubyonrails.org/command_line.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "rake",
         "standsFor": "Ruby Make",
@@ -19834,7 +19834,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/ruby/rake",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "rar",
         "standsFor": "Roshal Archive",
@@ -19879,7 +19879,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.rarlab.com/rar_add.htm",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "react-native",
         "standsFor": "React Native",
@@ -19942,7 +19942,7 @@ const commandsDatabase = [
             "macos": "Full iOS development requires Xcode",
             "linux": "Android development only, no iOS support"
         }
-    },,
+    },
     {
         "name": "readlink",
         "standsFor": "read link",
@@ -20000,7 +20000,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL"
         }
-    },,
+    },
     {
         "name": "redis-benchmark",
         "standsFor": "Redis Benchmark",
@@ -20048,7 +20048,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "redis-check-aof",
         "standsFor": "Redis Check AOF",
@@ -20096,7 +20096,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "redis-check-rdb",
         "standsFor": "Redis Check RDB",
@@ -20144,7 +20144,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "redis-cli",
         "standsFor": "Redis Command Line Interface",
@@ -20200,7 +20200,7 @@ const commandsDatabase = [
             "linux": "Available in most distribution repositories",
             "macos": "Can be installed via Homebrew"
         }
-    },,
+    },
     {
         "name": "renice",
         "standsFor": "Re-nice",
@@ -20249,7 +20249,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/renice.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "responder",
         "standsFor": "Responder",
@@ -20298,7 +20298,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/SpiderLabs/Responder",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "rev",
         "standsFor": "Reverse",
@@ -20334,7 +20334,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/rev.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "rg",
         "standsFor": "ripgrep",
@@ -20392,7 +20392,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "rkhunter",
         "standsFor": "Rootkit Hunter",
@@ -20441,7 +20441,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "http://rkhunter.sourceforge.net/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "rm",
         "standsFor": "remove",
@@ -20496,7 +20496,7 @@ const commandsDatabase = [
             "alpine": "Uses BusyBox rm by default - limited options",
             "windows": "Available in WSL and Git Bash only"
         }
-    },,
+    },
     {
         "name": "rollup",
         "standsFor": "Rollup",
@@ -20546,7 +20546,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://rollupjs.org/guide/en/#command-line-reference",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "route",
         "standsFor": "Route",
@@ -20597,7 +20597,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/route.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "rsync",
         "standsFor": "Remote Sync",
@@ -20650,7 +20650,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/rsync.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "rsyslog",
         "standsFor": "Reliable Syslog",
@@ -20691,7 +20691,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.rsyslog.com/doc/v8-stable/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "ruby",
         "standsFor": "Ruby",
@@ -20749,7 +20749,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://ruby-doc.org/core/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "rustc",
         "standsFor": "Rust compiler",
@@ -20811,7 +20811,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://doc.rust-lang.org/rustc/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "rustup",
         "standsFor": "Rust Up",
@@ -20862,7 +20862,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://rust-lang.github.io/rustup/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "sage",
         "standsFor": "SageMath",
@@ -20919,7 +20919,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://doc.sagemath.org/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "sam",
         "standsFor": "Serverless Application Model",
@@ -20978,7 +20978,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.aws.amazon.com/serverless-application-model/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "sar",
         "standsFor": "System Activity Reporter",
@@ -21028,7 +21028,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/sar.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "sbt",
         "standsFor": "Simple Build Tool",
@@ -21080,7 +21080,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "scilab",
         "standsFor": "Scientific Laboratory",
@@ -21136,7 +21136,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://help.scilab.org/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "scp",
         "standsFor": "secure copy protocol",
@@ -21192,7 +21192,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/scp.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "screen",
         "standsFor": "Screen",
@@ -21242,7 +21242,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/screen.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "script",
         "standsFor": "Script",
@@ -21279,7 +21279,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/script.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "sed",
         "standsFor": "stream editor",
@@ -21343,7 +21343,7 @@ const commandsDatabase = [
             "macos": "BSD sed - some syntax differs from GNU sed",
             "windows": "Available in WSL or Git Bash"
         }
-    },,
+    },
     {
         "name": "selenium-webdriver",
         "standsFor": "Selenium WebDriver",
@@ -21392,7 +21392,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://selenium-python.readthedocs.io/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "sentry-cli",
         "standsFor": "Sentry Command Line Interface",
@@ -21431,7 +21431,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.sentry.io/cli/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "seq",
         "standsFor": "Sequence",
@@ -21477,7 +21477,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/seq.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "sequelize-cli",
         "standsFor": "Sequelize CLI",
@@ -21528,7 +21528,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://sequelize.org/docs/v6/other-topics/migrations/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "shuf",
         "standsFor": "Shuffle",
@@ -21577,7 +21577,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/shuf.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "skaffold",
         "standsFor": "Skaffold",
@@ -21637,7 +21637,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://skaffold.dev/docs/references/cli/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "sl",
         "standsFor": "Steam Locomotive",
@@ -21680,7 +21680,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/mtoyoda/sl",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "sleuthkit",
         "standsFor": "The Sleuth Kit",
@@ -21724,7 +21724,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "http://sleuthkit.org/sleuthkit/docs/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "snap",
         "standsFor": "Snappy package manager",
@@ -21775,7 +21775,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://snapcraft.io/docs",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "snort",
         "standsFor": "Snort",
@@ -21823,7 +21823,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://snort.org/documents",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "socat",
         "standsFor": "Socket Cat",
@@ -21873,7 +21873,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/socat.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "sonarqube",
         "standsFor": "SonarQube",
@@ -21917,7 +21917,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.sonarqube.org/latest/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "sort",
         "standsFor": "sort",
@@ -21981,7 +21981,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL or Git Bash"
         }
-    },,
+    },
     {
         "name": "source",
         "standsFor": "Source",
@@ -22029,7 +22029,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://ss64.com/osx/source.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "sox",
         "standsFor": "Sound eXchange",
@@ -22082,7 +22082,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "sqlite3",
         "standsFor": "SQLite",
@@ -22144,7 +22144,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://csvkit.readthedocs.io/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "sqlmap",
         "standsFor": "SQL Map",
@@ -22194,7 +22194,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://sqlmap.org/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "ss",
         "standsFor": "Socket Statistics",
@@ -22245,7 +22245,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/ss.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "ssh",
         "standsFor": "secure shell",
@@ -22308,7 +22308,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Built into Windows 10+ or available via OpenSSH"
         }
-    },,
+    },
     {
         "name": "ssh-keygen",
         "standsFor": "SSH key generator",
@@ -22362,7 +22362,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in Windows 10+ or WSL"
         }
-    },,
+    },
     {
         "name": "sslscan",
         "standsFor": "SSL Scanner",
@@ -22410,7 +22410,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/rbsec/sslscan",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "stat",
         "standsFor": "status/statistics",
@@ -22474,7 +22474,7 @@ const commandsDatabase = [
             "macos": "BSD stat - different options than GNU stat",
             "windows": "Available in WSL"
         }
-    },,
+    },
     {
         "name": "steamcmd",
         "standsFor": "Steam Command Line",
@@ -22522,7 +22522,7 @@ const commandsDatabase = [
             "windows": "Available as direct download from Valve",
             "macos": "Available but with limited game server support"
         }
-    },,
+    },
     {
         "name": "strace",
         "standsFor": "System Call Trace",
@@ -22567,7 +22567,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/strace.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "suricata",
         "standsFor": "Suricata",
@@ -22615,7 +22615,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://suricata.readthedocs.io/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "swagger-codegen",
         "standsFor": "Swagger Code Generator",
@@ -22649,7 +22649,7 @@ const commandsDatabase = [
             "windows": "Requires Java, available through direct download",
             "macos": "Available through Homebrew or direct download"
         }
-    },,
+    },
     {
         "name": "syft",
         "standsFor": "Syft",
@@ -22709,7 +22709,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/anchore/syft",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "symfony",
         "standsFor": "Symfony Console",
@@ -22759,7 +22759,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://symfony.com/doc/current/setup.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "sync",
         "standsFor": "Synchronize",
@@ -22802,7 +22802,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/sync.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "sysctl",
         "standsFor": "System Control",
@@ -22846,7 +22846,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/sysctl.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "systemctl",
         "standsFor": "System Control",
@@ -22892,7 +22892,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/systemctl.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "systemd-timer",
         "standsFor": "systemd Timer",
@@ -22939,7 +22939,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.freedesktop.org/software/systemd/man/systemd.timer.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "tail",
         "standsFor": "tail",
@@ -22994,7 +22994,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/tail.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "tar",
         "standsFor": "tape archive",
@@ -23058,7 +23058,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL or Git Bash"
         }
-    },,
+    },
     {
         "name": "tcpdump",
         "standsFor": "TCP Dump",
@@ -23102,7 +23102,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/tcpdump.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "tee",
         "standsFor": "T-shaped pipe fitting",
@@ -23141,7 +23141,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/tee.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "telegraf",
         "standsFor": "Telegraf Metrics Agent",
@@ -23191,7 +23191,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.influxdata.com/telegraf/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "terraform",
         "standsFor": "Terraform (Advanced)",
@@ -23274,7 +23274,7 @@ const commandsDatabase = [
             "windows": "Available as binary download or through Chocolatey",
             "macos": "Available through Homebrew or binary download"
         }
-    },,
+    },
     {
         "name": "testssl",
         "standsFor": "Test SSL",
@@ -23322,7 +23322,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://testssl.sh/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "time",
         "standsFor": "Time",
@@ -23367,7 +23367,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/time.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "timeout",
         "standsFor": "Timeout",
@@ -23411,7 +23411,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/timeout.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "tmux",
         "standsFor": "terminal multiplexer",
@@ -23479,7 +23479,7 @@ const commandsDatabase = [
             "windows": "Available through WSL or package managers like Chocolatey",
             "macos": "Available through Homebrew or MacPorts"
         }
-    },,
+    },
     {
         "name": "top",
         "standsFor": "table of processes",
@@ -23535,7 +23535,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL only"
         }
-    },,
+    },
     {
         "name": "touch",
         "standsFor": "touch",
@@ -23598,7 +23598,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL or Git Bash"
         }
-    },,
+    },
     {
         "name": "tr",
         "standsFor": "translate",
@@ -23661,7 +23661,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL and Git Bash only"
         }
-    },,
+    },
     {
         "name": "traceroute",
         "standsFor": "trace route",
@@ -23721,7 +23721,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/traceroute.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "tree",
         "standsFor": "tree",
@@ -23787,7 +23787,7 @@ const commandsDatabase = [
             "macos": "Install via Homebrew: brew install tree",
             "windows": "Available in some Git installations or WSL"
         }
-    },,
+    },
     {
         "name": "tsc",
         "standsFor": "TypeScript Compiler",
@@ -23850,7 +23850,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.typescriptlang.org/docs/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "tuned",
         "standsFor": "Tuned",
@@ -23893,7 +23893,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/sysctl.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "ufw",
         "standsFor": "Uncomplicated Firewall",
@@ -23936,7 +23936,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/iptables.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "ulimit",
         "standsFor": "User Limits",
@@ -23980,7 +23980,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/bash.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "umask",
         "standsFor": "user mask",
@@ -24040,7 +24040,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man2/umask.2.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "umount",
         "standsFor": "Unmount",
@@ -24089,7 +24089,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/umount.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "uname",
         "standsFor": "Unix name",
@@ -24141,7 +24141,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL"
         }
-    },,
+    },
     {
         "name": "uniq",
         "standsFor": "unique",
@@ -24199,7 +24199,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL or Git Bash"
         }
-    },,
+    },
     {
         "name": "units",
         "standsFor": "Units",
@@ -24244,7 +24244,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "unity",
         "standsFor": "Unity Game Engine",
@@ -24299,7 +24299,7 @@ const commandsDatabase = [
             "macos": "Full Unity Editor and command line tools available",
             "linux": "Limited Unity Editor support, build tools available"
         }
-    },,
+    },
     {
         "name": "unzip",
         "standsFor": "unzip",
@@ -24361,7 +24361,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://ss64.com/osx/unzip.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "uptime",
         "standsFor": "uptime",
@@ -24417,7 +24417,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL or PowerShell equivalent"
         }
-    },,
+    },
     {
         "name": "uptrace",
         "standsFor": "Uptrace APM",
@@ -24466,7 +24466,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "usermod",
         "standsFor": "User Modify",
@@ -24510,7 +24510,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/usermod.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "vagrant",
         "standsFor": "Vagrant",
@@ -24557,7 +24557,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.vagrantup.com/docs",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "valgrind",
         "standsFor": "Valgrind",
@@ -24601,7 +24601,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://valgrind.org/docs/manual/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "vector",
         "standsFor": "Vector Data Pipeline",
@@ -24651,7 +24651,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://vector.dev/docs/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "vim",
         "standsFor": "vi improved",
@@ -24707,7 +24707,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.vim.org/docs.php",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "vite",
         "standsFor": "Vite (French for 'quick')",
@@ -24769,7 +24769,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://vitejs.dev/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "vmstat",
         "standsFor": "Virtual Memory Statistics",
@@ -24819,7 +24819,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man8/vmstat.8.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "volatility",
         "standsFor": "Volatility",
@@ -24863,7 +24863,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "vue",
         "standsFor": "Vue CLI",
@@ -24914,7 +24914,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://cli.vuejs.org/guide/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "watch",
         "standsFor": "watch",
@@ -24974,7 +24974,7 @@ const commandsDatabase = [
             "macos": "Install via Homebrew: brew install watch",
             "windows": "Available in WSL"
         }
-    },,
+    },
     {
         "name": "wc",
         "standsFor": "word count",
@@ -25037,7 +25037,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL or Git Bash"
         }
-    },,
+    },
     {
         "name": "webpack",
         "standsFor": "Web Package",
@@ -25094,7 +25094,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://webpack.js.org/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "wget",
         "standsFor": "web get",
@@ -25154,7 +25154,7 @@ const commandsDatabase = [
             "macos": "Install via Homebrew: brew install wget",
             "windows": "Available in WSL or via package managers"
         }
-    },,
+    },
     {
         "name": "which",
         "standsFor": "which",
@@ -25199,7 +25199,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL; Windows has where command"
         }
-    },,
+    },
     {
         "name": "whoami",
         "standsFor": "who am I",
@@ -25242,7 +25242,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in PowerShell and WSL"
         }
-    },,
+    },
     {
         "name": "whois",
         "standsFor": "Who Is",
@@ -25286,7 +25286,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "wireshark",
         "standsFor": "Wire Shark",
@@ -25331,7 +25331,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.wireshark.org/docs/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "wkhtmltopdf",
         "standsFor": "WebKit HTML to PDF",
@@ -25388,7 +25388,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://wkhtmltopdf.org/usage/wkhtmltopdf.txt",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "wp",
         "standsFor": "WordPress CLI",
@@ -25455,7 +25455,7 @@ const commandsDatabase = [
             "linux": "Can be installed via package managers, Composer, or direct download",
             "macos": "Available through Homebrew, Composer, or direct download"
         }
-    },,
+    },
     {
         "name": "wrk",
         "standsFor": "Work",
@@ -25498,7 +25498,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/wg/wrk",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "xargs",
         "standsFor": "Extended Arguments",
@@ -25549,7 +25549,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://man7.org/linux/man-pages/man1/xargs.1.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "xelatex",
         "standsFor": "",
@@ -25565,7 +25565,7 @@ const commandsDatabase = [
         "warnings": [],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "xz",
         "standsFor": "XZ Utils",
@@ -25628,7 +25628,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL or as standalone binary"
         }
-    },,
+    },
     {
         "name": "yara",
         "standsFor": "Yet Another Recursive Acronym",
@@ -25677,7 +25677,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://yara.readthedocs.io/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "yarn",
         "standsFor": "Yet Another Resource Negotiator",
@@ -25742,7 +25742,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://classic.yarnpkg.com/en/docs",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "yes",
         "standsFor": "yes",
@@ -25804,7 +25804,7 @@ const commandsDatabase = [
         "distroNotes": {
             "windows": "Available in WSL or Git Bash"
         }
-    },,
+    },
     {
         "name": "youtube-dl",
         "standsFor": "YouTube Downloader",
@@ -25866,7 +25866,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/ytdl-org/youtube-dl",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "yt-dlp",
         "standsFor": "YouTube DL Plus",
@@ -25924,7 +25924,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/yt-dlp/yt-dlp",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "yum",
         "standsFor": "Yellowdog Updater Modified",
@@ -25982,7 +25982,7 @@ const commandsDatabase = [
         "distroNotes": {
             "linux": "RHEL, CentOS, Fedora (older versions)"
         }
-    },,
+    },
     {
         "name": "zabbix",
         "standsFor": "Zabbix Monitoring",
@@ -26025,7 +26025,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://www.zabbix.com/documentation/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "zcat",
         "standsFor": "Compressed Cat",
@@ -26062,7 +26062,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "zeek",
         "standsFor": "Zeek (formerly Bro)",
@@ -26110,7 +26110,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://docs.zeek.org/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "zfs",
         "standsFor": "ZFS Filesystem",
@@ -26147,7 +26147,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://openzfs.github.io/openzfs-docs/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "zip",
         "standsFor": "zip",
@@ -26209,7 +26209,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://ss64.com/osx/zip.html",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "zipkin",
         "standsFor": "Zipkin Tracing",
@@ -26258,7 +26258,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://zipkin.io/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "zoxide",
         "standsFor": "zoxide",
@@ -26309,7 +26309,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://github.com/ajeetdsouza/zoxide",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "zsh",
         "standsFor": "Z Shell",
@@ -26362,7 +26362,7 @@ const commandsDatabase = [
             "windows": "Available through WSL",
             "macos": "Default shell in macOS Catalina and later"
         }
-    },,
+    },
     {
         "name": "zstd",
         "standsFor": "Zstandard",
@@ -26411,7 +26411,7 @@ const commandsDatabase = [
         ],
         "manPageUrl": "https://facebook.github.io/zstd/",
         "distroNotes": {}
-    },,
+    },
     {
         "name": "zypper",
         "standsFor": "Zipper",

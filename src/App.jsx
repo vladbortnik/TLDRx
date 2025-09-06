@@ -33,8 +33,7 @@ function App({ mockCommands }) {
    * @returns {string} Man page URL from command data
    */
   const getManPageUrl = (command) => {
-    // return command.manPageUrl || `https://man7.org/linux/man-pages/man1/${command.name}.1.html`;
-    return command.manPageUrl
+    return command.manPageUrl || `https://man7.org/linux/man-pages/man1/${command.name}.1.html`;
   };
 
   useEffect(() => {
