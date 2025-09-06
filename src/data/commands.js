@@ -297,11 +297,6 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "tripwire",
-        "relationship": "alternative",
-        "reason": "Commercial file integrity monitoring tool with similar capabilities"
-      },
-      {
         "name": "auditd",
         "relationship": "complementary",
         "reason": "Provides detailed audit logs of who/when/how changes were made"
@@ -381,11 +376,6 @@ const commandsDatabase = [
         "name": "pip",
         "relationship": "installation",
         "reason": "Used to install Alembic via pip install alembic"
-      },
-      {
-        "name": "flask",
-        "relationship": "integration",
-        "reason": "Often used with Flask-Migrate for Flask applications"
       }
     ],
     "warnings": [
@@ -522,19 +512,9 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "unalias",
-        "relationship": "opposite",
-        "reason": "Remove defined aliases"
-      },
-      {
         "name": "which",
         "relationship": "info",
         "reason": "Check if command is an alias or executable"
-      },
-      {
-        "name": "type",
-        "relationship": "info",
-        "reason": "Show whether command is alias, builtin, or external"
       }
     ],
     "warnings": [
@@ -600,11 +580,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "ansible-galaxy",
-        "relationship": "subcommand",
-        "reason": "Manages Ansible roles and collections from Ansible Galaxy"
-      },
       {
         "name": "terraform",
         "relationship": "complement",
@@ -835,16 +810,6 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "apt-get",
-        "relationship": "similar",
-        "reason": "Older interface with same functionality"
-      },
-      {
-        "name": "dpkg",
-        "relationship": "combo",
-        "reason": "Low-level package manager that apt uses"
-      },
-      {
         "name": "snap",
         "relationship": "alternative",
         "reason": "Universal package manager on Ubuntu"
@@ -898,18 +863,7 @@ const commandsDatabase = [
         "title": "gcc && ar && ranlib"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "ranlib",
-        "relationship": "combo",
-        "reason": "ranlib creates index for faster library linking"
-      },
-      {
-        "name": "nm",
-        "relationship": "related",
-        "reason": "nm examines symbols in object files and archives"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Primarily used for static libraries in development",
       "Different from general-purpose archive formats"
@@ -976,11 +930,6 @@ const commandsDatabase = [
         "name": "esptool",
         "relationship": "specialized",
         "reason": "Specialized tool for ESP32/ESP8266 microcontrollers"
-      },
-      {
-        "name": "avrdude",
-        "relationship": "underlying",
-        "reason": "Lower-level tool used by Arduino CLI for programming AVR microcontrollers"
       }
     ],
     "warnings": [
@@ -1357,11 +1306,6 @@ const commandsDatabase = [
         "name": "aide",
         "relationship": "combo",
         "reason": "Complementary file integrity monitoring"
-      },
-      {
-        "name": "syslog",
-        "relationship": "combo",
-        "reason": "System logging integration"
       }
     ],
     "warnings": [
@@ -1410,11 +1354,6 @@ const commandsDatabase = [
         "name": "automake",
         "relationship": "combo",
         "reason": "automake generates Makefile.in used by autoconf"
-      },
-      {
-        "name": "configure",
-        "relationship": "generates",
-        "reason": "autoconf generates configure scripts"
       }
     ],
     "warnings": [
@@ -1471,11 +1410,6 @@ const commandsDatabase = [
         "name": "autoconf",
         "relationship": "combo",
         "reason": "Works with autoconf to create build system"
-      },
-      {
-        "name": "aclocal",
-        "relationship": "prerequisite",
-        "reason": "aclocal generates aclocal.m4 needed by automake"
       }
     ],
     "warnings": [
@@ -1876,11 +1810,6 @@ const commandsDatabase = [
         "reason": "dirname extracts directory path, basename extracts filename"
       },
       {
-        "name": "realpath",
-        "relationship": "combo",
-        "reason": "Get absolute path then extract basename"
-      },
-      {
         "name": "cut",
         "relationship": "alternative",
         "reason": "Can extract path components using delimiters"
@@ -1941,11 +1870,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "sh",
-        "relationship": "similar",
-        "reason": "POSIX shell with fewer features than bash"
-      },
       {
         "name": "zsh",
         "relationship": "alternative",
@@ -2018,11 +1942,6 @@ const commandsDatabase = [
         "name": "less",
         "relationship": "similar",
         "reason": "Both paginate content, bat adds colors"
-      },
-      {
-        "name": "highlight",
-        "relationship": "similar",
-        "reason": "Another syntax highlighting tool"
       }
     ],
     "warnings": [
@@ -2145,11 +2064,6 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "buck",
-        "relationship": "similar",
-        "reason": "Both are scalable build systems for large projects"
-      },
-      {
         "name": "gradle",
         "relationship": "alternative",
         "reason": "Gradle is popular for JVM-based projects"
@@ -2222,11 +2136,6 @@ const commandsDatabase = [
         "reason": "dc is reverse Polish calculator, bc uses infix"
       },
       {
-        "name": "calc",
-        "relationship": "alternative",
-        "reason": "More advanced calculator with C-like syntax"
-      },
-      {
         "name": "python3",
         "relationship": "alternative",
         "reason": "Python interactive mode as calculator"
@@ -2289,11 +2198,6 @@ const commandsDatabase = [
         "name": "file",
         "relationship": "combo",
         "reason": "Identify file types found in firmware"
-      },
-      {
-        "name": "strings",
-        "relationship": "combo",
-        "reason": "Extract readable strings from firmware"
       }
     ],
     "warnings": [
@@ -2340,18 +2244,7 @@ const commandsDatabase = [
         "title": "bitcoin && bitcoin"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "bitcoind",
-        "relationship": "daemon",
-        "reason": "Bitcoin daemon that bitcoin-cli communicates with"
-      },
-      {
-        "name": "electrum",
-        "relationship": "alternative",
-        "reason": "Alternative Bitcoin wallet with command-line interface"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Bitcoin daemon must be running and synced",
       "Wallet must be unlocked for sending transactions",
@@ -2506,16 +2399,6 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "mas",
-        "relationship": "similar",
-        "reason": "Mac App Store command line interface"
-      },
-      {
-        "name": "port",
-        "relationship": "alternative",
-        "reason": "MacPorts package manager alternative"
-      },
-      {
         "name": "apt",
         "relationship": "similar",
         "reason": "Package manager for different platforms"
@@ -2638,11 +2521,6 @@ const commandsDatabase = [
         "name": "docker",
         "relationship": "alternative",
         "reason": "Docker build vs buildah for creating images"
-      },
-      {
-        "name": "skopeo",
-        "relationship": "combo",
-        "reason": "Use skopeo to inspect images built with buildah"
       }
     ],
     "warnings": [
@@ -2888,11 +2766,6 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "bunzip2",
-        "relationship": "alias",
-        "reason": "bunzip2 is alias for bzip2 -d"
-      },
-      {
         "name": "gzip",
         "relationship": "alternative",
         "reason": "Different compression algorithm, gzip is faster"
@@ -3043,11 +2916,6 @@ const commandsDatabase = [
         "name": "date",
         "relationship": "combo",
         "reason": "Display current date and time information"
-      },
-      {
-        "name": "ncal",
-        "relationship": "alternative",
-        "reason": "Alternative calendar display format"
       },
       {
         "name": "at",
@@ -3284,11 +3152,6 @@ const commandsDatabase = [
         "reason": "Shows current directory after cd operations"
       },
       {
-        "name": "pushd",
-        "relationship": "powerful",
-        "reason": "Save current directory to stack for later return"
-      },
-      {
         "name": "zoxide",
         "relationship": "alternative",
         "reason": "Smart cd that learns your most-visited directories"
@@ -3502,11 +3365,6 @@ const commandsDatabase = [
         "name": "systemctl",
         "relationship": "alternative",
         "reason": "systemd provides cgroup management"
-      },
-      {
-        "name": "cgexec",
-        "relationship": "combo",
-        "reason": "Execute programs within control groups"
       }
     ],
     "warnings": [
@@ -3616,11 +3474,6 @@ const commandsDatabase = [
         "name": "chmod",
         "relationship": "combo",
         "reason": "Often used together to set complete file permissions"
-      },
-      {
-        "name": "groups",
-        "relationship": "info",
-        "reason": "List available groups for current user"
       }
     ],
     "warnings": [
@@ -3678,11 +3531,6 @@ const commandsDatabase = [
         "name": "rkhunter",
         "relationship": "similar",
         "reason": "Alternative rootkit detection tool with more features"
-      },
-      {
-        "name": "maldet",
-        "relationship": "similar",
-        "reason": "Linux malware detection tool"
       }
     ],
     "warnings": [
@@ -3818,11 +3666,6 @@ const commandsDatabase = [
         "name": "ls",
         "relationship": "combo",
         "reason": "Use ls -la to see current ownership before changing"
-      },
-      {
-        "name": "sudo",
-        "relationship": "combo",
-        "reason": "Often need sudo to change ownership to other users"
       }
     ],
     "warnings": [
@@ -3873,11 +3716,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "jail",
-        "relationship": "similar",
-        "reason": "jail provides similar sandboxing on BSD systems"
-      },
       {
         "name": "docker",
         "relationship": "modern-alternative",
@@ -4176,11 +4014,6 @@ const commandsDatabase = [
         "name": "gzip",
         "relationship": "replacement",
         "reason": "gzip provides better compression and is more widely used"
-      },
-      {
-        "name": "uncompress",
-        "relationship": "combo",
-        "reason": "uncompress extracts .Z files created by compress"
       }
     ],
     "warnings": [
@@ -4250,11 +4083,6 @@ const commandsDatabase = [
         "name": "pip",
         "relationship": "complement",
         "reason": "Can be used alongside conda for packages not available in conda"
-      },
-      {
-        "name": "mamba",
-        "relationship": "alternative",
-        "reason": "Faster drop-in replacement for conda"
       }
     ],
     "warnings": [
@@ -4407,19 +4235,9 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "nodemon",
-        "relationship": "combo",
-        "reason": "File watching for automatic container restarts"
-      },
-      {
         "name": "make",
         "relationship": "combo",
         "reason": "Makefiles often orchestrate container development workflows"
-      },
-      {
-        "name": "tilt",
-        "relationship": "alternative",
-        "reason": "Advanced development workflow orchestration"
       }
     ],
     "warnings": [
@@ -4487,19 +4305,9 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "docker-build",
-        "relationship": "combo",
-        "reason": "Build images before pushing to registries"
-      },
-      {
         "name": "kubectl",
         "relationship": "combo",
         "reason": "Deploy images from registries to Kubernetes"
-      },
-      {
-        "name": "crane",
-        "relationship": "alternative",
-        "reason": "Google's tool for registry operations"
       }
     ],
     "warnings": [
@@ -4566,11 +4374,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "docker-build",
-        "relationship": "combo",
-        "reason": "Security scanning is part of the container build pipeline"
-      },
       {
         "name": "kubectl",
         "relationship": "combo",
@@ -4655,11 +4458,6 @@ const commandsDatabase = [
         "name": "kubectl",
         "relationship": "combo",
         "reason": "Kubernetes uses containerd as container runtime"
-      },
-      {
-        "name": "runc",
-        "relationship": "combo",
-        "reason": "Low-level runtime that containerd uses"
       }
     ],
     "warnings": [
@@ -4726,16 +4524,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "identify",
-        "relationship": "combo",
-        "reason": "Get image information before processing with convert"
-      },
-      {
-        "name": "mogrify",
-        "relationship": "similar",
-        "reason": "Modify images in-place instead of creating new files"
-      },
       {
         "name": "ffmpeg",
         "relationship": "similar",
@@ -5084,11 +4872,6 @@ const commandsDatabase = [
         "name": "nodetool",
         "relationship": "combo",
         "reason": "Cassandra cluster management tool"
-      },
-      {
-        "name": "cassandra-stress",
-        "relationship": "combo",
-        "reason": "Cassandra performance testing tool"
       }
     ],
     "warnings": [
@@ -5411,11 +5194,6 @@ const commandsDatabase = [
         "name": "sqlite3",
         "relationship": "combo",
         "reason": "csvkit can import CSV to SQLite for complex queries"
-      },
-      {
-        "name": "pandas",
-        "relationship": "similar",
-        "reason": "Python pandas library for data processing"
       }
     ],
     "warnings": [
@@ -5491,11 +5269,6 @@ const commandsDatabase = [
         "name": "wget",
         "relationship": "alternative",
         "reason": "Alternative tool for downloading files"
-      },
-      {
-        "name": "httpie",
-        "relationship": "alternative",
-        "reason": "More user-friendly HTTP client"
       },
       {
         "name": "jq",
@@ -5646,11 +5419,6 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "selenium",
-        "relationship": "alternative",
-        "reason": "Traditional web automation framework"
-      },
-      {
         "name": "playwright",
         "relationship": "alternative",
         "reason": "Modern cross-browser automation framework"
@@ -5715,11 +5483,6 @@ const commandsDatabase = [
         "name": "newrelic",
         "relationship": "alternative",
         "reason": "Alternative APM and monitoring platform"
-      },
-      {
-        "name": "dynatrace",
-        "relationship": "alternative",
-        "reason": "Alternative observability platform"
       }
     ],
     "warnings": [
@@ -5779,16 +5542,6 @@ const commandsDatabase = [
         "name": "cal",
         "relationship": "related",
         "reason": "Display calendar for dates"
-      },
-      {
-        "name": "timedatectl",
-        "relationship": "system",
-        "reason": "System time and timezone management (Linux)"
-      },
-      {
-        "name": "hwclock",
-        "relationship": "hardware",
-        "reason": "Hardware clock management"
       }
     ],
     "warnings": [
@@ -5919,11 +5672,6 @@ const commandsDatabase = [
         "reason": "bc provides infix notation calculator"
       },
       {
-        "name": "expr",
-        "relationship": "alternative",
-        "reason": "Simple expression evaluator"
-      },
-      {
         "name": "awk",
         "relationship": "alternative",
         "reason": "awk can perform mathematical calculations"
@@ -5985,11 +5733,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "fdisk",
-        "relationship": "combo",
-        "reason": "Often used together for disk operations"
-      },
       {
         "name": "gzip",
         "relationship": "combo",
@@ -6134,11 +5877,6 @@ const commandsDatabase = [
         "name": "lsblk",
         "relationship": "similar",
         "reason": "Show block devices and mount points"
-      },
-      {
-        "name": "ncdu",
-        "relationship": "alternative",
-        "reason": "Interactive disk usage analyzer"
       }
     ],
     "warnings": [
@@ -6197,11 +5935,6 @@ const commandsDatabase = [
         "name": "nslookup",
         "relationship": "alternative",
         "reason": "Traditional DNS lookup tool with different interface"
-      },
-      {
-        "name": "host",
-        "relationship": "similar",
-        "reason": "Simpler DNS lookup utility"
       }
     ],
     "warnings": [
@@ -6265,11 +5998,6 @@ const commandsDatabase = [
         "name": "basename",
         "relationship": "opposite",
         "reason": "basename extracts filename, dirname extracts directory"
-      },
-      {
-        "name": "realpath",
-        "relationship": "combo",
-        "reason": "Get absolute path then extract directory"
       },
       {
         "name": "mkdir",
@@ -6336,11 +6064,6 @@ const commandsDatabase = [
         "name": "journalctl",
         "relationship": "modern-alternative",
         "reason": "journalctl -k shows kernel messages on systemd systems"
-      },
-      {
-        "name": "syslog",
-        "relationship": "complementary",
-        "reason": "syslog may also contain kernel messages"
       }
     ],
     "warnings": [
@@ -6405,16 +6128,6 @@ const commandsDatabase = [
         "name": "yum",
         "relationship": "alternative",
         "reason": "Older package manager that dnf replaces"
-      },
-      {
-        "name": "rpm",
-        "relationship": "combo",
-        "reason": "Low-level package format that dnf manages"
-      },
-      {
-        "name": "flatpak",
-        "relationship": "alternative",
-        "reason": "Universal package format on modern Fedora"
       }
     ],
     "warnings": [
@@ -6484,11 +6197,6 @@ const commandsDatabase = [
         "name": "docker-compose",
         "relationship": "orchestration",
         "reason": "Docker Compose orchestrates multi-container Docker applications"
-      },
-      {
-        "name": "kubernetes",
-        "relationship": "orchestration",
-        "reason": "Kubernetes orchestrates Docker containers at scale"
       },
       {
         "name": "podman",
@@ -6564,23 +6272,7 @@ const commandsDatabase = [
         "title": "docker && docker"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "docker-push",
-        "relationship": "combo",
-        "reason": "Push built images to registries"
-      },
-      {
-        "name": "buildah-build",
-        "relationship": "alternative",
-        "reason": "Alternative OCI image builder"
-      },
-      {
-        "name": "docker-buildx",
-        "relationship": "enhanced",
-        "reason": "Extended build capabilities with BuildKit"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Multi-stage builds require Docker 17.05 or higher",
       "Build context size affects build speed and memory usage",
@@ -6655,11 +6347,6 @@ const commandsDatabase = [
         "name": "kubectl",
         "relationship": "similar",
         "reason": "Both orchestrate containerized applications"
-      },
-      {
-        "name": "podman-compose",
-        "relationship": "alternative",
-        "reason": "Podman equivalent of Docker Compose"
       }
     ],
     "warnings": [
@@ -6725,23 +6412,7 @@ const commandsDatabase = [
         "title": "docker && docker && docker"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "docker-swarm",
-        "relationship": "alternative",
-        "reason": "Docker Swarm provides native orchestration capabilities"
-      },
-      {
-        "name": "kubernetes",
-        "relationship": "alternative",
-        "reason": "Kubernetes offers more advanced orchestration features"
-      },
-      {
-        "name": "docker-stack",
-        "relationship": "enhanced",
-        "reason": "Docker Stack deploys Compose files on Swarm clusters"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Compose v2 has different behavior than v1 in some scenarios",
       "Resource limits in Compose files may not be enforced without Swarm mode",
@@ -6806,16 +6477,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "docker-run",
-        "relationship": "combo",
-        "reason": "Run containers with specific network configurations"
-      },
-      {
-        "name": "kubectl-networking",
-        "relationship": "similar",
-        "reason": "Kubernetes networking concepts and commands"
-      },
       {
         "name": "iptables",
         "relationship": "underlying",
@@ -6886,23 +6547,7 @@ const commandsDatabase = [
         "title": "docker"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "docker-exec",
-        "relationship": "combo",
-        "reason": "Execute commands in running containers"
-      },
-      {
-        "name": "docker-logs",
-        "relationship": "combo",
-        "reason": "View container output and debugging"
-      },
-      {
-        "name": "kubectl-run",
-        "relationship": "similar",
-        "reason": "Kubernetes equivalent for running containers"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Resource limits only work on supported Docker engines",
       "Volume mounts can have permission issues across different host systems",
@@ -6976,11 +6621,6 @@ const commandsDatabase = [
         "name": "docker-compose",
         "relationship": "combo",
         "reason": "Compose files can be deployed as Swarm stacks"
-      },
-      {
-        "name": "consul",
-        "relationship": "combo",
-        "reason": "Can be used for service discovery in Swarm clusters"
       }
     ],
     "warnings": [
@@ -7047,16 +6687,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "docker-run",
-        "relationship": "combo",
-        "reason": "Mount volumes in containers"
-      },
-      {
-        "name": "kubectl-pv",
-        "relationship": "similar",
-        "reason": "Kubernetes persistent volume management"
-      },
       {
         "name": "rsync",
         "relationship": "alternative",
@@ -7127,18 +6757,7 @@ const commandsDatabase = [
         "title": "dotnet && dotnet && dotnet"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "nuget",
-        "relationship": "combo",
-        "reason": ".NET package manager integrated with dotnet CLI"
-      },
-      {
-        "name": "msbuild",
-        "relationship": "underlying",
-        "reason": "MSBuild is used under the hood for building"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Different .NET versions may require different CLI versions",
       "Global tools installation path may need to be in PATH",
@@ -7347,11 +6966,6 @@ const commandsDatabase = [
         "reason": "Use df to see filesystem usage, du to find what's using space"
       },
       {
-        "name": "ncdu",
-        "relationship": "alternative",
-        "reason": "Interactive disk usage browser with navigation"
-      },
-      {
         "name": "dust",
         "relationship": "alternative",
         "reason": "Modern du replacement with better visualization"
@@ -7473,11 +7087,6 @@ const commandsDatabase = [
         "name": "du",
         "relationship": "alternative",
         "reason": "Traditional disk usage tool, dust has better visualization"
-      },
-      {
-        "name": "ncdu",
-        "relationship": "similar",
-        "reason": "Interactive disk usage analyzer"
       },
       {
         "name": "df",
@@ -7742,16 +7351,6 @@ const commandsDatabase = [
         "name": "export",
         "relationship": "similar",
         "reason": "Shell builtin to set environment variables permanently"
-      },
-      {
-        "name": "printenv",
-        "relationship": "similar",
-        "reason": "Display specific environment variable values"
-      },
-      {
-        "name": "set",
-        "relationship": "broader",
-        "reason": "Display and set shell variables and options"
       }
     ],
     "warnings": [
@@ -7814,11 +7413,6 @@ const commandsDatabase = [
         "name": "webpack",
         "relationship": "alternative",
         "reason": "Much faster alternative to webpack"
-      },
-      {
-        "name": "typescript",
-        "relationship": "combo",
-        "reason": "Can compile TypeScript files directly"
       }
     ],
     "warnings": [
@@ -7872,11 +7466,6 @@ const commandsDatabase = [
         "name": "prettier",
         "relationship": "combo",
         "reason": "Often used together for linting and formatting"
-      },
-      {
-        "name": "typescript",
-        "relationship": "combo",
-        "reason": "Can lint TypeScript files with appropriate parser"
       }
     ],
     "warnings": [
@@ -7939,11 +7528,6 @@ const commandsDatabase = [
         "name": "arduino-cli",
         "relationship": "complement",
         "reason": "Arduino IDE uses esptool for ESP board programming"
-      },
-      {
-        "name": "idf.py",
-        "relationship": "alternative",
-        "reason": "ESP-IDF build system includes similar flashing capabilities"
       }
     ],
     "warnings": [
@@ -8012,11 +7596,6 @@ const commandsDatabase = [
         "name": "ip",
         "relationship": "complementary",
         "reason": "ip manages interface addresses, ethtool manages hardware settings"
-      },
-      {
-        "name": "ifconfig",
-        "relationship": "complementary",
-        "reason": "ifconfig configures interfaces, ethtool controls hardware"
       }
     ],
     "warnings": [
@@ -8089,11 +7668,6 @@ const commandsDatabase = [
         "name": "tree",
         "relationship": "similar",
         "reason": "Both can show directory structure as tree"
-      },
-      {
-        "name": "lsd",
-        "relationship": "similar",
-        "reason": "Another modern ls alternative with icons"
       }
     ],
     "warnings": [
@@ -8169,11 +7743,6 @@ const commandsDatabase = [
         "reason": "ImageMagick can modify images, ExifTool handles metadata"
       },
       {
-        "name": "jhead",
-        "relationship": "alternative",
-        "reason": "Simpler JPEG EXIF manipulation tool"
-      },
-      {
         "name": "file",
         "relationship": "similar",
         "reason": "file command shows basic file metadata"
@@ -8241,11 +7810,6 @@ const commandsDatabase = [
         "name": "ssh",
         "relationship": "commonly-automated",
         "reason": "expect is often used to automate SSH sessions"
-      },
-      {
-        "name": "telnet",
-        "relationship": "commonly-automated",
-        "reason": "expect commonly automates telnet sessions"
       }
     ],
     "warnings": [
@@ -8313,16 +7877,6 @@ const commandsDatabase = [
         "name": "env",
         "relationship": "similar",
         "reason": "Display and temporarily modify environment variables"
-      },
-      {
-        "name": "unset",
-        "relationship": "opposite",
-        "reason": "Remove environment variables completely"
-      },
-      {
-        "name": "printenv",
-        "relationship": "view",
-        "reason": "Display current environment variable values"
       }
     ],
     "warnings": [
@@ -8589,16 +8143,6 @@ const commandsDatabase = [
         "name": "ffprobe",
         "relationship": "combo",
         "reason": "ffprobe analyzes media files for ffmpeg processing"
-      },
-      {
-        "name": "vlc",
-        "relationship": "alternative",
-        "reason": "VLC can also convert media formats"
-      },
-      {
-        "name": "handbrake-cli",
-        "relationship": "alternative",
-        "reason": "Specialized video transcoding tool"
       }
     ],
     "warnings": [
@@ -8671,11 +8215,6 @@ const commandsDatabase = [
         "reason": "ffprobe analyzes files that ffmpeg processes"
       },
       {
-        "name": "mediainfo",
-        "relationship": "alternative",
-        "reason": "Alternative media file analysis tool"
-      },
-      {
         "name": "file",
         "relationship": "similar",
         "reason": "file command identifies basic media types"
@@ -8740,11 +8279,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "toilet",
-        "relationship": "alternative",
-        "reason": "toilet provides similar ASCII art with color support"
-      },
       {
         "name": "banner",
         "relationship": "similar",
@@ -8821,11 +8355,6 @@ const commandsDatabase = [
         "name": "stat",
         "relationship": "combo",
         "reason": "stat shows metadata, file shows content type"
-      },
-      {
-        "name": "hexdump",
-        "relationship": "combo",
-        "reason": "Examine binary file contents"
       }
     ],
     "warnings": [
@@ -9136,18 +8665,7 @@ const commandsDatabase = [
         "title": "fluentd"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "td-agent",
-        "relationship": "package",
-        "reason": "td-agent is stable distribution of Fluentd"
-      },
-      {
-        "name": "fluent-bit",
-        "relationship": "alternative",
-        "reason": "Fluent Bit is lightweight alternative to Fluentd"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Ruby-based, requires Ruby runtime",
       "Plugin system can be complex",
@@ -9200,16 +8718,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "dart",
-        "relationship": "dependency",
-        "reason": "Programming language and runtime used by Flutter"
-      },
-      {
-        "name": "flutter pub",
-        "relationship": "subcommand",
-        "reason": "Package manager for Flutter dependencies"
-      },
       {
         "name": "react-native",
         "relationship": "competitor",
@@ -9567,11 +9075,6 @@ const commandsDatabase = [
         "name": "top",
         "relationship": "interactive",
         "reason": "Interactive memory monitoring with process details"
-      },
-      {
-        "name": "cat /proc/meminfo",
-        "relationship": "detailed",
-        "reason": "Raw detailed memory information from kernel"
       }
     ],
     "warnings": [
@@ -9622,18 +9125,7 @@ const commandsDatabase = [
         "title": "sudo && sudo && sudo"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "e2fsck",
-        "relationship": "specific",
-        "reason": "e2fsck is fsck specifically for ext2/3/4 filesystems"
-      },
-      {
-        "name": "badblocks",
-        "relationship": "complementary",
-        "reason": "badblocks tests for bad sectors on disk"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Never run fsck on mounted filesystem (can cause corruption)",
       "Always unmount filesystem before checking",
@@ -9764,11 +9256,6 @@ const commandsDatabase = [
         "name": "find",
         "relationship": "combo",
         "reason": "Often used together: find generates list, fzf filters it"
-      },
-      {
-        "name": "rofi",
-        "relationship": "similar",
-        "reason": "GUI application launcher with similar fuzzy matching"
       }
     ],
     "warnings": [
@@ -9836,16 +9323,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "clang",
-        "relationship": "alternative",
-        "reason": "Alternative C/C++ compiler with different features"
-      },
-      {
-        "name": "gdb",
-        "relationship": "combo",
-        "reason": "Debug programs compiled with gcc -g"
-      },
       {
         "name": "make",
         "relationship": "combo",
@@ -10042,18 +9519,7 @@ const commandsDatabase = [
         "title": "geth"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "web3",
-        "relationship": "library",
-        "reason": "Web3.js library for interacting with Ethereum from applications"
-      },
-      {
-        "name": "truffle",
-        "relationship": "framework",
-        "reason": "Smart contract development framework that uses geth"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Initial sync can take hours and significant disk space",
       "Account passwords are needed for transactions",
@@ -10133,11 +9599,6 @@ const commandsDatabase = [
         "name": "ffmpeg",
         "relationship": "alternative",
         "reason": "ffmpeg can convert videos to GIFs"
-      },
-      {
-        "name": "gifski",
-        "relationship": "alternative",
-        "reason": "Modern GIF encoder with better quality"
       }
     ],
     "warnings": [
@@ -10212,11 +9673,6 @@ const commandsDatabase = [
         "reason": "Use SSH keys for secure Git authentication"
       },
       {
-        "name": "diff",
-        "relationship": "similar",
-        "reason": "git diff shows changes like diff command"
-      },
-      {
         "name": "grep",
         "relationship": "combo",
         "reason": "git grep searches through repository history"
@@ -10285,11 +9741,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "git-bundle",
-        "relationship": "alternative",
-        "reason": "Bundle preserves Git history while archive creates snapshot"
-      },
       {
         "name": "tar",
         "relationship": "combo",
@@ -10363,16 +9814,6 @@ const commandsDatabase = [
         "name": "git-log",
         "relationship": "combo",
         "reason": "Examine commit history before starting bisect"
-      },
-      {
-        "name": "git-blame",
-        "relationship": "alternative",
-        "reason": "Different approach to finding when bugs were introduced"
-      },
-      {
-        "name": "git-show",
-        "relationship": "combo",
-        "reason": "Examine found commit in detail"
       }
     ],
     "warnings": [
@@ -10442,11 +9883,6 @@ const commandsDatabase = [
         "name": "git-log",
         "relationship": "combo",
         "reason": "Often used together to understand code history"
-      },
-      {
-        "name": "git-show",
-        "relationship": "combo",
-        "reason": "Show full details of commits found in blame"
       }
     ],
     "warnings": [
@@ -10511,18 +9947,7 @@ const commandsDatabase = [
         "title": "git && scp"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-archive",
-        "relationship": "alternative",
-        "reason": "Archive creates snapshot without Git history"
-      },
-      {
-        "name": "git-clone",
-        "relationship": "combo",
-        "reason": "Can clone from bundle files"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Bundles are single files and can become very large",
       "Prerequisites must be satisfied in target repository",
@@ -10590,16 +10015,6 @@ const commandsDatabase = [
         "name": "git-rebase",
         "relationship": "similar",
         "reason": "Both reapply commits, rebase moves entire branch"
-      },
-      {
-        "name": "git-merge",
-        "relationship": "alternative",
-        "reason": "Merge entire branch vs picking specific commits"
-      },
-      {
-        "name": "git-revert",
-        "relationship": "opposite",
-        "reason": "Undo commits vs apply commits"
       }
     ],
     "warnings": [
@@ -10665,11 +10080,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "git-clone",
-        "relationship": "client",
-        "reason": "Clone from repositories served by git daemon"
-      },
       {
         "name": "ssh",
         "relationship": "alternative",
@@ -10738,18 +10148,7 @@ const commandsDatabase = [
         "title": "git && git && git"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-pull",
-        "relationship": "alternative",
-        "reason": "Pull combines fetch and merge in one operation"
-      },
-      {
-        "name": "git-remote",
-        "relationship": "combo",
-        "reason": "Managing remotes before fetching"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Fetch doesn't modify working directory or current branch",
       "Prune can remove tracking branches you might still need",
@@ -10815,11 +10214,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "git-filter-repo",
-        "relationship": "replacement",
-        "reason": "Modern alternative to filter-branch with better performance"
-      },
       {
         "name": "git-rebase",
         "relationship": "alternative",
@@ -10889,18 +10283,7 @@ const commandsDatabase = [
         "title": "git && git"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-flow-release",
-        "relationship": "sequential",
-        "reason": "Features are merged before creating releases"
-      },
-      {
-        "name": "git-branch",
-        "relationship": "alternative",
-        "reason": "Manual branch creation vs Git Flow automation"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Feature finish may fail if develop branch has diverged",
       "Requires clean working directory for finish operation",
@@ -10960,11 +10343,6 @@ const commandsDatabase = [
         "name": "git-flow-feature",
         "relationship": "combo",
         "reason": "Feature development workflow after initialization"
-      },
-      {
-        "name": "git-init",
-        "relationship": "prerequisite",
-        "reason": "Repository must exist before Git Flow initialization"
       }
     ],
     "warnings": [
@@ -11030,18 +10408,7 @@ const commandsDatabase = [
         "title": "git && git"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-prune",
-        "relationship": "component",
-        "reason": "GC includes pruning of unreachable objects"
-      },
-      {
-        "name": "git-repack",
-        "relationship": "component",
-        "reason": "GC repacks objects for efficient storage"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Aggressive GC can take very long time on large repositories",
       "Pruning immediately may lose objects still in use",
@@ -11105,18 +10472,7 @@ const commandsDatabase = [
         "title": "mkdir && git && git"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-commit",
-        "relationship": "affected",
-        "reason": "Hooks can prevent or modify commit behavior"
-      },
-      {
-        "name": "git-push",
-        "relationship": "affected",
-        "reason": "Pre-push hooks can prevent or validate pushes"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Hooks are not version controlled by default",
       "Windows may require different script extensions",
@@ -11180,18 +10536,7 @@ const commandsDatabase = [
         "title": "git"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-add",
-        "relationship": "combo",
-        "reason": "Adding LFS files works through normal git add"
-      },
-      {
-        "name": "git-clone",
-        "relationship": "affected",
-        "reason": "Cloning LFS repositories downloads pointer files first"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Requires LFS server support from Git host",
       "Large files count against LFS storage quotas",
@@ -11255,23 +10600,7 @@ const commandsDatabase = [
         "title": "git"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-show",
-        "relationship": "similar",
-        "reason": "Show detailed information about specific commits"
-      },
-      {
-        "name": "git-blame",
-        "relationship": "combo",
-        "reason": "See commit history per line in file"
-      },
-      {
-        "name": "gitk",
-        "relationship": "alternative",
-        "reason": "GUI tool for visualizing Git history"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Large repositories can have slow log operations",
       "--follow only works with single file path",
@@ -11335,18 +10664,7 @@ const commandsDatabase = [
         "title": "git | fix | error"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-show",
-        "relationship": "similar",
-        "reason": "Show detailed information about specific commits"
-      },
-      {
-        "name": "git-shortlog",
-        "relationship": "alternative",
-        "reason": "Summarized log grouped by author"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Complex format strings can be hard to remember",
       "Performance impact on large repositories",
@@ -11487,18 +10805,7 @@ const commandsDatabase = [
         "title": "git && git"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-fetch",
-        "relationship": "component",
-        "reason": "Pull is fetch followed by merge or rebase"
-      },
-      {
-        "name": "git-merge",
-        "relationship": "component",
-        "reason": "Default pull behavior includes merge"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Pull can create unwanted merge commits in history",
       "Rebase pull can fail if there are uncommitted changes",
@@ -11563,18 +10870,7 @@ const commandsDatabase = [
         "title": "git && git && git"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-pull",
-        "relationship": "opposite",
-        "reason": "Pull downloads while push uploads changes"
-      },
-      {
-        "name": "git-fetch",
-        "relationship": "prerequisite",
-        "reason": "Often fetch before pushing to check for conflicts"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Force push can overwrite others' work",
       "Force-with-lease can still fail in collaborative environments",
@@ -11641,19 +10937,9 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "git-merge",
-        "relationship": "alternative",
-        "reason": "Different strategy for integrating changes"
-      },
-      {
         "name": "git-cherry-pick",
         "relationship": "similar",
         "reason": "Apply specific commits to different branch"
-      },
-      {
-        "name": "git-reset",
-        "relationship": "combo",
-        "reason": "Often used together for history manipulation"
       }
     ],
     "warnings": [
@@ -11719,18 +11005,7 @@ const commandsDatabase = [
         "title": "git && git"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-commit-fixup",
-        "relationship": "combo",
-        "reason": "Fixup commits work well with auto-squash rebase"
-      },
-      {
-        "name": "git-reset",
-        "relationship": "alternative",
-        "reason": "Different approach to modifying recent commits"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Never rebase commits that have been pushed to shared branches",
       "Can create conflicts requiring manual resolution",
@@ -11796,11 +11071,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "git-reset",
-        "relationship": "combo",
-        "reason": "Often use reflog to find target for reset operations"
-      },
       {
         "name": "git-log",
         "relationship": "alternative",
@@ -11871,18 +11141,7 @@ const commandsDatabase = [
         "title": "git && git && ssh"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-fetch",
-        "relationship": "combo",
-        "reason": "Fetch from configured remotes"
-      },
-      {
-        "name": "git-push",
-        "relationship": "combo",
-        "reason": "Push to configured remotes"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Changing remote URL affects all team members",
       "Multiple remotes can cause confusion about push destination",
@@ -11947,18 +11206,7 @@ const commandsDatabase = [
         "title": "git && git"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-clone",
-        "relationship": "combo",
-        "reason": "Often used with partial clone for large repositories"
-      },
-      {
-        "name": "git-checkout",
-        "relationship": "affected",
-        "reason": "Checkout operations respect sparse patterns"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Files outside sparse patterns are not visible in working tree",
       "Some Git operations may behave unexpectedly",
@@ -12024,23 +11272,7 @@ const commandsDatabase = [
         "title": "git && git"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-add",
-        "relationship": "alternative",
-        "reason": "Add and commit instead of stashing"
-      },
-      {
-        "name": "git-checkout",
-        "relationship": "combo",
-        "reason": "Often stash before switching branches"
-      },
-      {
-        "name": "git-reset",
-        "relationship": "similar",
-        "reason": "Both manipulate working directory state"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Stashes are local only, not shared with remote",
       "Merge conflicts can occur when applying stash",
@@ -12105,18 +11337,7 @@ const commandsDatabase = [
         "title": "git && git && git"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-add",
-        "relationship": "alternative",
-        "reason": "Stage changes instead of stashing them"
-      },
-      {
-        "name": "git-reset",
-        "relationship": "similar",
-        "reason": "Both manipulate working directory state"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Stashes are local only and not shared with remotes",
       "Merge conflicts can occur when applying stash",
@@ -12180,18 +11401,7 @@ const commandsDatabase = [
         "title": "git && git"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-subtree",
-        "relationship": "alternative",
-        "reason": "Different approach to including external repositories"
-      },
-      {
-        "name": "git-clone",
-        "relationship": "combo",
-        "reason": "Often used with --recurse-submodules option"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Submodules point to specific commits, not branches",
       "Updates need to be committed in parent repository",
@@ -12255,18 +11465,7 @@ const commandsDatabase = [
         "title": "git && git"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-submodule",
-        "relationship": "alternative",
-        "reason": "Different approach to managing external dependencies"
-      },
-      {
-        "name": "git-merge",
-        "relationship": "component",
-        "reason": "Subtree operations use merge strategies"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Subtree changes are part of main repository history",
       "Requires careful prefix path management",
@@ -12330,18 +11529,7 @@ const commandsDatabase = [
         "title": "git && git && git && git"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-push",
-        "relationship": "combo",
-        "reason": "Tags need to be explicitly pushed to remotes"
-      },
-      {
-        "name": "git-checkout",
-        "relationship": "combo",
-        "reason": "Can checkout specific tag versions"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Tags are not automatically pushed with commits",
       "Lightweight tags don't contain metadata",
@@ -12405,23 +11593,7 @@ const commandsDatabase = [
         "title": "git && cd"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-clone",
-        "relationship": "alternative",
-        "reason": "Multiple clones vs multiple worktrees from same repo"
-      },
-      {
-        "name": "git-checkout",
-        "relationship": "alternative",
-        "reason": "Switch branches vs separate working directories"
-      },
-      {
-        "name": "git-branch",
-        "relationship": "combo",
-        "reason": "Often create branches for new worktrees"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Each worktree can only have one branch checked out",
       "Shared index and config between worktrees",
@@ -12485,18 +11657,7 @@ const commandsDatabase = [
         "title": "git && git"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "git-clone",
-        "relationship": "alternative",
-        "reason": "Multiple clones vs multiple worktrees"
-      },
-      {
-        "name": "git-checkout",
-        "relationship": "alternative",
-        "reason": "Branch switching vs separate worktrees"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Cannot check out same branch in multiple worktrees",
       "Administrative files are shared between worktrees",
@@ -12572,11 +11733,6 @@ const commandsDatabase = [
         "name": "curl",
         "relationship": "alternative",
         "reason": "GitHub API can be accessed directly via curl"
-      },
-      {
-        "name": "hub",
-        "relationship": "alternative",
-        "reason": "Older unofficial GitHub CLI tool"
       }
     ],
     "warnings": [
@@ -12647,11 +11803,6 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "gofmt",
-        "relationship": "combo",
-        "reason": "Standalone formatter that 'go fmt' uses internally"
-      },
-      {
         "name": "make",
         "relationship": "alternative",
         "reason": "Build automation alternative for complex builds"
@@ -12719,18 +11870,7 @@ const commandsDatabase = [
         "title": "gobuster && gobuster"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "dirb",
-        "relationship": "similar",
-        "reason": "Alternative directory/file enumeration tool"
-      },
-      {
-        "name": "ffuf",
-        "relationship": "similar",
-        "reason": "Fast web fuzzer for enumeration"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Can generate significant web server traffic",
       "May trigger rate limiting or blocking",
@@ -13123,11 +12263,6 @@ const commandsDatabase = [
         "name": "usermod",
         "relationship": "combo",
         "reason": "Often used together for user/group management"
-      },
-      {
-        "name": "gpasswd",
-        "relationship": "combo",
-        "reason": "Manage group passwords and members"
       }
     ],
     "warnings": [
@@ -13730,23 +12865,7 @@ const commandsDatabase = [
         "title": "history > command_history_"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "fc",
-        "relationship": "advanced",
-        "reason": "More powerful history editing and execution"
-      },
-      {
-        "name": "ctrl+r",
-        "relationship": "interactive",
-        "reason": "Reverse search through command history"
-      },
-      {
-        "name": "!!",
-        "relationship": "shortcut",
-        "reason": "Quick way to repeat last command"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "History size is limited by HISTSIZE environment variable",
       "Commands starting with space may not be saved to history",
@@ -13807,11 +12926,6 @@ const commandsDatabase = [
         "name": "top",
         "relationship": "improvement",
         "reason": "htop is an improved version of top with better interface"
-      },
-      {
-        "name": "btop",
-        "relationship": "modern-alternative",
-        "reason": "btop is a modern C++ reimplementation with more features"
       }
     ],
     "warnings": [
@@ -13882,11 +12996,6 @@ const commandsDatabase = [
         "name": "systemctl",
         "relationship": "combo",
         "reason": "Manage httpd service with systemctl"
-      },
-      {
-        "name": "apachectl",
-        "relationship": "alternative",
-        "reason": "Control script for httpd server"
       }
     ],
     "warnings": [
@@ -13939,18 +13048,7 @@ const commandsDatabase = [
         "title": "hydra && hydra"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "medusa",
-        "relationship": "similar",
-        "reason": "Alternative network password testing tool"
-      },
-      {
-        "name": "ncrack",
-        "relationship": "similar",
-        "reason": "Network authentication cracking tool"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Only use against systems you own or have permission to test",
       "May trigger account lockouts",
@@ -14059,19 +13157,9 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "graphicsmagick",
-        "relationship": "alternative",
-        "reason": "Fork of ImageMagick with similar capabilities"
-      },
-      {
         "name": "ffmpeg",
         "relationship": "combo",
         "reason": "Can work together for video frame extraction"
-      },
-      {
-        "name": "gimp",
-        "relationship": "alternative",
-        "reason": "GUI image editor with batch processing capability"
       }
     ],
     "warnings": [
@@ -14136,11 +13224,6 @@ const commandsDatabase = [
         "name": "telegraf",
         "relationship": "combo",
         "reason": "Telegraf collects metrics and sends to InfluxDB"
-      },
-      {
-        "name": "chronograf",
-        "relationship": "combo",
-        "reason": "Chronograf provides UI for InfluxDB"
       }
     ],
     "warnings": [
@@ -14360,11 +13443,6 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "ifconfig",
-        "relationship": "alternative",
-        "reason": "Legacy command for network interface configuration"
-      },
-      {
         "name": "route",
         "relationship": "alternative",
         "reason": "Legacy routing table manipulation command"
@@ -14415,18 +13493,7 @@ const commandsDatabase = [
         "title": "iperf3 && iperf3"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "iperf",
-        "relationship": "predecessor",
-        "reason": "iperf3 is the newer version with better features"
-      },
-      {
-        "name": "netperf",
-        "relationship": "alternative",
-        "reason": "Alternative network performance testing tool"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Requires server running on target host",
       "Results depend on network conditions during test",
@@ -14546,11 +13613,6 @@ const commandsDatabase = [
         "name": "kubectl",
         "relationship": "underlying",
         "reason": "Istio uses Kubernetes APIs and custom resources"
-      },
-      {
-        "name": "envoy",
-        "relationship": "underlying",
-        "reason": "Istio uses Envoy proxy as the data plane"
       },
       {
         "name": "prometheus",
@@ -14756,11 +13818,6 @@ const commandsDatabase = [
         "name": "iw",
         "relationship": "modern-alternative",
         "reason": "iw is the newer wireless configuration tool"
-      },
-      {
-        "name": "wpa_supplicant",
-        "relationship": "complementary",
-        "reason": "wpa_supplicant handles WPA/WPA2 authentication"
       }
     ],
     "warnings": [
@@ -14820,11 +13877,6 @@ const commandsDatabase = [
         "name": "zipkin",
         "relationship": "alternative",
         "reason": "Both provide distributed tracing capabilities"
-      },
-      {
-        "name": "opentelemetry",
-        "relationship": "combo",
-        "reason": "OpenTelemetry can send traces to Jaeger"
       }
     ],
     "warnings": [
@@ -14884,16 +13936,6 @@ const commandsDatabase = [
         "name": "javac",
         "relationship": "combo",
         "reason": "javac compiles source code that java executes"
-      },
-      {
-        "name": "jps",
-        "relationship": "combo",
-        "reason": "jps shows running Java processes"
-      },
-      {
-        "name": "jstack",
-        "relationship": "combo",
-        "reason": "jstack provides thread dumps for Java processes"
       }
     ],
     "warnings": [
@@ -14965,11 +14007,6 @@ const commandsDatabase = [
         "name": "java",
         "relationship": "combo",
         "reason": "java runs the bytecode produced by javac"
-      },
-      {
-        "name": "jar",
-        "relationship": "combo",
-        "reason": "jar packages compiled classes into archive files"
       },
       {
         "name": "maven",
@@ -15133,11 +14170,6 @@ const commandsDatabase = [
         "name": "cypress",
         "relationship": "combo",
         "reason": "End-to-end testing complement to Jest unit tests"
-      },
-      {
-        "name": "babel",
-        "relationship": "combo",
-        "reason": "Babel transforms modern JavaScript for Jest"
       }
     ],
     "warnings": [
@@ -15202,11 +14234,6 @@ const commandsDatabase = [
         "name": "ab",
         "relationship": "simple-alternative",
         "reason": "Apache Bench is simpler for basic HTTP testing"
-      },
-      {
-        "name": "gatling",
-        "relationship": "alternative",
-        "reason": "Modern Scala-based load testing tool"
       }
     ],
     "warnings": [
@@ -15260,18 +14287,7 @@ const commandsDatabase = [
         "title": "long_command & jobs && fg"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "bg",
-        "relationship": "combo",
-        "reason": "bg continues suspended jobs in background"
-      },
-      {
-        "name": "fg",
-        "relationship": "combo",
-        "reason": "fg brings background jobs to foreground"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Jobs are specific to current shell session",
       "Job numbers are assigned sequentially"
@@ -15463,11 +14479,6 @@ const commandsDatabase = [
         "name": "imagemagick",
         "relationship": "alternative",
         "reason": "ImageMagick can also optimize JPEG quality"
-      },
-      {
-        "name": "jpegtran",
-        "relationship": "similar",
-        "reason": "Lossless JPEG transformations and optimization"
       }
     ],
     "warnings": [
@@ -15623,11 +14634,6 @@ const commandsDatabase = [
         "name": "R",
         "relationship": "similar",
         "reason": "Statistical computing with different performance characteristics"
-      },
-      {
-        "name": "matlab",
-        "relationship": "alternative",
-        "reason": "Commercial numerical computing environment"
       }
     ],
     "warnings": [
@@ -15699,11 +14705,6 @@ const commandsDatabase = [
         "name": "python3",
         "relationship": "dependency",
         "reason": "Jupyter is built on Python and requires Python runtime"
-      },
-      {
-        "name": "ipython",
-        "relationship": "underlying",
-        "reason": "IPython provides the interactive Python kernel for Jupyter"
       },
       {
         "name": "conda",
@@ -15842,11 +14843,6 @@ const commandsDatabase = [
         "name": "kubectl",
         "relationship": "alternative",
         "reason": "K9s provides UI alternative to kubectl commands"
-      },
-      {
-        "name": "kubectx",
-        "relationship": "combo",
-        "reason": "kubectx switches contexts that K9s can use"
       }
     ],
     "warnings": [
@@ -15913,16 +14909,6 @@ const commandsDatabase = [
         "name": "kafka-console-producer",
         "relationship": "complement",
         "reason": "Producer counterpart for sending messages to Kafka topics"
-      },
-      {
-        "name": "kafka-consumer-groups",
-        "relationship": "related",
-        "reason": "Manages consumer groups and offsets for consumers"
-      },
-      {
-        "name": "kcat",
-        "relationship": "alternative",
-        "reason": "More feature-rich producer/consumer tool for Kafka"
       }
     ],
     "warnings": [
@@ -15997,16 +14983,6 @@ const commandsDatabase = [
         "name": "kafka-console-consumer",
         "relationship": "complement",
         "reason": "Consumer counterpart for reading messages from Kafka topics"
-      },
-      {
-        "name": "kcat",
-        "relationship": "alternative",
-        "reason": "More feature-rich producer/consumer tool for Kafka"
-      },
-      {
-        "name": "kafka-topics",
-        "relationship": "dependency",
-        "reason": "Used to create and manage topics before producing messages"
       }
     ],
     "warnings": [
@@ -16383,11 +15359,6 @@ const commandsDatabase = [
         "name": "docker",
         "relationship": "underlying",
         "reason": "Kubernetes orchestrates Docker containers"
-      },
-      {
-        "name": "kubeadm",
-        "relationship": "combo",
-        "reason": "Kubeadm is used for cluster bootstrapping and management"
       }
     ],
     "warnings": [
@@ -16463,11 +15434,6 @@ const commandsDatabase = [
         "name": "curl",
         "relationship": "combo",
         "reason": "Testing service connectivity and endpoints"
-      },
-      {
-        "name": "istio",
-        "relationship": "enhanced",
-        "reason": "Service mesh provides advanced networking capabilities"
       }
     ],
     "warnings": [
@@ -16535,19 +15501,9 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "base64",
-        "relationship": "combo",
-        "reason": "Kubernetes secrets are base64 encoded"
-      },
-      {
         "name": "openssl",
         "relationship": "combo",
         "reason": "Generate certificates and keys for TLS secrets"
-      },
-      {
-        "name": "helm-secrets",
-        "relationship": "alternative",
-        "reason": "Helm plugin for managing secrets in Helm charts"
       }
     ],
     "warnings": [
@@ -16614,11 +15570,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "docker-volume",
-        "relationship": "similar",
-        "reason": "Both manage persistent storage for containers"
-      },
       {
         "name": "lvm",
         "relationship": "underlying",
@@ -16774,19 +15725,9 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "kubectl-top",
-        "relationship": "combo",
-        "reason": "Monitor resource usage to inform scheduling decisions"
-      },
-      {
         "name": "prometheus",
         "relationship": "combo",
         "reason": "Metrics inform VPA and HPA scaling decisions"
-      },
-      {
-        "name": "cluster-autoscaler",
-        "relationship": "combo",
-        "reason": "Automatically scale cluster nodes based on scheduling needs"
       }
     ],
     "warnings": [
@@ -17080,18 +16021,7 @@ const commandsDatabase = [
         "title": "lein && lein && java"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "clojure",
-        "relationship": "runtime",
-        "reason": "Leiningen builds Clojure applications"
-      },
-      {
-        "name": "boot",
-        "relationship": "alternative",
-        "reason": "Boot is alternative build tool for Clojure"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Uses project.clj for project configuration",
       "Excellent plugin ecosystem",
@@ -17153,16 +16083,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "nx",
-        "relationship": "alternative",
-        "reason": "Modern monorepo tool with better performance"
-      },
-      {
-        "name": "rush",
-        "relationship": "alternative",
-        "reason": "Microsoft's scalable monorepo manager"
-      },
       {
         "name": "yarn",
         "relationship": "combo",
@@ -17226,11 +16146,6 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "more",
-        "relationship": "similar",
-        "reason": "Older pager with fewer features"
-      },
-      {
         "name": "cat",
         "relationship": "alternative",
         "reason": "Use cat for small files, less for large ones"
@@ -17287,11 +16202,6 @@ const commandsDatabase = [
         "name": "qemu",
         "relationship": "alternative",
         "reason": "Direct QEMU command-line interface"
-      },
-      {
-        "name": "virt-manager",
-        "relationship": "alternative",
-        "reason": "GUI management tool for libvirt"
       }
     ],
     "warnings": [
@@ -17492,11 +16402,6 @@ const commandsDatabase = [
         "name": "flyway",
         "relationship": "alternative",
         "reason": "Alternative database migration tool"
-      },
-      {
-        "name": "dbmate",
-        "relationship": "alternative",
-        "reason": "Simpler database migration tool"
       }
     ],
     "warnings": [
@@ -17640,11 +16545,6 @@ const commandsDatabase = [
         "reason": "More powerful but slower real-time search"
       },
       {
-        "name": "updatedb",
-        "relationship": "combo",
-        "reason": "Updates the database that locate uses"
-      },
-      {
         "name": "fd",
         "relationship": "alternative",
         "reason": "Modern fast file finder with simpler syntax"
@@ -17765,13 +16665,7 @@ const commandsDatabase = [
         "title": "loginctl | grep && sudo"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "who",
-        "relationship": "similar",
-        "reason": "Both show logged in users"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Terminating sessions may cause data loss",
       "Some operations require root privileges"
@@ -18124,11 +17018,6 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "fdisk",
-        "relationship": "powerful",
-        "reason": "More detailed disk partitioning information"
-      },
-      {
         "name": "df",
         "relationship": "combo",
         "reason": "Shows filesystem usage for mounted devices"
@@ -18190,23 +17079,7 @@ const commandsDatabase = [
         "title": "lscpu | awk > 1 ; else"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "cat /proc/cpuinfo",
-        "relationship": "similar",
-        "reason": "Raw CPU information from /proc filesystem"
-      },
-      {
-        "name": "nproc",
-        "relationship": "simple",
-        "reason": "Just shows number of processing units"
-      },
-      {
-        "name": "lshw",
-        "relationship": "comprehensive",
-        "reason": "Complete hardware information including CPU"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Linux-specific command, not available on macOS",
       "Some fields may require root privileges to display",
@@ -18313,11 +17186,6 @@ const commandsDatabase = [
         "name": "strace",
         "relationship": "complementary",
         "reason": "strace traces system calls, ltrace traces library calls"
-      },
-      {
-        "name": "gdb",
-        "relationship": "complementary",
-        "reason": "gdb provides interactive debugging capabilities"
       }
     ],
     "warnings": [
@@ -18371,18 +17239,7 @@ const commandsDatabase = [
         "title": "sudo && sudo && sudo && sudo"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "fdisk",
-        "relationship": "combo",
-        "reason": "Partition disks before LVM"
-      },
-      {
-        "name": "mkfs",
-        "relationship": "combo",
-        "reason": "Format LVM logical volumes"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Always backup data before LVM operations",
       "Extend filesystem after extending logical volume"
@@ -18688,11 +17545,6 @@ const commandsDatabase = [
         "name": "nmap",
         "relationship": "combo",
         "reason": "Use nmap for detailed analysis of masscan results"
-      },
-      {
-        "name": "zmap",
-        "relationship": "similar",
-        "reason": "Alternative high-speed network scanner"
       }
     ],
     "warnings": [
@@ -18819,11 +17671,6 @@ const commandsDatabase = [
         "name": "octave",
         "relationship": "alternative",
         "reason": "Numerical computing vs symbolic computing"
-      },
-      {
-        "name": "mathematica",
-        "relationship": "alternative",
-        "reason": "Commercial symbolic computation system"
       }
     ],
     "warnings": [
@@ -19013,11 +17860,6 @@ const commandsDatabase = [
         "name": "nmap",
         "relationship": "combo",
         "reason": "Vulnerability scanning before exploitation"
-      },
-      {
-        "name": "armitage",
-        "relationship": "combo",
-        "reason": "GUI frontend for Metasploit"
       }
     ],
     "warnings": [
@@ -19149,18 +17991,7 @@ const commandsDatabase = [
         "title": "mix && cd && mix && mix && mix"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "elixir",
-        "relationship": "runtime",
-        "reason": "Mix builds Elixir applications"
-      },
-      {
-        "name": "iex",
-        "relationship": "combo",
-        "reason": "IEx provides interactive shell for Mix projects"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Uses mix.exs for project configuration",
       "Excellent for Phoenix web applications",
@@ -19219,11 +18050,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "rmdir",
-        "relationship": "opposite",
-        "reason": "Remove empty directories"
-      },
       {
         "name": "tree",
         "relationship": "combo",
@@ -19369,11 +18195,6 @@ const commandsDatabase = [
         "name": "jest",
         "relationship": "alternative",
         "reason": "More batteries-included JavaScript testing framework"
-      },
-      {
-        "name": "chai",
-        "relationship": "combo",
-        "reason": "chai provides assertion library commonly used with mocha"
       }
     ],
     "warnings": [
@@ -19707,11 +18528,6 @@ const commandsDatabase = [
         "name": "mongoimport",
         "relationship": "combo",
         "reason": "Import data into MongoDB"
-      },
-      {
-        "name": "mongo",
-        "relationship": "alternative",
-        "reason": "Legacy MongoDB shell (deprecated)"
       }
     ],
     "warnings": [
@@ -19774,16 +18590,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "mosquitto_pub",
-        "relationship": "client",
-        "reason": "MQTT publisher client for sending messages to Mosquitto broker"
-      },
-      {
-        "name": "mosquitto_sub",
-        "relationship": "client",
-        "reason": "MQTT subscriber client for receiving messages from Mosquitto broker"
-      },
       {
         "name": "node-red",
         "relationship": "complement",
@@ -19989,11 +18795,6 @@ const commandsDatabase = [
         "reason": "Use cp to copy instead of move when you need to keep original"
       },
       {
-        "name": "rename",
-        "relationship": "alternative",
-        "reason": "More powerful for batch renaming with patterns"
-      },
-      {
         "name": "rsync",
         "relationship": "safer",
         "reason": "Use with --remove-source-files for safer move operations"
@@ -20058,11 +18859,6 @@ const commandsDatabase = [
         "name": "mysqldump",
         "relationship": "combo",
         "reason": "mysqldump creates backups that mysql can restore"
-      },
-      {
-        "name": "postgresql",
-        "relationship": "alternative",
-        "reason": "Alternative open-source database system"
       }
     ],
     "warnings": [
@@ -20310,11 +19106,6 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "mysqladmin processlist",
-        "relationship": "combo",
-        "reason": "Shows active MySQL processes and queries"
-      },
-      {
         "name": "mysql",
         "relationship": "combo",
         "reason": "Can query INFORMATION_SCHEMA for similar data"
@@ -20444,11 +19235,6 @@ const commandsDatabase = [
         "name": "mysql",
         "relationship": "combo",
         "reason": "Imports dumps created by mysqldump"
-      },
-      {
-        "name": "mysqlbinlog",
-        "relationship": "combo",
-        "reason": "Works with binary logs for point-in-time recovery"
       }
     ],
     "warnings": [
@@ -20501,11 +19287,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "nagios-plugins",
-        "relationship": "depends-on",
-        "reason": "Nagios requires plugins for monitoring checks"
-      },
       {
         "name": "zabbix",
         "relationship": "alternative",
@@ -20628,11 +19409,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "telnet",
-        "relationship": "similar",
-        "reason": "Both can test network connectivity"
-      },
       {
         "name": "socat",
         "relationship": "alternative",
@@ -20873,11 +19649,6 @@ const commandsDatabase = [
         "name": "datadog",
         "relationship": "alternative",
         "reason": "Alternative APM and monitoring platform"
-      },
-      {
-        "name": "dynatrace",
-        "relationship": "alternative",
-        "reason": "Alternative observability solution"
       }
     ],
     "warnings": [
@@ -20925,18 +19696,7 @@ const commandsDatabase = [
         "title": "next && next"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "react",
-        "relationship": "underlying",
-        "reason": "Next.js is built on React"
-      },
-      {
-        "name": "vercel",
-        "relationship": "combo",
-        "reason": "Vercel provides optimal hosting for Next.js apps"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Pages directory structure determines routing",
       "API routes run on server-side only",
@@ -20987,11 +19747,6 @@ const commandsDatabase = [
         "name": "npm",
         "relationship": "combo",
         "reason": "Angular CLI is installed via npm"
-      },
-      {
-        "name": "typescript",
-        "relationship": "underlying",
-        "reason": "Angular applications are built with TypeScript"
       }
     ],
     "warnings": [
@@ -21190,11 +19945,6 @@ const commandsDatabase = [
         "name": "owasp-zap",
         "relationship": "similar",
         "reason": "More comprehensive web application security testing"
-      },
-      {
-        "name": "dirb",
-        "relationship": "similar",
-        "reason": "Web content scanner"
       }
     ],
     "warnings": [
@@ -21311,11 +20061,6 @@ const commandsDatabase = [
         "name": "masscan",
         "relationship": "alternative",
         "reason": "High-speed port scanner for large networks"
-      },
-      {
-        "name": "zmap",
-        "relationship": "alternative",
-        "reason": "Internet-wide network scanner"
       }
     ],
     "warnings": [
@@ -21574,11 +20319,6 @@ const commandsDatabase = [
         "name": "mosquitto",
         "relationship": "complement",
         "reason": "MQTT broker commonly used with Node-RED for IoT messaging"
-      },
-      {
-        "name": "home-assistant",
-        "relationship": "complement",
-        "reason": "Home automation platform that can integrate with Node-RED"
       }
     ],
     "warnings": [
@@ -21649,11 +20389,6 @@ const commandsDatabase = [
         "name": "cqlsh",
         "relationship": "combo",
         "reason": "CQL interface for Cassandra data operations"
-      },
-      {
-        "name": "cassandra-stress",
-        "relationship": "combo",
-        "reason": "Performance testing tool for Cassandra"
       }
     ],
     "warnings": [
@@ -21722,11 +20457,6 @@ const commandsDatabase = [
         "name": "tmux",
         "relationship": "alternative",
         "reason": "Modern terminal multiplexer with session management"
-      },
-      {
-        "name": "disown",
-        "relationship": "similar",
-        "reason": "Shell builtin to detach jobs from current shell"
       }
     ],
     "warnings": [
@@ -22020,11 +20750,6 @@ const commandsDatabase = [
         "name": "dig",
         "relationship": "alternative",
         "reason": "dig provides more detailed and flexible DNS queries"
-      },
-      {
-        "name": "host",
-        "relationship": "similar",
-        "reason": "Another DNS lookup utility"
       }
     ],
     "warnings": [
@@ -22091,16 +20816,6 @@ const commandsDatabase = [
         "name": "node",
         "relationship": "combo",
         "reason": "nvm manages different versions of Node.js"
-      },
-      {
-        "name": "fnm",
-        "relationship": "alternative",
-        "reason": "Fast Node Manager written in Rust"
-      },
-      {
-        "name": "n",
-        "relationship": "alternative",
-        "reason": "Simple Node version management"
       }
     ],
     "warnings": [
@@ -22165,11 +20880,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "matlab",
-        "relationship": "alternative",
-        "reason": "Commercial MATLAB software with same syntax"
-      },
       {
         "name": "python3",
         "relationship": "alternative",
@@ -22241,16 +20951,6 @@ const commandsDatabase = [
         "name": "nginx",
         "relationship": "similar",
         "reason": "OpenResty extends nginx with Lua capabilities"
-      },
-      {
-        "name": "lua",
-        "relationship": "combo",
-        "reason": "Uses Lua for server-side scripting"
-      },
-      {
-        "name": "redis",
-        "relationship": "combo",
-        "reason": "Often used together for high-performance web apps"
       }
     ],
     "warnings": [
@@ -22430,11 +21130,6 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "nessus",
-        "relationship": "similar",
-        "reason": "Alternative vulnerability scanner"
-      },
-      {
         "name": "nmap",
         "relationship": "combo",
         "reason": "Network discovery before vulnerability scanning"
@@ -22495,11 +21190,6 @@ const commandsDatabase = [
         "name": "jpegoptim",
         "relationship": "similar",
         "reason": "JPEG optimization equivalent to optipng"
-      },
-      {
-        "name": "pngcrush",
-        "relationship": "alternative",
-        "reason": "Alternative PNG optimization tool"
       },
       {
         "name": "imagemagick",
@@ -22810,23 +21500,7 @@ const commandsDatabase = [
         "title": "pacman"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "yay",
-        "relationship": "combo",
-        "reason": "AUR helper that extends pacman functionality"
-      },
-      {
-        "name": "makepkg",
-        "relationship": "combo",
-        "reason": "Build packages from source for pacman"
-      },
-      {
-        "name": "pactree",
-        "relationship": "combo",
-        "reason": "Show package dependency tree"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Always use -Syu together, never -Sy alone",
       "Rolling release means frequent updates required",
@@ -22885,16 +21559,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "latex",
-        "relationship": "combo",
-        "reason": "Pandoc can use LaTeX for PDF generation"
-      },
-      {
-        "name": "markdown",
-        "relationship": "combo",
-        "reason": "Pandoc processes various markdown dialects"
-      },
       {
         "name": "wkhtmltopdf",
         "relationship": "alternative",
@@ -23133,16 +21797,6 @@ const commandsDatabase = [
         "name": "chage",
         "relationship": "similar",
         "reason": "More detailed password aging and expiration management"
-      },
-      {
-        "name": "useradd",
-        "relationship": "combo",
-        "reason": "Create user accounts that need passwords set"
-      },
-      {
-        "name": "su",
-        "relationship": "combo",
-        "reason": "Switch user with password authentication"
       }
     ],
     "warnings": [
@@ -23203,11 +21857,6 @@ const commandsDatabase = [
         "name": "strace",
         "relationship": "complementary",
         "reason": "strace traces system calls, perf analyzes CPU performance"
-      },
-      {
-        "name": "gdb",
-        "relationship": "complementary",
-        "reason": "gdb debugs programs, perf profiles performance"
       }
     ],
     "warnings": [
@@ -23280,11 +21929,6 @@ const commandsDatabase = [
         "name": "awk",
         "relationship": "similar",
         "reason": "Both process structured text, different syntax"
-      },
-      {
-        "name": "cpan",
-        "relationship": "combo",
-        "reason": "CPAN installs Perl modules and libraries"
       }
     ],
     "warnings": [
@@ -23341,18 +21985,7 @@ const commandsDatabase = [
         "title": "pg_basebackup && chmod"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "pg_receivewal",
-        "relationship": "combo",
-        "reason": "Continuously receives WAL files for backup"
-      },
-      {
-        "name": "pg_ctl",
-        "relationship": "combo",
-        "reason": "Controls PostgreSQL server for standby operations"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Requires replication permissions in pg_hba.conf",
       "Large databases may take significant time and bandwidth",
@@ -23477,11 +22110,6 @@ const commandsDatabase = [
         "name": "pg_dump",
         "relationship": "combo",
         "reason": "Creates backups that pg_restore can restore"
-      },
-      {
-        "name": "createdb",
-        "relationship": "combo",
-        "reason": "Often used to create target database before restore"
       }
     ],
     "warnings": [
@@ -23536,18 +22164,7 @@ const commandsDatabase = [
         "title": "psql ; && psql ;"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "pg_stat_statements",
-        "relationship": "combo",
-        "reason": "Provides query performance statistics"
-      },
-      {
-        "name": "pg_locks",
-        "relationship": "combo",
-        "reason": "Shows lock information for troubleshooting"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Requires appropriate privileges to view all connections",
       "Process IDs change when connections restart",
@@ -23607,11 +22224,6 @@ const commandsDatabase = [
         "name": "psql",
         "relationship": "combo",
         "reason": "PostgreSQL client for database operations"
-      },
-      {
-        "name": "pg_stat_statements",
-        "relationship": "alternative",
-        "reason": "Built-in PostgreSQL query statistics extension"
       }
     ],
     "warnings": [
@@ -23746,11 +22358,6 @@ const commandsDatabase = [
         "name": "ps",
         "relationship": "alternative",
         "reason": "More detailed process information but less convenient filtering"
-      },
-      {
-        "name": "pidof",
-        "relationship": "simple",
-        "reason": "Simpler tool for finding PIDs by program name"
       }
     ],
     "warnings": [
@@ -24023,11 +22630,6 @@ const commandsDatabase = [
         "reason": "pip installs packages for Python interpreter"
       },
       {
-        "name": "virtualenv",
-        "relationship": "combo",
-        "reason": "Create isolated Python environments for pip installs"
-      },
-      {
         "name": "conda",
         "relationship": "alternative",
         "reason": "Alternative package manager with broader ecosystem"
@@ -24235,11 +22837,6 @@ const commandsDatabase = [
         "name": "esptool",
         "relationship": "underlying",
         "reason": "Used internally by PlatformIO for ESP32/ESP8266 programming"
-      },
-      {
-        "name": "idf",
-        "relationship": "complement",
-        "reason": "ESP-IDF framework often used with PlatformIO for advanced ESP32 development"
       }
     ],
     "warnings": [
@@ -24467,11 +23064,6 @@ const commandsDatabase = [
         "name": "buildah",
         "relationship": "combo",
         "reason": "Specialized tool for building OCI images"
-      },
-      {
-        "name": "skopeo",
-        "relationship": "combo",
-        "reason": "Tool for copying and inspecting container images"
       }
     ],
     "warnings": [
@@ -24601,11 +23193,6 @@ const commandsDatabase = [
         "name": "curl",
         "relationship": "simple-alternative",
         "reason": "curl can test APIs but Postman/Newman provides more features"
-      },
-      {
-        "name": "insomnia",
-        "relationship": "alternative",
-        "reason": "Another API testing and development tool"
       }
     ],
     "warnings": [
@@ -24728,16 +23315,6 @@ const commandsDatabase = [
         "name": "eslint",
         "relationship": "combo",
         "reason": "Often used together for linting and formatting"
-      },
-      {
-        "name": "husky",
-        "relationship": "combo",
-        "reason": "Git hooks to run Prettier on commit"
-      },
-      {
-        "name": "lint-staged",
-        "relationship": "combo",
-        "reason": "Run Prettier only on staged files"
       }
     ],
     "warnings": [
@@ -24858,11 +23435,6 @@ const commandsDatabase = [
         "name": "grafana",
         "relationship": "combo",
         "reason": "Grafana visualizes Prometheus metrics"
-      },
-      {
-        "name": "alertmanager",
-        "relationship": "combo",
-        "reason": "AlertManager handles Prometheus alerts"
       }
     ],
     "warnings": [
@@ -25050,11 +23622,6 @@ const commandsDatabase = [
         "reason": "Create PostgreSQL database backups"
       },
       {
-        "name": "createdb",
-        "relationship": "combo",
-        "reason": "Create new PostgreSQL databases"
-      },
-      {
         "name": "mysql",
         "relationship": "similar",
         "reason": "MySQL command-line client"
@@ -25117,18 +23684,7 @@ const commandsDatabase = [
         "title": "pt > daily_slow && pt > live_queries"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "mysqldumpslow",
-        "relationship": "alternative",
-        "reason": "Basic slow query log analysis tool"
-      },
-      {
-        "name": "pt-fingerprint",
-        "relationship": "combo",
-        "reason": "Creates fingerprints for query normalization"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Large log files may require significant memory and time",
       "Filters use Perl syntax for complex conditions",
@@ -25177,11 +23733,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "pt-table-sync",
-        "relationship": "combo",
-        "reason": "Fixes inconsistencies found by pt-table-checksum"
-      },
       {
         "name": "mysqladmin",
         "relationship": "combo",
@@ -25313,11 +23864,6 @@ const commandsDatabase = [
         "name": "playwright",
         "relationship": "multi-browser-alternative",
         "reason": "Playwright supports multiple browsers, Puppeteer focuses on Chrome"
-      },
-      {
-        "name": "selenium",
-        "relationship": "traditional-alternative",
-        "reason": "Selenium offers multi-browser support with different approach"
       }
     ],
     "warnings": [
@@ -25441,18 +23987,7 @@ const commandsDatabase = [
         "title": "pytest"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "unittest",
-        "relationship": "alternative",
-        "reason": "Python's built-in testing framework"
-      },
-      {
-        "name": "nose2",
-        "relationship": "alternative",
-        "reason": "Another Python testing framework"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Test discovery looks for files matching test_*.py or *_test.py",
       "Fixtures provide powerful setup/teardown capabilities",
@@ -25521,11 +24056,6 @@ const commandsDatabase = [
         "name": "python3",
         "relationship": "similar",
         "reason": "Explicit Python 3 interpreter"
-      },
-      {
-        "name": "virtualenv",
-        "relationship": "combo",
-        "reason": "Create isolated Python environments"
       }
     ],
     "warnings": [
@@ -25607,16 +24137,6 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "pip3",
-        "relationship": "package-manager",
-        "reason": "Package installer for Python modules and libraries"
-      },
-      {
-        "name": "virtualenv",
-        "relationship": "alternative",
-        "reason": "Third-party virtual environment tool"
-      },
-      {
         "name": "jupyter",
         "relationship": "combo",
         "reason": "Jupyter notebooks run Python code interactively"
@@ -25682,18 +24202,7 @@ const commandsDatabase = [
         "title": "qemu && qemu"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "virsh",
-        "relationship": "alternative",
-        "reason": "Higher-level virtualization management"
-      },
-      {
-        "name": "virt-manager",
-        "relationship": "alternative",
-        "reason": "GUI virtualization management"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "KVM requires CPU virtualization support",
       "Complex command-line syntax"
@@ -25824,23 +24333,7 @@ const commandsDatabase = [
         "title": "rabbitmqctl && rabbitmqctl"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "rabbitmq-plugins",
-        "relationship": "related",
-        "reason": "Manages RabbitMQ plugins and extensions"
-      },
-      {
-        "name": "rabbitmq-diagnostics",
-        "relationship": "related",
-        "reason": "Provides health checks and diagnostics for RabbitMQ"
-      },
-      {
-        "name": "rabbitmq-server",
-        "relationship": "dependency",
-        "reason": "The RabbitMQ server that this tool manages"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Must run as same user as RabbitMQ server or with sudo",
       "Node name must match if connecting to remote nodes",
@@ -25963,11 +24456,6 @@ const commandsDatabase = [
         "name": "make",
         "relationship": "inspiration",
         "reason": "Rake is inspired by make but uses Ruby syntax"
-      },
-      {
-        "name": "bundle",
-        "relationship": "combo",
-        "reason": "Bundle manages gems, Rake runs tasks"
       }
     ],
     "warnings": [
@@ -26023,11 +24511,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "unrar",
-        "relationship": "combo",
-        "reason": "unrar is free tool for extracting RAR archives"
-      },
       {
         "name": "7z",
         "relationship": "alternative",
@@ -26097,11 +24580,6 @@ const commandsDatabase = [
         "name": "npx react-native",
         "relationship": "alternative",
         "reason": "Run React Native commands without global installation using npx"
-      },
-      {
-        "name": "expo",
-        "relationship": "managed",
-        "reason": "Managed React Native development with additional services and tools"
       },
       {
         "name": "flutter",
@@ -26185,11 +24663,6 @@ const commandsDatabase = [
         "name": "ln",
         "relationship": "opposite",
         "reason": "ln creates links, readlink reads them"
-      },
-      {
-        "name": "realpath",
-        "relationship": "similar",
-        "reason": "Both resolve paths to canonical form"
       }
     ],
     "warnings": [
@@ -26253,11 +24726,6 @@ const commandsDatabase = [
         "name": "redis-cli",
         "relationship": "combo",
         "reason": "Used together for Redis performance monitoring"
-      },
-      {
-        "name": "redis-server",
-        "relationship": "combo",
-        "reason": "Benchmarks the Redis server instance"
       }
     ],
     "warnings": [
@@ -26441,19 +24909,9 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "redis-server",
-        "relationship": "dependency",
-        "reason": "Redis server that the CLI connects to and manages"
-      },
-      {
         "name": "redis-benchmark",
         "relationship": "related",
         "reason": "Performance testing tool for Redis instances"
-      },
-      {
-        "name": "redis-sentinel",
-        "relationship": "related",
-        "reason": "High availability management for Redis deployments"
       }
     ],
     "warnings": [
@@ -26629,13 +25087,7 @@ const commandsDatabase = [
         "title": "echo | rev |"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "tac",
-        "relationship": "similar",
-        "reason": "tac reverses line order, rev reverses character order"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Reverses characters within each line",
       "Useful for text games and puzzles",
@@ -26700,11 +25152,6 @@ const commandsDatabase = [
         "name": "grep",
         "relationship": "alternative",
         "reason": "Traditional text search, rg is faster with better defaults"
-      },
-      {
-        "name": "ag",
-        "relationship": "similar",
-        "reason": "Silver searcher, similar fast grep alternative"
       },
       {
         "name": "find",
@@ -26829,16 +25276,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "trash",
-        "relationship": "safer",
-        "reason": "Moves files to trash instead of permanent deletion - allows recovery"
-      },
-      {
-        "name": "shred",
-        "relationship": "secure",
-        "reason": "Securely overwrites file data before deletion - use for sensitive files"
-      },
       {
         "name": "mv",
         "relationship": "similar",
@@ -27087,11 +25524,6 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "logger",
-        "relationship": "combo",
-        "reason": "Send messages to system log"
-      },
-      {
         "name": "journalctl",
         "relationship": "alternative",
         "reason": "systemd journal log viewer"
@@ -27157,11 +25589,6 @@ const commandsDatabase = [
         "name": "bundler",
         "relationship": "combo",
         "reason": "bundler manages Ruby application dependencies"
-      },
-      {
-        "name": "irb",
-        "relationship": "combo",
-        "reason": "Interactive Ruby shell for testing code"
       }
     ],
     "warnings": [
@@ -27371,11 +25798,6 @@ const commandsDatabase = [
         "name": "jupyter",
         "relationship": "combo",
         "reason": "Sage can run in Jupyter notebooks"
-      },
-      {
-        "name": "mathematica",
-        "relationship": "alternative",
-        "reason": "Commercial computer algebra system"
       }
     ],
     "warnings": [
@@ -27646,11 +26068,6 @@ const commandsDatabase = [
         "reason": "Both MATLAB-compatible numerical computing"
       },
       {
-        "name": "matlab",
-        "relationship": "alternative",
-        "reason": "Commercial alternative with similar capabilities"
-      },
-      {
         "name": "python3",
         "relationship": "alternative",
         "reason": "NumPy/SciPy for numerical computing"
@@ -27727,11 +26144,6 @@ const commandsDatabase = [
         "name": "ssh",
         "relationship": "combo",
         "reason": "Uses SSH protocol for secure transfer"
-      },
-      {
-        "name": "sftp",
-        "relationship": "similar",
-        "reason": "Interactive file transfer over SSH"
       }
     ],
     "warnings": [
@@ -27842,18 +26254,7 @@ const commandsDatabase = [
         "title": "script && echo"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "scriptreplay",
-        "relationship": "combo",
-        "reason": "scriptreplay can replay sessions recorded with script"
-      },
-      {
-        "name": "asciinema",
-        "relationship": "modern-alternative",
-        "reason": "asciinema provides better terminal recording and sharing"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Records everything including passwords - be careful",
       "Exit with 'exit' command to stop recording",
@@ -28044,18 +26445,7 @@ const commandsDatabase = [
         "title": "sentry && sentry && sentry"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "bugsnag",
-        "relationship": "alternative",
-        "reason": "Alternative error tracking service"
-      },
-      {
-        "name": "rollbar",
-        "relationship": "alternative",
-        "reason": "Alternative error tracking and monitoring"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Requires Sentry authentication token",
       "Source maps must match deployed code exactly",
@@ -28105,11 +26495,6 @@ const commandsDatabase = [
         "name": "shuf",
         "relationship": "combo",
         "reason": "seq generates ordered numbers, shuf can randomize them"
-      },
-      {
-        "name": "range",
-        "relationship": "similar",
-        "reason": "Some shells have built-in range generation"
       }
     ],
     "warnings": [
@@ -28411,11 +26796,6 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "autopsy",
-        "relationship": "combo",
-        "reason": "GUI frontend for Sleuth Kit"
-      },
-      {
         "name": "dd",
         "relationship": "combo",
         "reason": "Create disk images for analysis"
@@ -28472,19 +26852,9 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "flatpak",
-        "relationship": "similar",
-        "reason": "Another universal package format for Linux"
-      },
-      {
         "name": "apt",
         "relationship": "combo",
         "reason": "Often used alongside traditional package managers"
-      },
-      {
-        "name": "appimage",
-        "relationship": "alternative",
-        "reason": "Portable application format"
       }
     ],
     "warnings": [
@@ -28654,11 +27024,6 @@ const commandsDatabase = [
         "name": "eslint",
         "relationship": "complementary",
         "reason": "ESLint focuses on JavaScript linting"
-      },
-      {
-        "name": "checkstyle",
-        "relationship": "complementary",
-        "reason": "Checkstyle focuses on Java code style"
       }
     ],
     "warnings": [
@@ -28863,16 +27228,6 @@ const commandsDatabase = [
         "name": "ffmpeg",
         "relationship": "alternative",
         "reason": "ffmpeg can also process audio files"
-      },
-      {
-        "name": "audacity",
-        "relationship": "alternative",
-        "reason": "GUI audio editor with similar capabilities"
-      },
-      {
-        "name": "lame",
-        "relationship": "combo",
-        "reason": "LAME encoder used by SoX for MP3 output"
       }
     ],
     "warnings": [
@@ -29213,16 +27568,6 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "ssh-copy-id",
-        "relationship": "combo",
-        "reason": "Deploy public keys generated by ssh-keygen"
-      },
-      {
-        "name": "ssh-add",
-        "relationship": "combo",
-        "reason": "Add private keys to SSH agent"
-      },
-      {
         "name": "ssh",
         "relationship": "combo",
         "reason": "Use keys generated by ssh-keygen for authentication"
@@ -29419,18 +27764,7 @@ const commandsDatabase = [
         "title": "steamcmd"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "srcds_run",
-        "relationship": "complement",
-        "reason": "Source Dedicated Server runner used after downloading with SteamCMD"
-      },
-      {
-        "name": "steam",
-        "relationship": "related",
-        "reason": "Steam client alternative for game management"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Anonymous login has limited access to some content",
       "Steam Guard may interfere with automated logins",
@@ -29496,11 +27830,6 @@ const commandsDatabase = [
         "name": "ltrace",
         "relationship": "similar",
         "reason": "ltrace traces library calls instead of system calls"
-      },
-      {
-        "name": "gdb",
-        "relationship": "complementary",
-        "reason": "gdb provides source-level debugging"
       }
     ],
     "warnings": [
@@ -29597,13 +27926,7 @@ const commandsDatabase = [
       "java"
     ],
     "commandCombinations": [],
-    "relatedCommands": [
-      {
-        "name": "openapi-generator",
-        "relationship": "successor",
-        "reason": "Community-driven fork with more features and active development"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Requires valid OpenAPI/Swagger specification file",
       "Generated code may need customization",
@@ -29795,11 +28118,6 @@ const commandsDatabase = [
         "name": "umount",
         "relationship": "recommended",
         "reason": "sync before umount ensures data integrity"
-      },
-      {
-        "name": "fsync",
-        "relationship": "related",
-        "reason": "fsync is system call version for specific file descriptors"
       }
     ],
     "warnings": [
@@ -29904,11 +28222,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "service",
-        "relationship": "predecessor",
-        "reason": "service command was used before systemd"
-      },
       {
         "name": "journalctl",
         "relationship": "combo",
@@ -30164,11 +28477,6 @@ const commandsDatabase = [
         "name": "wireshark",
         "relationship": "combo",
         "reason": "GUI tool for analyzing tcpdump captures"
-      },
-      {
-        "name": "tshark",
-        "relationship": "similar",
-        "reason": "Command-line version of Wireshark"
       }
     ],
     "warnings": [
@@ -30213,13 +28521,7 @@ const commandsDatabase = [
         "title": "make >& 1 | tee | grep"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "split",
-        "relationship": "similar-concept",
-        "reason": "Both split output streams, tee to multiple destinations"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Essential for logging while maintaining pipeline flow",
       "Can write to multiple files simultaneously",
@@ -30356,11 +28658,6 @@ const commandsDatabase = [
         "reason": "Terraform AWS provider uses AWS CLI credentials"
       },
       {
-        "name": "terragrunt",
-        "relationship": "alternative",
-        "reason": "Wrapper tool for Terraform with additional features"
-      },
-      {
         "name": "ansible",
         "relationship": "complement",
         "reason": "Terraform provisions infrastructure, Ansible configures it"
@@ -30485,11 +28782,6 @@ const commandsDatabase = [
         "name": "perf",
         "relationship": "advanced-alternative",
         "reason": "perf provides more detailed performance profiling"
-      },
-      {
-        "name": "hyperfine",
-        "relationship": "modern-alternative",
-        "reason": "hyperfine provides statistical benchmarking"
       }
     ],
     "warnings": [
@@ -30547,11 +28839,6 @@ const commandsDatabase = [
         "name": "kill",
         "relationship": "backend",
         "reason": "timeout uses kill to terminate processes"
-      },
-      {
-        "name": "sleep",
-        "relationship": "complementary",
-        "reason": "sleep waits, timeout limits waiting"
       }
     ],
     "warnings": [
@@ -30624,11 +28911,6 @@ const commandsDatabase = [
         "name": "screen",
         "relationship": "alternative",
         "reason": "Older terminal multiplexer with similar features"
-      },
-      {
-        "name": "byobu",
-        "relationship": "alternative",
-        "reason": "Wrapper around tmux/screen with additional features"
       },
       {
         "name": "ssh",
@@ -31241,11 +29523,6 @@ const commandsDatabase = [
         "name": "systemctl",
         "relationship": "alternative",
         "reason": "systemd can set service limits"
-      },
-      {
-        "name": "prlimit",
-        "relationship": "alternative",
-        "reason": "More advanced resource limit management"
       }
     ],
     "warnings": [
@@ -31435,16 +29712,6 @@ const commandsDatabase = [
         "name": "lscpu",
         "relationship": "combo",
         "reason": "Detailed CPU information"
-      },
-      {
-        "name": "hostnamectl",
-        "relationship": "similar",
-        "reason": "System hostname and related information"
-      },
-      {
-        "name": "cat /etc/os-release",
-        "relationship": "combo",
-        "reason": "Detailed OS distribution information"
       }
     ],
     "warnings": [
@@ -31511,11 +29778,6 @@ const commandsDatabase = [
         "name": "sort",
         "relationship": "combo",
         "reason": "uniq requires sorted input to work properly"
-      },
-      {
-        "name": "comm",
-        "relationship": "similar",
-        "reason": "Compare sorted files line by line"
       },
       {
         "name": "awk",
@@ -31640,16 +29902,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "unity-hub",
-        "relationship": "manager",
-        "reason": "Unity Hub manages Unity installations and projects"
-      },
-      {
-        "name": "msbuild",
-        "relationship": "underlying",
-        "reason": "Unity uses MSBuild for compiling C# scripts on Windows"
-      },
       {
         "name": "blender",
         "relationship": "complement",
@@ -31806,11 +30058,6 @@ const commandsDatabase = [
         "reason": "Shows load averages along with process information"
       },
       {
-        "name": "w",
-        "relationship": "similar",
-        "reason": "Shows uptime and logged-in users"
-      },
-      {
         "name": "vmstat",
         "relationship": "combo",
         "reason": "More detailed system performance statistics"
@@ -31925,11 +30172,6 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "useradd",
-        "relationship": "similar",
-        "reason": "Creates new users"
-      },
-      {
         "name": "groupmod",
         "relationship": "similar",
         "reason": "Modifies group properties"
@@ -31984,11 +30226,6 @@ const commandsDatabase = [
         "name": "docker",
         "relationship": "alternative",
         "reason": "Both provide isolated development environments"
-      },
-      {
-        "name": "virtualbox",
-        "relationship": "combo",
-        "reason": "VirtualBox is common provider for Vagrant"
       }
     ],
     "warnings": [
@@ -32042,11 +30279,6 @@ const commandsDatabase = [
       }
     ],
     "relatedCommands": [
-      {
-        "name": "gdb",
-        "relationship": "complementary",
-        "reason": "gdb provides interactive debugging, valgrind automatic analysis"
-      },
       {
         "name": "strace",
         "relationship": "complementary",
@@ -32175,11 +30407,6 @@ const commandsDatabase = [
         "name": "emacs",
         "relationship": "alternative",
         "reason": "Different philosophy text editor"
-      },
-      {
-        "name": "vscode",
-        "relationship": "alternative",
-        "reason": "Modern GUI editor with vim plugins"
       }
     ],
     "warnings": [
@@ -32376,11 +30603,6 @@ const commandsDatabase = [
     ],
     "relatedCommands": [
       {
-        "name": "rekall",
-        "relationship": "similar",
-        "reason": "Alternative memory forensics framework"
-      },
-      {
         "name": "yara",
         "relationship": "combo",
         "reason": "Pattern matching in memory analysis"
@@ -32502,11 +30724,6 @@ const commandsDatabase = [
         "name": "top",
         "relationship": "alternative",
         "reason": "top continuously updates, watch runs any command repeatedly"
-      },
-      {
-        "name": "while",
-        "relationship": "alternative",
-        "reason": "Shell while loop can provide similar functionality"
       }
     ],
     "warnings": [
@@ -32656,11 +30873,6 @@ const commandsDatabase = [
         "name": "vite",
         "relationship": "alternative",
         "reason": "Modern build tool with faster development server"
-      },
-      {
-        "name": "babel",
-        "relationship": "combo",
-        "reason": "Often used together for JavaScript transpilation"
       }
     ],
     "warnings": [
@@ -32732,11 +30944,6 @@ const commandsDatabase = [
         "reason": "More versatile HTTP client with API support"
       },
       {
-        "name": "aria2",
-        "relationship": "alternative",
-        "reason": "Multi-protocol download utility with parallel downloads"
-      },
-      {
         "name": "rsync",
         "relationship": "similar",
         "reason": "Better for syncing large directories"
@@ -32800,23 +31007,7 @@ const commandsDatabase = [
         "title": "echo && echo"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "whereis",
-        "relationship": "similar",
-        "reason": "Also finds binaries, man pages, and source files"
-      },
-      {
-        "name": "type",
-        "relationship": "similar",
-        "reason": "Shell builtin that shows command type and location"
-      },
-      {
-        "name": "command -v",
-        "relationship": "alternative",
-        "reason": "POSIX-compliant way to find commands"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "which doesn't find shell builtins or functions",
       "May not work with aliases in some shells",
@@ -32872,23 +31063,7 @@ const commandsDatabase = [
         "title": "if ; then ; fi"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "id",
-        "relationship": "similar",
-        "reason": "Shows user ID and group information"
-      },
-      {
-        "name": "who",
-        "relationship": "similar",
-        "reason": "Shows all logged-in users"
-      },
-      {
-        "name": "w",
-        "relationship": "similar",
-        "reason": "Shows logged-in users and their activities"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Shows effective user, not necessarily login user",
       "May show different results when using sudo",
@@ -33004,11 +31179,6 @@ const commandsDatabase = [
         "name": "tcpdump",
         "relationship": "alternative",
         "reason": "Command-line packet capture alternative"
-      },
-      {
-        "name": "tshark",
-        "relationship": "component",
-        "reason": "tshark is Wireshark's command-line interface"
       }
     ],
     "warnings": [
@@ -33074,11 +31244,6 @@ const commandsDatabase = [
         "name": "pandoc",
         "relationship": "alternative",
         "reason": "Pandoc can also convert HTML to PDF"
-      },
-      {
-        "name": "chrome",
-        "relationship": "alternative",
-        "reason": "Chrome headless can print web pages to PDF"
       },
       {
         "name": "puppeteer",
@@ -33228,11 +31393,6 @@ const commandsDatabase = [
         "name": "ab",
         "relationship": "traditional-alternative",
         "reason": "Apache Bench is simpler but less flexible"
-      },
-      {
-        "name": "hey",
-        "relationship": "similar",
-        "reason": "Another modern HTTP load testing tool"
       }
     ],
     "warnings": [
@@ -33750,11 +31910,6 @@ const commandsDatabase = [
         "name": "ffmpeg",
         "relationship": "combo",
         "reason": "yt-dlp uses ffmpeg for post-processing"
-      },
-      {
-        "name": "gallery-dl",
-        "relationship": "similar",
-        "reason": "Downloads media from image galleries and boorus"
       }
     ],
     "warnings": [
@@ -33825,11 +31980,6 @@ const commandsDatabase = [
         "reason": "Modern replacement for yum in newer Fedora/RHEL"
       },
       {
-        "name": "rpm",
-        "relationship": "combo",
-        "reason": "Low-level package manager that yum uses"
-      },
-      {
         "name": "apt",
         "relationship": "similar",
         "reason": "Package manager for Debian-based systems"
@@ -33887,11 +32037,6 @@ const commandsDatabase = [
         "name": "nagios",
         "relationship": "alternative",
         "reason": "Both provide enterprise monitoring solutions"
-      },
-      {
-        "name": "snmp",
-        "relationship": "combo",
-        "reason": "Zabbix can collect SNMP data"
       }
     ],
     "warnings": [
@@ -33936,18 +32081,7 @@ const commandsDatabase = [
         "title": "zcat | awk | sort | uniq | sort"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "zless",
-        "relationship": "similar",
-        "reason": "zless allows paging through compressed files"
-      },
-      {
-        "name": "zgrep",
-        "relationship": "similar",
-        "reason": "zgrep searches compressed files directly"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Works only with gzip-compressed files",
       "Cannot seek backwards like with regular files"
@@ -34050,13 +32184,7 @@ const commandsDatabase = [
         "title": "sudo && sudo && sudo"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "zpool",
-        "relationship": "combo",
-        "reason": "Manage ZFS storage pools"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Requires significant RAM for optimal performance",
       "Pool expansion requires careful planning"
@@ -34239,16 +32367,6 @@ const commandsDatabase = [
         "name": "cd",
         "relationship": "alternative",
         "reason": "Traditional directory change, zoxide is smarter"
-      },
-      {
-        "name": "autojump",
-        "relationship": "similar",
-        "reason": "Similar smart directory jumping tool"
-      },
-      {
-        "name": "fasd",
-        "relationship": "similar",
-        "reason": "Command-line productivity booster for files and directories"
       }
     ],
     "warnings": [
@@ -34314,11 +32432,6 @@ const commandsDatabase = [
         "name": "fish",
         "relationship": "alternative",
         "reason": "Alternative shell with user-friendly features"
-      },
-      {
-        "name": "oh-my-zsh",
-        "relationship": "framework",
-        "reason": "Popular framework for managing zsh configuration"
       }
     ],
     "warnings": [
@@ -34442,13 +32555,7 @@ const commandsDatabase = [
         "title": "sudo && zypper && sudo"
       }
     ],
-    "relatedCommands": [
-      {
-        "name": "rpm",
-        "relationship": "alternative",
-        "reason": "Both work with RPM packages"
-      }
-    ],
+    "relatedCommands": [],
     "warnings": [
       "Uses patterns for software collections",
       "Different syntax from other package managers"
