@@ -27,6 +27,16 @@ function App({ mockCommands }) {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  /**
+   * Get the man page URL for a command
+   * @param {Object} command - Command object with manPageUrl field
+   * @returns {string} Man page URL from command data
+   */
+  const getManPageUrl = (command) => {
+    // return command.manPageUrl || `https://man7.org/linux/man-pages/man1/${command.name}.1.html`;
+    return command.manPageUrl
+  };
+
   useEffect(() => {
     /**
      * Asynchronously loads command data from the data module or uses mock data for testing.
@@ -49,7 +59,7 @@ function App({ mockCommands }) {
           ...command,
           platform: command.platform ? command.platform.map(getPlatformMapping) : [getPlatformMapping('linux')],
           categories: command.category ? [getCategoryMapping(command.category)] : [getCategoryMapping('general')],
-          manPageUrl: command.manPageUrl || `https://man7.org/linux/man-pages/man1/${command.name}.1.html`
+          manPageUrl: getManPageUrl(command)
         }));
         setCommands(enhancedCommands);
         setError(null);

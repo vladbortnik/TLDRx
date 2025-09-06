@@ -31,7 +31,7 @@ const mockCommand = {
     "ls -lh # List with human readable sizes"
   ],
   relatedCommands: ["dir", "find", "tree"],
-  manPageUrl: "https://man7.org/linux/man-pages/man1/ls.1.html"
+  documentationUrl: "https://man7.org/linux/man-pages/man1/ls.1.html"
 };
 
 const mockCommandComplex = {

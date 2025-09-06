@@ -10,9 +10,10 @@ _Command-Reference-Lookup-Tool-2
 _TLDR-DB-CLEAN
 .windsurf/
 scripts/
+_scripts/
 _scripts-temp/
 .cascade-rules
-README/
+_README/
 
 # Claude Code
 CLAUDE.md
