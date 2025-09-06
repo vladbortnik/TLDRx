@@ -28,7 +28,7 @@ export function TLDRLogo() {
             ;
           </span>
           <span className="text-2xl font-black bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-            DR
+            DRx
           </span>
         </div>
       </div>

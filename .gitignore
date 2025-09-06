@@ -1,4 +1,5 @@
 # Project Specific
+_*
 _TEMP/
 _TEMP-*
 _PLAN/
@@ -11,6 +12,7 @@ _TLDR-DB-CLEAN
 scripts/
 _scripts-temp/
 .cascade-rules
+README/
 
 # Claude Code
 CLAUDE.md

@@ -9,7 +9,7 @@ import App from './App';
 
 /**
  * Mock command data for testing
- * Includes commands with different properties to test various scenarios
+ * Matches the current data format used by the app
  */
 const mockCommands = [
   {
@@ -17,16 +17,18 @@ const mockCommands = [
     standsFor: 'testing command',
     description: 'A command for testing',
     examples: ['test-cmd -a  # Option a', 'test-cmd -b  # Option b'],
-    platform: ['linux', 'mac'],
-    category: 'testing'
+    platform: ['linux', 'macos'],
+    category: 'file-operations',
+    safety: 'safe'
   },
   {
     name: 'another-cmd',
-    standsFor: 'another command',
+    standsFor: 'another command', 
     description: 'Another command for testing',
     examples: ['another-cmd -x  # Option x', 'another-cmd -y  # Option y'],
     platform: ['linux'],
-    category: 'utilities'
+    category: 'text-processing',
+    safety: 'safe'
   }
 ];
 
@@ -143,13 +145,13 @@ describe('App Component', () => {
     expect(screen.getByText((content) => content.includes('Option a'))).toBeInTheDocument();
     expect(screen.getByText((content) => content.includes('Option b'))).toBeInTheDocument();
     
-    // Check platforms are displayed (using getAllByText since linux appears multiple times)
-    expect(screen.getAllByText('linux').length).toBeGreaterThan(0);
-    expect(screen.getByText('mac')).toBeInTheDocument();
+    // Check platforms are displayed (using getAllByText since Linux appears multiple times)
+    expect(screen.getAllByText('Linux').length).toBeGreaterThan(0);
+    expect(screen.getByText('macOS')).toBeInTheDocument();
     
-    // Check categories are displayed
-    expect(screen.getByText('testing')).toBeInTheDocument();
-    expect(screen.getByText('utilities')).toBeInTheDocument();
+    // Check categories are displayed (they may be formatted differently)
+    expect(screen.getByText('File Operations')).toBeInTheDocument();
+    expect(screen.getByText('Text Processing')).toBeInTheDocument();
   });
 
   it('shows loading state initially', async () => {
@@ -192,16 +194,16 @@ describe('App Component', () => {
   });
 
   it('handles commands without standsFor field', async () => {
-    const commandsWithoutStandsFor = [
+    const commandsWithoutSubtitle = [
       {
-        name: 'no-stands-for',
+        name: 'no-standsFor',
         description: 'A command without standsFor field',
         platform: ['linux'],
-        category: 'test'
+        category: 'file-operations'
       }
     ];
     
-    render(<App mockCommands={commandsWithoutStandsFor} />);
+    render(<App mockCommands={commandsWithoutSubtitle} />);
     
     // Wait for commands to load
     await waitFor(() => {
@@ -209,7 +211,7 @@ describe('App Component', () => {
     });
     
     // Should display command without standsFor
-    expect(screen.getByText('no-stands-for')).toBeInTheDocument();
+    expect(screen.getByText('no-standsFor')).toBeInTheDocument();
     expect(screen.getByText('A command without standsFor field')).toBeInTheDocument();
   });
 
@@ -219,7 +221,7 @@ describe('App Component', () => {
         name: 'no-examples',
         description: 'A command without examples',
         platform: ['linux'],
-        category: 'test'
+        category: 'file-operations'
       }
     ];
     

@@ -18,7 +18,7 @@
  * 
  * @type {Array<Object>}
  * @property {string} name - Command name (e.g., 'ls', 'grep')
- * @property {string} subtitle - What the command abbreviation means
+ * @property {string} standsFor - What the command abbreviation means
  * @property {string} description - Brief explanation of command purpose
  * @property {Array<string>} examples - Practical usage examples with comments
  * @property {Array<string>} platform - Supported platforms ['linux', 'mac', 'windows']
@@ -35,7 +35,7 @@
 const commandsDatabase = [
   {
     "name": "7z",
-    "subtitle": "7-Zip",
+    "standsFor": "7-Zip",
     "description": "High compression ratio archiver supporting many formats",
     "examples": [
       "7z a backup.7z folder/  # Create 7z archive of entire directory",
@@ -118,7 +118,7 @@ const commandsDatabase = [
   },
   {
     "name": "ab",
-    "subtitle": "Apache Bench",
+    "standsFor": "Apache Bench",
     "description": "Apache HTTP server benchmarking tool",
     "examples": [
       "ab -n 1000 -c 10 http://example.com/  # Send 1000 requests with concurrency of 10",
@@ -186,7 +186,7 @@ const commandsDatabase = [
   },
   {
     "name": "act",
-    "subtitle": "Act",
+    "standsFor": "Act",
     "description": "Run GitHub Actions locally using Docker",
     "examples": [
       "act push  # Execute GitHub Actions workflow for push event",
@@ -268,7 +268,7 @@ const commandsDatabase = [
   },
   {
     "name": "aide",
-    "subtitle": "Advanced Intrusion Detection Environment",
+    "standsFor": "Advanced Intrusion Detection Environment",
     "description": "Advanced Intrusion Detection Environment for file integrity monitoring",
     "examples": [
       "aide --init  # Create initial database of file system state",
@@ -338,7 +338,7 @@ const commandsDatabase = [
   },
   {
     "name": "alembic",
-    "subtitle": "Alembic",
+    "standsFor": "Alembic",
     "description": "Database migration tool for Python SQLAlchemy",
     "examples": [
       "alembic init alembic  # Create new Alembic migration environment",
@@ -412,7 +412,7 @@ const commandsDatabase = [
   },
   {
     "name": "alert-manager",
-    "subtitle": "Prometheus AlertManager",
+    "standsFor": "Prometheus AlertManager",
     "description": "Handles alerts from Prometheus and routes them to notification channels",
     "examples": [
       "alertmanager --config.file=alertmanager.yml  # Start AlertManager with configuration file",
@@ -484,7 +484,7 @@ const commandsDatabase = [
   },
   {
     "name": "alias",
-    "subtitle": "Create command shortcuts",
+    "standsFor": "Create command shortcuts",
     "description": "Create temporary or permanent shortcuts for longer commands in the shell",
     "examples": [
       "alias ll='ls -la'  # Create shortcut for detailed directory listing",
@@ -562,7 +562,7 @@ const commandsDatabase = [
   },
   {
     "name": "ansible",
-    "subtitle": "Configuration management and automation",
+    "standsFor": "Configuration management and automation",
     "description": "Agentless automation tool for configuration management, application deployment, and task execution",
     "examples": [
       "ansible all -m ping  # Test connectivity to all hosts",
@@ -649,7 +649,7 @@ const commandsDatabase = [
   },
   {
     "name": "ant",
-    "subtitle": "Apache Ant build tool",
+    "standsFor": "Apache Ant build tool",
     "description": "Java library and command-line build tool for automating software build processes",
     "examples": [
       "ant  # Run default target in build.xml",
@@ -714,7 +714,7 @@ const commandsDatabase = [
   },
   {
     "name": "apache2",
-    "subtitle": "Apache HTTP Server",
+    "standsFor": "Apache HTTP Server",
     "description": "Apache HTTP Server for web hosting and applications",
     "examples": [
       "apache2ctl start  # Start Apache web server",
@@ -799,7 +799,7 @@ const commandsDatabase = [
   },
   {
     "name": "apt",
-    "subtitle": "Advanced Package Tool",
+    "standsFor": "Advanced Package Tool",
     "description": "Advanced Package Tool for Debian/Ubuntu package management",
     "examples": [
       "sudo apt update  # Refresh list of available packages and versions",
@@ -871,7 +871,7 @@ const commandsDatabase = [
   },
   {
     "name": "ar",
-    "subtitle": "Archive",
+    "standsFor": "Archive",
     "description": "Create and manage static library archives",
     "examples": [
       "ar rcs libmylib.a object1.o object2.o  # Create static library from object files",
@@ -932,7 +932,7 @@ const commandsDatabase = [
   },
   {
     "name": "arduino-cli",
-    "subtitle": "Arduino Command Line Interface",
+    "standsFor": "Arduino Command Line Interface",
     "description": "Arduino command line interface",
     "examples": [
       "arduino-cli sketch new MyProject  # Generates new Arduino project with basic structure",
@@ -1015,7 +1015,7 @@ const commandsDatabase = [
   },
   {
     "name": "argocd",
-    "subtitle": "Argo CD",
+    "standsFor": "Argo CD",
     "description": "GitOps continuous delivery tool for Kubernetes",
     "examples": [
       "argocd login argocd-server.argocd.svc.cluster.local --username admin  # Authenticate with ArgoCD server",
@@ -1088,7 +1088,7 @@ const commandsDatabase = [
   },
   {
     "name": "arp",
-    "subtitle": "Address Resolution Protocol",
+    "standsFor": "Address Resolution Protocol",
     "description": "Display and manipulate Address Resolution Protocol cache",
     "examples": [
       "arp -a  # Display all entries in ARP cache",
@@ -1146,7 +1146,7 @@ const commandsDatabase = [
   },
   {
     "name": "artillery",
-    "subtitle": "Artillery",
+    "standsFor": "Artillery",
     "description": "Cloud-native load testing toolkit", 
     "examples": [
       "artillery quick --count 10 --num 100 https://example.com  # Quick test with 10 virtual users making 100 requests each",
@@ -1208,7 +1208,7 @@ const commandsDatabase = [
   },
   {
     "name": "artisan",
-    "subtitle": "Laravel Artisan",
+    "standsFor": "Laravel Artisan",
     "description": "Laravel PHP framework command-line interface",
     "examples": [
       "php artisan serve  # Start Laravel development server on localhost:8000",
@@ -1264,7 +1264,7 @@ const commandsDatabase = [
   },
   {
     "name": "at",
-    "subtitle": "At",
+    "standsFor": "At",
     "description": "Schedule one-time tasks to run at specified times",
     "examples": [
       "echo 'backup.sh' | at 2:30  # Run backup.sh at 2:30 AM",
@@ -1327,7 +1327,7 @@ const commandsDatabase = [
   },
   {
     "name": "auditd",
-    "subtitle": "Audit Daemon", 
+    "standsFor": "Audit Daemon",
     "description": "Linux audit framework for security monitoring and compliance",
     "examples": [
       "auditctl -w /etc/passwd -p war -k passwd_changes  # Monitor passwd file for write, attribute, and read access",
@@ -1379,7 +1379,7 @@ const commandsDatabase = [
   },
   {
     "name": "autoconf",
-    "subtitle": "Automatic Configuration",
+    "standsFor": "Automatic Configuration",
     "description": "Generate configure scripts for portable compilation",
     "examples": [
       "autoconf  # Generate configure script from configure.ac",
@@ -1440,7 +1440,7 @@ const commandsDatabase = [
   },
   {
     "name": "automake",
-    "subtitle": "Automatic Make",
+    "standsFor": "Automatic Make",
     "description": "Generate Makefile.in templates from Makefile.am",
     "examples": [
       "automake  # Generate Makefile.in from Makefile.am",
@@ -1501,7 +1501,7 @@ const commandsDatabase = [
   },
   {
     "name": "awk",
-    "subtitle": "Aho, Weinberger, Kernighan",
+    "standsFor": "Aho, Weinberger, Kernighan",
     "description": "Pattern scanning and data extraction language",
     "examples": [
       "awk '{print $1, $3}' data.txt  # Print first and third columns from space-separated data",
@@ -1577,7 +1577,7 @@ const commandsDatabase = [
   },
   {
     "name": "aws",
-    "subtitle": "AWS CLI Advanced",
+    "standsFor": "AWS CLI Advanced",
     "description": "Advanced AWS CLI operations for enterprise cloud management",
     "examples": [
       "aws ec2 create-vpc --cidr-block 10.0.0.0/16 --enable-dns-hostnames --enable-dns-support  # Create Virtual Private Cloud with DNS resolution enabled",
@@ -1652,7 +1652,7 @@ const commandsDatabase = [
   },
   {
     "name": "aws-cli",
-    "subtitle": "AWS Command Line Interface",
+    "standsFor": "AWS Command Line Interface",
     "description": "Command-line interface for Amazon Web Services CloudWatch",
     "examples": [
       "aws cloudwatch list-metrics  # List all available CloudWatch metrics",
@@ -1707,7 +1707,7 @@ const commandsDatabase = [
   },
   {
     "name": "az",
-    "subtitle": "Azure CLI Advanced",
+    "standsFor": "Azure CLI Advanced",
     "description": "Advanced Azure CLI operations for enterprise cloud management",
     "examples": [
       "az aks create --resource-group myResourceGroup --name myAKSCluster --node-count 3 --enable-addons monitoring --generate-ssh-keys --node-vm-size Standard_D2s_v3  # Create managed Kubernetes cluster with monitoring enabled",
@@ -1781,7 +1781,7 @@ const commandsDatabase = [
   },
   {
     "name": "banner",
-    "subtitle": "Banner",
+    "standsFor": "Banner",
     "description": "Print large banner text",
     "examples": [
       "banner 'HELLO'  # Create simple block letter banner",
@@ -1836,7 +1836,7 @@ const commandsDatabase = [
   },
   {
     "name": "basename",
-    "subtitle": "base name",
+    "standsFor": "base name",
     "description": "Extract filename from path",
     "examples": [
       "basename /path/to/file.txt  # Extract 'file.txt' from full path",
@@ -1911,7 +1911,7 @@ const commandsDatabase = [
   },
   {
     "name": "bash",
-    "subtitle": "Bourne Again Shell",
+    "standsFor": "Bourne Again Shell",
     "description": "Bourne Again Shell for command execution and scripting",
     "examples": [
       "bash script.sh  # Execute bash script file",
@@ -1974,7 +1974,7 @@ const commandsDatabase = [
   },
   {
     "name": "bat",
-    "subtitle": "bat",
+    "standsFor": "bat",
     "description": "Cat clone with syntax highlighting and Git integration",
     "examples": [
       "bat script.py  # Display Python file with color syntax highlighting",
@@ -2052,7 +2052,7 @@ const commandsDatabase = [
   },
   {
     "name": "batch",
-    "subtitle": "Batch",
+    "standsFor": "Batch",
     "description": "Schedule jobs to run when system load is low",
     "examples": [
       "echo 'heavy_computation.sh' | batch  # Run script when system load drops below threshold",
@@ -2112,7 +2112,7 @@ const commandsDatabase = [
   },
   {
     "name": "bazel",
-    "subtitle": "Bazel",
+    "standsFor": "Bazel",
     "description": "Scalable build tool for multi-language projects",
     "examples": [
       "bazel build //...  # Build all targets in workspace",
@@ -2178,7 +2178,7 @@ const commandsDatabase = [
   },
   {
     "name": "bc",
-    "subtitle": "Basic Calculator",
+    "standsFor": "Basic Calculator",
     "description": "Arbitrary precision calculator for mathematical computations",
     "examples": [
       "bc  # Launch bc interactive mathematical calculator",
@@ -2257,7 +2257,7 @@ const commandsDatabase = [
   },
   {
     "name": "binwalk",
-    "subtitle": "Binary Walk",
+    "standsFor": "Binary Walk",
     "description": "Firmware analysis tool for embedded systems security",
     "examples": [
       "binwalk firmware.bin  # Identify embedded files and file systems in firmware",
@@ -2311,7 +2311,7 @@ const commandsDatabase = [
   },
   {
     "name": "bitcoin-cli",
-    "subtitle": "Bitcoin Command Line Interface",
+    "standsFor": "Bitcoin Command Line Interface",
     "description": "Bitcoin Core command line interface",
     "examples": [
       "bitcoin-cli getblockchaininfo  # Returns current blockchain statistics and synchronization status",
@@ -2384,7 +2384,7 @@ const commandsDatabase = [
   },
   {
     "name": "blender",
-    "subtitle": "Blender 3D",
+    "standsFor": "Blender 3D",
     "description": "Blender 3D creation suite command line interface",
     "examples": [
       "blender -b scene.blend -a  # Renders entire animation sequence without opening GUI",
@@ -2467,7 +2467,7 @@ const commandsDatabase = [
   },
   {
     "name": "brew",
-    "subtitle": "Homebrew",
+    "standsFor": "Homebrew",
     "description": "Package manager for macOS and Linux",
     "examples": [
       "brew install wget  # Install wget command-line tool",
@@ -2544,7 +2544,7 @@ const commandsDatabase = [
   },
   {
     "name": "btrfs",
-    "subtitle": "B-tree Filesystem",
+    "standsFor": "B-tree Filesystem",
     "description": "Copy-on-write filesystem with advanced features",
     "examples": [
       "sudo btrfs subvolume create /mnt/mysubvol  # Create new Btrfs subvolume",
@@ -2593,7 +2593,7 @@ const commandsDatabase = [
   },
   {
     "name": "buildah",
-    "subtitle": "Build-ah",
+    "standsFor": "Build-ah",
     "description": "Build OCI container images without Docker daemon",
     "examples": [
       "buildah build -t myapp .  # Build container image from Dockerfile",
@@ -2668,7 +2668,7 @@ const commandsDatabase = [
   },
   {
     "name": "bun",
-    "subtitle": "Bun",
+    "standsFor": "Bun",
     "description": "Fast JavaScript runtime and package manager",
     "examples": [
       "bun run app.js  # Execute JavaScript file with Bun runtime",
@@ -2748,7 +2748,7 @@ const commandsDatabase = [
   },
   {
     "name": "bundler",
-    "subtitle": "Bundler",
+    "standsFor": "Bundler",
     "description": "Ruby dependency manager for consistent gem environments",
     "examples": [
       "bundle install  # Install all gems listed in Gemfile",
@@ -2804,7 +2804,7 @@ const commandsDatabase = [
   },
   {
     "name": "burpsuite",
-    "subtitle": "Burp Suite",
+    "standsFor": "Burp Suite",
     "description": "Web application security testing platform",
     "examples": [
       "java -jar burpsuite_community.jar  # Launch Burp Suite Community Edition",
@@ -2859,7 +2859,7 @@ const commandsDatabase = [
   },
   {
     "name": "bzip2",
-    "subtitle": "Burrows-Wheeler block-sorting text compression",
+    "standsFor": "Burrows-Wheeler block-sorting text compression",
     "description": "High-compression file compression utility",
     "examples": [
       "bzip2 file.txt  # Compress file.txt to file.txt.bz2",
@@ -2920,7 +2920,7 @@ const commandsDatabase = [
   },
   {
     "name": "caddy",
-    "subtitle": "Caddy",
+    "standsFor": "Caddy",
     "description": "Modern web server with automatic HTTPS",
     "examples": [
       "caddy file-server  # Serve files from current directory with automatic HTTPS",
@@ -3004,7 +3004,7 @@ const commandsDatabase = [
   },
   {
     "name": "cal",
-    "subtitle": "calendar",
+    "standsFor": "calendar",
     "description": "Display calendar",
     "examples": [
       "cal  # Show calendar for current month with today highlighted",
@@ -3080,7 +3080,7 @@ const commandsDatabase = [
   },
   {
     "name": "cargo",
-    "subtitle": "Cargo",
+    "standsFor": "Cargo",
     "description": "Rust package manager and build system",
     "examples": [
       "cargo new myproject  # Initialize new Rust binary project with basic structure",
@@ -3163,7 +3163,7 @@ const commandsDatabase = [
   },
   {
     "name": "cat",
-    "subtitle": "concatenate",
+    "standsFor": "concatenate",
     "description": "Display file contents or concatenate files",
     "examples": [
       "cat README.md  # Display entire file contents in terminal",
@@ -3242,7 +3242,7 @@ const commandsDatabase = [
   },
   {
     "name": "cd",
-    "subtitle": "change directory",
+    "standsFor": "change directory",
     "description": "Change current working directory",
     "examples": [
       "cd  # Go to user home directory from anywhere",
@@ -3317,7 +3317,7 @@ const commandsDatabase = [
   },
   {
     "name": "cdk",
-    "subtitle": "Cloud Development Kit",
+    "standsFor": "Cloud Development Kit",
     "description": "AWS Cloud Development Kit for infrastructure as code",
     "examples": [
       "cdk init app --language typescript  # Create new CDK application with TypeScript",
@@ -3390,7 +3390,7 @@ const commandsDatabase = [
   },
   {
     "name": "certbot",
-    "subtitle": "Certificate Bot",
+    "standsFor": "Certificate Bot",
     "description": "Automated SSL certificate management with Let's Encrypt",
     "examples": [
       "sudo certbot --nginx -d example.com  # Get certificate and automatically configure nginx",
@@ -3471,7 +3471,7 @@ const commandsDatabase = [
   },
   {
     "name": "cgcreate",
-    "subtitle": "Control Group Create",
+    "standsFor": "Control Group Create",
     "description": "Create control groups for process resource management",
     "examples": [
       "sudo cgcreate -g memory:webservers  # Create control group for managing web server memory",
@@ -3523,7 +3523,7 @@ const commandsDatabase = [
   },
   {
     "name": "chage",
-    "subtitle": "Change Age",
+    "standsFor": "Change Age",
     "description": "Change user password aging and expiration policies",
     "examples": [
       "sudo chage -M 90 username  # Set maximum password age to 90 days",
@@ -3572,7 +3572,7 @@ const commandsDatabase = [
   },
   {
     "name": "chgrp",
-    "subtitle": "change group",
+    "standsFor": "change group",
     "description": "Change group ownership of files and directories",
     "examples": [
       "chgrp developers project.txt  # Change file group to 'developers' group",
@@ -3646,7 +3646,7 @@ const commandsDatabase = [
   },
   {
     "name": "chkrootkit",
-    "subtitle": "Check Rootkit",
+    "standsFor": "Check Rootkit",
     "description": "Rootkit detection tool for system security verification",
     "examples": [
       "chkrootkit  # Run all available rootkit detection tests",
@@ -3700,7 +3700,7 @@ const commandsDatabase = [
   },
   {
     "name": "chmod",
-    "subtitle": "change mode",
+    "standsFor": "change mode",
     "description": "Change file and directory permissions",
     "examples": [
       "chmod +x script.sh  # Add execute permission for all users",
@@ -3773,7 +3773,7 @@ const commandsDatabase = [
   },
   {
     "name": "chown",
-    "subtitle": "change owner",
+    "standsFor": "change owner",
     "description": "Change file and directory ownership",
     "examples": [
       "chown $USER important-file.txt  # Take ownership of file for current user",
@@ -3846,7 +3846,7 @@ const commandsDatabase = [
   },
   {
     "name": "chroot",
-    "subtitle": "Change Root",
+    "standsFor": "Change Root",
     "description": "Change root directory for process and children",
     "examples": [
       "sudo chroot /mnt/rescue /bin/bash  # Start bash shell in rescue system root",
@@ -3907,7 +3907,7 @@ const commandsDatabase = [
   },
   {
     "name": "clamav",
-    "subtitle": "Clam AntiVirus",
+    "standsFor": "Clam AntiVirus",
     "description": "Open-source antivirus engine for malware detection",
     "examples": [
       "clamscan -r .  # Recursively scan current directory for malware",
@@ -3962,7 +3962,7 @@ const commandsDatabase = [
   },
   {
     "name": "cmake",
-    "subtitle": "Cross-platform Make",
+    "standsFor": "Cross-platform Make",
     "description": "Cross-platform build system generator",
     "examples": [
       "cmake .  # Generate build files for current directory",
@@ -4028,7 +4028,7 @@ const commandsDatabase = [
   },
   {
     "name": "code",
-    "subtitle": "VS Code",
+    "standsFor": "VS Code",
     "description": "Visual Studio Code command-line interface",
     "examples": [
       "code filename.js  # Open JavaScript file in Visual Studio Code",
@@ -4087,7 +4087,7 @@ const commandsDatabase = [
   },
   {
     "name": "composer",
-    "subtitle": "Composer",
+    "standsFor": "Composer",
     "description": "Dependency manager for PHP",
     "examples": [
       "composer init  # Create composer.json file interactively",
@@ -4144,7 +4144,7 @@ const commandsDatabase = [
   },
   {
     "name": "compress",
-    "subtitle": "Compress",
+    "standsFor": "Compress",
     "description": "Legacy Unix file compression utility",
     "examples": [
       "compress file.txt  # Compress file.txt to file.txt.Z",
@@ -4205,7 +4205,7 @@ const commandsDatabase = [
   },
   {
     "name": "conda",
-    "subtitle": "Conda",
+    "standsFor": "Conda",
     "description": "Package and environment management system for data science",
     "examples": [
       "conda create -n myenv python=3.9 pandas numpy  # Creates new conda environment with Python 3.9 and data packages",
@@ -4289,7 +4289,7 @@ const commandsDatabase = [
   },
   {
     "name": "container-ci-cd-pipeline",
-    "subtitle": "Container CI/CD Pipeline",
+    "standsFor": "Container CI/CD Pipeline",
     "description": "Container-based CI/CD pipeline automation",
     "examples": [
       "gitlab-runner exec docker build-job --docker-image docker:20.10.16 --docker-volumes /var/run/docker.sock:/var/run/docker.sock  # Execute GitLab CI job locally with Docker-in-Docker capability",
@@ -4369,7 +4369,7 @@ const commandsDatabase = [
   },
   {
     "name": "container-development-workflow",
-    "subtitle": "Container Development Workflow",
+    "standsFor": "Container Development Workflow",
     "description": "Container-based development workflows and debugging",
     "examples": [
       "docker run -it --rm -v $(pwd):/app -v /app/node_modules -p 3000:3000 -e NODE_ENV=development node:18 npm run dev  # Run development server with source code volume mount and live reload",
@@ -4449,7 +4449,7 @@ const commandsDatabase = [
   },
   {
     "name": "container-registry-management",
-    "subtitle": "Container Registry Management",
+    "standsFor": "Container Registry Management",
     "description": "Container registry operations and image management",
     "examples": [
       "docker buildx build --platform linux/amd64,linux/arm64 --push -t myuser/myapp:latest -t myuser/myapp:v1.0.0 .  # Build and push multi-architecture image with multiple tags",
@@ -4529,7 +4529,7 @@ const commandsDatabase = [
   },
   {
     "name": "container-security-scanning",
-    "subtitle": "Container Security Scanning",
+    "standsFor": "Container Security Scanning",
     "description": "Container image vulnerability scanning and security analysis",
     "examples": [
       "trivy image --severity HIGH,CRITICAL --format json --output report.json nginx:latest  # Scan Docker image for high and critical vulnerabilities in JSON format",
@@ -4609,7 +4609,7 @@ const commandsDatabase = [
   },
   {
     "name": "containerd",
-    "subtitle": "container daemon",
+    "standsFor": "container daemon",
     "description": "Industry-standard container runtime",
     "examples": [
       "ctr images list  # Show all container images managed by containerd",
@@ -4689,7 +4689,7 @@ const commandsDatabase = [
   },
   {
     "name": "convert",
-    "subtitle": "ImageMagick convert",
+    "standsFor": "ImageMagick convert",
     "description": "Convert and modify images using ImageMagick",
     "examples": [
       "convert image.png image.jpg  # Convert PNG image to JPEG format",
@@ -4773,7 +4773,7 @@ const commandsDatabase = [
   },
   {
     "name": "cosign",
-    "subtitle": "Container Signing",
+    "standsFor": "Container Signing",
     "description": "Container signing and verification tool for supply chain security",
     "examples": [
       "cosign generate-key-pair  # Create private/public key pair for signing containers",
@@ -4847,7 +4847,7 @@ const commandsDatabase = [
   },
   {
     "name": "cowsay",
-    "subtitle": "Cow Say",
+    "standsFor": "Cow Say",
     "description": "Generate ASCII art of cow saying text",
     "examples": [
       "cowsay 'Hello World'  # Make cow say 'Hello World'",
@@ -4912,7 +4912,7 @@ const commandsDatabase = [
   },
   {
     "name": "cp",
-    "subtitle": "copy",
+    "standsFor": "copy",
     "description": "Copy files and directories",
     "examples": [
       "cp config.json config.json.backup  # Make backup copy before editing configuration",
@@ -4990,7 +4990,7 @@ const commandsDatabase = [
   },
   {
     "name": "cpio",
-    "subtitle": "Copy Input/Output",
+    "standsFor": "Copy Input/Output",
     "description": "Copy files to and from archives",
     "examples": [
       "find . -name '*.txt' | cpio -ov > files.cpio  # Create cpio archive from find results",
@@ -5049,7 +5049,7 @@ const commandsDatabase = [
   },
   {
     "name": "cqlsh",
-    "subtitle": "Cassandra Query Language Shell",
+    "standsFor": "Cassandra Query Language Shell",
     "description": "Apache Cassandra interactive command-line interface",
     "examples": [
       "cqlsh  # Connect to Cassandra on localhost:9042",
@@ -5114,7 +5114,7 @@ const commandsDatabase = [
   },
   {
     "name": "create-react-app",
-    "subtitle": "Create React App",
+    "standsFor": "Create React App",
     "description": "Create React App tool for bootstrapping React applications",
     "examples": [
       "npx create-react-app my-app  # Create new React application with default configuration",
@@ -5171,7 +5171,7 @@ const commandsDatabase = [
   },
   {
     "name": "crictl",
-    "subtitle": "CRI control",
+    "standsFor": "CRI control",
     "description": "CLI for CRI-compatible container runtimes (Kubernetes)",
     "examples": [
       "crictl pods  # Show all pods on Kubernetes node",
@@ -5243,7 +5243,7 @@ const commandsDatabase = [
   },
   {
     "name": "cron",
-    "subtitle": "Chronos",
+    "standsFor": "Chronos",
     "description": "Time-based job scheduler for Unix-like systems",
     "examples": [
       "crontab -e  # Open editor to modify user's cron jobs",
@@ -5308,7 +5308,7 @@ const commandsDatabase = [
   },
   {
     "name": "crontab",
-    "subtitle": "Cron Table",
+    "standsFor": "Cron Table",
     "description": "Edit and manage user cron jobs for scheduled tasks",
     "examples": [
       "crontab -e  # Open user's cron table for editing",
@@ -5364,7 +5364,7 @@ const commandsDatabase = [
   },
   {
     "name": "csvkit",
-    "subtitle": "CSV toolkit",
+    "standsFor": "CSV toolkit",
     "description": "Suite of command-line tools for working with CSV files",
     "examples": [
       "csvstat data.csv  # Show summary statistics for all columns in CSV",
@@ -5449,7 +5449,7 @@ const commandsDatabase = [
   },
   {
     "name": "curl",
-    "subtitle": "client URL",
+    "standsFor": "client URL",
     "description": "Transfer data to/from servers using various protocols",
     "examples": [
       "curl -O https://example.com/file.zip  # Download file and save with original filename",
@@ -5534,7 +5534,7 @@ const commandsDatabase = [
   },
   {
     "name": "cut",
-    "subtitle": "cut",
+    "standsFor": "cut",
     "description": "Extract specific columns or fields from text",
     "examples": [
       "cut -c 1-10 file.txt  # Extract characters 1 through 10 from each line",
@@ -5613,7 +5613,7 @@ const commandsDatabase = [
   },
   {
     "name": "cypress",
-    "subtitle": "Cypress",
+    "standsFor": "Cypress",
     "description": "End-to-end testing framework for web applications",
     "examples": [
       "cypress open  # Launch interactive Cypress test runner",
@@ -5679,7 +5679,7 @@ const commandsDatabase = [
   },
   {
     "name": "datadog",
-    "subtitle": "Datadog CLI",
+    "standsFor": "Datadog CLI",
     "description": "Command-line tools for Datadog monitoring and observability platform",
     "examples": [
       "datadog metric post 'custom.metric' 42 --tags env:production  # Send custom metric to Datadog",
@@ -5737,7 +5737,7 @@ const commandsDatabase = [
   },
   {
     "name": "date",
-    "subtitle": "date",
+    "standsFor": "date",
     "description": "Display or set system date and time",
     "examples": [
       "date  # Show current system date and time in default format",
@@ -5814,7 +5814,7 @@ const commandsDatabase = [
   },
   {
     "name": "dbdeployer",
-    "subtitle": "Database Deployer",
+    "standsFor": "Database Deployer",
     "description": "MySQL sandbox deployment tool for testing and development",
     "examples": [
       "dbdeployer deploy single 8.0.28  # Create standalone MySQL 8.0.28 sandbox",
@@ -5875,7 +5875,7 @@ const commandsDatabase = [
   },
   {
     "name": "dc",
-    "subtitle": "Desk Calculator",
+    "standsFor": "Desk Calculator",
     "description": "Desk calculator using reverse Polish notation",
     "examples": [
       "dc  # Launch dc reverse Polish notation calculator",
@@ -5954,7 +5954,7 @@ const commandsDatabase = [
   },
   {
     "name": "dd",
-    "subtitle": "Data Definition/Disk Dump",
+    "standsFor": "Data Definition/Disk Dump",
     "description": "Low-level disk and data manipulation tool",
     "examples": [
       "sudo dd if=/dev/sda of=disk_image.img bs=4M status=progress  # Create complete disk image with progress indicator",
@@ -6011,7 +6011,7 @@ const commandsDatabase = [
   },
   {
     "name": "deno",
-    "subtitle": "Deno",
+    "standsFor": "Deno",
     "description": "Secure runtime for JavaScript and TypeScript",
     "examples": [
       "deno run app.ts  # Execute TypeScript file directly",
@@ -6091,7 +6091,7 @@ const commandsDatabase = [
   },
   {
     "name": "df",
-    "subtitle": "disk free",
+    "standsFor": "disk free",
     "description": "Display filesystem disk space usage",
     "examples": [
       "df -h  # Show disk usage in human-readable format (GB, MB)",
@@ -6162,7 +6162,7 @@ const commandsDatabase = [
   },
   {
     "name": "dig",
-    "subtitle": "Domain Information Groper",
+    "standsFor": "Domain Information Groper",
     "description": "Flexible DNS lookup tool with detailed output",
     "examples": [
       "dig google.com  # Look up A records for google.com",
@@ -6227,7 +6227,7 @@ const commandsDatabase = [
   },
   {
     "name": "dirname",
-    "subtitle": "directory name",
+    "standsFor": "directory name",
     "description": "Extract directory path from full path",
     "examples": [
       "dirname /path/to/file.txt  # Extract '/path/to' from full path",
@@ -6302,7 +6302,7 @@ const commandsDatabase = [
   },
   {
     "name": "dmesg",
-    "subtitle": "Display Message",
+    "standsFor": "Display Message",
     "description": "Display kernel ring buffer messages",
     "examples": [
       "dmesg  # Display all messages from kernel ring buffer",
@@ -6366,7 +6366,7 @@ const commandsDatabase = [
   },
   {
     "name": "dnf",
-    "subtitle": "Dandified YUM",
+    "standsFor": "Dandified YUM",
     "description": "Modern package manager for Red Hat-based distributions",
     "examples": [
       "sudo dnf check-update  # Check for available package updates",
@@ -6438,7 +6438,7 @@ const commandsDatabase = [
   },
   {
     "name": "docker",
-    "subtitle": "Docker",
+    "standsFor": "Docker",
     "description": "Container platform for building, sharing, and running applications",
     "examples": [
       "docker build -t myapp:latest .  # Builds Docker image from Dockerfile in current directory",
@@ -6528,7 +6528,7 @@ const commandsDatabase = [
   },
   {
     "name": "docker-build-multistage",
-    "subtitle": "Docker Multi-stage Build",
+    "standsFor": "Docker Multi-stage Build",
     "description": "Build Docker images using multi-stage builds for optimization",
     "examples": [
       "docker build --target production --build-arg NODE_ENV=production -t myapp:prod .  # Build specific stage with build arguments",
@@ -6608,7 +6608,7 @@ const commandsDatabase = [
   },
   {
     "name": "docker-compose",
-    "subtitle": "Docker Compose",
+    "standsFor": "Docker Compose",
     "description": "Define and run multi-container Docker applications",
     "examples": [
       "docker-compose up  # Start all services defined in docker-compose.yml",
@@ -6689,7 +6689,7 @@ const commandsDatabase = [
   },
   {
     "name": "docker-compose-production",
-    "subtitle": "Docker Compose Production",
+    "standsFor": "Docker Compose Production",
     "description": "Docker Compose for production deployments and scaling",
     "examples": [
       "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d  # Deploy using base config with production overrides",
@@ -6769,7 +6769,7 @@ const commandsDatabase = [
   },
   {
     "name": "docker-network-advanced",
-    "subtitle": "Docker Network Management",
+    "standsFor": "Docker Network Management",
     "description": "Advanced Docker networking for container communication",
     "examples": [
       "docker network create --driver bridge --subnet=172.20.0.0/16 --ip-range=172.20.240.0/20 my-network  # Create custom bridge network with specific subnet and IP range",
@@ -6849,7 +6849,7 @@ const commandsDatabase = [
   },
   {
     "name": "docker-run-advanced",
-    "subtitle": "Docker Run with Advanced Options",
+    "standsFor": "Docker Run with Advanced Options",
     "description": "Run Docker containers with advanced configuration options",
     "examples": [
       "docker run --memory=2g --cpus=1.5 --name myapp nginx  # Start container with 2GB RAM and 1.5 CPU core limits",
@@ -6930,7 +6930,7 @@ const commandsDatabase = [
   },
   {
     "name": "docker-swarm-orchestration",
-    "subtitle": "Docker Swarm Orchestration",
+    "standsFor": "Docker Swarm Orchestration",
     "description": "Docker Swarm cluster orchestration and management",
     "examples": [
       "docker swarm init --advertise-addr 192.168.1.100 --listen-addr 0.0.0.0:2377  # Initialize Swarm manager with specific advertise and listen addresses",
@@ -7010,7 +7010,7 @@ const commandsDatabase = [
   },
   {
     "name": "docker-volume-management",
-    "subtitle": "Docker Volume Management",
+    "standsFor": "Docker Volume Management",
     "description": "Advanced Docker volume and data management",
     "examples": [
       "docker volume create --driver local --opt type=tmpfs --opt device=tmpfs --opt o=size=100m temp-volume  # Create temporary volume in memory with size limit",
@@ -7090,7 +7090,7 @@ const commandsDatabase = [
   },
   {
     "name": "dotnet",
-    "subtitle": ".NET CLI",
+    "standsFor": ".NET CLI",
     "description": ".NET CLI tools for creating, building, and running .NET applications",
     "examples": [
       "dotnet new console -n MyApp  # Create new .NET console application named MyApp",
@@ -7154,7 +7154,7 @@ const commandsDatabase = [
   },
   {
     "name": "drush",
-    "subtitle": "Drupal Shell",
+    "standsFor": "Drupal Shell",
     "description": "Drush command line shell and Unix scripting interface for Drupal",
     "examples": [
       "drush cache:rebuild  # Clears and rebuilds all Drupal caches",
@@ -7241,7 +7241,7 @@ const commandsDatabase = [
   },
   {
     "name": "dstat",
-    "subtitle": "Dynamic Statistics",
+    "standsFor": "Dynamic Statistics",
     "description": "Versatile system resource statistics tool",
     "examples": [
       "dstat  # Show CPU, disk, network, paging, and system statistics",
@@ -7304,7 +7304,7 @@ const commandsDatabase = [
   },
   {
     "name": "du",
-    "subtitle": "disk usage",
+    "standsFor": "disk usage",
     "description": "Display directory and file disk usage",
     "examples": [
       "du -h --max-depth=1 | sort -hr  # Show directory sizes at current level, sorted by size",
@@ -7378,7 +7378,7 @@ const commandsDatabase = [
   },
   {
     "name": "duplicity",
-    "subtitle": "Duplicity",
+    "standsFor": "Duplicity",
     "description": "Encrypted bandwidth-efficient backup using rsync algorithm",
     "examples": [
       "duplicity full /home/user/ file:///backup/user/  # Create full encrypted backup to local directory",
@@ -7432,7 +7432,7 @@ const commandsDatabase = [
   },
   {
     "name": "dust",
-    "subtitle": "dust",
+    "standsFor": "dust",
     "description": "Intuitive du alternative with visual disk usage display",
     "examples": [
       "dust  # Display disk usage with bar charts and colors",
@@ -7512,7 +7512,7 @@ const commandsDatabase = [
   },
   {
     "name": "eksctl",
-    "subtitle": "EKS Control",
+    "standsFor": "EKS Control",
     "description": "Simple CLI tool for creating and managing EKS clusters",
     "examples": [
       "eksctl create cluster --name production-cluster --version 1.27 --region us-west-2 --nodegroup-name workers --node-type m5.large --nodes 3 --nodes-min 1 --nodes-max 10  # Create EKS cluster with managed node group and auto-scaling",
@@ -7585,7 +7585,7 @@ const commandsDatabase = [
   },
   {
     "name": "elasticsearch",
-    "subtitle": "Elasticsearch Search Engine",
+    "standsFor": "Elasticsearch Search Engine",
     "description": "Distributed search and analytics engine for log aggregation",
     "examples": [
       "elasticsearch  # Start Elasticsearch server with default settings",
@@ -7642,7 +7642,7 @@ const commandsDatabase = [
   },
   {
     "name": "emacs",
-    "subtitle": "Editor MACroS",
+    "standsFor": "Editor MACroS",
     "description": "Extensible text editor and computing environment",
     "examples": [
       "emacs filename.txt  # Open file in Emacs editor",
@@ -7701,7 +7701,7 @@ const commandsDatabase = [
   },
   {
     "name": "env",
-    "subtitle": "environment",
+    "standsFor": "environment",
     "description": "Display environment variables or run command with modified environment",
     "examples": [
       "env  # Show all current environment variables and their values",
@@ -7779,7 +7779,7 @@ const commandsDatabase = [
   },
   {
     "name": "esbuild",
-    "subtitle": "ESBuild",
+    "standsFor": "ESBuild",
     "description": "Extremely fast JavaScript bundler and minifier",
     "examples": [
       "esbuild app.js --bundle --outfile=out.js  # Bundle app.js and dependencies into single file",
@@ -7836,7 +7836,7 @@ const commandsDatabase = [
   },
   {
     "name": "eslint",
-    "subtitle": "ESLint",
+    "standsFor": "ESLint",
     "description": "JavaScript and TypeScript linter for code quality and style",
     "examples": [
       "eslint src/  # Check all JavaScript files in src directory",
@@ -7894,7 +7894,7 @@ const commandsDatabase = [
   },
   {
     "name": "esptool",
-    "subtitle": "ESP Tool",
+    "standsFor": "ESP Tool",
     "description": "ESP8266 and ESP32 flashing tool",
     "examples": [
       "esptool.py --chip esp32 --port /dev/ttyUSB0 flash_id  # Shows flash memory details of connected ESP32",
@@ -7978,7 +7978,7 @@ const commandsDatabase = [
   },
   {
     "name": "ethtool",
-    "subtitle": "Ethernet Tool",
+    "standsFor": "Ethernet Tool",
     "description": "Display and modify network interface settings",
     "examples": [
       "ethtool eth0  # Display network interface settings and capabilities",
@@ -8042,7 +8042,7 @@ const commandsDatabase = [
   },
   {
     "name": "exa",
-    "subtitle": "exa",
+    "standsFor": "exa",
     "description": "Modern ls replacement with colors and git integration",
     "examples": [
       "exa --icons  # Show directory contents with file type icons",
@@ -8125,7 +8125,7 @@ const commandsDatabase = [
   },
   {
     "name": "exiftool",
-    "subtitle": "EXIF Tool",
+    "standsFor": "EXIF Tool",
     "description": "Read and write metadata in various file formats",
     "examples": [
       "exiftool image.jpg  # Display all EXIF data from JPEG image",
@@ -8206,7 +8206,7 @@ const commandsDatabase = [
   },
   {
     "name": "expect",
-    "subtitle": "Expect",
+    "standsFor": "Expect",
     "description": "Automate interactive applications",
     "examples": [
       "expect -c 'spawn ssh user@host; expect \"password:\"; send \"mypass\\r\"; interact'  # Automate SSH login with password",
@@ -8271,7 +8271,7 @@ const commandsDatabase = [
   },
   {
     "name": "export",
-    "subtitle": "export",
+    "standsFor": "export",
     "description": "Set environment variables for current session and child processes",
     "examples": [
       "export PATH=$PATH:/usr/local/bin  # Add directory to PATH environment variable",
@@ -8350,7 +8350,7 @@ const commandsDatabase = [
   },
   {
     "name": "factor",
-    "subtitle": "Factor",
+    "standsFor": "Factor",
     "description": "Print prime factors of numbers",
     "examples": [
       "factor 60  # Show prime factors of 60",
@@ -8415,7 +8415,7 @@ const commandsDatabase = [
   },
   {
     "name": "fail2ban",
-    "subtitle": "Fail to Ban",
+    "standsFor": "Fail to Ban",
     "description": "Intrusion prevention system that bans IPs after failed attempts",
     "examples": [
       "sudo fail2ban-client status  # Show fail2ban status and active jails",
@@ -8465,7 +8465,7 @@ const commandsDatabase = [
   },
   {
     "name": "fd",
-    "subtitle": "fd",
+    "standsFor": "fd",
     "description": "Simple, fast alternative to find with intuitive syntax",
     "examples": [
       "fd '*.py'  # Find all Python files (pattern is automatically glob-style)",
@@ -8546,7 +8546,7 @@ const commandsDatabase = [
   },
   {
     "name": "ffmpeg",
-    "subtitle": "Fast Forward MPEG",
+    "standsFor": "Fast Forward MPEG",
     "description": "Comprehensive multimedia framework for audio/video processing",
     "examples": [
       "ffmpeg -i input.avi output.mp4  # Convert AVI video to MP4 format",
@@ -8628,7 +8628,7 @@ const commandsDatabase = [
   },
   {
     "name": "ffprobe",
-    "subtitle": "Fast Forward Probe",
+    "standsFor": "Fast Forward Probe",
     "description": "Multimedia stream analyzer and information extractor",
     "examples": [
       "ffprobe -v quiet -print_format json -show_format video.mp4  # Display file format information as JSON",
@@ -8708,7 +8708,7 @@ const commandsDatabase = [
   },
   {
     "name": "figlet",
-    "subtitle": "FIGlet (Frank, Ian & Glenn's Letters)",
+    "standsFor": "FIGlet (Frank, Ian & Glenn's Letters)",
     "description": "Generate large ASCII art text banners",
     "examples": [
       "figlet 'Hello'  # Create large ASCII art 'Hello' banner",
@@ -8774,7 +8774,7 @@ const commandsDatabase = [
   },
   {
     "name": "file",
-    "subtitle": "file",
+    "standsFor": "file",
     "description": "Determine file type and format",
     "examples": [
       "file document.pdf  # Determine file format regardless of extension",
@@ -8853,7 +8853,7 @@ const commandsDatabase = [
   },
   {
     "name": "filebeat",
-    "subtitle": "Filebeat Log Shipper",
+    "standsFor": "Filebeat Log Shipper",
     "description": "Lightweight shipper for forwarding and centralizing log data",
     "examples": [
       "filebeat -e  # Run Filebeat with logging to stderr",
@@ -8911,7 +8911,7 @@ const commandsDatabase = [
   },
   {
     "name": "find",
-    "subtitle": "find",
+    "standsFor": "find",
     "description": "Search for files and directories based on criteria",
     "examples": [
       "find . -name '*.js'  # Locate all JavaScript files in current directory and subdirectories",
@@ -8990,7 +8990,7 @@ const commandsDatabase = [
   },
   {
     "name": "firewalld",
-    "subtitle": "Firewall Daemon",
+    "standsFor": "Firewall Daemon",
     "description": "Dynamic firewall management daemon with zones",
     "examples": [
       "firewall-cmd --state  # Check if firewalld is running",
@@ -9040,7 +9040,7 @@ const commandsDatabase = [
   },
   {
     "name": "fish",
-    "subtitle": "Friendly Interactive Shell",
+    "standsFor": "Friendly Interactive Shell",
     "description": "Friendly interactive shell with smart features",
     "examples": [
       "fish  # Launch fish interactive session",
@@ -9105,7 +9105,7 @@ const commandsDatabase = [
   },
   {
     "name": "fluentd",
-    "subtitle": "Fluent Daemon",
+    "standsFor": "Fluent Daemon",
     "description": "Unified logging layer for collecting and routing log data",
     "examples": [
       "fluentd -c fluent.conf  # Run Fluentd with specific configuration",
@@ -9163,7 +9163,7 @@ const commandsDatabase = [
   },
   {
     "name": "flutter",
-    "subtitle": "Flutter",
+    "standsFor": "Flutter",
     "description": "Flutter SDK for building natively compiled applications",
     "examples": [
       "flutter create myapp  # Creates a new Flutter project with default template and structure",
@@ -9248,7 +9248,7 @@ const commandsDatabase = [
   },
   {
     "name": "flux",
-    "subtitle": "Flux v2",
+    "standsFor": "Flux v2",
     "description": "GitOps toolkit for Kubernetes (Flux v2)",
     "examples": [
       "flux bootstrap github --owner=myuser --repository=fleet-infra --branch=main --path=./clusters/my-cluster --personal  # Install Flux and configure Git repository for GitOps",
@@ -9322,7 +9322,7 @@ const commandsDatabase = [
   },
   {
     "name": "fluxctl",
-    "subtitle": "Flux Control",
+    "standsFor": "Flux Control",
     "description": "GitOps toolkit for continuous delivery to Kubernetes",
     "examples": [
       "fluxctl list-workloads  # Show all workloads managed by Flux",
@@ -9396,7 +9396,7 @@ const commandsDatabase = [
   },
   {
     "name": "flyway",
-    "subtitle": "Flyway",
+    "standsFor": "Flyway",
     "description": "Database migration tool for version control and deployment",
     "examples": [
       "flyway -url=jdbc:postgresql://localhost/mydb -user=dbuser -password=secret migrate  # Apply all pending migrations to database",
@@ -9462,7 +9462,7 @@ const commandsDatabase = [
   },
   {
     "name": "fortune",
-    "subtitle": "Fortune",
+    "standsFor": "Fortune",
     "description": "Display random quotations and sayings",
     "examples": [
       "fortune  # Display random fortune cookie message",
@@ -9522,7 +9522,7 @@ const commandsDatabase = [
   },
   {
     "name": "free",
-    "subtitle": "free memory",
+    "standsFor": "free memory",
     "description": "Display memory usage information",
     "examples": [
       "free -h  # Show memory usage in KB, MB, GB units",
@@ -9593,7 +9593,7 @@ const commandsDatabase = [
   },
   {
     "name": "fsck",
-    "subtitle": "File System Check",
+    "standsFor": "File System Check",
     "description": "Check and repair filesystem consistency",
     "examples": [
       "sudo fsck /dev/sdb1  # Check filesystem on device for errors",
@@ -9657,7 +9657,7 @@ const commandsDatabase = [
   },
   {
     "name": "fuser",
-    "subtitle": "File User",
+    "standsFor": "File User",
     "description": "Identify processes using files or sockets",
     "examples": [
       "fuser /path/to/file  # Display processes currently using specific file",
@@ -9717,7 +9717,7 @@ const commandsDatabase = [
   },
   {
     "name": "fzf",
-    "subtitle": "fuzzy finder",
+    "standsFor": "fuzzy finder",
     "description": "Command-line fuzzy finder for interactive selection",
     "examples": [
       "find . -type f | fzf  # Select file from list with fuzzy search",
@@ -9798,7 +9798,7 @@ const commandsDatabase = [
   },
   {
     "name": "gcc",
-    "subtitle": "GNU Compiler Collection",
+    "standsFor": "GNU Compiler Collection",
     "description": "GNU Compiler Collection for C/C++ and other languages",
     "examples": [
       "gcc hello.c -o hello  # Compile hello.c and create executable named hello",
@@ -9878,7 +9878,7 @@ const commandsDatabase = [
   },
   {
     "name": "gcloud",
-    "subtitle": "Google Cloud CLI Advanced",
+    "standsFor": "Google Cloud CLI Advanced",
     "description": "Advanced Google Cloud Platform operations for enterprise management",
     "examples": [
       "gcloud container clusters create-auto my-autopilot-cluster --region=us-central1 --release-channel=regular  # Create fully managed GKE Autopilot cluster",
@@ -9953,7 +9953,7 @@ const commandsDatabase = [
   },
   {
     "name": "gem",
-    "subtitle": "RubyGems",
+    "standsFor": "RubyGems",
     "description": "RubyGems package manager for Ruby libraries",
     "examples": [
       "gem install rails  # Install Rails framework gem",
@@ -10011,7 +10011,7 @@ const commandsDatabase = [
   },
   {
     "name": "geth",
-    "subtitle": "Go Ethereum",
+    "standsFor": "Go Ethereum",
     "description": "Go Ethereum client implementation",
     "examples": [
       "geth --syncmode fast  # Starts Ethereum node with fast synchronization mode",
@@ -10086,7 +10086,7 @@ const commandsDatabase = [
   },
   {
     "name": "gifsicle",
-    "subtitle": "GIF-sicle",
+    "standsFor": "GIF-sicle",
     "description": "Command-line tool for creating and editing GIF animations",
     "examples": [
       "gifsicle -O3 input.gif -o output.gif  # Optimize GIF with maximum compression",
@@ -10167,7 +10167,7 @@ const commandsDatabase = [
   },
   {
     "name": "git",
-    "subtitle": "global information tracker",
+    "standsFor": "global information tracker",
     "description": "Version control system for tracking code changes",
     "examples": [
       "git init  # Create new Git repository in current directory",
@@ -10249,7 +10249,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-archive-operations",
-    "subtitle": "Git Archive Operations",
+    "standsFor": "Git Archive Operations",
     "description": "Create archives of repository contents for distribution",
     "examples": [
       "git archive --format=tar.gz --prefix=myproject-1.0/ v1.0 > myproject-1.0.tar.gz  # Create compressed archive of tagged release with prefix",
@@ -10323,7 +10323,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-bisect",
-    "subtitle": "Git bisect",
+    "standsFor": "Git bisect",
     "description": "Binary search through commit history to find bugs",
     "examples": [
       "git bisect start  # Initialize binary search for finding problematic commit",
@@ -10402,7 +10402,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-blame-advanced",
-    "subtitle": "Git Blame Advanced",
+    "standsFor": "Git Blame Advanced",
     "description": "Advanced blame analysis for code attribution and history",
     "examples": [
       "git blame -c --date=short src/main.js  # Show blame with commit hash and short date format",
@@ -10476,7 +10476,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-bundle-operations",
-    "subtitle": "Git Bundle Operations",
+    "standsFor": "Git Bundle Operations",
     "description": "Create and manage Git bundles for offline repository transfer",
     "examples": [
       "git bundle create repo-backup.bundle --all  # Package entire repository with all branches and tags into bundle",
@@ -10550,7 +10550,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-cherry-pick",
-    "subtitle": "Git cherry-pick",
+    "standsFor": "Git cherry-pick",
     "description": "Apply specific commits from other branches",
     "examples": [
       "git cherry-pick abc1234  # Apply specific commit to current branch",
@@ -10629,7 +10629,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-daemon-server",
-    "subtitle": "Git Daemon Server",
+    "standsFor": "Git Daemon Server",
     "description": "Set up Git daemon for serving repositories over Git protocol",
     "examples": [
       "git daemon --reuseaddr --base-path=/opt/git/ --export-all --verbose --enable=receive-pack  # Start Git daemon allowing push and pull operations",
@@ -10703,7 +10703,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-fetch-strategies",
-    "subtitle": "Git Fetch Strategies",
+    "standsFor": "Git Fetch Strategies",
     "description": "Advanced fetching strategies for remote repositories",
     "examples": [
       "git fetch --all --prune  # Update all remotes and remove local tracking branches for deleted remote branches",
@@ -10777,7 +10777,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-filter-branch",
-    "subtitle": "Git Filter Branch",
+    "standsFor": "Git Filter Branch",
     "description": "Rewrite repository history with powerful filtering capabilities",
     "examples": [
       "git filter-branch --tree-filter 'rm -f passwords.txt' HEAD  # Remove sensitive file from entire repository history",
@@ -10853,7 +10853,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-flow-feature",
-    "subtitle": "Git Flow Feature",
+    "standsFor": "Git Flow Feature",
     "description": "Manage feature branches in Git Flow workflow",
     "examples": [
       "git flow feature start user-authentication  # Create and switch to new feature branch based on develop",
@@ -10928,7 +10928,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-flow-init",
-    "subtitle": "Git Flow Initialize",
+    "standsFor": "Git Flow Initialize",
     "description": "Initialize Git Flow branching model in repository",
     "examples": [
       "git flow init -d  # Set up Git Flow with default branch naming conventions",
@@ -10994,7 +10994,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-gc-maintenance",
-    "subtitle": "Git Garbage Collection",
+    "standsFor": "Git Garbage Collection",
     "description": "Repository maintenance and garbage collection operations",
     "examples": [
       "git gc --aggressive  # Thorough cleanup and optimization of repository storage",
@@ -11069,7 +11069,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-hooks-management",
-    "subtitle": "Git Hooks Management",
+    "standsFor": "Git Hooks Management",
     "description": "Manage and configure Git hooks for automation",
     "examples": [
       "git config core.hooksPath .githooks  # Use custom directory for Git hooks instead of .git/hooks",
@@ -11144,7 +11144,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-lfs-management",
-    "subtitle": "Git Large File Storage",
+    "standsFor": "Git Large File Storage",
     "description": "Git Large File Storage for handling large binary files",
     "examples": [
       "git lfs install  # Set up Git LFS hooks and configuration for repository",
@@ -11219,7 +11219,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-log",
-    "subtitle": "Git log",
+    "standsFor": "Git log",
     "description": "Advanced Git commit history viewing and filtering",
     "examples": [
       "git log --oneline --graph --all  # Show compact commit history with branch visualization",
@@ -11299,7 +11299,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-log-advanced",
-    "subtitle": "Git Advanced Logging",
+    "standsFor": "Git Advanced Logging",
     "description": "Advanced logging and history inspection with custom formats",
     "examples": [
       "git log --pretty=format:'%C(yellow)%h%C(reset) - %C(bold blue)%an%C(reset), %C(green)%cr%C(reset) : %s'  # Colorized log with hash, author, relative date, and subject",
@@ -11374,7 +11374,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-merge-strategies",
-    "subtitle": "Git Merge Strategies",
+    "standsFor": "Git Merge Strategies",
     "description": "Advanced merge strategies and conflict resolution techniques",
     "examples": [
       "git merge -s recursive -X ours feature-branch  # Merge preferring current branch changes in conflicts",
@@ -11450,7 +11450,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-pull-strategies",
-    "subtitle": "Git Pull Strategies",
+    "standsFor": "Git Pull Strategies",
     "description": "Advanced pulling strategies with merge and rebase options",
     "examples": [
       "git pull --rebase origin main  # Fetch and rebase local commits on top of remote changes",
@@ -11526,7 +11526,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-push-strategies",
-    "subtitle": "Git Push Strategies",
+    "standsFor": "Git Push Strategies",
     "description": "Advanced push strategies and force push safety",
     "examples": [
       "git push --force-with-lease origin feature-branch  # Force push only if remote hasn't been updated by others",
@@ -11602,7 +11602,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-rebase",
-    "subtitle": "Git rebase",
+    "standsFor": "Git rebase",
     "description": "Reapply commits on top of another base tip",
     "examples": [
       "git rebase main  # Move current branch commits on top of latest main",
@@ -11683,7 +11683,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-rebase-interactive",
-    "subtitle": "Git Interactive Rebase",
+    "standsFor": "Git Interactive Rebase",
     "description": "Interactively rewrite commit history with advanced options",
     "examples": [
       "git rebase -i HEAD~4  # Combine last 4 commits into single commit for cleaner history",
@@ -11758,7 +11758,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-reflog-recovery",
-    "subtitle": "Git Reference Log Recovery",
+    "standsFor": "Git Reference Log Recovery",
     "description": "Advanced reflog operations for commit recovery and history tracking",
     "examples": [
       "git reflog --all --graph --date=relative  # Display all reference changes with graph and relative dates",
@@ -11834,7 +11834,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-remote-management",
-    "subtitle": "Git Remote Management",
+    "standsFor": "Git Remote Management",
     "description": "Advanced remote repository management and configuration",
     "examples": [
       "git remote add upstream https://github.com/original/repo.git  # Add original repository as upstream for fork synchronization",
@@ -11910,7 +11910,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-sparse-checkout",
-    "subtitle": "Git Sparse Checkout",
+    "standsFor": "Git Sparse Checkout",
     "description": "Selectively checkout parts of large repositories",
     "examples": [
       "git sparse-checkout init --cone  # Enable sparse checkout with cone mode for better performance",
@@ -11986,7 +11986,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-stash",
-    "subtitle": "Git stash",
+    "standsFor": "Git stash",
     "description": "Temporarily save uncommitted changes",
     "examples": [
       "git stash  # Stash uncommitted changes to work on something else",
@@ -12068,7 +12068,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-stash-advanced",
-    "subtitle": "Git Advanced Stash",
+    "standsFor": "Git Advanced Stash",
     "description": "Advanced stash operations and selective staging",
     "examples": [
       "git stash push -m 'WIP: login' -- src/auth.js src/login.js  # Stash only specific files with descriptive message",
@@ -12144,7 +12144,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-submodule-advanced",
-    "subtitle": "Git Advanced Submodule",
+    "standsFor": "Git Advanced Submodule",
     "description": "Advanced submodule operations and dependency management",
     "examples": [
       "git submodule add -b develop https://github.com/user/repo.git libs/external  # Add submodule tracking specific branch instead of default",
@@ -12219,7 +12219,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-subtree-operations",
-    "subtitle": "Git Subtree Operations",
+    "standsFor": "Git Subtree Operations",
     "description": "Subtree operations for embedding and splitting repositories",
     "examples": [
       "git subtree add --prefix=vendor/library https://github.com/user/library.git main --squash  # Add external repository as subtree with squashed history",
@@ -12294,7 +12294,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-tag-management",
-    "subtitle": "Git Tag Management",
+    "standsFor": "Git Tag Management",
     "description": "Advanced tag operations for version management and releases",
     "examples": [
       "git tag -s v1.0.0 -m 'Release version 1.0.0'  # Create GPG-signed tag with message for secure releases",
@@ -12369,7 +12369,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-worktree",
-    "subtitle": "Git worktree",
+    "standsFor": "Git worktree",
     "description": "Manage multiple working trees from single repository",
     "examples": [
       "git worktree add ../feature-work feature-branch  # Create separate working directory for feature branch",
@@ -12449,7 +12449,7 @@ const commandsDatabase = [
   },
   {
     "name": "git-worktree-advanced",
-    "subtitle": "Git Advanced Worktree",
+    "standsFor": "Git Advanced Worktree",
     "description": "Advanced worktree management for parallel development",
     "examples": [
       "git worktree add --orphan ../docs-site docs  # Create worktree with new branch that has no parent commits",
@@ -12524,7 +12524,7 @@ const commandsDatabase = [
   },
   {
     "name": "github-cli",
-    "subtitle": "GitHub CLI",
+    "standsFor": "GitHub CLI",
     "description": "Command-line tool for GitHub operations and workflows",
     "examples": [
       "gh pr create --title 'Fix bug' --body 'Description of fix'  # Create pull request with title and description",
@@ -12606,7 +12606,7 @@ const commandsDatabase = [
   },
   {
     "name": "go",
-    "subtitle": "Go",
+    "standsFor": "Go",
     "description": "Go programming language compiler and tools",
     "examples": [
       "go run main.go  # Compile and execute Go program in one step",
@@ -12689,7 +12689,7 @@ const commandsDatabase = [
   },
   {
     "name": "gobuster",
-    "subtitle": "Go Buster",
+    "standsFor": "Go Buster",
     "description": "Directory and file brute-forcing tool for web application testing",
     "examples": [
       "gobuster dir -u http://example.com -w /usr/share/wordlists/dirb/common.txt  # Discover hidden directories and files on web server",
@@ -12746,7 +12746,7 @@ const commandsDatabase = [
   },
   {
     "name": "godot",
-    "subtitle": "Godot Game Engine",
+    "standsFor": "Godot Game Engine",
     "description": "Godot game engine command line interface",
     "examples": [
       "godot --export \"Windows Desktop\" game.exe  # Exports Godot project as Windows executable",
@@ -12828,7 +12828,7 @@ const commandsDatabase = [
   },
   {
     "name": "gpg",
-    "subtitle": "GNU Privacy Guard",
+    "standsFor": "GNU Privacy Guard",
     "description": "GNU Privacy Guard for encryption and digital signatures",
     "examples": [
       "gpg --gen-key  # Create new GPG key pair interactively",
@@ -12888,7 +12888,7 @@ const commandsDatabase = [
   },
   {
     "name": "gradle",
-    "subtitle": "Gradle",
+    "standsFor": "Gradle",
     "description": "Build automation tool for multi-language software development",
     "examples": [
       "gradle build  # Compile, test, and package project",
@@ -12955,7 +12955,7 @@ const commandsDatabase = [
   },
   {
     "name": "grafana",
-    "subtitle": "Grafana Dashboard",
+    "standsFor": "Grafana Dashboard",
     "description": "Multi-platform analytics and interactive visualization web application",
     "examples": [
       "grafana-server  # Start Grafana server with default settings",
@@ -13011,7 +13011,7 @@ const commandsDatabase = [
   },
   {
     "name": "grep",
-    "subtitle": "global regular expression print",
+    "standsFor": "global regular expression print",
     "description": "Search text patterns within files",
     "examples": [
       "grep 'error' *.log  # Find all occurrences of 'error' in log files",
@@ -13090,7 +13090,7 @@ const commandsDatabase = [
   },
   {
     "name": "groupmod",
-    "subtitle": "Group Modify",
+    "standsFor": "Group Modify",
     "description": "Modify group account properties and memberships",
     "examples": [
       "sudo groupmod -n newname oldname  # Change group name from oldname to newname",
@@ -13144,7 +13144,7 @@ const commandsDatabase = [
   },
   {
     "name": "grype",
-    "subtitle": "Grype",
+    "standsFor": "Grype",
     "description": "Vulnerability scanner for container images and filesystems",
     "examples": [
       "grype myregistry/myapp:v1.0.0  # Scan container image for known vulnerabilities",
@@ -13217,7 +13217,7 @@ const commandsDatabase = [
   },
   {
     "name": "gunzip",
-    "subtitle": "GNU unzip",
+    "standsFor": "GNU unzip",
     "description": "Decompress gzip files",
     "examples": [
       "gunzip document.txt.gz  # Extract file and remove .gz version",
@@ -13295,7 +13295,7 @@ const commandsDatabase = [
   },
   {
     "name": "gzip",
-    "subtitle": "GNU Zip",
+    "standsFor": "GNU Zip",
     "description": "Compress and decompress files using GNU zip algorithm",
     "examples": [
       "gzip file.txt  # Compress file.txt to file.txt.gz (removes original)",
@@ -13360,7 +13360,7 @@ const commandsDatabase = [
   },
   {
     "name": "haproxy",
-    "subtitle": "High Availability Proxy",
+    "standsFor": "High Availability Proxy",
     "description": "High availability load balancer and proxy server",
     "examples": [
       "sudo haproxy -f /etc/haproxy/haproxy.cfg  # Start HAProxy with configuration file",
@@ -13426,7 +13426,7 @@ const commandsDatabase = [
   },
   {
     "name": "hashcat",
-    "subtitle": "Hash Catalyst",
+    "standsFor": "Hash Catalyst",
     "description": "Advanced password recovery and security auditing tool",
     "examples": [
       "hashcat -m 0 -a 0 hashes.txt wordlist.txt  # Dictionary attack on MD5 hashes for password auditing",
@@ -13483,7 +13483,7 @@ const commandsDatabase = [
   },
   {
     "name": "head",
-    "subtitle": "head",
+    "standsFor": "head",
     "description": "Display first lines of files",
     "examples": [
       "head -20 data.csv  # Show first 20 lines to understand file structure",
@@ -13542,7 +13542,7 @@ const commandsDatabase = [
   },
   {
     "name": "helm",
-    "subtitle": "Helm",
+    "standsFor": "Helm",
     "description": "Package manager for Kubernetes applications",
     "examples": [
       "helm repo add stable https://charts.helm.sh/stable  # Add Helm chart repository",
@@ -13609,7 +13609,7 @@ const commandsDatabase = [
   },
   {
     "name": "helm-package-management",
-    "subtitle": "Helm Package Manager",
+    "standsFor": "Helm Package Manager",
     "description": "Helm package manager for Kubernetes applications",
     "examples": [
       "helm install webapp stable/nginx-ingress --values custom-values.yaml --set controller.service.type=LoadBalancer --namespace ingress-system --create-namespace  # Install Helm chart with custom values file and command-line overrides",
@@ -13690,7 +13690,7 @@ const commandsDatabase = [
   },
   {
     "name": "history",
-    "subtitle": "history",
+    "standsFor": "history",
     "description": "Display command history",
     "examples": [
       "history  # Display all commands from current session history",
@@ -13772,7 +13772,7 @@ const commandsDatabase = [
   },
   {
     "name": "htop",
-    "subtitle": "H Top",
+    "standsFor": "H Top",
     "description": "Interactive process viewer and system monitor with better interface",
     "examples": [
       "htop  # Launch interactive system monitor with colorful display",
@@ -13837,7 +13837,7 @@ const commandsDatabase = [
   },
   {
     "name": "httpd",
-    "subtitle": "HTTP daemon",
+    "standsFor": "HTTP daemon",
     "description": "Apache HTTP Server daemon (RHEL/CentOS naming)",
     "examples": [
       "httpd -t  # Check Apache configuration files for syntax errors",
@@ -13910,7 +13910,7 @@ const commandsDatabase = [
   },
   {
     "name": "hydra",
-    "subtitle": "The Hydra",
+    "standsFor": "The Hydra",
     "description": "Network service password security testing tool",
     "examples": [
       "hydra -l admin -P passwords.txt ssh://target.com  # Test SSH service password security",
@@ -13966,7 +13966,7 @@ const commandsDatabase = [
   },
   {
     "name": "iftop",
-    "subtitle": "Interface Top",
+    "standsFor": "Interface Top",
     "description": "Display bandwidth usage on network interfaces",
     "examples": [
       "sudo iftop  # Show real-time network bandwidth usage",
@@ -14020,7 +14020,7 @@ const commandsDatabase = [
   },
   {
     "name": "imagemagick",
-    "subtitle": "ImageMagick",
+    "standsFor": "ImageMagick",
     "description": "Comprehensive image manipulation and conversion suite",
     "examples": [
       "convert image.png image.jpg  # Convert PNG image to JPEG format",
@@ -14101,7 +14101,7 @@ const commandsDatabase = [
   },
   {
     "name": "influxdb",
-    "subtitle": "InfluxDB Time Series Database",
+    "standsFor": "InfluxDB Time Series Database",
     "description": "High-performance time-series database for metrics and events",
     "examples": [
       "influxd  # Start InfluxDB daemon with default configuration",
@@ -14158,7 +14158,7 @@ const commandsDatabase = [
   },
   {
     "name": "ionice",
-    "subtitle": "I/O Nice",
+    "standsFor": "I/O Nice",
     "description": "Set or get I/O scheduling class and priority for processes",
     "examples": [
       "ionice -c 3 rsync -av /source/ /dest/  # Run rsync with idle I/O class (only uses idle I/O)",
@@ -14205,7 +14205,7 @@ const commandsDatabase = [
   },
   {
     "name": "iostat",
-    "subtitle": "I/O Statistics",
+    "standsFor": "I/O Statistics",
     "description": "Report system I/O and CPU statistics",
     "examples": [
       "iostat  # Show current CPU and I/O statistics",
@@ -14269,7 +14269,7 @@ const commandsDatabase = [
   },
   {
     "name": "iotop",
-    "subtitle": "I/O Top",
+    "standsFor": "I/O Top",
     "description": "Monitor I/O usage by processes in real-time",
     "examples": [
       "sudo iotop  # Show real-time I/O usage by processes",
@@ -14331,7 +14331,7 @@ const commandsDatabase = [
   },
   {
     "name": "ip",
-    "subtitle": "IP",
+    "standsFor": "IP",
     "description": "Show and manipulate routing, devices, policy routing and tunnels",
     "examples": [
       "ip addr show  # Display IP addresses assigned to all interfaces",
@@ -14384,7 +14384,7 @@ const commandsDatabase = [
   },
   {
     "name": "iperf3",
-    "subtitle": "Internet Performance 3",
+    "standsFor": "Internet Performance 3",
     "description": "Network bandwidth testing tool",
     "examples": [
       "iperf3 -s  # Run iperf3 in server mode listening on port 5201",
@@ -14450,7 +14450,7 @@ const commandsDatabase = [
   },
   {
     "name": "iptables",
-    "subtitle": "IP Tables",
+    "standsFor": "IP Tables",
     "description": "Advanced Linux firewall administration and packet filtering",
     "examples": [
       "sudo iptables -L -n -v  # List all iptables rules with verbose output and line numbers",
@@ -14505,7 +14505,7 @@ const commandsDatabase = [
   },
   {
     "name": "istio-service-mesh",
-    "subtitle": "Istio Service Mesh",
+    "standsFor": "Istio Service Mesh",
     "description": "Istio service mesh configuration and management",
     "examples": [
       "istioctl install --set values.pilot.env.EXTERNAL_ISTIOD=true --set values.global.meshID=mesh1 --set values.global.network=network1  # Install Istio with external control plane and multi-network configuration",
@@ -14585,7 +14585,7 @@ const commandsDatabase = [
   },
   {
     "name": "istioctl",
-    "subtitle": "Istio Control",
+    "standsFor": "Istio Control",
     "description": "Service mesh management tool for Istio on Kubernetes",
     "examples": [
       "istioctl install --set values.defaultRevision=default  # Install Istio with default configuration",
@@ -14659,7 +14659,7 @@ const commandsDatabase = [
   },
   {
     "name": "iw",
-    "subtitle": "Interface Wireless",
+    "standsFor": "Interface Wireless",
     "description": "Modern wireless configuration and monitoring tool",
     "examples": [
       "iw dev  # Show all wireless network interfaces",
@@ -14723,7 +14723,7 @@ const commandsDatabase = [
   },
   {
     "name": "iwconfig",
-    "subtitle": "Interface Wireless Config",
+    "standsFor": "Interface Wireless Config",
     "description": "Configure wireless network interface",
     "examples": [
       "iwconfig  # Display all wireless network interfaces and their status",
@@ -14786,7 +14786,7 @@ const commandsDatabase = [
   },
   {
     "name": "jaeger",
-    "subtitle": "Jaeger Tracing",
+    "standsFor": "Jaeger Tracing",
     "description": "End-to-end distributed tracing system for monitoring microservices",
     "examples": [
       "jaeger-all-in-one  # Start Jaeger with all components in single process",
@@ -14842,7 +14842,7 @@ const commandsDatabase = [
   },
   {
     "name": "java",
-    "subtitle": "Java",
+    "standsFor": "Java",
     "description": "Java runtime for executing Java applications",
     "examples": [
       "java HelloWorld  # Execute compiled Java class file",
@@ -14923,7 +14923,7 @@ const commandsDatabase = [
   },
   {
     "name": "javac",
-    "subtitle": "Java compiler",
+    "standsFor": "Java compiler",
     "description": "Java compiler for compiling Java source code",
     "examples": [
       "javac HelloWorld.java  # Compile Java source to bytecode class file",
@@ -15004,7 +15004,7 @@ const commandsDatabase = [
   },
   {
     "name": "jenkins-cli",
-    "subtitle": "Jenkins CLI",
+    "standsFor": "Jenkins CLI",
     "description": "Command-line interface for Jenkins automation server",
     "examples": [
       "java -jar jenkins-cli.jar -s http://jenkins:8080 build my-job  # Trigger build of 'my-job' on Jenkins server",
@@ -15085,7 +15085,7 @@ const commandsDatabase = [
   },
   {
     "name": "jest",
-    "subtitle": "Jest",
+    "standsFor": "Jest",
     "description": "JavaScript testing framework with built-in mocking and coverage",
     "examples": [
       "jest  # Execute all test files found in project",
@@ -15167,7 +15167,7 @@ const commandsDatabase = [
   },
   {
     "name": "jmeter",
-    "subtitle": "Java Meter",
+    "standsFor": "Java Meter",
     "description": "Java-based load testing and performance measurement tool",
     "examples": [
       "jmeter  # Launch JMeter GUI for test plan creation",
@@ -15232,7 +15232,7 @@ const commandsDatabase = [
   },
   {
     "name": "jobs",
-    "subtitle": "Jobs",
+    "standsFor": "Jobs",
     "description": "Display active jobs in current shell session",
     "examples": [
       "jobs  # Show all background and suspended jobs",
@@ -15294,7 +15294,7 @@ const commandsDatabase = [
   },
   {
     "name": "john",
-    "subtitle": "John the Ripper",
+    "standsFor": "John the Ripper",
     "description": "Password security auditing and recovery tool for legitimate testing",
     "examples": [
       "john --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt  # Test password strength using dictionary attack",
@@ -15351,7 +15351,7 @@ const commandsDatabase = [
   },
   {
     "name": "journalctl",
-    "subtitle": "Journal Control",
+    "standsFor": "Journal Control",
     "description": "Query and display systemd journal logs",
     "examples": [
       "journalctl  # Display all journal entries (oldest first)",
@@ -15416,7 +15416,7 @@ const commandsDatabase = [
   },
   {
     "name": "jpegoptim",
-    "subtitle": "JPEG Optimizer",
+    "standsFor": "JPEG Optimizer",
     "description": "Optimize JPEG image files for size reduction",
     "examples": [
       "jpegoptim --max=85 image.jpg  # Reduce JPEG quality to maximum 85% if higher",
@@ -15497,7 +15497,7 @@ const commandsDatabase = [
   },
   {
     "name": "jq",
-    "subtitle": "JSON Query",
+    "standsFor": "JSON Query",
     "description": "Command-line JSON processor",
     "examples": [
       "cat data.json | jq '.'  # Format and colorize JSON output",
@@ -15576,7 +15576,7 @@ const commandsDatabase = [
   },
   {
     "name": "julia",
-    "subtitle": "Julia",
+    "standsFor": "Julia",
     "description": "High-performance programming language for scientific computing",
     "examples": [
       "julia  # Launch Julia interactive environment",
@@ -15657,7 +15657,7 @@ const commandsDatabase = [
   },
   {
     "name": "jupyter",
-    "subtitle": "Julia Python R",
+    "standsFor": "Julia Python R",
     "description": "Jupyter Notebook and Lab interactive computing environment",
     "examples": [
       "jupyter notebook  # Launches Jupyter Notebook server in current directory",
@@ -15743,7 +15743,7 @@ const commandsDatabase = [
   },
   {
     "name": "k6",
-    "subtitle": "k6 Load Testing",
+    "standsFor": "k6 Load Testing",
     "description": "Modern load testing tool with scripting capabilities for performance monitoring",
     "examples": [
       "k6 run script.js  # Execute load test script",
@@ -15800,7 +15800,7 @@ const commandsDatabase = [
   },
   {
     "name": "k9s",
-    "subtitle": "K9s",
+    "standsFor": "K9s",
     "description": "Terminal-based UI for interacting with Kubernetes clusters",
     "examples": [
       "k9s  # Start interactive Kubernetes cluster dashboard",
@@ -15873,7 +15873,7 @@ const commandsDatabase = [
   },
   {
     "name": "kafka-console-consumer",
-    "subtitle": "Kafka Console Consumer",
+    "standsFor": "Kafka Console Consumer",
     "description": "Kafka console consumer for reading messages",
     "examples": [
       "kafka-console-consumer --bootstrap-server localhost:9092 --topic test-topic --from-beginning  # Reads all messages in topic from the earliest offset",
@@ -15957,7 +15957,7 @@ const commandsDatabase = [
   },
   {
     "name": "kafka-console-producer",
-    "subtitle": "Kafka Console Producer",
+    "standsFor": "Kafka Console Producer",
     "description": "Kafka console producer for sending messages",
     "examples": [
       "kafka-console-producer --bootstrap-server localhost:9092 --topic test-topic  # Opens interactive console to send messages to specified topic",
@@ -16041,7 +16041,7 @@ const commandsDatabase = [
   },
   {
     "name": "kibana",
-    "subtitle": "Kibana Analytics Platform",
+    "standsFor": "Kibana Analytics Platform",
     "description": "Data visualization and exploration tool for Elasticsearch",
     "examples": [
       "kibana  # Start Kibana server with default settings",
@@ -16096,7 +16096,7 @@ const commandsDatabase = [
   },
   {
     "name": "kill",
-    "subtitle": "kill",
+    "standsFor": "kill",
     "description": "Terminate processes by sending signals",
     "examples": [
       "kill 1234  # Send TERM signal to process ID 1234 for clean shutdown",
@@ -16169,7 +16169,7 @@ const commandsDatabase = [
   },
   {
     "name": "killall",
-    "subtitle": "kill all",
+    "standsFor": "kill all",
     "description": "Kill processes by name",
     "examples": [
       "killall firefox  # Terminate all Firefox processes by name",
@@ -16244,7 +16244,7 @@ const commandsDatabase = [
   },
   {
     "name": "kubectl",
-    "subtitle": "Kube Control",
+    "standsFor": "Kube Control",
     "description": "Kubernetes command-line tool for cluster management",
     "examples": [
       "kubectl cluster-info  # Display cluster endpoints and services",
@@ -16337,7 +16337,7 @@ const commandsDatabase = [
   },
   {
     "name": "kubectl-cluster-management",
-    "subtitle": "Kubernetes Control",
+    "standsFor": "Kubernetes Control",
     "description": "Kubernetes cluster administration and management",
     "examples": [
       "kubectl cluster-info dump --output-directory=/tmp/cluster-state  # Dump complete cluster state information for debugging",
@@ -16417,7 +16417,7 @@ const commandsDatabase = [
   },
   {
     "name": "kubectl-networking-services",
-    "subtitle": "Kubernetes Networking",
+    "standsFor": "Kubernetes Networking",
     "description": "Kubernetes networking and service management",
     "examples": [
       "kubectl expose deployment web --type=LoadBalancer --port=80 --target-port=8080 --load-balancer-ip=203.0.113.100  # Expose deployment as LoadBalancer service with specific external IP",
@@ -16497,7 +16497,7 @@ const commandsDatabase = [
   },
   {
     "name": "kubectl-secrets-config",
-    "subtitle": "Kubernetes Secrets and Config",
+    "standsFor": "Kubernetes Secrets and Config",
     "description": "Kubernetes secrets and configuration management",
     "examples": [
       "kubectl create secret generic app-secrets --from-literal=database-password=secretpass --from-literal=api-key=abc123  # Create secret with multiple key-value pairs from command line",
@@ -16577,7 +16577,7 @@ const commandsDatabase = [
   },
   {
     "name": "kubectl-storage-management",
-    "subtitle": "Kubernetes Storage Management",
+    "standsFor": "Kubernetes Storage Management",
     "description": "Kubernetes persistent storage and volume management",
     "examples": [
       "kubectl apply -f - <<EOF\napiVersion: v1\nkind: PersistentVolume\nmetadata:\n  name: nfs-pv\nspec:\n  capacity:\n    storage: 10Gi\n  accessModes:\n    - ReadWriteMany\n  nfs:\n    server: nfs-server.example.com\n    path: /data\nEOF  # Create NFS-backed persistent volume with ReadWriteMany access",
@@ -16657,7 +16657,7 @@ const commandsDatabase = [
   },
   {
     "name": "kubectl-workload-management",
-    "subtitle": "Kubernetes Workload Management",
+    "standsFor": "Kubernetes Workload Management",
     "description": "Kubernetes workload deployment and management",
     "examples": [
       "kubectl create deployment web --image=nginx:1.21 --replicas=3 --port=80 && kubectl annotate deployment web deployment.kubernetes.io/revision=1  # Create deployment with specific configuration and annotations",
@@ -16737,7 +16737,7 @@ const commandsDatabase = [
   },
   {
     "name": "kubernetes-advanced-scheduling",
-    "subtitle": "Kubernetes Advanced Scheduling",
+    "standsFor": "Kubernetes Advanced Scheduling",
     "description": "Advanced Kubernetes scheduling and resource management",
     "examples": [
       "kubectl apply -f - <<EOF\napiVersion: v1\nkind: Pod\nmetadata:\n  name: web-server\nspec:\n  affinity:\n    podAffinity:\n      requiredDuringSchedulingIgnoredDuringExecution:\n      - labelSelector:\n          matchExpressions:\n          - key: app\n            operator: In\n            values:\n            - database\n        topologyKey: kubernetes.io/hostname\n    podAntiAffinity:\n      preferredDuringSchedulingIgnoredDuringExecution:\n      - weight: 100\n        podAffinityTerm:\n          labelSelector:\n            matchExpressions:\n            - key: app\n              operator: In\n              values:\n              - web-server\n          topologyKey: kubernetes.io/hostname\n  containers:\n  - name: web\n    image: nginx\nEOF  # Create pod with affinity to database pods and anti-affinity to other web servers",
@@ -16816,7 +16816,7 @@ const commandsDatabase = [
   },
   {
     "name": "kubernetes-monitoring-observability",
-    "subtitle": "Kubernetes Monitoring and Observability",
+    "standsFor": "Kubernetes Monitoring and Observability",
     "description": "Kubernetes monitoring, logging, and observability",
     "examples": [
       "kubectl top nodes --sort-by=cpu && kubectl top pods --all-namespaces --sort-by=memory  # Monitor node CPU usage and pod memory consumption across all namespaces",
@@ -16895,7 +16895,7 @@ const commandsDatabase = [
   },
   {
     "name": "kustomize",
-    "subtitle": "Kustomize",
+    "standsFor": "Kustomize",
     "description": "Template-free way to customize Kubernetes YAML configurations",
     "examples": [
       "kustomize build ./overlays/production  # Generate final Kubernetes YAML from Kustomize directory",
@@ -16969,7 +16969,7 @@ const commandsDatabase = [
   },
   {
     "name": "kustomize-configuration",
-    "subtitle": "Kustomize Configuration Management",
+    "standsFor": "Kustomize Configuration Management",
     "description": "Kubernetes configuration management with Kustomize",
     "examples": [
       "kustomize build overlays/production | kubectl apply -f -  # Build production overlay configuration and apply to cluster",
@@ -17049,7 +17049,7 @@ const commandsDatabase = [
   },
   {
     "name": "lein",
-    "subtitle": "Leiningen",
+    "standsFor": "Leiningen",
     "description": "Build automation and dependency management for Clojure",
     "examples": [
       "lein new app myapp  # Generate new Clojure application project",
@@ -17115,7 +17115,7 @@ const commandsDatabase = [
   },
   {
     "name": "lerna",
-    "subtitle": "Lerna",
+    "standsFor": "Lerna",
     "description": "Tool for managing JavaScript monorepos",
     "examples": [
       "lerna init  # Initialize new Lerna monorepo structure",
@@ -17196,7 +17196,7 @@ const commandsDatabase = [
   },
   {
     "name": "less",
-    "subtitle": "less is more",
+    "standsFor": "less is more",
     "description": "View file contents page by page with navigation",
     "examples": [
       "less application.log  # View file with ability to scroll up/down and search",
@@ -17254,7 +17254,7 @@ const commandsDatabase = [
   },
   {
     "name": "libvirt",
-    "subtitle": "Library Virtualization",
+    "standsFor": "Library Virtualization",
     "description": "Virtualization API and management tools",
     "examples": [
       "virsh list --all  # Show all virtual machines (running and stopped)",
@@ -17308,7 +17308,7 @@ const commandsDatabase = [
   },
   {
     "name": "lighttpd",
-    "subtitle": "Lighty",
+    "standsFor": "Lighty",
     "description": "Lightweight web server optimized for speed and low memory usage",
     "examples": [
       "sudo lighttpd -f /etc/lighttpd/lighttpd.conf  # Start lighttpd with configuration file",
@@ -17381,7 +17381,7 @@ const commandsDatabase = [
   },
   {
     "name": "linkerd",
-    "subtitle": "Linkerd",
+    "standsFor": "Linkerd",
     "description": "Lightweight service mesh for Kubernetes",
     "examples": [
       "linkerd check --pre  # Verify cluster meets Linkerd requirements",
@@ -17455,7 +17455,7 @@ const commandsDatabase = [
   },
   {
     "name": "liquibase",
-    "subtitle": "Liquibase",
+    "standsFor": "Liquibase",
     "description": "Database schema change management and migration tool",
     "examples": [
       "liquibase --url=jdbc:postgresql://localhost/mydb --username=dbuser --password=secret update  # Apply all pending changesets to database",
@@ -17522,7 +17522,7 @@ const commandsDatabase = [
   },
   {
     "name": "ln",
-    "subtitle": "link",
+    "standsFor": "link",
     "description": "Create links between files",
     "examples": [
       "ln -s /path/to/original /path/to/link  # Create symbolic link pointing to target file",
@@ -17599,7 +17599,7 @@ const commandsDatabase = [
   },
   {
     "name": "locate",
-    "subtitle": "locate",
+    "standsFor": "locate",
     "description": "Find files using a pre-built database for fast searching",
     "examples": [
       "locate nginx.conf  # Search for nginx.conf files using pre-indexed database",
@@ -17673,7 +17673,7 @@ const commandsDatabase = [
   },
   {
     "name": "locust",
-    "subtitle": "Locust",
+    "standsFor": "Locust",
     "description": "Python-based load testing tool with web UI",
     "examples": [
       "locust -f locustfile.py  # Start Locust with web interface for interactive testing",
@@ -17737,7 +17737,7 @@ const commandsDatabase = [
   },
   {
     "name": "loginctl",
-    "subtitle": "Login Control",
+    "standsFor": "Login Control",
     "description": "Control systemd login manager for user sessions",
     "examples": [
       "loginctl list-sessions  # Show all active user sessions",
@@ -17786,7 +17786,7 @@ const commandsDatabase = [
   },
   {
     "name": "logrotate",
-    "subtitle": "Log Rotate",
+    "standsFor": "Log Rotate",
     "description": "Automatically rotate, compress, and manage log files",
     "examples": [
       "sudo logrotate /etc/logrotate.conf  # Execute log rotation based on system configuration",
@@ -17848,7 +17848,7 @@ const commandsDatabase = [
   },
   {
     "name": "logstash",
-    "subtitle": "Logstash Data Pipeline",
+    "standsFor": "Logstash Data Pipeline",
     "description": "Data processing pipeline for ingesting and transforming log data",
     "examples": [
       "logstash -f logstash.conf  # Run Logstash with specific configuration file",
@@ -17903,7 +17903,7 @@ const commandsDatabase = [
   },
   {
     "name": "logwatch",
-    "subtitle": "Log Watcher",
+    "standsFor": "Log Watcher",
     "description": "Log analysis and reporting tool for system security monitoring",
     "examples": [
       "logwatch --detail Med --service All --range today  # Generate medium detail report for all services today",
@@ -17957,7 +17957,7 @@ const commandsDatabase = [
   },
   {
     "name": "loki",
-    "subtitle": "Loki Log Aggregation",
+    "standsFor": "Loki Log Aggregation",
     "description": "Horizontally-scalable log aggregation system inspired by Prometheus",
     "examples": [
       "loki -config.file=loki.yaml  # Start Loki with configuration file",
@@ -18012,7 +18012,7 @@ const commandsDatabase = [
   },
   {
     "name": "ls",
-    "subtitle": "list",
+    "standsFor": "list",
     "description": "List directory contents with file details and permissions",
     "examples": [
       "ls -la  # Show detailed list with hidden files, permissions, and sizes",
@@ -18089,7 +18089,7 @@ const commandsDatabase = [
   },
   {
     "name": "lsblk",
-    "subtitle": "list block devices",
+    "standsFor": "list block devices",
     "description": "List block devices in tree format",
     "examples": [
       "lsblk  # Display all block devices in tree format with mount points",
@@ -18158,7 +18158,7 @@ const commandsDatabase = [
   },
   {
     "name": "lscpu",
-    "subtitle": "list CPU",
+    "standsFor": "list CPU",
     "description": "Display detailed CPU architecture information",
     "examples": [
       "lscpu  # Show detailed CPU architecture, cores, threads, and cache info",
@@ -18226,7 +18226,7 @@ const commandsDatabase = [
   },
   {
     "name": "lsof",
-    "subtitle": "List Open Files",
+    "standsFor": "List Open Files",
     "description": "List open files and network connections",
     "examples": [
       "lsof -p 1234  # Show all files opened by process ID 1234",
@@ -18281,7 +18281,7 @@ const commandsDatabase = [
   },
   {
     "name": "ltrace",
-    "subtitle": "Library Trace",
+    "standsFor": "Library Trace",
     "description": "Trace library calls made by programs",
     "examples": [
       "ltrace ./myprogram  # Trace all library function calls made by program",
@@ -18343,7 +18343,7 @@ const commandsDatabase = [
   },
   {
     "name": "lvm",
-    "subtitle": "Logical Volume Manager",
+    "standsFor": "Logical Volume Manager",
     "description": "Logical Volume Manager for flexible disk storage management",
     "examples": [
       "sudo pvcreate /dev/sdb  # Initialize disk /dev/sdb as LVM physical volume",
@@ -18397,7 +18397,7 @@ const commandsDatabase = [
   },
   {
     "name": "lynis",
-    "subtitle": "Lynis",
+    "standsFor": "Lynis",
     "description": "System hardening and compliance auditing tool",
     "examples": [
       "lynis audit system  # Perform comprehensive system security audit",
@@ -18451,7 +18451,7 @@ const commandsDatabase = [
   },
   {
     "name": "lz4",
-    "subtitle": "LZ4 compression",
+    "standsFor": "LZ4 compression",
     "description": "Extremely fast compression focusing on speed",
     "examples": [
       "lz4 file.txt file.txt.lz4  # Compress file with extreme speed",
@@ -18515,7 +18515,7 @@ const commandsDatabase = [
   },
   {
     "name": "lzop",
-    "subtitle": "Lempel-Ziv-Oberhumer Packer",
+    "standsFor": "Lempel-Ziv-Oberhumer Packer",
     "description": "Fast compression utility optimized for speed",
     "examples": [
       "lzop file.txt  # Quickly compress file.txt to file.txt.lzo",
@@ -18574,7 +18574,7 @@ const commandsDatabase = [
   },
   {
     "name": "make",
-    "subtitle": "make",
+    "standsFor": "make",
     "description": "Build automation tool using Makefiles",
     "examples": [
       "make  # Execute first target in Makefile (usually 'all')",
@@ -18656,7 +18656,7 @@ const commandsDatabase = [
   },
   {
     "name": "masscan",
-    "subtitle": "Mass Scanner",
+    "standsFor": "Mass Scanner",
     "description": "High-speed port scanner for large-scale network assessment",
     "examples": [
       "masscan 192.168.1.0/24 -p80,443 --rate=1000  # Scan web ports on local network at 1000 packets/second",
@@ -18710,7 +18710,7 @@ const commandsDatabase = [
   },
   {
     "name": "maven",
-    "subtitle": "Maven",
+    "standsFor": "Maven",
     "description": "Project management and comprehension tool for Java projects",
     "examples": [
       "mvn compile  # Compile source code",
@@ -18775,7 +18775,7 @@ const commandsDatabase = [
   },
   {
     "name": "maxima",
-    "subtitle": "Maxima",
+    "standsFor": "Maxima",
     "description": "Computer algebra system for symbolic mathematics",
     "examples": [
       "maxima  # Launch Maxima computer algebra system",
@@ -18853,7 +18853,7 @@ const commandsDatabase = [
   },
   {
     "name": "mdadm",
-    "subtitle": "Multiple Device Administrator",
+    "standsFor": "Multiple Device Administrator",
     "description": "Manage Linux software RAID arrays",
     "examples": [
       "sudo mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdb /dev/sdc  # Create RAID 1 mirror with two devices",
@@ -18901,7 +18901,7 @@ const commandsDatabase = [
   },
   {
     "name": "meson",
-    "subtitle": "Meson",
+    "standsFor": "Meson",
     "description": "Fast and user-friendly build system",
     "examples": [
       "meson setup builddir  # Initialize build directory with default settings",
@@ -18980,7 +18980,7 @@ const commandsDatabase = [
   },
   {
     "name": "metasploit",
-    "subtitle": "Metasploit Framework",
+    "standsFor": "Metasploit Framework",
     "description": "Penetration testing framework for authorized security assessments",
     "examples": [
       "msfconsole  # Launch interactive Metasploit framework console",
@@ -19035,7 +19035,7 @@ const commandsDatabase = [
   },
   {
     "name": "miller",
-    "subtitle": "Miller",
+    "standsFor": "Miller",
     "description": "Process structured data like CSV, JSON, and more",
     "examples": [
       "mlr --icsv --opprint cat data.csv  # Convert CSV to aligned table format for viewing",
@@ -19118,7 +19118,7 @@ const commandsDatabase = [
   },
   {
     "name": "mix",
-    "subtitle": "Mix",
+    "standsFor": "Mix",
     "description": "Build tool for Elixir programming language",
     "examples": [
       "mix new myapp  # Generate new Elixir project",
@@ -19184,7 +19184,7 @@ const commandsDatabase = [
   },
   {
     "name": "mkdir",
-    "subtitle": "make directory",
+    "standsFor": "make directory",
     "description": "Create directories",
     "examples": [
       "mkdir new-project  # Create a new directory in current location",
@@ -19258,7 +19258,7 @@ const commandsDatabase = [
   },
   {
     "name": "mlflow",
-    "subtitle": "Machine Learning Flow",
+    "standsFor": "Machine Learning Flow",
     "description": "MLflow machine learning lifecycle management platform",
     "examples": [
       "mlflow server --host 0.0.0.0 --port 5000  # Starts MLflow tracking server accessible on all interfaces",
@@ -19335,7 +19335,7 @@ const commandsDatabase = [
   },
   {
     "name": "mocha",
-    "subtitle": "Mocha",
+    "standsFor": "Mocha",
     "description": "Feature-rich JavaScript test framework",
     "examples": [
       "mocha  # Run all test files in test directory",
@@ -19399,7 +19399,7 @@ const commandsDatabase = [
   },
   {
     "name": "mongodump",
-    "subtitle": "MongoDB Dump",
+    "standsFor": "MongoDB Dump",
     "description": "MongoDB database backup utility",
     "examples": [
       "mongodump --db myapp --out /backup/  # Create BSON backup of specific database",
@@ -19465,7 +19465,7 @@ const commandsDatabase = [
   },
   {
     "name": "mongoexport",
-    "subtitle": "MongoDB Export",
+    "standsFor": "MongoDB Export",
     "description": "MongoDB data export utility for JSON/CSV formats",
     "examples": [
       "mongoexport --db myapp --collection users --out users.json  # Export entire collection to JSON file",
@@ -19530,7 +19530,7 @@ const commandsDatabase = [
   },
   {
     "name": "mongoimport",
-    "subtitle": "MongoDB Import",
+    "standsFor": "MongoDB Import",
     "description": "MongoDB data import utility for JSON/CSV formats",
     "examples": [
       "mongoimport --db myapp --collection users --file users.json  # Import JSON documents into collection",
@@ -19596,7 +19596,7 @@ const commandsDatabase = [
   },
   {
     "name": "mongorestore",
-    "subtitle": "MongoDB Restore",
+    "standsFor": "MongoDB Restore",
     "description": "MongoDB database restore utility",
     "examples": [
       "mongorestore --db myapp /backup/myapp/  # Restore database from BSON backup directory",
@@ -19662,7 +19662,7 @@ const commandsDatabase = [
   },
   {
     "name": "mongosh",
-    "subtitle": "MongoDB Shell",
+    "standsFor": "MongoDB Shell",
     "description": "MongoDB Shell - modern interactive JavaScript interface",
     "examples": [
       "mongosh  # Connect to MongoDB on localhost:27017",
@@ -19741,7 +19741,7 @@ const commandsDatabase = [
   },
   {
     "name": "mosquitto",
-    "subtitle": "Mosquitto MQTT Broker",
+    "standsFor": "Mosquitto MQTT Broker",
     "description": "Eclipse Mosquitto MQTT broker",
     "examples": [
       "mosquitto  # Starts Mosquitto MQTT broker with default configuration",
@@ -19822,7 +19822,7 @@ const commandsDatabase = [
   },
   {
     "name": "mount",
-    "subtitle": "Mount",
+    "standsFor": "Mount",
     "description": "Mount filesystems to directory tree",
     "examples": [
       "sudo mount /dev/sdb1 /mnt/usb  # Mount USB device to /mnt/usb directory",
@@ -19885,7 +19885,7 @@ const commandsDatabase = [
   },
   {
     "name": "mtr",
-    "subtitle": "My TraceRoute",
+    "standsFor": "My TraceRoute",
     "description": "Network diagnostic combining ping and traceroute",
     "examples": [
       "mtr google.com  # Real-time interactive traceroute to google.com",
@@ -19948,7 +19948,7 @@ const commandsDatabase = [
   },
   {
     "name": "mv",
-    "subtitle": "move",
+    "standsFor": "move",
     "description": "Move or rename files and directories",
     "examples": [
       "mv oldname.txt newname.txt  # Change filename while keeping in same directory",
@@ -20024,7 +20024,7 @@ const commandsDatabase = [
   },
   {
     "name": "mysql",
-    "subtitle": "MySQL",
+    "standsFor": "MySQL",
     "description": "MySQL command-line client for database operations",
     "examples": [
       "mysql -u username -p database_name  # Connect to MySQL database with username and password prompt",
@@ -20088,7 +20088,7 @@ const commandsDatabase = [
   },
   {
     "name": "mysql_config_editor",
-    "subtitle": "MySQL Configuration Editor",
+    "standsFor": "MySQL Configuration Editor",
     "description": "MySQL configuration utility for secure credential storage",
     "examples": [
       "mysql_config_editor set --login-path=client --host=localhost --user=root --password  # Store encrypted MySQL credentials for default client",
@@ -20152,7 +20152,7 @@ const commandsDatabase = [
   },
   {
     "name": "mysql_secure_installation",
-    "subtitle": "MySQL Secure Installation",
+    "standsFor": "MySQL Secure Installation",
     "description": "MySQL security configuration and hardening script",
     "examples": [
       "mysql_secure_installation  # Run interactive security hardening script",
@@ -20213,7 +20213,7 @@ const commandsDatabase = [
   },
   {
     "name": "mysqladmin",
-    "subtitle": "MySQL Admin",
+    "standsFor": "MySQL Admin",
     "description": "MySQL server administration utility",
     "examples": [
       "mysqladmin -u root -p status  # Display MySQL server status information",
@@ -20279,7 +20279,7 @@ const commandsDatabase = [
   },
   {
     "name": "mysqladmin extended-status",
-    "subtitle": "MySQL Admin Extended Status",
+    "standsFor": "MySQL Admin Extended Status",
     "description": "MySQL server status and performance monitoring command",
     "examples": [
       "mysqladmin -u root -p extended-status  # Display all MySQL server status variables",
@@ -20343,7 +20343,7 @@ const commandsDatabase = [
   },
   {
     "name": "mysqlcheck",
-    "subtitle": "MySQL Check",
+    "standsFor": "MySQL Check",
     "description": "MySQL table maintenance and repair utility",
     "examples": [
       "mysqlcheck -u root -p --all-databases  # Check all tables in all databases for errors",
@@ -20408,7 +20408,7 @@ const commandsDatabase = [
   },
   {
     "name": "mysqldump",
-    "subtitle": "MySQL Dump",
+    "standsFor": "MySQL Dump",
     "description": "MySQL database backup utility with advanced options",
     "examples": [
       "mysqldump -u root -p --single-transaction --routines --triggers mydb > backup.sql  # Backup database with procedures, functions, and triggers",
@@ -20474,7 +20474,7 @@ const commandsDatabase = [
   },
   {
     "name": "nagios",
-    "subtitle": "Nagios Monitoring",
+    "standsFor": "Nagios Monitoring",
     "description": "Infrastructure monitoring system for networks, systems and applications",
     "examples": [
       "nagios /etc/nagios/nagios.cfg  # Start Nagios with configuration file",
@@ -20527,7 +20527,7 @@ const commandsDatabase = [
   },
   {
     "name": "nano",
-    "subtitle": "nano's another editor",
+    "standsFor": "nano's another editor",
     "description": "Simple, user-friendly text editor",
     "examples": [
       "nano ~/.bashrc  # Open bash configuration for editing",
@@ -20596,7 +20596,7 @@ const commandsDatabase = [
   },
   {
     "name": "netcat",
-    "subtitle": "Network Cat",
+    "standsFor": "Network Cat",
     "description": "Versatile networking utility for debugging and investigation",
     "examples": [
       "nc -zv google.com 80  # Test if port 80 is open on google.com",
@@ -20662,7 +20662,7 @@ const commandsDatabase = [
   },
   {
     "name": "netplan",
-    "subtitle": "Network Plan",
+    "standsFor": "Network Plan",
     "description": "Network configuration abstraction renderer for Ubuntu",
     "examples": [
       "sudo netplan apply  # Apply network configuration from YAML files",
@@ -20708,7 +20708,7 @@ const commandsDatabase = [
   },
   {
     "name": "netstat",
-    "subtitle": "network statistics",
+    "standsFor": "network statistics",
     "description": "Display network connections, routing tables, and network statistics",
     "examples": [
       "netstat -tulpn  # Display all TCP/UDP listening ports with process info",
@@ -20782,7 +20782,7 @@ const commandsDatabase = [
   },
   {
     "name": "newman",
-    "subtitle": "Newman",
+    "standsFor": "Newman",
     "description": "Command-line collection runner for Postman",
     "examples": [
       "newman run collection.json  # Execute all requests in Postman collection",
@@ -20839,7 +20839,7 @@ const commandsDatabase = [
   },
   {
     "name": "newrelic",
-    "subtitle": "New Relic Command Line Interface",
+    "standsFor": "New Relic Command Line Interface",
     "description": "New Relic CLI for application performance monitoring and observability",
     "examples": [
       "newrelic apm application list  # List all APM applications",
@@ -20895,7 +20895,7 @@ const commandsDatabase = [
   },
   {
     "name": "next",
-    "subtitle": "Next.js CLI",
+    "standsFor": "Next.js CLI",
     "description": "Next.js React framework CLI for full-stack web applications",
     "examples": [
       "npx create-next-app@latest my-app  # Create new Next.js application with latest version",
@@ -20952,7 +20952,7 @@ const commandsDatabase = [
   },
   {
     "name": "ng",
-    "subtitle": "Angular CLI",
+    "standsFor": "Angular CLI",
     "description": "Angular CLI for creating and managing Angular applications",
     "examples": [
       "ng new my-app  # Generate new Angular application with default configuration",
@@ -21009,7 +21009,7 @@ const commandsDatabase = [
   },
   {
     "name": "nginx",
-    "subtitle": "engine x",
+    "standsFor": "engine x",
     "description": "High-performance web server and reverse proxy",
     "examples": [
       "sudo nginx  # Start nginx with default configuration",
@@ -21094,7 +21094,7 @@ const commandsDatabase = [
   },
   {
     "name": "nice",
-    "subtitle": "Nice",
+    "standsFor": "Nice",
     "description": "Run commands with modified scheduling priority",
     "examples": [
       "nice -n 10 big_computation.sh  # Run script with lower priority (higher nice value)",
@@ -21157,7 +21157,7 @@ const commandsDatabase = [
   },
   {
     "name": "nikto",
-    "subtitle": "Nikto",
+    "standsFor": "Nikto",
     "description": "Web server vulnerability scanner for security assessment",
     "examples": [
       "nikto -h http://example.com  # Scan web server for common vulnerabilities",
@@ -21212,7 +21212,7 @@ const commandsDatabase = [
   },
   {
     "name": "ninja",
-    "subtitle": "Ninja",
+    "standsFor": "Ninja",
     "description": "Fast, lightweight build system focused on speed",
     "examples": [
       "ninja  # Build all targets in build.ninja file",
@@ -21277,7 +21277,7 @@ const commandsDatabase = [
   },
   {
     "name": "nmap",
-    "subtitle": "Network Mapper",
+    "standsFor": "Network Mapper",
     "description": "Network discovery and security auditing for legitimate security assessments",
     "examples": [
       "nmap -sn 192.168.1.0/24  # Discover live hosts on network for asset inventory",
@@ -21333,7 +21333,7 @@ const commandsDatabase = [
   },
   {
     "name": "nmcli",
-    "subtitle": "NetworkManager CLI",
+    "standsFor": "NetworkManager CLI",
     "description": "Command-line tool for NetworkManager configuration",
     "examples": [
       "nmcli connection show  # Display all network connections",
@@ -21386,7 +21386,7 @@ const commandsDatabase = [
   },
   {
     "name": "nmon",
-    "subtitle": "Nigel's Monitor",
+    "standsFor": "Nigel's Monitor",
     "description": "System performance monitor for AIX and Linux",
     "examples": [
       "nmon  # Start nmon with interactive dashboard",
@@ -21449,7 +21449,7 @@ const commandsDatabase = [
   },
   {
     "name": "node",
-    "subtitle": "Node.js",
+    "standsFor": "Node.js",
     "description": "Node.js JavaScript runtime for server-side development",
     "examples": [
       "node app.js  # Execute JavaScript file with Node.js runtime",
@@ -21530,7 +21530,7 @@ const commandsDatabase = [
   },
   {
     "name": "node-red",
-    "subtitle": "Node-RED",
+    "standsFor": "Node-RED",
     "description": "Node-RED flow-based programming for IoT",
     "examples": [
       "node-red  # Starts Node-RED runtime and web editor",
@@ -21613,7 +21613,7 @@ const commandsDatabase = [
   },
   {
     "name": "nodetool",
-    "subtitle": "Node Tool",
+    "standsFor": "Node Tool",
     "description": "Apache Cassandra cluster management and monitoring utility",
     "examples": [
       "nodetool status  # Display status of all nodes in cluster",
@@ -21679,7 +21679,7 @@ const commandsDatabase = [
   },
   {
     "name": "nohup",
-    "subtitle": "no hangup",
+    "standsFor": "no hangup",
     "description": "Run commands immune to hangups, with output to non-tty",
     "examples": [
       "nohup ./long-running-script.sh &  # Run script that continues after terminal closes",
@@ -21754,7 +21754,7 @@ const commandsDatabase = [
   },
   {
     "name": "npm",
-    "subtitle": "Node Package Manager",
+    "standsFor": "Node Package Manager",
     "description": "Node Package Manager for JavaScript package management",
     "examples": [
       "npm init -y  # Create package.json with default values",
@@ -21838,7 +21838,7 @@ const commandsDatabase = [
   },
   {
     "name": "npx",
-    "subtitle": "Node Package Execute",
+    "standsFor": "Node Package Execute",
     "description": "Execute npm packages without installing globally",
     "examples": [
       "npx create-react-app my-app  # Create React app without global installation",
@@ -21918,7 +21918,7 @@ const commandsDatabase = [
   },
   {
     "name": "npx react-native",
-    "subtitle": "Node Package Execute React Native",
+    "standsFor": "Node Package Execute React Native",
     "description": "Run React Native commands without global installation",
     "examples": [
       "npx react-native@latest init MyApp  # Uses npx to run the latest version of React Native CLI to create a new project",
@@ -21986,7 +21986,7 @@ const commandsDatabase = [
   },
   {
     "name": "nslookup",
-    "subtitle": "Name Server Lookup",
+    "standsFor": "Name Server Lookup",
     "description": "DNS lookup utility for querying domain name system",
     "examples": [
       "nslookup google.com  # Look up IP address for google.com",
@@ -22050,7 +22050,7 @@ const commandsDatabase = [
   },
   {
     "name": "nvm",
-    "subtitle": "Node Version Manager",
+    "standsFor": "Node Version Manager",
     "description": "Node Version Manager for switching Node.js versions",
     "examples": [
       "nvm ls-remote  # Show all available Node.js versions for installation",
@@ -22128,7 +22128,7 @@ const commandsDatabase = [
   },
   {
     "name": "octave",
-    "subtitle": "GNU Octave",
+    "standsFor": "GNU Octave",
     "description": "GNU Octave for numerical computations (MATLAB compatible)",
     "examples": [
       "octave  # Launch Octave interactive command line interface",
@@ -22208,7 +22208,7 @@ const commandsDatabase = [
   },
   {
     "name": "openresty",
-    "subtitle": "OpenResty",
+    "standsFor": "OpenResty",
     "description": "Web platform based on nginx with Lua scripting",
     "examples": [
       "sudo openresty  # Start OpenResty with default configuration",
@@ -22280,7 +22280,7 @@ const commandsDatabase = [
   },
   {
     "name": "openssl",
-    "subtitle": "OpenSSL",
+    "standsFor": "OpenSSL",
     "description": "Toolkit for SSL/TLS cryptography and certificate management",
     "examples": [
       "openssl genrsa -out private.key 2048  # Generate 2048-bit RSA private key",
@@ -22348,7 +22348,7 @@ const commandsDatabase = [
   },
   {
     "name": "opentelemetry-collector",
-    "subtitle": "OpenTelemetry Collector",
+    "standsFor": "OpenTelemetry Collector",
     "description": "Vendor-agnostic service for receiving and exporting telemetry data",
     "examples": [
       "otelcol --config=otelcol.yaml  # Start OpenTelemetry collector with config",
@@ -22402,7 +22402,7 @@ const commandsDatabase = [
   },
   {
     "name": "openvas",
-    "subtitle": "Open Vulnerability Assessment System",
+    "standsFor": "Open Vulnerability Assessment System",
     "description": "Open-source vulnerability assessment and management solution",
     "examples": [
       "gvm-start  # Start Greenbone Vulnerability Management services",
@@ -22455,7 +22455,7 @@ const commandsDatabase = [
   },
   {
     "name": "optipng",
-    "subtitle": "Optimize PNG",
+    "standsFor": "Optimize PNG",
     "description": "PNG image optimizer for lossless compression",
     "examples": [
       "optipng image.png  # Apply default PNG optimization",
@@ -22534,7 +22534,7 @@ const commandsDatabase = [
   },
   {
     "name": "osquery",
-    "subtitle": "Operating System Query",
+    "standsFor": "Operating System Query",
     "description": "SQL-based framework for system monitoring and forensic analysis",
     "examples": [
       "osqueryi  # Start interactive osquery shell for system querying",
@@ -22589,7 +22589,7 @@ const commandsDatabase = [
   },
   {
     "name": "ossec",
-    "subtitle": "Open Source HIDS SECurity",
+    "standsFor": "Open Source HIDS SECurity",
     "description": "Host-based intrusion detection system for security monitoring",
     "examples": [
       "ossec-control start  # Start OSSEC HIDS daemon processes",
@@ -22644,7 +22644,7 @@ const commandsDatabase = [
   },
   {
     "name": "owasp-zap",
-    "subtitle": "OWASP Zed Attack Proxy",
+    "standsFor": "OWASP Zed Attack Proxy",
     "description": "Web application security testing proxy for vulnerability assessment",
     "examples": [
       "zap-baseline.py -t http://example.com  # Quick passive scan of web application",
@@ -22700,7 +22700,7 @@ const commandsDatabase = [
   },
   {
     "name": "pack",
-    "subtitle": "Pack CLI",
+    "standsFor": "Pack CLI",
     "description": "Tool to transform application source code into container images using Cloud Native Buildpacks",
     "examples": [
       "pack build myapp --builder gcr.io/buildpacks/builder:v1  # Build container image from source code using Google buildpacks",
@@ -22774,7 +22774,7 @@ const commandsDatabase = [
   },
   {
     "name": "pacman",
-    "subtitle": "package manager",
+    "standsFor": "package manager",
     "description": "Package manager for Arch Linux and derivatives",
     "examples": [
       "sudo pacman -Sy  # Synchronize package databases",
@@ -22848,7 +22848,7 @@ const commandsDatabase = [
   },
   {
     "name": "pandoc",
-    "subtitle": "Pan-document converter",
+    "standsFor": "Pan-document converter",
     "description": "Universal document converter between markup formats",
     "examples": [
       "pandoc document.md -o document.pdf  # Convert Markdown document to PDF format",
@@ -22928,7 +22928,7 @@ const commandsDatabase = [
   },
   {
     "name": "parallel",
-    "subtitle": "GNU parallel",
+    "standsFor": "GNU parallel",
     "description": "Execute jobs in parallel using multiple CPU cores",
     "examples": [
       "parallel gzip ::: *.txt  # Compress all text files using all available CPU cores",
@@ -23012,7 +23012,7 @@ const commandsDatabase = [
   },
   {
     "name": "parcel",
-    "subtitle": "Parcel",
+    "standsFor": "Parcel",
     "description": "Zero-configuration web application bundler",
     "examples": [
       "parcel index.html  # Start dev server with hot reloading",
@@ -23092,7 +23092,7 @@ const commandsDatabase = [
   },
   {
     "name": "passwd",
-    "subtitle": "password",
+    "standsFor": "password",
     "description": "Change user password",
     "examples": [
       "passwd  # Change password for current user",
@@ -23170,7 +23170,7 @@ const commandsDatabase = [
   },
   {
     "name": "perf",
-    "subtitle": "Performance",
+    "standsFor": "Performance",
     "description": "Performance analysis and profiling tool",
     "examples": [
       "perf list  # Show all available performance monitoring events",
@@ -23233,7 +23233,7 @@ const commandsDatabase = [
   },
   {
     "name": "perl",
-    "subtitle": "Practical Extraction and Reporting Language",
+    "standsFor": "Practical Extraction and Reporting Language",
     "description": "Perl interpreter for text processing and system administration",
     "examples": [
       "perl script.pl  # Execute Perl script file",
@@ -23314,7 +23314,7 @@ const commandsDatabase = [
   },
   {
     "name": "pg_basebackup",
-    "subtitle": "PostgreSQL Base Backup",
+    "standsFor": "PostgreSQL Base Backup",
     "description": "PostgreSQL physical backup utility for streaming replication",
     "examples": [
       "pg_basebackup -h localhost -U postgres -D /backup/base -Ft -z -P  # Create compressed tar format base backup with progress",
@@ -23376,7 +23376,7 @@ const commandsDatabase = [
   },
   {
     "name": "pg_dump",
-    "subtitle": "PostgreSQL Dump",
+    "standsFor": "PostgreSQL Dump",
     "description": "PostgreSQL database backup utility with advanced options",
     "examples": [
       "pg_dump -h localhost -U postgres -d mydb > backup.sql  # Create complete SQL dump of database",
@@ -23442,7 +23442,7 @@ const commandsDatabase = [
   },
   {
     "name": "pg_restore",
-    "subtitle": "PostgreSQL Restore",
+    "standsFor": "PostgreSQL Restore",
     "description": "PostgreSQL database restore utility for custom format backups",
     "examples": [
       "pg_restore -h localhost -U postgres -d newdb backup.dump  # Restore database from custom format backup",
@@ -23507,7 +23507,7 @@ const commandsDatabase = [
   },
   {
     "name": "pg_stat_activity",
-    "subtitle": "PostgreSQL Statistics Activity",
+    "standsFor": "PostgreSQL Statistics Activity",
     "description": "PostgreSQL system view for monitoring active database connections",
     "examples": [
       "psql -c 'SELECT pid, usename, datname, state, query FROM pg_stat_activity;'  # Show all current database connections and their queries",
@@ -23571,7 +23571,7 @@ const commandsDatabase = [
   },
   {
     "name": "pgbadger",
-    "subtitle": "PostgreSQL Badger",
+    "standsFor": "PostgreSQL Badger",
     "description": "PostgreSQL log analyzer and performance monitoring tool",
     "examples": [
       "pgbadger /var/log/postgresql/postgresql.log  # Generate HTML report from PostgreSQL log file",
@@ -23637,7 +23637,7 @@ const commandsDatabase = [
   },
   {
     "name": "pgbench",
-    "subtitle": "PostgreSQL Benchmark",
+    "standsFor": "PostgreSQL Benchmark",
     "description": "PostgreSQL benchmarking and performance testing tool",
     "examples": [
       "pgbench -i -s 10 testdb  # Initialize test database with scale factor 10",
@@ -23703,7 +23703,7 @@ const commandsDatabase = [
   },
   {
     "name": "pgrep",
-    "subtitle": "process grep",
+    "standsFor": "process grep",
     "description": "Find process IDs based on name and other criteria",
     "examples": [
       "pgrep firefox  # Get process IDs of all Firefox processes",
@@ -23776,7 +23776,7 @@ const commandsDatabase = [
   },
   {
     "name": "php",
-    "subtitle": "PHP: Hypertext Preprocessor",
+    "standsFor": "PHP: Hypertext Preprocessor",
     "description": "PHP interpreter for web development and scripting",
     "examples": [
       "php script.php  # Run PHP script from command line",
@@ -23856,7 +23856,7 @@ const commandsDatabase = [
   },
   {
     "name": "pidstat",
-    "subtitle": "Process ID Statistics",
+    "standsFor": "Process ID Statistics",
     "description": "Monitor and report statistics for individual processes",
     "examples": [
       "pidstat 2 5  # Show process statistics every 2 seconds for 5 iterations",
@@ -23918,7 +23918,7 @@ const commandsDatabase = [
   },
   {
     "name": "ping",
-    "subtitle": "Packet Internet Groper",
+    "standsFor": "Packet Internet Groper",
     "description": "Network diagnostic tool for measuring connectivity and latency",
     "examples": [
       "ping google.com  # Test basic connectivity to Google",
@@ -23981,7 +23981,7 @@ const commandsDatabase = [
   },
   {
     "name": "pip",
-    "subtitle": "Pip Installs Packages",
+    "standsFor": "Pip Installs Packages",
     "description": "Python package installer",
     "examples": [
       "pip install requests  # Install requests library for HTTP operations",
@@ -24060,7 +24060,7 @@ const commandsDatabase = [
   },
   {
     "name": "pipenv",
-    "subtitle": "Pip Environment",
+    "standsFor": "Pip Environment",
     "description": "Python development workflow tool combining pip and virtualenv",
     "examples": [
       "pipenv install requests  # Add requests to Pipfile and install in virtual environment",
@@ -24115,7 +24115,7 @@ const commandsDatabase = [
   },
   {
     "name": "pkill",
-    "subtitle": "process kill",
+    "standsFor": "process kill",
     "description": "Kill processes based on name and other criteria",
     "examples": [
       "pkill firefox  # Terminate all Firefox processes",
@@ -24189,7 +24189,7 @@ const commandsDatabase = [
   },
   {
     "name": "platformio",
-    "subtitle": "Platform Input/Output",
+    "standsFor": "Platform Input/Output",
     "description": "PlatformIO ecosystem for IoT development",
     "examples": [
       "pio init --board esp32dev  # Creates new PlatformIO project configured for ESP32",
@@ -24274,7 +24274,7 @@ const commandsDatabase = [
   },
   {
     "name": "playwright",
-    "subtitle": "Playwright",
+    "standsFor": "Playwright",
     "description": "Cross-browser automation framework for modern web testing",
     "examples": [
       "playwright install  # Install Chromium, Firefox, and Safari browsers",
@@ -24339,7 +24339,7 @@ const commandsDatabase = [
   },
   {
     "name": "pnpm",
-    "subtitle": "Performant NPM",
+    "standsFor": "Performant NPM",
     "description": "Fast, disk space efficient package manager",
     "examples": [
       "pnpm init  # Create package.json for new project",
@@ -24421,7 +24421,7 @@ const commandsDatabase = [
   },
   {
     "name": "podman",
-    "subtitle": "Pod Manager",
+    "standsFor": "Pod Manager",
     "description": "Daemonless container engine alternative to Docker",
     "examples": [
       "podman run -it ubuntu bash  # Start interactive Ubuntu container with bash shell",
@@ -24505,7 +24505,7 @@ const commandsDatabase = [
   },
   {
     "name": "poetry",
-    "subtitle": "Poetry",
+    "standsFor": "Poetry",
     "description": "Python dependency management and packaging tool",
     "examples": [
       "poetry new my-project  # Create new Python project with Poetry structure",
@@ -24568,7 +24568,7 @@ const commandsDatabase = [
   },
   {
     "name": "postman",
-    "subtitle": "Postman",
+    "standsFor": "Postman",
     "description": "API testing and development platform",
     "examples": [
       "newman run collection.json  # Run Postman collection from command line",
@@ -24631,7 +24631,7 @@ const commandsDatabase = [
   },
   {
     "name": "pprof",
-    "subtitle": "Performance Profiler",
+    "standsFor": "Performance Profiler",
     "description": "Performance profiler for analyzing CPU and memory usage",
     "examples": [
       "go tool pprof http://localhost:8080/debug/pprof/profile  # Profile CPU usage of running Go application",
@@ -24687,7 +24687,7 @@ const commandsDatabase = [
   },
   {
     "name": "prettier",
-    "subtitle": "Prettier",
+    "standsFor": "Prettier",
     "description": "Opinionated code formatter for multiple languages",
     "examples": [
       "prettier --write src/  # Format all files in src directory",
@@ -24767,7 +24767,7 @@ const commandsDatabase = [
   },
   {
     "name": "prisma",
-    "subtitle": "Prisma",
+    "standsFor": "Prisma",
     "description": "Database toolkit and ORM for Node.js and TypeScript",
     "examples": [
       "npx prisma init  # Set up Prisma with schema file and .env",
@@ -24824,7 +24824,7 @@ const commandsDatabase = [
   },
   {
     "name": "prometheus",
-    "subtitle": "Prometheus Monitoring System",
+    "standsFor": "Prometheus Monitoring System",
     "description": "Time-series database and monitoring system with pull-based metrics collection",
     "examples": [
       "prometheus --config.file=prometheus.yml  # Start Prometheus with custom configuration file",
@@ -24880,7 +24880,7 @@ const commandsDatabase = [
   },
   {
     "name": "promtail",
-    "subtitle": "Prometheus Tail",
+    "standsFor": "Prometheus Tail",
     "description": "Agent for shipping logs to Loki log aggregation system",
     "examples": [
       "promtail -config.file=promtail.yaml  # Start Promtail with configuration file",
@@ -24935,7 +24935,7 @@ const commandsDatabase = [
   },
   {
     "name": "ps",
-    "subtitle": "process status",
+    "standsFor": "process status",
     "description": "Display information about running processes",
     "examples": [
       "ps aux  # Show all processes with detailed information",
@@ -25008,7 +25008,7 @@ const commandsDatabase = [
   },
   {
     "name": "psql",
-    "subtitle": "PostgreSQL",
+    "standsFor": "PostgreSQL",
     "description": "PostgreSQL interactive terminal and command-line client",
     "examples": [
       "psql -U username -d database  # Connect to specific database with username",
@@ -25087,7 +25087,7 @@ const commandsDatabase = [
   },
   {
     "name": "pt-query-digest",
-    "subtitle": "Percona Toolkit Query Digest",
+    "standsFor": "Percona Toolkit Query Digest",
     "description": "Percona Toolkit utility for MySQL query analysis and optimization",
     "examples": [
       "pt-query-digest /var/log/mysql/slow.log  # Parse and analyze MySQL slow query log",
@@ -25148,7 +25148,7 @@ const commandsDatabase = [
   },
   {
     "name": "pt-table-checksum",
-    "subtitle": "Percona Toolkit Table Checksum",
+    "standsFor": "Percona Toolkit Table Checksum",
     "description": "Percona Toolkit utility for MySQL replication consistency checking",
     "examples": [
       "pt-table-checksum --host=master.example.com --user=checksum --password=secret  # Verify data consistency across all replicated databases",
@@ -25207,7 +25207,7 @@ const commandsDatabase = [
   },
   {
     "name": "pulumi",
-    "subtitle": "Pulumi",
+    "standsFor": "Pulumi",
     "description": "Modern infrastructure as code using familiar programming languages",
     "examples": [
       "pulumi new aws-typescript --name my-infrastructure  # Create new AWS infrastructure project using TypeScript",
@@ -25280,7 +25280,7 @@ const commandsDatabase = [
   },
   {
     "name": "puppeteer",
-    "subtitle": "Puppeteer",
+    "standsFor": "Puppeteer",
     "description": "Control headless Chrome or Chromium browsers",
     "examples": [
       "node generate-pdf.js  # Use Puppeteer script to convert webpage to PDF",
@@ -25343,7 +25343,7 @@ const commandsDatabase = [
   },
   {
     "name": "pwd",
-    "subtitle": "print working directory",
+    "standsFor": "print working directory",
     "description": "Print current working directory path",
     "examples": [
       "pwd  # Show full path of current directory",
@@ -25410,7 +25410,7 @@ const commandsDatabase = [
   },
   {
     "name": "pytest",
-    "subtitle": "Python Test",
+    "standsFor": "Python Test",
     "description": "Python testing framework for writing simple and scalable test cases",
     "examples": [
       "pytest  # Discover and run all tests in current directory and subdirectories",
@@ -25476,7 +25476,7 @@ const commandsDatabase = [
   },
   {
     "name": "python",
-    "subtitle": "Python",
+    "standsFor": "Python",
     "description": "Python programming language interpreter",
     "examples": [
       "python script.py  # Execute Python script file",
@@ -25555,7 +25555,7 @@ const commandsDatabase = [
   },
   {
     "name": "python3",
-    "subtitle": "Python 3",
+    "standsFor": "Python 3",
     "description": "Python 3 interpreter for data science, ML and scripting",
     "examples": [
       "python3 script.py  # Execute Python script file",
@@ -25653,7 +25653,7 @@ const commandsDatabase = [
   },
   {
     "name": "qemu",
-    "subtitle": "Quick Emulator",
+    "standsFor": "Quick Emulator",
     "description": "Machine emulator and virtualizer",
     "examples": [
       "qemu-system-x86_64 -hda vm.qcow2 -m 2048 -cdrom install.iso  # Create VM with 2GB RAM, disk image, and installation ISO",
@@ -25708,7 +25708,7 @@ const commandsDatabase = [
   },
   {
     "name": "R",
-    "subtitle": "R",
+    "standsFor": "R",
     "description": "Statistical computing and graphics programming language",
     "examples": [
       "R  # Launch R console for interactive data analysis",
@@ -25789,7 +25789,7 @@ const commandsDatabase = [
   },
   {
     "name": "rabbitmqctl",
-    "subtitle": "RabbitMQ Control",
+    "standsFor": "RabbitMQ Control",
     "description": "RabbitMQ management command line tool",
     "examples": [
       "rabbitmqctl status  # Shows current status of RabbitMQ node",
@@ -25873,7 +25873,7 @@ const commandsDatabase = [
   },
   {
     "name": "rails",
-    "subtitle": "Ruby on Rails",
+    "standsFor": "Ruby on Rails",
     "description": "Ruby on Rails web application framework CLI",
     "examples": [
       "rails new my_app  # Generate new Rails application with default configuration",
@@ -25929,7 +25929,7 @@ const commandsDatabase = [
   },
   {
     "name": "rake",
-    "subtitle": "Ruby Make",
+    "standsFor": "Ruby Make",
     "description": "Ruby build program with capabilities similar to make",
     "examples": [
       "rake -T  # Show all available Rake tasks with descriptions",
@@ -25993,7 +25993,7 @@ const commandsDatabase = [
   },
   {
     "name": "rar",
-    "subtitle": "Roshal Archive",
+    "standsFor": "Roshal Archive",
     "description": "Create and extract RAR archives with high compression",
     "examples": [
       "rar a archive.rar file1 file2  # Create RAR archive with specified files",
@@ -26056,7 +26056,7 @@ const commandsDatabase = [
   },
   {
     "name": "react-native",
-    "subtitle": "React Native",
+    "standsFor": "React Native",
     "description": "React Native CLI for building cross-platform mobile applications",
     "examples": [
       "react-native init MyApp  # Creates a new React Native project with default configuration and dependencies",
@@ -26141,7 +26141,7 @@ const commandsDatabase = [
   },
   {
     "name": "readlink",
-    "subtitle": "read link",
+    "standsFor": "read link",
     "description": "Display symbolic link target",
     "examples": [
       "readlink symlink  # Display what symbolic link points to",
@@ -26217,7 +26217,7 @@ const commandsDatabase = [
   },
   {
     "name": "redis-benchmark",
-    "subtitle": "Redis Benchmark",
+    "standsFor": "Redis Benchmark",
     "description": "Redis performance benchmarking and testing tool",
     "examples": [
       "redis-benchmark -h localhost -p 6379 -n 100000  # Run 100,000 requests against Redis server",
@@ -26283,7 +26283,7 @@ const commandsDatabase = [
   },
   {
     "name": "redis-check-aof",
-    "subtitle": "Redis Check AOF",
+    "standsFor": "Redis Check AOF",
     "description": "Redis AOF (Append Only File) integrity checker and repair tool",
     "examples": [
       "redis-check-aof appendonly.aof  # Check AOF file for corruption or inconsistencies",
@@ -26344,7 +26344,7 @@ const commandsDatabase = [
   },
   {
     "name": "redis-check-rdb",
-    "subtitle": "Redis Check RDB",
+    "standsFor": "Redis Check RDB",
     "description": "Redis RDB (Redis Database) file integrity checker",
     "examples": [
       "redis-check-rdb dump.rdb  # Verify RDB file structure and data integrity",
@@ -26405,7 +26405,7 @@ const commandsDatabase = [
   },
   {
     "name": "redis-cli",
-    "subtitle": "Redis Command Line Interface",
+    "standsFor": "Redis Command Line Interface",
     "description": "Command-line interface for Redis key-value store",
     "examples": [
       "redis-cli  # Opens interactive Redis command line interface",
@@ -26488,7 +26488,7 @@ const commandsDatabase = [
   },
   {
     "name": "renice",
-    "subtitle": "Re-nice",
+    "standsFor": "Re-nice",
     "description": "Change priority of running processes",
     "examples": [
       "renice 10 1234  # Set process 1234 to nice level 10 (lower priority)",
@@ -26550,7 +26550,7 @@ const commandsDatabase = [
   },
   {
     "name": "responder",
-    "subtitle": "Responder",
+    "standsFor": "Responder",
     "description": "Network protocol poisoning tool for security testing of Windows networks",
     "examples": [
       "responder -I eth0  # Capture credentials through network protocol poisoning",
@@ -26604,7 +26604,7 @@ const commandsDatabase = [
   },
   {
     "name": "rev",
-    "subtitle": "Reverse",
+    "standsFor": "Reverse",
     "description": "Reverse characters in each line",
     "examples": [
       "echo 'hello world' | rev  # Reverse characters: 'dlrow olleh'",
@@ -26659,7 +26659,7 @@ const commandsDatabase = [
   },
   {
     "name": "rg",
-    "subtitle": "ripgrep",
+    "standsFor": "ripgrep",
     "description": "Ultra-fast grep replacement with better defaults",
     "examples": [
       "rg 'error' .  # Search for 'error' in all files recursively, respecting .gitignore",
@@ -26739,7 +26739,7 @@ const commandsDatabase = [
   },
   {
     "name": "rkhunter",
-    "subtitle": "Rootkit Hunter",
+    "standsFor": "Rootkit Hunter",
     "description": "Rootkit detection and system integrity verification tool",
     "examples": [
       "rkhunter --check  # Comprehensive rootkit and malware detection scan",
@@ -26793,7 +26793,7 @@ const commandsDatabase = [
   },
   {
     "name": "rm",
-    "subtitle": "remove",
+    "standsFor": "remove",
     "description": "Remove files and directories permanently",
     "examples": [
       "rm *.log  # Remove all log files in current directory",
@@ -26875,7 +26875,7 @@ const commandsDatabase = [
   },
   {
     "name": "rollup",
-    "subtitle": "Rollup",
+    "standsFor": "Rollup",
     "description": "JavaScript module bundler for libraries and applications",
     "examples": [
       "rollup -c  # Bundle using rollup.config.js configuration",
@@ -26930,7 +26930,7 @@ const commandsDatabase = [
   },
   {
     "name": "route",
-    "subtitle": "Route",
+    "standsFor": "Route",
     "description": "Display and manipulate IP routing table",
     "examples": [
       "route -n  # Display routing table with numeric addresses",
@@ -26994,7 +26994,7 @@ const commandsDatabase = [
   },
   {
     "name": "rsync",
-    "subtitle": "Remote Sync",
+    "standsFor": "Remote Sync",
     "description": "Efficient file synchronization and transfer tool",
     "examples": [
       "rsync -av source/ destination/  # Synchronize directories with archive mode and verbose output",
@@ -27060,7 +27060,7 @@ const commandsDatabase = [
   },
   {
     "name": "rsyslog",
-    "subtitle": "Reliable Syslog",
+    "standsFor": "Reliable Syslog",
     "description": "Advanced system logging daemon with filtering and forwarding",
     "examples": [
       "sudo rsyslogd -N 1  # Test rsyslog configuration without starting daemon",
@@ -27111,7 +27111,7 @@ const commandsDatabase = [
   },
   {
     "name": "ruby",
-    "subtitle": "Ruby",
+    "standsFor": "Ruby",
     "description": "Ruby interpreter for dynamic programming and web development",
     "examples": [
       "ruby script.rb  # Execute Ruby script file",
@@ -27191,7 +27191,7 @@ const commandsDatabase = [
   },
   {
     "name": "rustc",
-    "subtitle": "Rust compiler",
+    "standsFor": "Rust compiler",
     "description": "Rust compiler for building Rust programs",
     "examples": [
       "rustc main.rs  # Compile main.rs to executable binary",
@@ -27270,7 +27270,7 @@ const commandsDatabase = [
   },
   {
     "name": "rustup",
-    "subtitle": "Rust Up",
+    "standsFor": "Rust Up",
     "description": "Rust toolchain installer and version manager",
     "examples": [
       "rustup update  # Update all installed Rust toolchains to latest versions",
@@ -27326,7 +27326,7 @@ const commandsDatabase = [
   },
   {
     "name": "sage",
-    "subtitle": "SageMath",
+    "standsFor": "SageMath",
     "description": "Mathematical software system combining many open-source packages",
     "examples": [
       "sage  # Launch Sage command-line interface",
@@ -27405,7 +27405,7 @@ const commandsDatabase = [
   },
   {
     "name": "sam",
-    "subtitle": "Serverless Application Model",
+    "standsFor": "Serverless Application Model",
     "description": "AWS Serverless Application Model for serverless development",
     "examples": [
       "sam init --runtime python3.9 --name my-serverless-app --app-template hello-world  # Create new serverless application from template",
@@ -27477,7 +27477,7 @@ const commandsDatabase = [
   },
   {
     "name": "sar",
-    "subtitle": "System Activity Reporter",
+    "standsFor": "System Activity Reporter",
     "description": "System Activity Reporter for collecting and reporting system statistics",
     "examples": [
       "sar -u 1 10  # Display CPU utilization every second for 10 intervals",
@@ -27540,7 +27540,7 @@ const commandsDatabase = [
   },
   {
     "name": "sbt",
-    "subtitle": "Simple Build Tool",
+    "standsFor": "Simple Build Tool",
     "description": "Interactive build tool for Scala and Java projects",
     "examples": [
       "sbt  # Launch interactive SBT shell",
@@ -27605,7 +27605,7 @@ const commandsDatabase = [
   },
   {
     "name": "scilab",
-    "subtitle": "Scientific Laboratory",
+    "standsFor": "Scientific Laboratory",
     "description": "Open source software for numerical computation",
     "examples": [
       "scilab  # Launch Scilab graphical environment",
@@ -27683,7 +27683,7 @@ const commandsDatabase = [
   },
   {
     "name": "scp",
-    "subtitle": "secure copy protocol",
+    "standsFor": "secure copy protocol",
     "description": "Secure copy files over SSH",
     "examples": [
       "scp file.txt user@server:/home/user/  # Upload local file to remote server directory",
@@ -27753,7 +27753,7 @@ const commandsDatabase = [
   },
   {
     "name": "screen",
-    "subtitle": "Screen",
+    "standsFor": "Screen",
     "description": "Terminal multiplexer for persistent sessions",
     "examples": [
       "screen  # Start new screen session",
@@ -27816,7 +27816,7 @@ const commandsDatabase = [
   },
   {
     "name": "script",
-    "subtitle": "Script",
+    "standsFor": "Script",
     "description": "Record terminal session to file",
     "examples": [
       "script session.log  # Start recording terminal session to file",
@@ -27877,7 +27877,7 @@ const commandsDatabase = [
   },
   {
     "name": "sed",
-    "subtitle": "stream editor",
+    "standsFor": "stream editor",
     "description": "Stream editor for filtering and transforming text",
     "examples": [
       "sed 's/old/new/g' file.txt  # Replace all occurrences of 'old' with 'new'",
@@ -27954,7 +27954,7 @@ const commandsDatabase = [
   },
   {
     "name": "selenium-webdriver",
-    "subtitle": "Selenium WebDriver",
+    "standsFor": "Selenium WebDriver",
     "description": "Web browser automation for testing web applications",
     "examples": [
       "python -m pytest test_selenium.py  # Run Selenium tests written in Python",
@@ -28016,7 +28016,7 @@ const commandsDatabase = [
   },
   {
     "name": "sentry-cli",
-    "subtitle": "Sentry Command Line Interface",
+    "standsFor": "Sentry Command Line Interface",
     "description": "Command-line client for Sentry error tracking and performance monitoring",
     "examples": [
       "sentry-cli sourcemaps upload --validate dist/  # Upload JavaScript source maps for error tracking",
@@ -28071,7 +28071,7 @@ const commandsDatabase = [
   },
   {
     "name": "seq",
-    "subtitle": "Sequence",
+    "standsFor": "Sequence",
     "description": "Generate sequence of numbers",
     "examples": [
       "seq 1 10  # Generate numbers from 1 to 10",
@@ -28135,7 +28135,7 @@ const commandsDatabase = [
   },
   {
     "name": "sequelize-cli",
-    "subtitle": "Sequelize CLI",
+    "standsFor": "Sequelize CLI",
     "description": "Command-line interface for Sequelize ORM",
     "examples": [
       "npx sequelize-cli init  # Create initial Sequelize project structure",
@@ -28191,7 +28191,7 @@ const commandsDatabase = [
   },
   {
     "name": "shuf",
-    "subtitle": "Shuffle",
+    "standsFor": "Shuffle",
     "description": "Generate random permutations of lines",
     "examples": [
       "shuf file.txt  # Randomize order of lines in file",
@@ -28253,7 +28253,7 @@ const commandsDatabase = [
   },
   {
     "name": "skaffold",
-    "subtitle": "Skaffold",
+    "standsFor": "Skaffold",
     "description": "Command line tool for continuous development on Kubernetes",
     "examples": [
       "skaffold init --compose-file docker-compose.yml  # Generate skaffold.yaml from existing Docker Compose file",
@@ -28326,7 +28326,7 @@ const commandsDatabase = [
   },
   {
     "name": "sl",
-    "subtitle": "Steam Locomotive",
+    "standsFor": "Steam Locomotive",
     "description": "Display animated steam locomotive",
     "examples": [
       "sl  # Display steam locomotive animation",
@@ -28382,7 +28382,7 @@ const commandsDatabase = [
   },
   {
     "name": "sleuthkit",
-    "subtitle": "The Sleuth Kit",
+    "standsFor": "The Sleuth Kit",
     "description": "Digital forensics toolkit for file system analysis",
     "examples": [
       "fls -r disk_image.dd  # Recursively list all files in disk image",
@@ -28436,7 +28436,7 @@ const commandsDatabase = [
   },
   {
     "name": "snap",
-    "subtitle": "Snappy package manager",
+    "standsFor": "Snappy package manager",
     "description": "Universal package manager for Linux applications",
     "examples": [
       "sudo snap install code --classic  # Install Visual Studio Code with classic confinement",
@@ -28506,7 +28506,7 @@ const commandsDatabase = [
   },
   {
     "name": "snort",
-    "subtitle": "Snort",
+    "standsFor": "Snort",
     "description": "Network intrusion detection and prevention system",
     "examples": [
       "snort -c /etc/snort/snort.conf -i eth0  # Run Snort IDS on network interface",
@@ -28559,7 +28559,7 @@ const commandsDatabase = [
   },
   {
     "name": "socat",
-    "subtitle": "Socket Cat",
+    "standsFor": "Socket Cat",
     "description": "Advanced multipurpose relay tool for network connections",
     "examples": [
       "socat TCP-LISTEN:8080,fork TCP:remote-host:80  # Forward local port 8080 to remote host port 80",
@@ -28622,7 +28622,7 @@ const commandsDatabase = [
   },
   {
     "name": "sonarqube",
-    "subtitle": "SonarQube",
+    "standsFor": "SonarQube",
     "description": "Code quality and security analysis platform",
     "examples": [
       "sonar-scanner  # Run SonarQube analysis on current project",
@@ -28684,7 +28684,7 @@ const commandsDatabase = [
   },
   {
     "name": "sort",
-    "subtitle": "sort",
+    "standsFor": "sort",
     "description": "Sort lines of text files",
     "examples": [
       "sort names.txt  # Sort lines in alphabetical order",
@@ -28761,7 +28761,7 @@ const commandsDatabase = [
   },
   {
     "name": "source",
-    "subtitle": "Source",
+    "standsFor": "Source",
     "description": "Execute commands from file in current shell context",
     "examples": [
       "source ~/.bashrc  # Reload bash configuration in current session",
@@ -28822,7 +28822,7 @@ const commandsDatabase = [
   },
   {
     "name": "sox",
-    "subtitle": "Sound eXchange",
+    "standsFor": "Sound eXchange",
     "description": "Sound processing library for audio file manipulation",
     "examples": [
       "sox input.wav output.mp3  # Convert WAV audio file to MP3 format",
@@ -28902,7 +28902,7 @@ const commandsDatabase = [
   },
   {
     "name": "sqlite3",
-    "subtitle": "SQLite",
+    "standsFor": "SQLite",
     "description": "Command-line interface for SQLite databases",
     "examples": [
       "sqlite3 database.db  # Open database file for interactive SQL commands",
@@ -28981,7 +28981,7 @@ const commandsDatabase = [
   },
   {
     "name": "sqlmap",
-    "subtitle": "SQL Map",
+    "standsFor": "SQL Map",
     "description": "SQL injection detection and exploitation tool for web application security testing",
     "examples": [
       "sqlmap -u 'http://example.com/page.php?id=1'  # Test GET parameter for SQL injection vulnerabilities",
@@ -29036,7 +29036,7 @@ const commandsDatabase = [
   },
   {
     "name": "ss",
-    "subtitle": "Socket Statistics",
+    "standsFor": "Socket Statistics",
     "description": "Modern utility to investigate sockets and network connections",
     "examples": [
       "ss -tuln  # Show all TCP and UDP listening ports with numbers",
@@ -29100,7 +29100,7 @@ const commandsDatabase = [
   },
   {
     "name": "ssh",
-    "subtitle": "secure shell",
+    "standsFor": "secure shell",
     "description": "Secure Shell for remote server access and file transfer",
     "examples": [
       "ssh user@192.168.1.100  # Login to remote server with username and IP",
@@ -29176,7 +29176,7 @@ const commandsDatabase = [
   },
   {
     "name": "ssh-keygen",
-    "subtitle": "SSH key generator",
+    "standsFor": "SSH key generator",
     "description": "Generate SSH authentication key pairs",
     "examples": [
       "ssh-keygen  # Create RSA key pair with interactive prompts",
@@ -29257,7 +29257,7 @@ const commandsDatabase = [
   },
   {
     "name": "sslscan",
-    "subtitle": "SSL Scanner",
+    "standsFor": "SSL Scanner",
     "description": "SSL/TLS configuration scanner for security assessment",
     "examples": [
       "sslscan example.com:443  # Scan SSL/TLS configuration and cipher suites",
@@ -29310,7 +29310,7 @@ const commandsDatabase = [
   },
   {
     "name": "stat",
-    "subtitle": "status/statistics",
+    "standsFor": "status/statistics",
     "description": "Display detailed file system information",
     "examples": [
       "stat file.txt  # Display size, permissions, timestamps, and inode info",
@@ -29387,7 +29387,7 @@ const commandsDatabase = [
   },
   {
     "name": "steamcmd",
-    "subtitle": "Steam Command Line",
+    "standsFor": "Steam Command Line",
     "description": "Steam Console Client for Steam Workshop and game server management",
     "examples": [
       "steamcmd +login anonymous +app_update 740 +quit  # Downloads and updates CS:GO dedicated server files",
@@ -29463,7 +29463,7 @@ const commandsDatabase = [
   },
   {
     "name": "strace",
-    "subtitle": "System Call Trace",
+    "standsFor": "System Call Trace",
     "description": "Trace system calls and signals",
     "examples": [
       "strace ./myprogram  # Trace all system calls made by program",
@@ -29526,7 +29526,7 @@ const commandsDatabase = [
   },
   {
     "name": "suricata",
-    "subtitle": "Suricata",
+    "standsFor": "Suricata",
     "description": "High-performance network intrusion detection and prevention system",
     "examples": [
       "suricata -c /etc/suricata/suricata.yaml -i eth0  # Run Suricata IDS on network interface",
@@ -29579,7 +29579,7 @@ const commandsDatabase = [
   },
   {
     "name": "swagger-codegen",
-    "subtitle": "Swagger Code Generator",
+    "standsFor": "Swagger Code Generator",
     "description": "Swagger Codegen for generating client libraries and server stubs",
     "examples": [
       "swagger-codegen generate -i api.yaml -l javascript -o ./client  # Generates JavaScript client library from OpenAPI specification",
@@ -29636,7 +29636,7 @@ const commandsDatabase = [
   },
   {
     "name": "syft",
-    "subtitle": "Syft",
+    "standsFor": "Syft",
     "description": "Generate Software Bill of Materials (SBOM) from container images and filesystems",
     "examples": [
       "syft myregistry/myapp:v1.0.0  # Create software bill of materials for container image",
@@ -29709,7 +29709,7 @@ const commandsDatabase = [
   },
   {
     "name": "symfony",
-    "subtitle": "Symfony Console",
+    "standsFor": "Symfony Console",
     "description": "Symfony PHP framework console tool",
     "examples": [
       "symfony new my_project  # Create new Symfony application",
@@ -29764,7 +29764,7 @@ const commandsDatabase = [
   },
   {
     "name": "sync",
-    "subtitle": "Synchronize",
+    "standsFor": "Synchronize",
     "description": "Synchronize cached writes to persistent storage",
     "examples": [
       "sync  # Force all cached filesystem writes to disk",
@@ -29825,7 +29825,7 @@ const commandsDatabase = [
   },
   {
     "name": "sysctl",
-    "subtitle": "System Control",
+    "standsFor": "System Control",
     "description": "Configure kernel parameters at runtime for system tuning",
     "examples": [
       "sysctl -a  # Display all available kernel parameters",
@@ -29874,7 +29874,7 @@ const commandsDatabase = [
   },
   {
     "name": "systemctl",
-    "subtitle": "System Control",
+    "standsFor": "System Control",
     "description": "Control systemd services and system state",
     "examples": [
       "sudo systemctl start nginx  # Start the nginx service",
@@ -29938,7 +29938,7 @@ const commandsDatabase = [
   },
   {
     "name": "systemd-timer",
-    "subtitle": "systemd Timer",
+    "standsFor": "systemd Timer",
     "description": "Create and manage systemd timer units for scheduled tasks",
     "examples": [
       "systemctl list-timers  # Show all systemd timers and their next run times",
@@ -29990,7 +29990,7 @@ const commandsDatabase = [
   },
   {
     "name": "tail",
-    "subtitle": "tail",
+    "standsFor": "tail",
     "description": "Display last lines of files, often used to monitor logs",
     "examples": [
       "tail -f /var/log/system.log  # Follow log file and show new entries as they appear",
@@ -30054,7 +30054,7 @@ const commandsDatabase = [
   },
   {
     "name": "tar",
-    "subtitle": "tape archive",
+    "standsFor": "tape archive",
     "description": "Archive and compress files and directories",
     "examples": [
       "tar -czf backup.tar.gz project/  # Create gzip-compressed archive of directory",
@@ -30131,7 +30131,7 @@ const commandsDatabase = [
   },
   {
     "name": "tcpdump",
-    "subtitle": "TCP Dump",
+    "standsFor": "TCP Dump",
     "description": "Advanced network packet capture and analysis tool",
     "examples": [
       "sudo tcpdump -i eth0 tcp port 22  # Capture SSH traffic on eth0 interface",
@@ -30185,7 +30185,7 @@ const commandsDatabase = [
   },
   {
     "name": "tee",
-    "subtitle": "T-shaped pipe fitting",
+    "standsFor": "T-shaped pipe fitting",
     "description": "Write output to both file and stdout",
     "examples": [
       "command | tee output.log  # Save command output to file and display on screen",
@@ -30243,7 +30243,7 @@ const commandsDatabase = [
   },
   {
     "name": "telegraf",
-    "subtitle": "Telegraf Metrics Agent",
+    "standsFor": "Telegraf Metrics Agent",
     "description": "Plugin-driven agent for collecting and reporting metrics",
     "examples": [
       "telegraf  # Run Telegraf with default configuration",
@@ -30298,7 +30298,7 @@ const commandsDatabase = [
   },
   {
     "name": "terraform",
-    "subtitle": "Terraform (Advanced)",
+    "standsFor": "Terraform (Advanced)",
     "description": "Infrastructure as Code tool for building, changing, and versioning infrastructure",
     "examples": [
       "terraform init -backend-config='bucket=my-terraform-state' -backend-config='key=prod/terraform.tfstate' -backend-config='region=us-east-1'  # Initialize with S3 backend for state management",
@@ -30399,7 +30399,7 @@ const commandsDatabase = [
   },
   {
     "name": "testssl",
-    "subtitle": "Test SSL",
+    "standsFor": "Test SSL",
     "description": "SSL/TLS configuration testing tool for security assessment",
     "examples": [
       "testssl.sh example.com  # Comprehensive SSL/TLS security test of website",
@@ -30452,7 +30452,7 @@ const commandsDatabase = [
   },
   {
     "name": "time",
-    "subtitle": "Time",
+    "standsFor": "Time",
     "description": "Measure execution time and resource usage of programs",
     "examples": [
       "time ./myprogram  # Measure execution time of program",
@@ -30515,7 +30515,7 @@ const commandsDatabase = [
   },
   {
     "name": "timeout",
-    "subtitle": "Timeout",
+    "standsFor": "Timeout",
     "description": "Run command with time limit",
     "examples": [
       "timeout 30s long_running_command  # Kill command after 30 seconds",
@@ -30577,7 +30577,7 @@ const commandsDatabase = [
   },
   {
     "name": "tmux",
-    "subtitle": "terminal multiplexer",
+    "standsFor": "terminal multiplexer",
     "description": "Terminal multiplexer for managing multiple terminal sessions",
     "examples": [
       "tmux new-session -s development  # Create new named session called 'development'",
@@ -30663,7 +30663,7 @@ const commandsDatabase = [
   },
   {
     "name": "top",
-    "subtitle": "table of processes",
+    "standsFor": "table of processes",
     "description": "Display and update running processes in real-time",
     "examples": [
       "top  # Real-time view of CPU, memory usage and running processes",
@@ -30728,7 +30728,7 @@ const commandsDatabase = [
   },
   {
     "name": "touch",
-    "subtitle": "touch",
+    "standsFor": "touch",
     "description": "Create empty files or update file timestamps",
     "examples": [
       "touch newfile.txt  # Create empty file or update timestamp if exists",
@@ -30804,7 +30804,7 @@ const commandsDatabase = [
   },
   {
     "name": "tr",
-    "subtitle": "translate",
+    "standsFor": "translate",
     "description": "Translate or delete characters from input",
     "examples": [
       "echo 'hello world' | tr 'a-z' 'A-Z'  # Translate lowercase letters to uppercase",
@@ -30880,7 +30880,7 @@ const commandsDatabase = [
   },
   {
     "name": "traceroute",
-    "subtitle": "trace route",
+    "standsFor": "trace route",
     "description": "Trace the route packets take to reach a destination",
     "examples": [
       "traceroute google.com  # Show all hops between your computer and Google's servers",
@@ -30953,7 +30953,7 @@ const commandsDatabase = [
   },
   {
     "name": "tree",
-    "subtitle": "tree",
+    "standsFor": "tree",
     "description": "Display directory structure in tree format",
     "examples": [
       "tree  # Display tree view of current directory and subdirectories",
@@ -31032,7 +31032,7 @@ const commandsDatabase = [
   },
   {
     "name": "tsc",
-    "subtitle": "TypeScript Compiler",
+    "standsFor": "TypeScript Compiler",
     "description": "TypeScript compiler for type checking and JavaScript generation",
     "examples": [
       "tsc  # Compile using tsconfig.json configuration",
@@ -31112,7 +31112,7 @@ const commandsDatabase = [
   },
   {
     "name": "tuned",
-    "subtitle": "Tuned",
+    "standsFor": "Tuned",
     "description": "Dynamic adaptive system tuning daemon",
     "examples": [
       "tuned-adm list  # Show all available tuning profiles",
@@ -31160,7 +31160,7 @@ const commandsDatabase = [
   },
   {
     "name": "ufw",
-    "subtitle": "Uncomplicated Firewall",
+    "standsFor": "Uncomplicated Firewall",
     "description": "Uncomplicated Firewall - simplified iptables management",
     "examples": [
       "sudo ufw enable  # Enable UFW firewall",
@@ -31208,7 +31208,7 @@ const commandsDatabase = [
   },
   {
     "name": "ulimit",
-    "subtitle": "User Limits",
+    "standsFor": "User Limits",
     "description": "Set or display user resource limits",
     "examples": [
       "ulimit -a  # Display all current resource limits",
@@ -31262,7 +31262,7 @@ const commandsDatabase = [
   },
   {
     "name": "umask",
-    "subtitle": "user mask",
+    "standsFor": "user mask",
     "description": "Set default file and directory creation permissions",
     "examples": [
       "umask  # Display current umask setting in octal format",
@@ -31335,7 +31335,7 @@ const commandsDatabase = [
   },
   {
     "name": "umount",
-    "subtitle": "Unmount",
+    "standsFor": "Unmount",
     "description": "Unmount mounted filesystems",
     "examples": [
       "sudo umount /mnt/usb  # Unmount filesystem mounted at /mnt/usb",
@@ -31397,7 +31397,7 @@ const commandsDatabase = [
   },
   {
     "name": "uname",
-    "subtitle": "Unix name",
+    "standsFor": "Unix name",
     "description": "Display system information",
     "examples": [
       "uname -a  # Display kernel name, version, architecture, and more",
@@ -31472,7 +31472,7 @@ const commandsDatabase = [
   },
   {
     "name": "uniq",
-    "subtitle": "unique",
+    "standsFor": "unique",
     "description": "Report or omit repeated lines",
     "examples": [
       "sort file.txt | uniq  # Remove consecutive duplicate lines (requires sorted input)",
@@ -31548,7 +31548,7 @@ const commandsDatabase = [
   },
   {
     "name": "units",
-    "subtitle": "Units",
+    "standsFor": "Units",
     "description": "Unit conversion calculator",
     "examples": [
       "units  # Start interactive unit conversion session",
@@ -31606,7 +31606,7 @@ const commandsDatabase = [
   },
   {
     "name": "unity",
-    "subtitle": "Unity Game Engine",
+    "standsFor": "Unity Game Engine",
     "description": "Unity game engine command line interface",
     "examples": [
       "unity -batchmode -quit -projectPath /path/to/project -buildTarget Android -executeMethod BuildScript.Build  # Builds Unity project in batch mode targeting Android platform using custom build script",
@@ -31688,7 +31688,7 @@ const commandsDatabase = [
   },
   {
     "name": "unzip",
-    "subtitle": "unzip",
+    "standsFor": "unzip",
     "description": "Extract files from ZIP archives",
     "examples": [
       "unzip package.zip  # Extract all files to current directory",
@@ -31767,7 +31767,7 @@ const commandsDatabase = [
   },
   {
     "name": "uptime",
-    "subtitle": "uptime",
+    "standsFor": "uptime",
     "description": "Show system uptime and load averages",
     "examples": [
       "uptime  # Show how long system has been running and load averages",
@@ -31841,7 +31841,7 @@ const commandsDatabase = [
   },
   {
     "name": "uptrace",
-    "subtitle": "Uptrace APM",
+    "standsFor": "Uptrace APM",
     "description": "Open-source APM and distributed tracing tool built with OpenTelemetry",
     "examples": [
       "uptrace serve --config=uptrace.yml  # Start Uptrace server with configuration",
@@ -31895,7 +31895,7 @@ const commandsDatabase = [
   },
   {
     "name": "usermod",
-    "subtitle": "User Modify",
+    "standsFor": "User Modify",
     "description": "Modify user account properties and group memberships",
     "examples": [
       "sudo usermod -aG docker username  # Add user to docker group while preserving other groups",
@@ -31949,7 +31949,7 @@ const commandsDatabase = [
   },
   {
     "name": "vagrant",
-    "subtitle": "Vagrant",
+    "standsFor": "Vagrant",
     "description": "Tool for building and managing virtual machine environments",
     "examples": [
       "vagrant init ubuntu/bionic64  # Create Vagrantfile with Ubuntu 18.04 base box",
@@ -32014,7 +32014,7 @@ const commandsDatabase = [
   },
   {
     "name": "valgrind",
-    "subtitle": "Valgrind",
+    "standsFor": "Valgrind",
     "description": "Memory debugging and profiling tool suite",
     "examples": [
       "valgrind --leak-check=full ./myprogram  # Run program with full memory leak detection",
@@ -32076,7 +32076,7 @@ const commandsDatabase = [
   },
   {
     "name": "vector",
-    "subtitle": "Vector Data Pipeline",
+    "standsFor": "Vector Data Pipeline",
     "description": "High-performance observability data pipeline for logs and metrics",
     "examples": [
       "vector --config vector.toml  # Start Vector with configuration file",
@@ -32131,7 +32131,7 @@ const commandsDatabase = [
   },
   {
     "name": "vim",
-    "subtitle": "vi improved",
+    "standsFor": "vi improved",
     "description": "Powerful text editor with modal interface",
     "examples": [
       "vim config.txt  # Open file for editing in vim",
@@ -32205,7 +32205,7 @@ const commandsDatabase = [
   },
   {
     "name": "vite",
-    "subtitle": "Vite (French for 'quick')",
+    "standsFor": "Vite (French for 'quick')",
     "description": "Fast build tool for modern web development",
     "examples": [
       "vite  # Start fast development server with HMR",
@@ -32284,7 +32284,7 @@ const commandsDatabase = [
   },
   {
     "name": "vmstat",
-    "subtitle": "Virtual Memory Statistics",
+    "standsFor": "Virtual Memory Statistics",
     "description": "Report virtual memory, process, and CPU statistics",
     "examples": [
       "vmstat  # Show current virtual memory and CPU statistics",
@@ -32347,7 +32347,7 @@ const commandsDatabase = [
   },
   {
     "name": "volatility",
-    "subtitle": "Volatility",
+    "standsFor": "Volatility",
     "description": "Advanced memory forensics framework for incident response",
     "examples": [
       "volatility -f memory.dmp imageinfo  # Determine the correct profile for memory dump analysis",
@@ -32401,7 +32401,7 @@ const commandsDatabase = [
   },
   {
     "name": "vue",
-    "subtitle": "Vue CLI",
+    "standsFor": "Vue CLI",
     "description": "Vue.js CLI for creating and managing Vue applications",
     "examples": [
       "vue create my-project  # Create new Vue application with interactive setup",
@@ -32457,7 +32457,7 @@ const commandsDatabase = [
   },
   {
     "name": "watch",
-    "subtitle": "watch",
+    "standsFor": "watch",
     "description": "Execute command repeatedly and display output",
     "examples": [
       "watch 'ps aux | head -20'  # Update process list every 2 seconds (default interval)",
@@ -32535,7 +32535,7 @@ const commandsDatabase = [
   },
   {
     "name": "wc",
-    "subtitle": "word count",
+    "standsFor": "word count",
     "description": "Count lines, words, and characters in files",
     "examples": [
       "wc -l file.txt  # Show only the number of lines",
@@ -32611,7 +32611,7 @@ const commandsDatabase = [
   },
   {
     "name": "webpack",
-    "subtitle": "Web Package",
+    "standsFor": "Web Package",
     "description": "Module bundler for JavaScript applications",
     "examples": [
       "webpack  # Bundle application using webpack.config.js",
@@ -32690,7 +32690,7 @@ const commandsDatabase = [
   },
   {
     "name": "wget",
-    "subtitle": "web get",
+    "standsFor": "web get",
     "description": "Download files from web servers",
     "examples": [
       "wget https://example.com/file.pdf  # Download file to current directory",
@@ -32768,7 +32768,7 @@ const commandsDatabase = [
   },
   {
     "name": "which",
-    "subtitle": "which",
+    "standsFor": "which",
     "description": "Locate command in PATH",
     "examples": [
       "which python  # Show full path to python executable",
@@ -32842,7 +32842,7 @@ const commandsDatabase = [
   },
   {
     "name": "whoami",
-    "subtitle": "who am I",
+    "standsFor": "who am I",
     "description": "Display current username",
     "examples": [
       "whoami  # Show the username of current user"
@@ -32914,7 +32914,7 @@ const commandsDatabase = [
   },
   {
     "name": "whois",
-    "subtitle": "Who Is",
+    "standsFor": "Who Is",
     "description": "Query domain registration and ownership information",
     "examples": [
       "whois google.com  # Get registration information for google.com",
@@ -32971,7 +32971,7 @@ const commandsDatabase = [
   },
   {
     "name": "wireshark",
-    "subtitle": "Wire Shark",
+    "standsFor": "Wire Shark",
     "description": "Network protocol analyzer and packet capture tool",
     "examples": [
       "wireshark  # Launch Wireshark GUI for interactive packet analysis",
@@ -33034,7 +33034,7 @@ const commandsDatabase = [
   },
   {
     "name": "wkhtmltopdf",
-    "subtitle": "WebKit HTML to PDF",
+    "standsFor": "WebKit HTML to PDF",
     "description": "Render HTML to PDF using WebKit engine",
     "examples": [
       "wkhtmltopdf https://example.com document.pdf  # Convert web page to PDF document",
@@ -33113,7 +33113,7 @@ const commandsDatabase = [
   },
   {
     "name": "wp",
-    "subtitle": "WordPress CLI",
+    "standsFor": "WordPress CLI",
     "description": "WP-CLI command line interface for WordPress",
     "examples": [
       "wp core download  # Downloads latest WordPress core files to current directory",
@@ -33197,7 +33197,7 @@ const commandsDatabase = [
   },
   {
     "name": "wrk",
-    "subtitle": "Work",
+    "standsFor": "Work",
     "description": "Modern HTTP benchmarking tool with scriptable load generation",
     "examples": [
       "wrk -t12 -c400 -d30s http://example.com/  # Run 30-second test with 12 threads and 400 connections",
@@ -33258,7 +33258,7 @@ const commandsDatabase = [
   },
   {
     "name": "xargs",
-    "subtitle": "Extended Arguments",
+    "standsFor": "Extended Arguments",
     "description": "Build and execute command lines from standard input",
     "examples": [
       "find . -name '*.tmp' | xargs rm  # Find and delete temporary files",
@@ -33322,7 +33322,7 @@ const commandsDatabase = [
   },
   {
     "name": "xelatex",
-    "subtitle": "",
+    "standsFor": "",
     "description": "Modern LaTeX engine with Unicode and advanced font support",
     "examples": [],
     "platform": [],
@@ -33338,7 +33338,7 @@ const commandsDatabase = [
   },
   {
     "name": "xz",
-    "subtitle": "XZ Utils",
+    "standsFor": "XZ Utils",
     "description": "High-ratio compression tool using LZMA algorithm",
     "examples": [
       "xz large-file.txt  # Compress file (creates large-file.txt.xz, removes original)",
@@ -33414,7 +33414,7 @@ const commandsDatabase = [
   },
   {
     "name": "yara",
-    "subtitle": "Yet Another Recursive Acronym",
+    "standsFor": "Yet Another Recursive Acronym",
     "description": "Pattern matching engine for malware identification and classification",
     "examples": [
       "yara rules.yar suspicious_file.exe  # Scan file using YARA rules for malware detection",
@@ -33468,7 +33468,7 @@ const commandsDatabase = [
   },
   {
     "name": "yarn",
-    "subtitle": "Yet Another Resource Negotiator",
+    "standsFor": "Yet Another Resource Negotiator",
     "description": "Fast, reliable package manager alternative to npm",
     "examples": [
       "yarn init -y  # Create package.json with default configuration",
@@ -33550,7 +33550,7 @@ const commandsDatabase = [
   },
   {
     "name": "yes",
-    "subtitle": "yes",
+    "standsFor": "yes",
     "description": "Output string repeatedly until terminated",
     "examples": [
       "yes | apt upgrade  # Automatically answer 'yes' to all package upgrade prompts",
@@ -33625,7 +33625,7 @@ const commandsDatabase = [
   },
   {
     "name": "youtube-dl",
-    "subtitle": "YouTube Downloader",
+    "standsFor": "YouTube Downloader",
     "description": "Download videos from YouTube and other video sites",
     "examples": [
       "youtube-dl 'https://www.youtube.com/watch?v=VIDEO_ID'  # Download video in best available quality",
@@ -33704,7 +33704,7 @@ const commandsDatabase = [
   },
   {
     "name": "yt-dlp",
-    "subtitle": "YouTube DL Plus",
+    "standsFor": "YouTube DL Plus",
     "description": "Enhanced YouTube downloader with additional features",
     "examples": [
       "yt-dlp 'https://www.youtube.com/watch?v=VIDEO_ID'  # Download in highest available quality",
@@ -33784,7 +33784,7 @@ const commandsDatabase = [
   },
   {
     "name": "yum",
-    "subtitle": "Yellowdog Updater Modified",
+    "standsFor": "Yellowdog Updater Modified",
     "description": "Package manager for Red Hat-based Linux distributions",
     "examples": [
       "sudo yum check-update  # Check for available package updates",
@@ -33856,7 +33856,7 @@ const commandsDatabase = [
   },
   {
     "name": "zabbix",
-    "subtitle": "Zabbix Monitoring",
+    "standsFor": "Zabbix Monitoring",
     "description": "Enterprise monitoring solution for networks, servers and applications",
     "examples": [
       "zabbix_server -c /etc/zabbix/zabbix_server.conf  # Start Zabbix server with configuration file",
@@ -33909,7 +33909,7 @@ const commandsDatabase = [
   },
   {
     "name": "zcat",
-    "subtitle": "Compressed Cat",
+    "standsFor": "Compressed Cat",
     "description": "Display contents of compressed files without decompressing",
     "examples": [
       "zcat file.txt.gz  # Display contents of gzipped file without extracting",
@@ -33970,7 +33970,7 @@ const commandsDatabase = [
   },
   {
     "name": "zeek",
-    "subtitle": "Zeek (formerly Bro)",
+    "standsFor": "Zeek (formerly Bro)",
     "description": "Network security monitoring platform for traffic analysis",
     "examples": [
       "zeek -i eth0 local  # Monitor network interface with local policy",
@@ -34023,7 +34023,7 @@ const commandsDatabase = [
   },
   {
     "name": "zfs",
-    "subtitle": "ZFS Filesystem",
+    "standsFor": "ZFS Filesystem",
     "description": "Advanced filesystem with built-in volume management and data protection",
     "examples": [
       "sudo zpool create mypool /dev/sdb /dev/sdc  # Create ZFS pool with two devices",
@@ -34071,7 +34071,7 @@ const commandsDatabase = [
   },
   {
     "name": "zip",
-    "subtitle": "zip",
+    "standsFor": "zip",
     "description": "Create and manipulate ZIP archives",
     "examples": [
       "zip -r project.zip project/  # Create ZIP file containing entire directory",
@@ -34146,7 +34146,7 @@ const commandsDatabase = [
   },
   {
     "name": "zipkin",
-    "subtitle": "Zipkin Tracing",
+    "standsFor": "Zipkin Tracing",
     "description": "Distributed tracing system for troubleshooting latency problems",
     "examples": [
       "java -jar zipkin.jar  # Start Zipkin server with default settings",
@@ -34200,7 +34200,7 @@ const commandsDatabase = [
   },
   {
     "name": "zoxide",
-    "subtitle": "zoxide",
+    "standsFor": "zoxide",
     "description": "Smart cd command that learns your habits",
     "examples": [
       "z project  # Jump to most frequent/recent directory matching 'project'",
@@ -34278,7 +34278,7 @@ const commandsDatabase = [
   },
   {
     "name": "zsh",
-    "subtitle": "Z Shell",
+    "standsFor": "Z Shell",
     "description": "Z shell with advanced features and customization",
     "examples": [
       "zsh  # Starts Z shell interactive session",
@@ -34353,7 +34353,7 @@ const commandsDatabase = [
   },
   {
     "name": "zstd",
-    "subtitle": "Zstandard",
+    "standsFor": "Zstandard",
     "description": "Modern compression algorithm with excellent speed/ratio balance",
     "examples": [
       "zstd file.txt  # Compress file.txt to file.txt.zst",
@@ -34415,7 +34415,7 @@ const commandsDatabase = [
   },
   {
     "name": "zypper",
-    "subtitle": "Zipper",
+    "standsFor": "Zipper",
     "description": "Command-line package manager for openSUSE and SUSE Linux",
     "examples": [
       "zypper search nginx  # Search for packages containing nginx",
@@ -34463,4 +34463,5 @@ const commandsDatabase = [
   }
 ];
 
+export const commands = commandsDatabase;
 export default commandsDatabase;

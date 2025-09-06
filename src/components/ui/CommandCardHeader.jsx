@@ -3,7 +3,7 @@ import { Badge } from "./badge.jsx";
 
 export function CommandCardHeader({
   name,
-  subtitle,
+  standsFor,
   description,
   safety = "safe",
   prerequisites = [],

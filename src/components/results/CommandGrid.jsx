@@ -17,7 +17,7 @@ export function CommandGrid({
           key={command.name}
           data-command-name={command.name}
           name={command.name}
-          subtitle={command.subtitle}
+          standsFor={command.standsFor}
           description={command.description}
           safety={command.safety}
           platform={command.platform}

@@ -11,8 +11,8 @@ describe('Commands Data Structure', () => {
     expect(Array.isArray(commands)).toBe(true);
   });
 
-  it('should have at least 80 commands', () => {
-    expect(commands.length).toBeGreaterThanOrEqual(80);
+  it('should have at least 400 commands', () => {
+    expect(commands.length).toBeGreaterThanOrEqual(400);
   });
 
   it('each command should have the required properties', () => {
@@ -48,11 +48,11 @@ describe('Commands Data Structure', () => {
     
     // Commands are now deduplicated, so unique names should equal total length
     expect(uniqueNames.size).toEqual(names.length);
-    expect(uniqueNames.size).toBeGreaterThan(70); // At least 70 unique commands
+    expect(uniqueNames.size).toBeGreaterThan(400); // At least 400 unique commands
   });
 
   it('should have valid platform values', () => {
-    const validPlatforms = ['linux', 'mac', 'windows'];
+    const validPlatforms = ['linux', 'macos', 'windows'];
     
     commands.forEach(command => {
       command.platform.forEach(platform => {

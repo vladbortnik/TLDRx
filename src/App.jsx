@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CommandCard } from './components/ui/CommandCard';
 import PWAInstall from './components/PWAInstall';
-import { adaptToEnhancedFormat } from "./utils/dataAdapter";
+import { getPlatformMapping, getCategoryMapping } from "./constants/mappings";
 import { Header } from './components/layout/Header';
 import { SearchInterface } from './components/search/SearchInterface';
 import { FilterBar } from './components/filters/FilterBar';
@@ -44,8 +44,13 @@ function App({ mockCommands }) {
 
         const module = await import("./data/commands.js");
         const rawCommands = module.commands || module.default;
-        // Process commands through adapter to add manPageUrl and other enhancements
-        const enhancedCommands = rawCommands.map(command => adaptToEnhancedFormat(command));
+        // Transform commands for UI requirements (platforms and categories)
+        const enhancedCommands = rawCommands.map(command => ({
+          ...command,
+          platform: command.platform ? command.platform.map(getPlatformMapping) : [getPlatformMapping('linux')],
+          categories: command.category ? [getCategoryMapping(command.category)] : [getCategoryMapping('general')],
+          manPageUrl: command.manPageUrl || `https://man7.org/linux/man-pages/man1/${command.name}.1.html`
+        }));
         setCommands(enhancedCommands);
         setError(null);
       } catch (err) {
