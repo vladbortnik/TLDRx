@@ -1,7 +1,7 @@
 /**
  * TL;DRx Commands Database - System Category
  *
- * Contains 43 commands related to system.
+ * Contains 43 commands related to a system.
  * Generated from the original commands.js file.
  *
  * @fileoverview System category commands for TL;DRx
@@ -14,6 +14,64 @@
  * @type {Array<Object>}
  */
 const systemCommands = [
+    {
+        "name": "ruby",
+        "standsFor": "Ruby",
+        "description": "Ruby interpreter for dynamic programming and web development",
+        "examples": [
+            "ruby script.rb  # Execute Ruby script file",
+            "ruby -e \"puts 'Hello World'\"  # Execute Ruby code directly from command line",
+            "ruby -c script.rb  # Check Ruby file for syntax errors without execution",
+            "ruby -w script.rb  # Execute with verbose warnings enabled",
+            "ruby -r json -e \"puts JSON.generate({hello: 'world'})\"  # Require library and execute inline code",
+            "ruby --version  # Display Ruby interpreter version",
+            "ruby -pe 'gsub(/old/, \"new\")' file.txt  # Process file line by line replacing 'old' with 'new'"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ],
+        "category": "development",
+        "safety": "safe",
+        "syntaxPattern": "ruby [options] <file> [args]",
+        "prerequisites": [
+            "intermediate"
+        ],
+        "commandCombinations": [
+            {
+                "scenario": "Install gems and run Rails",
+                "commands": "gem install rails && rails new myapp && cd myapp && rails server",
+                "explanation": "Install Rails framework, create app, and start server",
+                "title": "gem && rails && cd && rails"
+            },
+            {
+                "scenario": "Run tests with RSpec",
+                "commands": "gem install rspec && rspec spec/",
+                "explanation": "Install testing framework and run tests",
+                "title": "gem && rspec"
+            }
+        ],
+        "relatedCommands": [
+            {
+                "name": "gem",
+                "relationship": "combo",
+                "reason": "gem manages Ruby packages and dependencies"
+            },
+            {
+                "name": "bundler",
+                "relationship": "combo",
+                "reason": "bundler manages Ruby application dependencies"
+            }
+        ],
+        "warnings": [
+            "Ruby version management can be complex with rbenv/rvm",
+            "Gem conflicts can occur without proper dependency management",
+            "Global vs local gem installation affects script execution"
+        ],
+        "manPageUrl": "https://ruby-doc.org/core/",
+        "distroNotes": {}
+    },
     {
         "name": "alert-manager",
         "standsFor": "Prometheus AlertManager",

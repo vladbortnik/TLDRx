@@ -1,3 +1,6 @@
+/* Font support */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 /* Injects Tailwind's base styles and default styling */
 @tailwind base;
 
@@ -6,3 +9,17 @@
 
 /* Injects Tailwind's utility classes */
 @tailwind utilities;
+
+/* 3D Animation Support */
+.perspective-1000 {
+    perspective: 1000px;
+    perspective-origin: center center;
+}
+
+.preserve-3d {
+    transform-style: preserve-3d;
+}
+
+.font-inter {
+    font-family: 'Inter', system-ui, sans-serif;
+}

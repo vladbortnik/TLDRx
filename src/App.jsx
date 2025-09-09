@@ -26,6 +26,7 @@ function App({ mockCommands }) {
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [backgroundWave, setBackgroundWave] = useState(0);
 
     /**
      * Get the man page URL for a command
@@ -85,6 +86,15 @@ function App({ mockCommands }) {
         loadCommands().catch(console.error);
     }, [mockCommands]);
 
+    // 🌊 WAVE ANIMATION
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setBackgroundWave(prev => (prev + 1) % 360);
+        }, 100);
+        return () => clearInterval(interval);
+    }, []);
+
+
     /**
      * Enhanced fuzzy search algorithm that matches characters in sequence
      * with bonus scoring for consecutive matches and substring matches.
@@ -97,12 +107,12 @@ function App({ mockCommands }) {
         const search = searchTerm.toLowerCase();
         const target = targetString.toLowerCase();
 
-        // Exact match gets highest score
+        // Exact match gets the highest score
         if (target.includes(search)) {
             return 100 - (target.length - search.length);
         }
 
-        // Fuzzy matching: check if all characters from search appear in order in target
+        // Fuzzy matching: check if all characters from the search appear in order in target
         let searchIndex = 0;
         let score = 0;
         let consecutiveMatches = 0;
@@ -140,7 +150,7 @@ function App({ mockCommands }) {
         // For short queries (1-2 characters), prioritize exact name matches heavily
         if (searchTerm.length <= 2) {
             if (command.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-                return nameScore + 2000; // Very high score for exact substring in name
+                return nameScore + 2000; // Very high score for an exact substring in name
             }
             // For short queries, only allow high-scoring fuzzy matches in descriptions
             if (descriptionScore > 50) {
@@ -192,13 +202,13 @@ function App({ mockCommands }) {
         );
     }
 
-    // Then apply search filter
+    // Then apply a search filter
     if (searchQuery.trim() === "") {
         displayCommands = filteredCommands.slice();
     } else {
         const query = searchQuery.toLowerCase();
 
-        // Check for exact command name match (Phase 4.1a)
+        // Check for the exact command name match (Phase 4.1a)
         const exactMatchCommand = filteredCommands.find(
             (command) => command.name.toLowerCase() === query
         );
@@ -238,8 +248,23 @@ function App({ mockCommands }) {
         setSearchQuery(commandName);
     };
 
+    // Wave Background
+    const getPageWaveBackground = () => {
+        const color1 = `rgb(${Math.floor(15 + Math.sin(backgroundWave * 0.01) * 25)}, ${Math.floor(23 + Math.cos(backgroundWave * 0.012) * 30)}, ${Math.floor(42 + Math.sin(backgroundWave * 0.008) * 40)})`;
+        const color2 = `rgb(${Math.floor(30 + Math.cos(backgroundWave * 0.015) * 35)}, ${Math.floor(41 + Math.sin(backgroundWave * 0.01) * 25)}, ${Math.floor(59 + Math.cos(backgroundWave * 0.012) * 50)})`;
+        const color3 = `rgb(${Math.floor(49 + Math.sin(backgroundWave * 0.02) * 50)}, ${Math.floor(46 + Math.cos(backgroundWave * 0.018) * 35)}, ${Math.floor(129 + Math.sin(backgroundWave * 0.015) * 60)})`;
+
+        return `linear-gradient(135deg, ${color1}, ${color2}, ${color3}, ${color1})`;
+    };
+
     return (
-        <div className="min-h-screen bg-slate-900 text-white">
+        <div
+            className="min-h-screen text-white font-inter"
+            style={{
+                background: getPageWaveBackground(),
+                transition: 'background 0.3s ease'
+            }}
+        >
             <div className="container mx-auto max-w-6xl px-4 py-8">
                 <Header />
 
