@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Terminal, Filter, Code } from 'lucide-react';
 import { FaDatabase, FaDiamond, FaCircle, FaCube } from 'react-icons/fa6';
 
-export function SearchInput({ value, onChange, placeholder = "Search commands..." }) {
+export function SearchInput({ value, onChange, placeholder = "Search commands...", onFilterToggle }) {
     const [isFocused, setIsFocused] = useState(false);
     const [showHelpers, setShowHelpers] = useState(false);
     const [cursor, setCursor] = useState(true);
@@ -192,7 +192,10 @@ export function SearchInput({ value, onChange, placeholder = "Search commands...
                                 {/* Filter icon for OS and Category functionality */}
                                 <button
                                     className="text-white/90 hover:text-yellow-300 transition-colors duration-200 group pointer-events-auto"
-                                    onClick={(e) => e.stopPropagation()}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        onFilterToggle && onFilterToggle();
+                                    }}
                                 >
                                     <Filter className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
                                 </button>

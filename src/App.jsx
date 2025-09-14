@@ -5,6 +5,7 @@ import { getPlatformMapping, getCategoryMapping } from "./constants/mappings";
 import { Header } from './components/layout/Header';
 import { SearchInterface } from './components/search/SearchInterface';
 import { FilterBar } from './components/filters/FilterBar';
+import { InlineExpandableFilter } from './components/filters/InlineExpandableFilter';
 import { ErrorState } from './components/ui/ErrorState';
 import { LoadingState } from './components/ui/LoadingState';
 import { ResultsCounter } from './components/search/ResultsCounter';
@@ -27,6 +28,7 @@ function App({ mockCommands }) {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [backgroundWave, setBackgroundWave] = useState(0);
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
 
     /**
      * Get the man page URL for a command
@@ -248,6 +250,11 @@ function App({ mockCommands }) {
         setSearchQuery(commandName);
     };
 
+    // Handle filter toggle
+    const handleFilterToggle = () => {
+        setIsFilterOpen(prev => !prev);
+    };
+
     // Wave Background
     const getPageWaveBackground = () => {
         const color1 = `rgb(${Math.floor(15 + Math.sin(backgroundWave * 0.01) * 25)}, ${Math.floor(23 + Math.cos(backgroundWave * 0.012) * 30)}, ${Math.floor(42 + Math.sin(backgroundWave * 0.008) * 40)})`;
@@ -271,8 +278,20 @@ function App({ mockCommands }) {
                 <SearchInterface
                     searchQuery={searchQuery}
                     onSearchChange={setSearchQuery}
+                    onFilterToggle={handleFilterToggle}
                 />
 
+                {/* Inline Expandable Filter - appears in the red area from your screenshot */}
+                <InlineExpandableFilter
+                    isOpen={isFilterOpen}
+                    onToggle={handleFilterToggle}
+                    selectedPlatform={selectedPlatform}
+                    selectedCategory={selectedCategory}
+                    onPlatformChange={setSelectedPlatform}
+                    onCategoryChange={setSelectedCategory}
+                />
+
+                {/* Original FilterBar - you can comment this out if you prefer the inline version */}
                 <FilterBar
                     selectedPlatform={selectedPlatform}
                     selectedCategory={selectedCategory}
