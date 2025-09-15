@@ -1,4 +1,6 @@
 /**
+ * == THIS FILE HAS BEEN MODIFIED TO SUPPORT NEW UI ==
+ *
  * TL;DRx Commands Database - System Category
  *
  * Contains 43 commands related to a system.
@@ -6,7 +8,7 @@
  *
  * @fileoverview System category commands for TL;DRx
  * @category system
- * @commands 43
+ * @commands ??
  */
 
 /**
@@ -15,17 +17,180 @@
  */
 const systemCommands = [
     {
-        "name": "ruby",
-        "standsFor": "Ruby",
-        "description": "Ruby interpreter for dynamic programming and web development",
+        "name": "7z",
+        "standsFor": "7-Zip",
+        "description": "High compression ratio archiver supporting many formats",
+        "keyFeatures": [
+            "The `7z` command is a powerful archiving tool that creates compressed archives with superior compression ratios compared to traditional ZIP or RAR formats. It supports over 20 archive formats for creation and extraction, and uses advanced LZMA/LZMA2 compression algorithms that can reduce file sizes by 30-70% more than standard compression tools. Beyond simple archiving, 7z provides encryption, integrity verification, and selective extraction capabilities.",
+            "Multiple Format Support: Creates and extracts 20+ formats including 7z, ZIP, RAR, TAR, GZIP, BZIP2, XZ, and ISO",
+            "Superior Compression: LZMA/LZMA2 algorithms achieve 30-70% better compression ratios than ZIP",
+            "Password Protection: AES-256 encryption with secure password-based archive protection",
+            "Selective Operations: Extract specific files, file types, or directories without processing entire archive",
+            "Compression Levels: Adjustable compression from fastest (-mx1) to ultra (-mx9) for size vs speed optimization",
+            "Archive Testing: Built-in integrity verification to detect corruption without extraction",
+            "Recursive Processing: Handle nested directories and complex folder structures automatically",
+            "Cross-Platform Compatibility: Works consistently across Windows, Linux, and macOS systems",
+            "Batch Operations: Process multiple files and folders in single command with wildcard support",
+            "Memory Efficiency: Optimized for large archives with minimal system resource usage"
+        ],
         "examples": [
-            "ruby script.rb  # Execute Ruby script file",
-            "ruby -e \"puts 'Hello World'\"  # Execute Ruby code directly from command line",
-            "ruby -c script.rb  # Check Ruby file for syntax errors without execution",
-            "ruby -w script.rb  # Execute with verbose warnings enabled",
-            "ruby -r json -e \"puts JSON.generate({hello: 'world'})\"  # Require library and execute inline code",
-            "ruby --version  # Display Ruby interpreter version",
-            "ruby -pe 'gsub(/old/, \"new\")' file.txt  # Process file line by line replacing 'old' with 'new'"
+            "7z a backup.7z folder/  # Create 7z archive of entire directory",
+            "7z x archive.7z  # Extract all files maintaining directory structure",
+            "7z l package.7z  # Show files inside archive without extracting",
+            "7z a -p secret.7z confidential/  # Create encrypted archive with password prompt",
+            "7z a -mx9 ultra.7z large-files/  # Use highest compression level for smallest size",
+            "7z t backup.7z  # Verify archive is not corrupted",
+            "7z a archive.7z *.txt  # Create archive with all txt files",
+            "7z e archive.7z  # Extract files from archive to current directory"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ],
+        "category": "file-operations",
+        "safety": "safe",
+        "syntaxPattern": "7z <command> [options] <archive> [files]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity, understanding of file systems, and fundamental Unix/Linux concepts",
+            "prior_commands": "Comfortable with basic file navigation (ls, cd, pwd), file viewing (cat, less), and simple text editing",
+            "risk_awareness": "Low risk: verify command parameters and understand potential file system or configuration changes"
+        },
+        "commandCombinations": [
+            {
+                "label": "7z && 7z && ls # Backup with compression comparison",
+                "commands": "7z a backup.7z data/ && 7z a -mx1 fast.7z data/ && ls -lh *.7z",
+                "explanation": "Create normal and fast compression, compare sizes"
+            },
+            {
+                "label": "7z # Extract specific file types",
+                "commands": "7z x archive.7z '*.txt' -o./text-files/",
+                "explanation": "Extract only text files to specific directory"
+            }
+        ],
+        "relatedCommands": [
+            {
+                "name": "zip",
+                "relationship": "alternative",
+                "reason": "7z supports ZIP format and many others"
+            },
+            {
+                "name": "tar",
+                "relationship": "similar",
+                "reason": "Both create archives, 7z has better compression"
+            },
+            {
+                "name": "rar",
+                "relationship": "similar",
+                "reason": "Another high-compression archive format"
+            }
+        ],
+        "warnings": [
+            "Command syntax different from tar/zip",
+            "Password protection uses different flags than other tools",
+            "Some Linux distributions need p7zip-full package",
+            "Password-protected archives use AES-256 encryption",
+            "Ultra compression (-mx9) can be very slow on large files"
+        ],
+        "manPageUrl": "https://7ziphelp.com/7zip-command-line"
+    },
+    {
+        "name": "ab",
+        "standsFor": "Apache Bench",
+        "description": "Apache HTTP server benchmarking tool",
+        "keyFeatures": [
+            "The `ab` command (Apache Bench) is a command-line load testing and benchmarking tool designed to measure the performance of HTTP web servers. It generates multiple concurrent requests to simulate real-world traffic patterns and provides detailed statistics about response times, throughput, and server reliability. Originally developed for Apache HTTP server testing, ab works with any HTTP/HTTPS server and is widely used for performance testing, capacity planning, and server optimization.",
+            "Load Testing: Generate thousands of concurrent HTTP requests to test server performance under stress",
+            "Concurrency Control: Configure simultaneous connections (-c) to simulate multiple users accessing server",
+            "Request Customization: Send GET, POST, PUT requests with custom headers, authentication, and request bodies",
+            "Keep-Alive Support: Use HTTP keep-alive connections (-k) for more realistic persistent connection testing",
+            "Authentication Testing: Test protected endpoints using basic authentication (-A) and custom credentials",
+            "Performance Metrics: Detailed statistics including requests per second, response times, and transfer rates",
+            "Time-Based Testing: Run tests for specific duration (-t) instead of fixed request count",
+            "Data Export: Output results in formats compatible with gnuplot and other analysis tools",
+            "SSL/HTTPS Support: Test encrypted connections and measure SSL handshake performance impact",
+            "Verbose Reporting: Multiple verbosity levels showing detailed request/response information for debugging"
+        ],
+        "examples": [
+            "ab -n 1000 -c 10 http://example.com/  # Send 1000 requests with concurrency of 10",
+            "ab -n 1000 -c 10 -k http://example.com/  # Use HTTP keep-alive connections for testing",
+            "ab -n 100 -c 5 -p data.json -T 'application/json' http://api.example.com/endpoint  # Test POST endpoint with JSON data",
+            "ab -n 500 -c 5 -A username:password http://example.com/protected/  # Test protected endpoint with basic auth",
+            "ab -n 100 -c 5 -H 'Accept: application/json' http://api.example.com/  # Include custom HTTP headers in requests",
+            "ab -n 100 -c 10 http://example.com/  # 100 requests with 10 concurrent connections",
+            "ab -t 30 -c 10 http://example.com/  # Run for 30 seconds with 10 concurrent connections",
+            "ab -n 500 -c 25 -g results.gnuplot http://example.com/  # Output results for gnuplot"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ],
+        "category": "networking",
+        "safety": "caution",
+        "syntaxPattern": "ab [options] [http[s]://]hostname[:port]/path",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity and understanding of fundamental Unix/Linux file system concepts",
+            "prior_commands": "Basic familiarity with ls, cd, pwd, cat, and fundamental file system navigation",
+            "risk_awareness": "Moderate risk: understand command purpose and verify syntax before execution"
+        },
+        "commandCombinations": [
+            {
+                "label": "ab && gnuplot # Comprehensive API load test",
+                "commands": "ab -n 1000 -c 20 -g results.tsv http://api.example.com/ && gnuplot plot-results.plt",
+                "explanation": "Run load test and generate performance graphs"
+            }
+        ],
+        "relatedCommands": [
+            {
+                "name": "wrk",
+                "relationship": "modern-alternative",
+                "reason": "wrk provides more advanced load testing capabilities"
+            },
+            {
+                "name": "curl",
+                "relationship": "simple-alternative",
+                "reason": "curl can test individual requests"
+            }
+        ],
+        "warnings": [
+            "Don't run against production servers without permission",
+            "High concurrency can overwhelm target servers",
+            "Only supports HTTP 1.0 protocol",
+            "Single-threaded regardless of concurrency level",
+            "Always test from different machine than target server"
+        ],
+        "manPageUrl": "https://httpd.apache.org/docs/2.4/programs/ab.html"
+    },
+    {
+        "name": "act",
+        "standsFor": "Act",
+        "description": "Run GitHub Actions locally using Docker",
+        "keyFeatures": [
+            "The `act` command enables developers to run GitHub Actions workflows locally on their development machines using Docker containers. It replicates the GitHub Actions environment by downloading and executing the same runner images that GitHub uses, allowing developers to test, debug, and iterate on CI/CD workflows without pushing code to GitHub. This dramatically speeds up workflow development and reduces the feedback loop from hours to minutes.",
+            "Local Workflow Execution: Run complete GitHub Actions workflows on local machine without cloud dependency",
+            "Event Simulation: Trigger workflows for different events (push, pull_request, release, schedule) locally",
+            "Docker Integration: Uses official GitHub runner Docker images to ensure environment parity",
+            "Secret Management: Load secrets from files or environment variables for secure local testing",
+            "Selective Job Execution: Run specific jobs or steps from workflows instead of entire workflow",
+            "Multiple Runner Support: Override default runner images with custom or specific Ubuntu/Windows versions",
+            "Dry Run Mode: Preview what would execute without actually running commands or making changes",
+            "Verbose Debugging: Detailed logging to troubleshoot workflow issues and step failures",
+            "Variable Injection: Pass custom environment variables and workflow inputs for different test scenarios",
+            "Matrix Strategy Testing: Test different combinations of OS, language versions, and configurations locally"
+        ],
+        "examples": [
+            "act push  # Execute GitHub Actions workflow for push event",
+            "act pull_request  # Simulate pull request workflow locally",
+            "act -l  # Show all workflows and jobs that can be run",
+            "act -j test  # Execute only the 'test' job from workflow",
+            "act -P ubuntu-latest=nektos/act-environments-ubuntu:18.04  # Override default runner image",
+            "act --secret-file .secrets  # Load environment secrets from file",
+            "act  # Run default push event",
+            "act -n  # Dry run mode to see what would execute",
+            "act -s GITHUB_TOKEN=token123  # Run with secret",
+            "act --var ENVIRONMENT=dev  # Run with variable",
+            "act -v  # Enable verbose logging"
         ],
         "platform": [
             "linux",
@@ -34,48 +199,202 @@ const systemCommands = [
         ],
         "category": "development",
         "safety": "safe",
-        "syntaxPattern": "ruby [options] <file> [args]",
-        "prerequisites": [
-            "intermediate"
-        ],
+        "syntaxPattern": "act [event] [options]",
+        "prerequisites": {
+            "foundational_concepts": "Understanding of containerization concepts, Docker architecture, and basic container lifecycle management",
+            "prior_commands": "Comfortable with docker ps, docker images, docker run, and basic container inspection commands",
+            "risk_awareness": "Low risk: understand container resource usage, security implications, and potential system impact"
+        },
         "commandCombinations": [
             {
-                "scenario": "Install gems and run Rails",
-                "commands": "gem install rails && rails new myapp && cd myapp && rails server",
-                "explanation": "Install Rails framework, create app, and start server",
-                "title": "gem && rails && cd && rails"
+                "label": "act && act && act # Test workflow before push",
+                "commands": "act -l && act push --dryrun && act push",
+                "explanation": "List workflows, dry run, then execute"
             },
             {
-                "scenario": "Run tests with RSpec",
-                "commands": "gem install rspec && rspec spec/",
-                "explanation": "Install testing framework and run tests",
-                "title": "gem && rspec"
+                "label": "act # Debug failing workflow",
+                "commands": "act push --verbose --container-architecture linux/amd64",
+                "explanation": "Run with verbose logging and specific architecture"
             }
         ],
         "relatedCommands": [
             {
-                "name": "gem",
+                "name": "docker",
                 "relationship": "combo",
-                "reason": "gem manages Ruby packages and dependencies"
+                "reason": "act requires Docker to run GitHub Actions locally"
             },
             {
-                "name": "bundler",
+                "name": "github-cli",
                 "relationship": "combo",
-                "reason": "bundler manages Ruby application dependencies"
+                "reason": "Both tools work with GitHub repositories"
+            },
+            {
+                "name": "git",
+                "relationship": "combo",
+                "reason": "act runs in Git repositories with GitHub Actions"
             }
         ],
         "warnings": [
-            "Ruby version management can be complex with rbenv/rvm",
-            "Gem conflicts can occur without proper dependency management",
-            "Global vs local gem installation affects script execution"
+            "Requires Docker to be running",
+            "Some GitHub-specific features may not work locally",
+            "Large runner images can be 17GB in size",
+            "Not all GitHub Actions marketplace actions work locally",
+            "Secrets are handled differently than in GitHub"
         ],
-        "manPageUrl": "https://ruby-doc.org/core/",
-        "distroNotes": {}
+        "manPageUrl": "https://github.com/nektos/act"
+    },
+    {
+        "name": "aide",
+        "standsFor": "Advanced Intrusion Detection Environment",
+        "description": "Advanced Intrusion Detection Environment for file integrity monitoring",
+        "keyFeatures": [
+            "The `aide` command (Advanced Intrusion Detection Environment) is a file and directory integrity checker that creates a database of file attributes and uses cryptographic hashes to detect unauthorized changes to system files. It monitors file permissions, timestamps, checksums, and other metadata to identify potential security breaches, system corruption, or unauthorized modifications. AIDE is essential for compliance requirements and forensic analysis in enterprise environments.",
+            "File Integrity Monitoring: Creates cryptographic fingerprints of files using multiple hash algorithms (MD5, SHA1, SHA256)",
+            "Database Management: Maintains baseline database of system state for comparison with current filesystem",
+            "Flexible Configuration: Highly customizable rules for monitoring specific files, directories, and attributes",
+            "Multiple Hash Algorithms: Supports MD5, SHA1, SHA256, and other algorithms for comprehensive integrity checking",
+            "Detailed Reporting: Generates comprehensive reports showing exactly what files changed and how",
+            "Rule-Based Monitoring: Define custom rules for different file types and system areas with granular control",
+            "Compliance Support: Meets security standards like PCI-DSS, HIPAA, and SOX for file integrity requirements",
+            "Cross-Reference Capability: Compare databases from different time periods or systems",
+            "Attribute Monitoring: Tracks file permissions, ownership, timestamps, size, and inode changes beyond content",
+            "Scheduled Operations: Integrates with cron for automated daily/weekly integrity checks"
+        ],
+        "examples": [
+            "aide --init  # Create initial database of file system state",
+            "aide --check  # Compare current state with baseline database",
+            "aide --update  # Update baseline database with current state",
+            "aide --compare  # Compare two AIDE databases",
+            "aide --config-check  # Verify configuration file syntax",
+            "aide --check --report=detailed  # Generate detailed integrity report"
+        ],
+        "platform": [
+            "linux"
+        ],
+        "category": "security",
+        "safety": "safe",
+        "syntaxPattern": "aide [options] [command]",
+        "prerequisites": {
+            "foundational_concepts": "Understanding of system administration concepts, user permissions, and privilege escalation",
+            "prior_commands": "Understanding of sudo usage, permission commands (chmod, chown), and system service management",
+            "risk_awareness": "Critical risk: administrative commands can affect entire system - verify all parameters and understand consequences"
+        },
+        "commandCombinations": [
+            {
+                "label": "aide && cp && aide # Complete integrity monitoring setup",
+                "commands": "aide --init && cp /var/lib/aide/aide.db.new /var/lib/aide/aide.db && aide --check",
+                "explanation": "Initialize, install, and run first integrity check"
+            }
+        ],
+        "relatedCommands": [
+            {
+                "name": "auditd",
+                "relationship": "complementary",
+                "reason": "Provides detailed audit logs of who/when/how changes were made"
+            },
+            {
+                "name": "rkhunter",
+                "relationship": "complementary",
+                "reason": "Rootkit hunter that works alongside AIDE for comprehensive security"
+            }
+        ],
+        "warnings": [
+            "Requires root privileges to access all system files",
+            "Database initialization can take significant time on large systems",
+            "Attackers with root access can potentially compromise AIDE",
+            "Regular database updates needed after legitimate system changes",
+            "Does not identify who made changes or when they occurred"
+        ],
+        "manPageUrl": "https://aide.github.io/"
+    },
+    {
+        "name": "alembic",
+        "standsFor": "Alembic",
+        "description": "Database migration tool for Python SQLAlchemy",
+        "keyFeatures": [
+            "The `alembic` command is a lightweight database migration tool for Python applications using SQLAlchemy ORM. It provides version control for database schemas, enabling developers to track, apply, and roll back database changes systematically. Alembic generates migration scripts automatically by comparing current database models with target models, making database schema evolution safe and reproducible across development, staging, and production environments.",
+            "Schema Version Control: Track database schema changes with versioned migration files and rollback capabilities",
+            "Auto-Generation: Automatically create migration scripts by comparing SQLAlchemy models with current database",
+            "Multiple Database Support: Works with PostgreSQL, MySQL, SQLite, Oracle, and other SQLAlchemy-supported databases",
+            "Branching and Merging: Handle complex development workflows with multiple feature branches affecting schema",
+            "Online Migrations: Apply schema changes to live databases with minimal downtime using advanced techniques",
+            "Custom Migration Logic: Write complex data transformations and custom SQL alongside schema changes",
+            "Environment Management: Separate configurations for development, staging, and production database environments",
+            "SQL Generation: Preview migrations as SQL scripts before applying them to databases",
+            "Partial Upgrades: Upgrade or downgrade to specific migration versions rather than just latest",
+            "Team Collaboration: Merge schema changes from multiple developers safely with conflict resolution",
+            "Production Safety: Built-in safeguards and dry-run capabilities to prevent destructive operations"
+        ],
+        "examples": [
+            "alembic init alembic  # Create new Alembic migration environment",
+            "alembic revision --autogenerate -m 'Add users table'  # Generate migration script from model changes",
+            "alembic upgrade head  # Upgrade database to latest migration",
+            "alembic downgrade -1  # Downgrade database by one revision",
+            "alembic current  # Display current database revision",
+            "alembic history --verbose  # Show detailed migration history",
+            "alembic revision -m 'Custom data migration'  # Create blank migration for custom changes",
+            "alembic upgrade ae1027a6acf  # Upgrade to specific migration revision",
+            "alembic upgrade head --sql  # Generate SQL without applying migrations"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ],
+        "category": "development",
+        "safety": "caution",
+        "syntaxPattern": "alembic <command> [options]",
+        "prerequisites": {
+            "foundational_concepts": "Basic programming concepts, Python syntax fundamentals, and package management understanding",
+            "prior_commands": "Familiar with python command, pip install, and basic Python script execution",
+            "risk_awareness": "Moderate risk: verify script contents, understand package installations, and follow standard precautions"
+        },
+        "commandCombinations": [
+            {
+                "label": "alembic && alembic && alembic # Model-driven development workflow",
+                "commands": "alembic revision --autogenerate -m 'Update schema' && alembic upgrade head && alembic current",
+                "explanation": "Generate migration from models, apply it, and confirm"
+            }
+        ],
+        "relatedCommands": [
+            {
+                "name": "python",
+                "relationship": "dependency",
+                "reason": "Alembic is a Python package requiring Python runtime"
+            },
+            {
+                "name": "pip",
+                "relationship": "installation",
+                "reason": "Used to install Alembic via pip install alembic"
+            }
+        ],
+        "warnings": [
+            "Always backup database before running migrations in production",
+            "Review auto-generated migrations before applying them",
+            "Test migrations on development environment first",
+            "Downgrade operations may result in data loss",
+            "Configuration file must have correct database URL"
+        ],
+        "manPageUrl": "https://alembic.sqlalchemy.org/en/latest/"
     },
     {
         "name": "alert-manager",
         "standsFor": "Prometheus AlertManager",
         "description": "Handles alerts from Prometheus and routes them to notification channels",
+        "keyFeatures": [
+            "The `alertmanager` command is the core component of Prometheus AlertManager, a sophisticated alert handling system that receives, processes, and routes alerts from Prometheus monitoring systems. It provides intelligent alert grouping, deduplication, and routing to various notification channels like email, Slack, PagerDuty, and webhooks. AlertManager transforms raw monitoring alerts into actionable notifications with context, reducing alert fatigue and ensuring critical issues reach the right teams.",
+            "Alert Routing: Intelligent routing of alerts to appropriate teams and notification channels based on labels and rules",
+            "Grouping and Deduplication: Combines similar alerts and eliminates duplicates to reduce noise and alert fatigue",
+            "Silence Management: Temporary suppression of specific alerts during maintenance windows or known issues",
+            "Multiple Notification Channels: Support for email, Slack, PagerDuty, Discord, webhooks, and custom integrations",
+            "Template System: Customizable alert message templates with dynamic content and formatting",
+            "High Availability: Clustering support for redundant AlertManager instances with shared state",
+            "Inhibition Rules: Suppress lower-priority alerts when higher-priority ones are active",
+            "Web UI and API: Browser-based interface for managing alerts, silences, and configuration",
+            "Time-Based Routing: Route alerts differently based on time of day, weekends, or business hours",
+            "Escalation Policies: Multi-stage alert escalation with increasing severity and notification methods",
+            "Integration Ecosystem: Native integration with Prometheus and compatibility with other monitoring tools"
+        ],
         "examples": [
             "alertmanager --config.file=alertmanager.yml  # Start AlertManager with configuration file",
             "alertmanager --web.listen-address=:9093  # Start on custom port",
@@ -93,15 +412,16 @@ const systemCommands = [
         "category": "system",
         "safety": "safe",
         "syntaxPattern": "alertmanager [flags] / amtool <command> [options]",
-        "prerequisites": [
-            "prometheus"
-        ],
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity and understanding of fundamental Unix/Linux file system concepts",
+            "prior_commands": "Basic familiarity with ls, cd, pwd, cat, and fundamental file system navigation",
+            "risk_awareness": "Low risk: understand command purpose and verify syntax before execution"
+        },
         "commandCombinations": [
             {
-                "scenario": "Cluster setup",
+                "label": "alertmanager # Cluster setup",
                 "commands": "alertmanager --config.file=alertmanager.yml --cluster.peer=alertmanager-2:9094",
-                "explanation": "Start AlertManager in cluster mode",
-                "title": "alertmanager"
+                "explanation": "Start AlertManager in cluster mode"
             }
         ],
         "relatedCommands": [
@@ -128,2162 +448,1697 @@ const systemCommands = [
             "Webhook URLs must be accessible from Alertmanager instance",
             "Rate limiting may affect alert delivery during storms"
         ],
-        "manPageUrl": "https://prometheus.io/docs/alerting/latest/alertmanager/",
-        "distroNotes": {
-            "linux": "Available as Docker container or compiled binary",
-            "kubernetes": "Often deployed as StatefulSet with persistent storage",
-            "docker": "Official image: quay.io/prometheus/alertmanager"
-        }
+        "manPageUrl": "https://prometheus.io/docs/alerting/latest/alertmanager/"
     },
     {
-        "name": "datadog",
-        "standsFor": "Datadog CLI",
-        "description": "Command-line tools for Datadog monitoring and observability platform",
+        "name": "alias",
+        "standsFor": "Create command shortcuts",
+        "description": "Create temporary or permanent shortcuts for longer commands in the shell",
+        "keyFeatures": [
+            "The `alias` command creates custom shortcuts for frequently used commands or complex command combinations in Unix-like shells. It allows users to replace long, complicated commands with short, memorable names, improving productivity and reducing typing errors. Aliases can include command options, parameters, and even pipe combinations, making them powerful tools for customizing the shell experience and creating personal command vocabularies.",
+            "Command Shortcuts: Create brief names for long or complex commands to reduce typing and improve efficiency",
+            "Parameter Inclusion: Include commonly used flags and options within aliases for consistent command execution",
+            "Session Persistence: Temporary aliases for current session or permanent ones via shell configuration files",
+            "Complex Command Chaining: Combine multiple commands with pipes, operators, and conditionals in single alias",
+            "Shell Customization: Personalize command-line experience with shortcuts matching individual workflow patterns",
+            "Error Reduction: Minimize typos and syntax errors by standardizing frequently used command patterns",
+            "Team Standardization: Share common aliases across team members for consistent development environments",
+            "Safety Wrappers: Create aliases that add safety flags or confirmations to potentially dangerous commands",
+            "Dynamic Content: Include variables and command substitution for aliases that adapt to context",
+            "Override Prevention: Use full path or 'command' builtin to bypass aliases when needed"
+        ],
         "examples": [
-            "datadog metric post 'custom.metric' 42 --tags env:production  # Send custom metric to Datadog",
-            "datadog monitor create --type metric --query 'avg(last_5m):avg:system.cpu.user{*} > 80'  # Create CPU usage monitor",
-            "datadog dashboard list  # List all Datadog dashboards",
-            "datadog service check web.response 0 --tags service:web  # Submit service check status",
-            "datadog event post 'Deployment completed' --tags deploy:v1.0.0  # Send deployment event to Datadog",
-            "datadog synthetics run-tests --public-id abc-123-def  # Trigger synthetic API test run",
-            "datadog logs search 'service:web error' --from=-1h  # Search logs from last hour with filters",
-            "echo --example-usage  # Simplified example for echo command"
+            "alias ll='ls -la'  # Create shortcut for detailed directory listing",
+            "alias ..='cd ..'  # Quick way to go up one directory",
+            "alias c='clear'  # Clear screen shortcut",
+            "alias update='sudo apt update && sudo apt upgrade'  # System update shortcut",
+            "alias  # List all current aliases",
+            "unalias ll  # Remove an alias",
+            "alias grep='grep --color=auto'  # Add color to grep output"
         ],
         "platform": [
             "linux",
             "macos",
             "windows"
         ],
-        "category": "system",
-        "safety": "caution",
-        "syntaxPattern": "datadog [command] [options]",
-        "prerequisites": [
-            "datadog-account"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Deployment monitoring",
-                "commands": "datadog event post 'Deployment started' && deploy_app && datadog event post 'Deployment completed'",
-                "explanation": "Track deployment lifecycle events",
-                "title": "datadog && deploy_app && datadog"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "newrelic",
-                "relationship": "alternative",
-                "reason": "Alternative APM and monitoring platform"
-            }
-        ],
-        "warnings": [
-            "Requires API and APP keys",
-            "Rate limits apply to API calls",
-            "Metric names must follow naming conventions"
-        ],
-        "manPageUrl": "https://docs.datadoghq.com/api/",
-        "distroNotes": {}
-    },
-    {
-        "name": "date",
-        "standsFor": "date",
-        "description": "Display or set system date and time",
-        "examples": [
-            "date  # Show current system date and time in default format",
-            "date +%Y%m%d_%H%M%S  # Output date in YYYYMMDD_HHMMSS format for timestamps",
-            "date --iso-8601  # Show date in ISO 8601 standard format",
-            "date +%s  # Display seconds since Unix epoch (January 1, 1970)",
-            "TZ='America/New_York' date  # Show current time in New York timezone",
-            "date -d 'next friday'  # Show date of next Friday",
-            "date -d '@1234567890' +'%Y-%m-%d %H:%M:%S'  # Convert Unix timestamp to readable format",
-            "echo --example-usage  # Simplified example for echo command"
-        ],
-        "platform": [
-            "linux",
-            "macos",
-            "windows"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "date [options] [+format]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Create timestamped backup",
-                "commands": "cp important.txt important_$(date +%Y%m%d).txt.backup",
-                "explanation": "Create backup file with current date in filename",
-                "title": "cp"
-            },
-            {
-                "scenario": "Log with timestamp",
-                "commands": "echo \"$(date): Process completed\" >> logfile.txt",
-                "explanation": "Add timestamped entry to log file",
-                "title": "echo >> logfile"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "cal",
-                "relationship": "related",
-                "reason": "Display calendar for dates"
-            }
-        ],
-        "warnings": [
-            "Date format options vary between GNU date (Linux) and BSD date (macOS)",
-            "Setting system date usually requires root privileges",
-            "Time zone changes affect date output"
-        ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/date.1.html",
-        "distroNotes": {}
-    },
-    {
-        "name": "dc",
-        "standsFor": "Desk Calculator",
-        "description": "Desk calculator using reverse Polish notation",
-        "examples": [
-            "dc  # Launch dc reverse Polish notation calculator",
-            "echo '2 3 + p' | dc  # Add 2 and 3, then print result (5)",
-            "echo '2 100 ^ p' | dc  # Calculate 2 to the power of 100",
-            "echo '10 k 22 7 / p' | dc  # Set precision to 10, divide 22 by 7",
-            "echo '5 d * p' | dc  # Duplicate 5 on stack, multiply (5*5=25)",
-            "echo '16 o 255 p' | dc  # Set output base to 16, print 255 in hex (FF)",
-            "echo '3.14159 2 k p' | dc  # Set precision to 2 decimal places, print pi",
-            "echo --example-usage  # Simplified example for echo command"
-        ],
-        "platform": [
-            "linux",
-            "macos",
-            "windows"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "dc [options] [file]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Complex stack calculation",
-                "commands": "echo '3 4 5 + * 2 / p' | dc",
-                "explanation": "Calculate 3 * (4 + 5) / 2 using RPN",
-                "title": "echo | dc"
-            },
-            {
-                "scenario": "Scientific calculation",
-                "commands": "echo '10 k 2 v 4 / p' | dc",
-                "explanation": "Calculate sqrt(2)/4 with 10 decimal precision",
-                "title": "echo | dc"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "bc",
-                "relationship": "similar",
-                "reason": "bc provides infix notation calculator"
-            },
-            {
-                "name": "awk",
-                "relationship": "alternative",
-                "reason": "awk can perform mathematical calculations"
-            }
-        ],
-        "warnings": [
-            "Reverse Polish notation takes practice to use",
-            "Stack-based operations require understanding of stack",
-            "Limited built-in mathematical functions"
-        ],
-        "manPageUrl": "",
-        "distroNotes": {
-            "windows": "Available in WSL"
-        }
-    },
-    {
-        "name": "dd",
-        "standsFor": "Data Definition/Disk Dump",
-        "description": "Low-level disk and data manipulation tool",
-        "examples": [
-            "sudo dd if=/dev/sda of=disk_image.img bs=4M status=progress  # Create complete disk image with progress indicator",
-            "sudo dd if=ubuntu.iso of=/dev/sdb bs=4M status=progress && sync  # Write ISO to USB drive and sync filesystem",
-            "sudo dd if=/dev/urandom of=/dev/sdb bs=4M status=progress  # Overwrite disk with random data for security",
-            "sudo dd if=/dev/sda of=/dev/sdb bs=4M status=progress conv=sync  # Clone entire disk to another disk",
-            "sudo dd if=/dev/sda of=mbr_backup.img bs=512 count=1  # Backup first 512 bytes (MBR) of disk",
-            "sudo dd if=/dev/zero of=/swapfile bs=1M count=2048  # Create 2GB file filled with zeros for swap",
-            "sudo dd if=/dev/sda bs=4M | gzip > disk_backup.gz  # Create compressed disk backup",
-            "echo --example-usage  # Simplified example for echo command"
-        ],
-        "platform": [
-            "linux",
-            "macos"
-        ],
-        "category": "system",
+        "category": "shell",
         "safety": "dangerous",
-        "syntaxPattern": "dd if=source of=destination [options]",
-        "prerequisites": [
-            "intermediate"
-        ],
+        "syntaxPattern": "alias [name[=value]]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity, understanding of file systems, and fundamental Unix/Linux concepts",
+            "prior_commands": "Comfortable with basic file navigation (ls, cd, pwd), file viewing (cat, less), and simple text editing",
+            "risk_awareness": "Low risk: verify command parameters and understand potential file system or configuration changes"
+        },
         "commandCombinations": [
             {
-                "scenario": "Complete disk backup workflow",
-                "commands": "sudo dd if=/dev/sda of=backup.img bs=4M status=progress && sha256sum backup.img > backup.sha256 && gzip backup.img",
-                "explanation": "Create disk image, generate checksum, compress",
-                "title": "sudo && sha256sum > backup && gzip"
+                "label": "echo >> && source # Make aliases permanent",
+                "commands": "echo \"alias ll='ls -la'\" >> ~/.bashrc && source ~/.bashrc",
+                "explanation": "Add alias to shell configuration for permanent use"
+            },
+            {
+                "label": "alias # Create temporary alias for session",
+                "commands": "alias backup='tar -czf backup_$(date +%Y%m%d).tar.gz'",
+                "explanation": "Create alias that includes current date in backup filename"
             }
         ],
         "relatedCommands": [
             {
-                "name": "gzip",
-                "relationship": "combo",
-                "reason": "Compress large disk images"
+                "name": "which",
+                "relationship": "info",
+                "reason": "Check if command is an alias or executable"
             }
         ],
         "warnings": [
-            "Wrong of= parameter can destroy data",
-            "Always double-check device names",
-            "Use appropriate block size for performance"
+            "Aliases are only available in current shell session unless saved to config",
+            "Cannot use aliases in shell scripts by default",
+            "Aliases with spaces or special characters need proper quoting"
         ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/dd.1.html",
-        "distroNotes": {}
+        "manPageUrl": "https://man7.org/linux/man-pages/man1/bash.1.html"
     },
     {
-        "name": "df",
-        "standsFor": "disk free",
-        "description": "Display filesystem disk space usage",
+        "name": "ansible",
+        "standsFor": "Configuration management and automation",
+        "description": "Agentless automation tool for configuration management, application deployment, and task execution",
+        "keyFeatures": [
+            "The `ansible` command is a powerful agentless automation platform that manages configuration, deploys applications, and orchestrates complex IT tasks across multiple systems simultaneously. Unlike traditional configuration management tools, Ansible requires no agents on managed nodes, using SSH for Linux/Unix systems and WinRM for Windows. It uses human-readable YAML playbooks and provides idempotent operations, ensuring systems reach desired states regardless of their starting condition.",
+            "Agentless Architecture: Manages remote systems via SSH/WinRM without requiring software installation on target hosts",
+            "Idempotent Operations: Ensures consistent results by applying changes only when current state differs from desired state",
+            "YAML Playbooks: Human-readable automation scripts that define complex multi-step procedures and configurations",
+            "Massive Scale Management: Control thousands of servers simultaneously with parallel execution and connection pooling",
+            "Built-in Module Library: 3000+ modules for managing packages, services, files, databases, cloud resources, and applications",
+            "Inventory Management: Flexible host grouping with static files, dynamic sources, and cloud provider integration",
+            "Rolling Deployments: Gradual application updates with health checks and automatic rollback capabilities",
+            "Vault Encryption: Secure storage and handling of sensitive data like passwords, keys, and certificates",
+            "Ad-hoc Commands: Execute one-off tasks across infrastructure without writing playbooks",
+            "Multi-Platform Support: Manage Linux, Windows, MacOS, network devices, and cloud infrastructure uniformly",
+            "Integration Ecosystem: Native support for Docker, Kubernetes, AWS, Azure, GCP, and hundreds of technologies"
+        ],
         "examples": [
-            "df -h  # Show disk usage in human-readable format (GB, MB)",
-            "df -h /home  # Check disk usage for specific mount point",
-            "df -i  # Display inode usage instead of disk space",
-            "df -h -l  # Exclude network filesystems from output"
+            "ansible all -m ping  # Test connectivity to all hosts",
+            "ansible webservers -m shell -a 'uptime'  # Run shell command on webservers group",
+            "ansible all -m setup  # Gather facts from all hosts",
+            "ansible-playbook site.yml  # Run a playbook",
+            "ansible all -m copy -a 'src=file.txt dest=/tmp/'  # Copy file to all hosts",
+            "ansible database -m service -a 'name=postgresql state=started'  # Manage services",
+            "ansible all -m package -a 'name=vim state=present'  # Install package on all hosts"
         ],
         "platform": [
             "linux",
             "macos",
             "windows"
         ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "df [options] [filesystem]...",
-        "prerequisites": [
-            "intermediate"
-        ],
+        "category": "automation",
+        "safety": "caution",
+        "syntaxPattern": "ansible [pattern] -m [module] -a '[module options]'",
+        "prerequisites": {
+            "foundational_concepts": "Basic programming concepts, Python syntax fundamentals, and package management understanding",
+            "prior_commands": "Familiar with python command, pip install, and basic Python script execution",
+            "risk_awareness": "Moderate risk: verify script contents, understand package installations, and follow standard precautions"
+        },
         "commandCombinations": [
             {
-                "scenario": "Alert when disk space is low",
-                "commands": "df -h | awk '$5 > 80 {print $0}'",
-                "explanation": "Show filesystems with more than 80% usage",
-                "title": "df | awk > 80"
+                "label": "ansible && ansible && ansible # Complete deployment workflow",
+                "commands": "ansible all -m ping && ansible-playbook --check deploy.yml && ansible-playbook deploy.yml",
+                "explanation": "Tests connectivity, previews changes, then executes deployment"
             },
             {
-                "scenario": "Monitor disk usage over time",
-                "commands": "watch 'df -h'",
-                "explanation": "Continuously monitor disk space changes",
-                "title": "watch"
+                "label": "ansible && ansible # Update and restart services",
+                "commands": "ansible webservers -m yum -a 'name=httpd state=latest' && ansible webservers -m service -a 'name=httpd state=restarted'",
+                "explanation": "Updates Apache package and restarts the service"
             }
         ],
         "relatedCommands": [
             {
-                "name": "du",
-                "relationship": "combo",
-                "reason": "Use du to find what's using disk space after df shows it's full"
+                "name": "terraform",
+                "relationship": "complement",
+                "reason": "Terraform provisions infrastructure, Ansible configures it"
             },
             {
-                "name": "lsblk",
-                "relationship": "similar",
-                "reason": "Show block devices and mount points"
+                "name": "ssh",
+                "relationship": "dependency",
+                "reason": "Ansible uses SSH for connecting to managed hosts"
             }
         ],
         "warnings": [
-            "df shows filesystem-level usage, not directory contents",
-            "100% usage can prevent new file creation",
-            "Reserved space for root may show >100% for regular users"
+            "Can make system-wide changes across many servers simultaneously",
+            "Always test playbooks in staging environment first",
+            "Requires proper SSH key management for security",
+            "Modules run with privileges of connecting user unless --become used",
+            "Failed tasks may leave systems in inconsistent state"
         ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/df.1.html",
-        "distroNotes": {
-            "windows": "Available in WSL only"
-        }
+        "manPageUrl": "https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html"
     },
     {
-        "name": "dmesg",
-        "standsFor": "Display Message",
-        "description": "Display kernel ring buffer messages",
+        "name": "ant",
+        "standsFor": "Apache Ant build tool",
+        "description": "Java library and command-line build tool for automating software build processes",
+        "keyFeatures": [
+            "The `ant` command is Apache Ant, a Java-based build automation tool that uses XML build files to define project compilation, testing, packaging, and deployment tasks. Unlike make-style tools, Ant is cross-platform and provides a rich set of built-in tasks for Java development workflows. It processes build.xml files containing targets and dependencies, enabling complex build automation with conditional logic, property substitution, and extensible task libraries.",
+            "XML-Based Configuration: Uses declarative build.xml files with targets, dependencies, and task definitions",
+            "Cross-Platform Builds: Java-based tool works consistently across Windows, Linux, MacOS without modification",
+            "Rich Task Library: Built-in tasks for compiling, testing, packaging, documentation generation, and deployment",
+            "Target Dependencies: Automatic execution of prerequisite targets with dependency resolution and cycle detection",
+            "Property System: Dynamic property substitution with environment variables, system properties, and user-defined values",
+            "Conditional Execution: Execute tasks and targets based on conditions, file existence, and property values",
+            "File Pattern Matching: Advanced file selection with includes/excludes patterns and directory traversal",
+            "Custom Task Development: Extend functionality with custom Java tasks and third-party task libraries",
+            "IDE Integration: Native support in Eclipse, NetBeans, IntelliJ IDEA, and other Java development environments",
+            "Legacy Project Support: Maintain and build older Java projects with established Ant-based workflows",
+            "Incremental Builds: Timestamp-based incremental compilation to avoid rebuilding unchanged components"
+        ],
         "examples": [
-            "dmesg  # Display all messages from kernel ring buffer",
-            "dmesg -w  # Watch for new kernel messages in real-time",
-            "dmesg -T  # Show messages with human-readable timestamps",
-            "dmesg -f kern  # Show only kernel facility messages",
-            "dmesg -l err,crit,alert,emerg  # Show only error and above priority messages",
-            "sudo dmesg -c  # Display messages and clear the buffer",
-            "dmesg | tail -20  # Show last 20 kernel messages"
+            "ant  # Run default target in build.xml",
+            "ant compile  # Run specific target named 'compile'",
+            "ant -f mybuild.xml  # Use custom build file",
+            "ant -projecthelp  # List available targets with descriptions",
+            "ant -verbose compile  # Run with verbose output",
+            "ant -Dproperty=value compile  # Set property from command line",
+            "ant clean compile jar  # Run multiple targets in sequence"
         ],
         "platform": [
             "linux",
-            "macos"
+            "macos",
+            "windows"
         ],
-        "category": "system",
-        "safety": "caution",
-        "syntaxPattern": "dmesg [options]",
-        "prerequisites": [
-            "intermediate"
-        ],
+        "category": "development",
+        "safety": "safe",
+        "syntaxPattern": "ant [options] [target [target2 [target3] ...]]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity and understanding of fundamental Unix/Linux file system concepts",
+            "prior_commands": "Basic familiarity with ls, cd, pwd, cat, and fundamental file system navigation",
+            "risk_awareness": "Low risk: understand command purpose and verify syntax before execution"
+        },
         "commandCombinations": [
             {
-                "scenario": "Hardware troubleshooting",
-                "commands": "dmesg -T | grep -i error && lsusb && lspci",
-                "explanation": "Check kernel errors and list USB/PCI devices",
-                "title": "dmesg | grep && lsusb && lspci"
+                "label": "ant && ant && ant && ant # Complete build workflow",
+                "commands": "ant clean && ant compile && ant test && ant jar",
+                "explanation": "Clean, compile, test, and create JAR file"
             }
         ],
         "relatedCommands": [
             {
-                "name": "journalctl",
+                "name": "maven",
+                "relationship": "successor",
+                "reason": "Maven provides more features and conventions"
+            },
+            {
+                "name": "gradle",
                 "relationship": "modern-alternative",
-                "reason": "journalctl -k shows kernel messages on systemd systems"
+                "reason": "Gradle is more flexible and modern"
             }
         ],
         "warnings": [
-            "Ring buffer has limited size, old messages are overwritten",
-            "Timestamps depend on system configuration",
-            "Essential for hardware and driver troubleshooting"
+            "Uses XML build.xml files for configuration",
+            "Very flexible but can become verbose",
+            "Still used in many legacy Java projects"
         ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/dmesg.1.html",
-        "distroNotes": {}
+        "manPageUrl": "https://ant.apache.org/manual/"
     },
     {
-        "name": "dstat",
-        "standsFor": "Dynamic Statistics",
-        "description": "Versatile system resource statistics tool",
+        "name": "apache2",
+        "standsFor": "Apache HTTP Server",
+        "description": "Apache HTTP Server for web hosting and applications",
+        "keyFeatures": [
+            "The `apache2` command controls the Apache HTTP Server, one of the world's most widely used web servers powering over 35% of websites globally. It provides a robust, modular architecture for serving static and dynamic web content, supporting multiple programming languages, SSL/TLS encryption, and virtual hosting. Apache excels at handling high-traffic websites with features like load balancing, caching, compression, and extensive configuration options for security and performance optimization.",
+            "Virtual Host Management: Host multiple websites on single server with domain-based or IP-based virtual hosting",
+            "Modular Architecture: Extensible with 60+ official modules for authentication, compression, caching, and specialized protocols",
+            "SSL/TLS Support: Built-in HTTPS encryption with certificate management and modern security protocol support",
+            "Performance Optimization: Multi-processing modules (MPM) for concurrent request handling and resource management",
+            "Access Control: Granular security controls with directory-level permissions, authentication, and authorization",
+            "Content Compression: Built-in gzip/deflate compression to reduce bandwidth and improve page load times",
+            "Reverse Proxy: Act as intermediary for backend applications with load balancing and failover capabilities",
+            "URL Rewriting: Powerful mod_rewrite for SEO-friendly URLs, redirects, and request manipulation",
+            "Logging and Monitoring: Comprehensive access and error logging with customizable formats and rotation",
+            "CGI and Scripting: Native support for PHP, Python, Perl, and other server-side languages",
+            "Enterprise Features: Integration with LDAP, databases, and enterprise authentication systems"
+        ],
         "examples": [
-            "dstat  # Show CPU, disk, network, paging, and system statistics",
-            "dstat -c  # Display only CPU usage statistics",
-            "dstat -n  # Show network send/receive statistics",
-            "dstat -m -s  # Display memory usage and swap statistics",
-            "dstat 5 12  # Display statistics every 5 seconds for 12 intervals",
-            "dstat --top-cpu --top-mem  # Show processes using most CPU and memory",
-            "dstat -cdngy --output system-stats.csv  # Export comprehensive stats to CSV file"
-        ],
-        "platform": [
-            "linux"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "dstat [options] [interval] [count]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Comprehensive system monitoring",
-                "commands": "dstat -cdngy 2 30 > system_stats.txt",
-                "explanation": "Monitor CPU, disk, network, paging for 1 minute",
-                "title": "dstat > system_stats"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "vmstat",
-                "relationship": "similar",
-                "reason": "Both provide system statistics but dstat is more colorful"
-            },
-            {
-                "name": "iostat",
-                "relationship": "similar",
-                "reason": "Both show I/O statistics with different presentations"
-            }
-        ],
-        "warnings": [
-            "Linux-specific tool, deprecated in favor of newer alternatives",
-            "Colorful output may not work in all terminals",
-            "May not be maintained in recent distributions"
-        ],
-        "manPageUrl": "",
-        "distroNotes": {}
-    },
-    {
-        "name": "du",
-        "standsFor": "disk usage",
-        "description": "Display directory and file disk usage",
-        "examples": [
-            "du -h --max-depth=1 | sort -hr  # Show directory sizes at current level, sorted by size",
-            "du -sh /var/log  # Show total size of directory in human-readable format",
-            "du -ah | grep '[0-9]\\+G'  # Show all files and directories larger than 1GB",
-            "du -sh --exclude='*.tmp' project/  # Calculate directory size excluding temporary files",
-            "du -sh */ | sort -hr  # Display and sort all subdirectory sizes",
-            "du -ck * | tail -1  # Show total disk usage of current directory in KB",
-            "find . -size +100M -exec du -h {} \\; | sort -hr  # Find and display files larger than 100MB"
+            "apache2ctl start  # Start Apache web server",
+            "apache2ctl stop  # Stop Apache web server",
+            "apache2ctl restart  # Restart Apache server",
+            "apache2ctl configtest  # Test configuration file syntax",
+            "apache2ctl graceful  # Graceful restart without dropping connections",
+            "apache2 -t  # Test configuration syntax",
+            "apache2 -S  # Show virtual host configuration",
+            "apache2ctl status  # Show server status information"
         ],
         "platform": [
             "linux",
             "macos",
             "windows"
         ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "du [options] [directory]...",
-        "prerequisites": [
-            "intermediate"
-        ],
+        "category": "networking",
+        "safety": "caution",
+        "syntaxPattern": "apache2ctl <command> / apache2 [options]",
+        "prerequisites": {
+            "foundational_concepts": "Understanding of system administration concepts, user permissions, and privilege escalation",
+            "prior_commands": "Understanding of sudo usage, permission commands (chmod, chown), and system service management",
+            "risk_awareness": "Critical risk: administrative commands can affect entire system - verify all parameters and understand consequences"
+        },
         "commandCombinations": [
             {
-                "scenario": "Find and clean up large files",
-                "commands": "du -ah | sort -hr | head -20",
-                "explanation": "Show 20 largest files and directories",
-                "title": "du | sort | head"
+                "label": "sudo && apache2ctl && sudo # Deploy new site configuration",
+                "commands": "sudo a2ensite mysite.conf && apache2ctl configtest && sudo apache2ctl reload",
+                "explanation": "Enable site, test config, then reload Apache"
             },
             {
-                "scenario": "Disk usage report with date",
-                "commands": "echo \"Disk usage report - $(date)\" && du -sh */ | sort -hr",
-                "explanation": "Generate dated disk usage report",
-                "title": "echo && du | sort"
+                "label": "sudo && sudo && sudo # Enable SSL for site",
+                "commands": "sudo a2enmod ssl && sudo a2ensite mysite-ssl.conf && sudo apache2ctl graceful",
+                "explanation": "Enable SSL module, enable SSL site, graceful restart"
             }
         ],
         "relatedCommands": [
             {
-                "name": "df",
-                "relationship": "combo",
-                "reason": "Use df to see filesystem usage, du to find what's using space"
-            },
-            {
-                "name": "dust",
+                "name": "nginx",
                 "relationship": "alternative",
-                "reason": "Modern du replacement with better visualization"
-            }
-        ],
-        "warnings": [
-            "du can be slow on directories with many files",
-            "Symbolic links are not followed by default",
-            "du shows apparent size, which may differ from actual disk usage"
-        ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/du.1.html",
-        "distroNotes": {
-            "windows": "Available in WSL only"
-        }
-    },
-    {
-        "name": "duplicity",
-        "standsFor": "Duplicity",
-        "description": "Encrypted bandwidth-efficient backup using rsync algorithm",
-        "examples": [
-            "duplicity full /home/user/ file:///backup/user/  # Create full encrypted backup to local directory",
-            "duplicity incr /home/user/ file:///backup/user/  # Create incremental backup of changes since last backup",
-            "duplicity /home/user/ s3://mybucket/backup/  # Backup to Amazon S3 bucket",
-            "duplicity list-current-files file:///backup/user/  # List files in most recent backup",
-            "duplicity restore file:///backup/user/ /restore/location/  # Restore entire backup to specified location",
-            "duplicity remove-older-than 6M file:///backup/user/  # Remove backups older than 6 months",
-            "duplicity verify file:///backup/user/ /home/user/  # Compare backup with source directory to verify integrity"
-        ],
-        "platform": [
-            "linux"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "duplicity [options] source_url target_url",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Automated backup strategy",
-                "commands": "duplicity incr /home/user/ file:///backup/user/ && duplicity remove-older-than 3M file:///backup/user/ && duplicity collection-status file:///backup/user/",
-                "explanation": "Incremental backup, cleanup old backups, show status",
-                "title": "duplicity && duplicity && duplicity"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "rsync",
-                "relationship": "similar",
-                "reason": "Both provide incremental backup capabilities"
+                "reason": "Alternative web server with different architecture"
             },
-            {
-                "name": "gpg",
-                "relationship": "combo",
-                "reason": "Duplicity uses GPG for encryption"
-            }
-        ],
-        "warnings": [
-            "Requires GPG key setup for encryption",
-            "Full backup needed periodically"
-        ],
-        "manPageUrl": "",
-        "distroNotes": {}
-    },
-    {
-        "name": "dust",
-        "standsFor": "dust",
-        "description": "Intuitive du alternative with visual disk usage display",
-        "examples": [
-            "dust  # Display disk usage with bar charts and colors",
-            "dust -d 2  # Show only 2 levels deep in directory tree",
-            "dust -s  # Display file sizes rather than blocks used",
-            "dust -r  # Show largest directories first",
-            "dust -t 100M  # Only show directories larger than 100MB",
-            "dust -b  # Display sizes in bytes instead of human-readable format",
-            "dust -f  # Display full path names instead of just directory names"
-        ],
-        "platform": [
-            "linux",
-            "macos",
-            "windows"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "dust [options] [path]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Find space hogs in specific directory",
-                "commands": "dust -d 3 /var/log | head -20",
-                "explanation": "Analyze log directory usage with limited depth",
-                "title": "dust | head"
-            },
-            {
-                "scenario": "Compare disk usage across filesystems",
-                "commands": "dust /home /var /tmp",
-                "explanation": "Compare usage across multiple directories",
-                "title": "dust"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "du",
-                "relationship": "alternative",
-                "reason": "Traditional disk usage tool, dust has better visualization"
-            },
-            {
-                "name": "df",
-                "relationship": "combo",
-                "reason": "df shows filesystem usage, dust shows directory usage"
-            }
-        ],
-        "warnings": [
-            "Colors may not display correctly in all terminals",
-            "Large directories can take time to analyze",
-            "Bar chart scale adjusts based on largest directory"
-        ],
-        "manPageUrl": "https://github.com/bootandy/dust",
-        "distroNotes": {}
-    },
-    {
-        "name": "factor",
-        "standsFor": "Factor",
-        "description": "Print prime factors of numbers",
-        "examples": [
-            "factor 60  # Show prime factors of 60",
-            "factor 12 18 24  # Show prime factors of multiple numbers",
-            "echo 100 | factor  # Factor number provided via stdin",
-            "seq 10 20 | factor  # Factor all numbers from 10 to 20",
-            "factor 1024  # Factor large number to show power of 2",
-            "echo '2^31-1' | bc | factor  # Factor result of mathematical expression",
-            "for i in {2..50}; do echo -n \"$i: \"; factor $i; done  # Show factors for range with labels",
-            "echo 'RSA Key Analysis:' && openssl rsa -in private.key -text -noout | grep 'modulus:' -A 20 | grep -o '[0-9a-f]{2,}' | head -20 | while read hex; do echo \"Prime factors of 0x$hex ($(echo \"ibase=16; $hex\" | bc)):  $(echo \"ibase=16; $hex\" | bc | factor)\"; done && echo 'Enterprise cryptographic analysis: RSA key modulus factorization, prime number verification, and security assessment for enterprise PKI infrastructure validation'  # Enterprise cryptographic security analysis"
-        ],
-        "platform": [
-            "linux",
-            "macos"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "factor [numbers]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Find prime numbers in range",
-                "commands": "seq 2 50 | factor | grep -E ': [0-9]+$'",
-                "explanation": "Find prime numbers from 2 to 50",
-                "title": "seq | factor | grep"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "seq",
-                "relationship": "combo",
-                "reason": "seq generates number sequences for factoring"
-            },
-            {
-                "name": "bc",
-                "relationship": "complementary",
-                "reason": "bc can verify factor calculations"
-            }
-        ],
-        "warnings": [
-            "Useful for cryptography and number theory",
-            "Can handle very large numbers",
-            "Part of GNU coreutils package"
-        ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/factor.1.html",
-        "distroNotes": {}
-    },
-    {
-        "name": "filebeat",
-        "standsFor": "Filebeat Log Shipper",
-        "description": "Lightweight shipper for forwarding and centralizing log data",
-        "examples": [
-            "filebeat -e  # Run Filebeat with logging to stderr",
-            "filebeat -c filebeat.yml  # Run with custom configuration file",
-            "filebeat test config  # Test configuration file validity",
-            "filebeat test output  # Test connection to configured outputs",
-            "filebeat setup --index-management  # Setup Elasticsearch index template",
-            "filebeat modules enable nginx  # Enable built-in Nginx log parsing module",
-            "filebeat export config  # Display current configuration for debugging",
-            "filebeat test config && filebeat test output && systemctl is-active filebeat && filebeat export config | jq '.filebeat.inputs[] | {type: .type, paths: .paths, multiline: .multiline}' && tail -20 /var/log/filebeat/filebeat && echo 'Enterprise log monitoring validation: configuration verification, output connectivity testing, service health check, input source analysis, and recent log shipping verification for production observability infrastructure'  # Enterprise Filebeat monitoring and validation"
-        ],
-        "platform": [
-            "linux",
-            "macos",
-            "windows"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "filebeat [command] [flags]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Full Elasticsearch setup",
-                "commands": "filebeat setup && filebeat -e",
-                "explanation": "Setup dashboards and templates, then run Filebeat",
-                "title": "filebeat && filebeat"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "elasticsearch",
-                "relationship": "combo",
-                "reason": "Filebeat commonly ships logs to Elasticsearch"
-            },
-            {
-                "name": "logstash",
-                "relationship": "alternative",
-                "reason": "Both handle log processing, Filebeat is lighter"
-            }
-        ],
-        "warnings": [
-            "Requires write permissions to log files",
-            "Registry file tracks reading positions",
-            "Modules must be enabled separately"
-        ],
-        "manPageUrl": "https://www.elastic.co/guide/en/beats/filebeat/",
-        "distroNotes": {}
-    },
-    {
-        "name": "fluentd",
-        "standsFor": "Fluent Daemon",
-        "description": "Unified logging layer for collecting and routing log data",
-        "examples": [
-            "fluentd -c fluent.conf  # Run Fluentd with specific configuration",
-            "fluentd -c fluent.conf -v  # Run with verbose logging for debugging",
-            "fluentd -c fluent.conf --dry-run  # Test configuration without actually running",
-            "fluentd -c fluent.conf -d /var/run/fluentd.pid  # Run as daemon with PID file",
-            "fluentd -c fluent.conf --suppress-repeated-stacktrace  # Run with cleaner error output",
-            "fluentd --setup /etc/fluent  # Create initial configuration directory",
-            "fluentd -p /usr/local/lib/fluentd/plugins  # Run with custom plugin directory",
-            "fluentd -c /etc/fluentd/production.conf --suppress-repeated-stacktrace -o /var/log/fluentd/fluentd.log && sleep 5 && curl -s http://localhost:24220/api/plugins.json | jq '.plugins[] | {type: .type, plugin_id: .plugin_id, output_plugin: .output_plugin}' && tail -20 /var/log/fluentd/fluentd.log && ps aux | grep fluentd && echo 'Enterprise log aggregation: production configuration deployment, plugin status verification, health monitoring, process validation, and comprehensive logging infrastructure for enterprise observability and compliance'  # Enterprise Fluentd production monitoring"
-        ],
-        "platform": [
-            "linux",
-            "macos",
-            "windows"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "fluentd [options]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Production setup with logging",
-                "commands": "fluentd -c fluent.conf -o /var/log/fluentd.log -d /var/run/fluentd.pid",
-                "explanation": "Production daemon with log file and PID",
-                "title": "fluentd"
-            }
-        ],
-        "relatedCommands": [],
-        "warnings": [
-            "Ruby-based, requires Ruby runtime",
-            "Plugin system can be complex",
-            "Memory usage can grow with buffer sizes"
-        ],
-        "manPageUrl": "https://docs.fluentd.org/",
-        "distroNotes": {}
-    },
-    {
-        "name": "free",
-        "standsFor": "free memory",
-        "description": "Display memory usage information",
-        "examples": [
-            "free -h  # Show memory usage in KB, MB, GB units",
-            "free -h -s 2  # Update memory display every 2 seconds",
-            "free -m  # Display all memory values in megabytes",
-            "free -t  # Add total line showing sum of physical and swap memory",
-            "free -h -c 5  # Display memory usage 5 times then exit",
-            "free -w  # Show wide output with separate buffers and cache columns",
-            "watch -n 1 'free -h'  # Continuously monitor memory usage every second",
-            "while true; do clear; echo '=== Enterprise Memory Monitoring Dashboard ===' && echo \"Timestamp: $(date)\" && free -h && echo '' && echo 'Memory Alert Thresholds:' && free | awk 'NR==2 {total=$2; avail=$7; used_pct=(total-avail)/total*100; if(used_pct>85) print \"🔴 CRITICAL: Memory usage at \" used_pct \"%\"; else if(used_pct>75) print \"🟡 WARNING: Memory usage at \" used_pct \"%\"; else print \"🟢 NORMAL: Memory usage at \" used_pct \"%\"}' && echo '' && ps aux --sort=-%mem | head -6 && sleep 30; done  # Enterprise memory monitoring with alerting and top processes"
-        ],
-        "platform": [
-            "linux"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "free [options]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Check for memory leaks",
-                "commands": "while true; do free -h | grep Mem | awk '{print strftime(\"%Y-%m-%d %H:%M:%S\"), \"Used:\", $3, \"Available:\", $7}'; sleep 60; done",
-                "explanation": "Monitor memory usage every minute with timestamps",
-                "title": "while ; do | grep | awk ; sleep ; done"
-            },
-            {
-                "scenario": "Alert on low memory",
-                "commands": "free | awk 'NR==2{if($7<1000000) print \"Warning: Available memory below 1GB\"}'",
-                "explanation": "Check if available memory is below threshold",
-                "title": "free | awk < 1000000"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "vmstat",
-                "relationship": "comprehensive",
-                "reason": "Shows memory stats along with CPU and I/O"
-            },
-            {
-                "name": "top",
-                "relationship": "interactive",
-                "reason": "Interactive memory monitoring with process details"
-            }
-        ],
-        "warnings": [
-            "Linux-specific command, not available on macOS",
-            "Available memory is more important than free memory on modern systems",
-            "Cache and buffers are counted as used but are reclaimable"
-        ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/free.1.html",
-        "distroNotes": {}
-    },
-    {
-        "name": "fsck",
-        "standsFor": "File System Check",
-        "description": "Check and repair filesystem consistency",
-        "examples": [
-            "sudo fsck /dev/sdb1  # Check filesystem on device for errors",
-            "sudo fsck -y /dev/sdb1  # Automatically fix minor filesystem errors",
-            "sudo fsck -A  # Check all filesystems listed in /etc/fstab",
-            "sudo fsck -f /dev/sdb1  # Force check even if filesystem appears clean",
-            "fsck -n /dev/sdb1  # Check filesystem read-only without making repairs",
-            "sudo fsck -v /dev/sdb1  # Check with verbose output showing progress",
-            "echo 'Enterprise Filesystem Health Check' && for device in $(lsblk -ndo NAME,FSTYPE | grep -E 'ext[234]|xfs' | awk '{print \"/dev/\" $1}'); do echo \"Checking $device...\"; sudo fsck -n \"$device\" 2>&1 | grep -E '(error|clean|corrupt)' && echo \"$device: $(tune2fs -l \"$device\" 2>/dev/null | grep 'Last checked' | cut -d: -f2-)\"; done && echo 'RAID Status:' && cat /proc/mdstat 2>/dev/null | grep -E 'active|failed' && echo 'Enterprise storage infrastructure validation: automated filesystem integrity verification, metadata analysis, and RAID health monitoring for data protection and system reliability'  # Enterprise storage health monitoring"
-        ],
-        "platform": [
-            "linux",
-            "macos"
-        ],
-        "category": "system",
-        "safety": "caution",
-        "syntaxPattern": "fsck [options] device",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Safe filesystem repair",
-                "commands": "sudo umount /dev/sdb1 && sudo fsck -y /dev/sdb1 && sudo mount /dev/sdb1 /mnt/data",
-                "explanation": "Unmount, check and repair, then remount filesystem",
-                "title": "sudo && sudo && sudo"
-            }
-        ],
-        "relatedCommands": [],
-        "warnings": [
-            "Never run fsck on mounted filesystem (can cause corruption)",
-            "Always unmount filesystem before checking",
-            "Backup important data before running repair operations"
-        ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man8/fsck.8.html",
-        "distroNotes": {}
-    },
-    {
-        "name": "fuser",
-        "standsFor": "File User",
-        "description": "Identify processes using files or sockets",
-        "examples": [
-            "fuser /path/to/file  # Display processes currently using specific file",
-            "fuser -v /path/to/file  # Show detailed information about processes using file",
-            "fuser -k /path/to/file  # Terminate all processes using the file",
-            "fuser -m /mnt/usb  # Show processes using files in mounted filesystem",
-            "fuser -n tcp 80  # Show processes using TCP port 80",
-            "fuser -ki /path/to/file  # Interactively kill processes using file",
-            "fuser -s /path/to/file  # Silent mode, only return exit status",
-            "echo 'Enterprise Process File Usage Analysis' && for critical_file in /var/log/application.log /etc/nginx/nginx.conf /opt/app/config.yml; do if [ -f \"$critical_file\" ]; then echo \"Analyzing: $critical_file\"; fuser -v \"$critical_file\" 2>/dev/null | grep -v COMMAND | while read user pid access comm; do ps -p $pid -o pid,ppid,user,comm,cmd --no-headers; done | head -5; fi; done && echo 'Active Mount Points:' && lsof +D /mnt 2>/dev/null | head -10 && echo 'Enterprise file usage diagnostics: critical file access monitoring, process dependency mapping, and mount point utilization for system troubleshooting and capacity planning'  # Enterprise file usage monitoring"
-        ],
-        "platform": [
-            "linux",
-            "macos"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "fuser [options] files",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Safe unmount",
-                "commands": "fuser -m /mnt/disk && umount /mnt/disk || fuser -km /mnt/disk && umount /mnt/disk",
-                "explanation": "Check for processes using mount, kill if necessary, then unmount",
-                "title": "fuser && umount || fuser && umount"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "lsof",
-                "relationship": "similar",
-                "reason": "lsof provides more detailed output but similar functionality"
-            }
-        ],
-        "warnings": [
-            "Can kill processes with -k option - use with caution",
-            "Useful for troubleshooting 'device busy' errors",
-            "Different output format compared to lsof"
-        ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/fuser.1.html",
-        "distroNotes": {}
-    },
-    {
-        "name": "groupmod",
-        "standsFor": "Group Modify",
-        "description": "Modify group account properties and memberships",
-        "examples": [
-            "sudo groupmod -n newname oldname  # Change group name from oldname to newname",
-            "sudo groupmod -g 2000 groupname  # Change group ID to 2000",
-            "sudo gpasswd -a username groupname  # Add user to group using gpasswd",
-            "sudo gpasswd -d username groupname  # Remove user from group",
-            "echo 'Enterprise Group Management and Access Control' && echo 'Current Groups:' && getent group | grep -E '(admin|sudo|developers|security)' && echo 'Creating Enterprise Groups:' && sudo groupadd --gid 3000 enterprise-admins && sudo groupadd --gid 3001 enterprise-developers && sudo groupadd --gid 3002 enterprise-security && echo 'User Assignment:' && sudo usermod -aG enterprise-developers,docker,sudo $USER && echo 'Access Control Validation:' && groups $USER && echo 'Permission Audit:' && find /opt/enterprise -type d -exec ls -ld {} ; | head -10 && echo 'Enterprise group management: role-based access control, security group assignment, permission validation, directory access auditing, and comprehensive user privilege management for enterprise security and compliance'  # Enterprise group management and access control",
-            "sudo usermod -aG groupname username  # Add user to group (alternative method)"
-        ],
-        "platform": [
-            "linux",
-            "macos"
-        ],
-        "category": "system",
-        "safety": "caution",
-        "syntaxPattern": "groupmod [options] groupname",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Group management workflow",
-                "commands": "sudo groupmod -g 3000 developers && sudo gpasswd -a newuser developers",
-                "explanation": "Change group ID then add new user",
-                "title": "sudo && sudo"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "usermod",
-                "relationship": "combo",
-                "reason": "Often used together for user/group management"
-            }
-        ],
-        "warnings": [
-            "Changing GID may affect file permissions",
-            "Files owned by old GID become orphaned"
-        ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man8/groupmod.8.html",
-        "distroNotes": {}
-    },
-    {
-        "name": "htop",
-        "standsFor": "H Top",
-        "description": "Interactive process viewer and system monitor with better interface",
-        "examples": [
-            "htop  # Launch interactive system monitor with colorful display",
-            "htop -s PERCENT_CPU  # Start htop sorted by CPU usage",
-            "htop -s PERCENT_MEM  # Start htop sorted by memory usage",
-            "htop -t  # Display processes in tree format showing relationships",
-            "htop -u username  # Show only processes owned by specific user",
-            "htop -C  # Disable colors for terminal compatibility",
-            "echo 'Enterprise System Monitoring and Performance Analysis' && echo 'System Health Dashboard:' && htop -d 5 & HTOP_PID=$! && sleep 10 && kill $HTOP_PID && echo 'Process Analysis:' && ps aux --sort=-%cpu | head -20 | awk '{printf \"%-15s %5s %5s %s\\n\", $1, $3, $4, $11}' && echo 'Memory Utilization:' && free -h && echo 'Disk I/O:' && iostat -x 1 3 && echo 'Network Connections:' && ss -tuln | wc -l && echo 'Load Average Trend:' && uptime && echo 'Enterprise Performance Report:' && echo \"System Performance Report - $(date)\" > perf-report-$(date +%Y%m%d).txt && echo \"CPU Usage: $(top -bn1 | grep \"Cpu(s)\" | awk '{print $2}')\" >> perf-report-$(date +%Y%m%d).txt && echo \"Memory Usage: $(free | grep Mem | awk '{printf \"%.1f%%\", $3/$2 * 100.0}')\" >> perf-report-$(date +%Y%m%d).txt && echo 'Enterprise system monitoring: real-time performance analysis, process utilization tracking, memory optimization, I/O performance metrics, network connectivity monitoring, and comprehensive system health reporting for enterprise infrastructure management'  # Enterprise system monitoring and performance analysis"
-        ],
-        "platform": [
-            "linux",
-            "macos",
-            "windows"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "htop [options]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "System health monitoring",
-                "commands": "htop & sleep 5 && pkill htop && free -h && df -h",
-                "explanation": "Quick system overview with memory and disk usage",
-                "title": "htop & sleep && pkill && free && df"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "top",
-                "relationship": "improvement",
-                "reason": "htop is an improved version of top with better interface"
-            }
-        ],
-        "warnings": [
-            "Interactive keys: F1=Help, F9=Kill, F10=Quit",
-            "May not be installed by default on all systems",
-            "Color scheme depends on terminal capabilities"
-        ],
-        "manPageUrl": "https://htop.dev/",
-        "distroNotes": {}
-    },
-    {
-        "name": "ionice",
-        "standsFor": "I/O Nice",
-        "description": "Set or get I/O scheduling class and priority for processes",
-        "examples": [
-            "ionice -c 3 rsync -av /source/ /dest/  # Run rsync with idle I/O class (only uses idle I/O)",
-            "ionice -c 2 -n 7 backup_script.sh  # Run backup with best-effort class, lowest priority (7)",
-            "ionice -p 1234  # Show I/O scheduling info for process 1234",
-            "sudo ionice -c 3 -p 1234  # Change running process to idle I/O class",
-            "ionice -c 1 -n 4 database_import.py  # Run critical task with real-time I/O class"
-        ],
-        "platform": [
-            "linux"
-        ],
-        "category": "system",
-        "safety": "caution",
-        "syntaxPattern": "ionice [options] command",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "System-friendly intensive task",
-                "commands": "nice -n 19 ionice -c 3 find / -name '*.log' -delete",
-                "explanation": "Delete log files with low CPU and I/O priority",
-                "title": "nice"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "nice",
-                "relationship": "combo",
-                "reason": "Set CPU scheduling priority"
-            }
-        ],
-        "warnings": [
-            "Only available on Linux systems",
-            "Idle class may cause very slow execution"
-        ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/ionice.1.html",
-        "distroNotes": {}
-    },
-    {
-        "name": "iostat",
-        "standsFor": "I/O Statistics",
-        "description": "Report system I/O and CPU statistics",
-        "examples": [
-            "iostat  # Show current CPU and I/O statistics",
-            "iostat -x  # Display extended disk I/O statistics",
-            "iostat 2 10  # Display statistics every 2 seconds for 10 iterations",
-            "iostat -h  # Show statistics in human-readable format",
-            "iostat -c  # Display only CPU statistics",
-            "iostat -d sda  # Show statistics for specific device",
-            "iostat -m  # Display statistics in megabytes per second"
-        ],
-        "platform": [
-            "linux",
-            "macos"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "iostat [options] [interval] [count]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "System performance baseline",
-                "commands": "iostat -x 1 60 > io_baseline.txt && vmstat 1 60 > cpu_baseline.txt",
-                "explanation": "Collect 1-minute baseline of I/O and CPU performance",
-                "title": "iostat > io_baseline && vmstat > cpu_baseline"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "vmstat",
-                "relationship": "complementary",
-                "reason": "vmstat provides memory and CPU statistics"
-            },
-            {
-                "name": "iotop",
-                "relationship": "complementary",
-                "reason": "iotop shows per-process I/O activity"
-            }
-        ],
-        "warnings": [
-            "Part of sysstat package on most Linux distributions",
-            "First report shows averages since boot",
-            "Subsequent reports show interval averages"
-        ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/iostat.1.html",
-        "distroNotes": {}
-    },
-    {
-        "name": "iotop",
-        "standsFor": "I/O Top",
-        "description": "Monitor I/O usage by processes in real-time",
-        "examples": [
-            "sudo iotop  # Show real-time I/O usage by processes",
-            "sudo iotop -a  # Display accumulated I/O instead of bandwidth",
-            "sudo iotop -o  # Show only processes currently doing I/O",
-            "sudo iotop -b -n 3  # Batch mode with 3 iterations for scripting",
-            "sudo iotop -p 1234  # Monitor I/O for specific process ID",
-            "sudo iotop -k  # Use kilobytes instead of human-readable units"
-        ],
-        "platform": [
-            "linux"
-        ],
-        "category": "system",
-        "safety": "caution",
-        "syntaxPattern": "iotop [options]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "I/O performance analysis",
-                "commands": "sudo iotop -ao && iostat 1 5",
-                "explanation": "Show accumulated I/O activity and system I/O stats",
-                "title": "sudo && iostat"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "iostat",
-                "relationship": "complementary",
-                "reason": "iostat shows system-wide I/O statistics"
-            },
-            {
-                "name": "pidstat",
-                "relationship": "similar",
-                "reason": "pidstat can also monitor per-process I/O"
-            }
-        ],
-        "warnings": [
-            "Requires root privileges to access process I/O information",
-            "Linux-specific tool, not available on other platforms",
-            "May impact system performance during monitoring"
-        ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man8/iotop.8.html",
-        "distroNotes": {}
-    },
-    {
-        "name": "jobs",
-        "standsFor": "Jobs",
-        "description": "Display active jobs in current shell session",
-        "examples": [
-            "jobs  # Show all background and suspended jobs",
-            "jobs -p  # Display process IDs of job processes",
-            "jobs -r  # Show only running background jobs",
-            "jobs -s  # Show only suspended/stopped jobs",
-            "jobs -l  # Display job information including process group IDs for advanced job control"
-        ],
-        "platform": [
-            "linux",
-            "macos",
-            "windows"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "jobs [options]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Background job management",
-                "commands": "long_command & jobs && fg %1",
-                "explanation": "Start job in background, list jobs, bring first job to foreground",
-                "title": "long_command & jobs && fg"
-            }
-        ],
-        "relatedCommands": [],
-        "warnings": [
-            "Jobs are specific to current shell session",
-            "Job numbers are assigned sequentially"
-        ],
-        "manPageUrl": "https://ss64.com/osx/jobs.html",
-        "distroNotes": {}
-    },
-    {
-        "name": "journalctl",
-        "standsFor": "Journal Control",
-        "description": "Query and display systemd journal logs",
-        "examples": [
-            "journalctl  # Display all journal entries (oldest first)",
-            "journalctl -f  # Follow new log entries as they appear",
-            "journalctl -u nginx  # Show logs only for nginx service",
-            "journalctl --since '2025-09-01 10:00:00'  # Show logs from specific date and time",
-            "journalctl --since today  # Display logs from today only",
-            "journalctl -k  # Show only kernel messages",
-            "journalctl -p err  # Show only error level messages and above",
-            "journalctl -r  # Display logs in reverse chronological order",
-            "journalctl -u apache2 --since 'yesterday' --until 'now' -o json-pretty --no-pager > apache_debug.json  # Export recent Apache logs in formatted JSON for analysis"
-        ],
-        "platform": [
-            "linux"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "journalctl [options]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Service troubleshooting",
-                "commands": "systemctl status nginx && journalctl -u nginx --since '10 minutes ago'",
-                "explanation": "Check service status and recent logs",
-                "title": "systemctl && journalctl"
-            }
-        ],
-        "relatedCommands": [
             {
                 "name": "systemctl",
                 "relationship": "combo",
-                "reason": "systemctl manages services, journalctl shows their logs"
+                "reason": "Manage Apache as systemd service"
             },
             {
-                "name": "dmesg",
-                "relationship": "similar",
-                "reason": "dmesg shows kernel messages, journalctl -k does similar"
+                "name": "certbot",
+                "relationship": "combo",
+                "reason": "Automate SSL certificate management"
             }
         ],
         "warnings": [
-            "systemd-only, not available on non-systemd systems",
-            "Logs are stored in binary format, not plain text",
-            "Can consume significant disk space over time"
+            "Module and site management commands vary by distribution",
+            "Configuration syntax different from nginx",
+            "Performance tuning requires understanding of MPM modules"
         ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/journalctl.1.html",
-        "distroNotes": {}
+        "manPageUrl": "https://httpd.apache.org/docs/2.4/"
     },
     {
-        "name": "kill",
-        "standsFor": "kill",
-        "description": "Terminate processes by sending signals",
+        "name": "apt",
+        "standsFor": "Advanced Package Tool",
+        "description": "Advanced Package Tool for Debian/Ubuntu package management",
+        "keyFeatures": [
+            "The `apt` command is a sophisticated enterprise-grade package management system that goes far beyond simple software installation, serving as the backbone for professional Linux deployments, automated infrastructure management, and secure enterprise environments. While beginners see it as just an installer, apt provides advanced repository management, cryptographic security verification, and enterprise-scale automation capabilities that power Fortune 500 server infrastructures. Its integration with Debian's rigorous quality control and Ubuntu's enterprise support makes it the foundation for mission-critical deployments worldwide.",
+            "Enterprise Repository Architecture: Configure complex repository hierarchies with priorities, pinning policies, and enterprise mirrors for controlled software distribution",
+            "Cryptographic Package Verification: Validate all packages with GPG signatures, certificate chains, and checksums to ensure supply chain security in enterprise environments",
+            "Advanced Dependency Engine: Handle complex multi-package conflicts with sophisticated resolution algorithms that consider version constraints, virtual packages, and alternative dependencies",
+            "Automated Security Management: Implement unattended upgrades for security patches with configurable maintenance windows and rollback mechanisms for production systems",
+            "Repository Mirroring and Caching: Set up local package mirrors and proxy caches to reduce bandwidth, improve deployment speed, and maintain offline installation capabilities",
+            "Package Policy and Pinning: Implement enterprise policies to control package versions, prevent unwanted updates, and maintain consistent environments across development, staging, and production",
+            "Multi-Architecture Orchestration: Deploy packages across heterogeneous architectures (x86_64, ARM, PowerPC) with cross-compilation support and architecture-specific repositories",
+            "Integration with Configuration Management: Seamlessly integrate with Ansible, Puppet, and Chef for infrastructure-as-code deployments with idempotent package management",
+            "Advanced Filtering and Selection: Use sophisticated package selection syntax with wildcards, regex patterns, and conditional logic for bulk operations and automated scripts",
+            "Enterprise Logging and Auditing: Generate detailed audit trails, package change logs, and compliance reports required for SOX, PCI-DSS, and other regulatory frameworks",
+            "High-Availability Package Management: Support for clustered environments with shared package caches, distributed repositories, and coordinated update strategies",
+            "Custom Package Creation: Build and maintain private .deb packages with proper metadata, dependencies, and integration into existing repository infrastructure"
+        ],
         "examples": [
-            "kill 1234  # Send TERM signal to process ID 1234 for clean shutdown",
-            "kill -9 1234  # Send KILL signal to immediately terminate process",
-            "killall firefox  # Terminate all processes named firefox",
-            "kill -HUP 1234  # Send hangup signal to reload process configuration",
-            "kill 0  # Terminate all processes in current process group",
-            "kill -CONT $(pgrep -f 'my_suspended_app')  # Resume suspended process by sending CONT signal to matching process name"
+            "sudo apt update  # Refresh list of available packages and versions",
+            "sudo apt upgrade  # Install newer versions of all installed packages",
+            "sudo apt install nginx  # Download and install nginx web server",
+            "sudo apt remove package-name  # Uninstall package but keep configuration files",
+            "apt search python3  # Find packages related to python3",
+            "apt show firefox  # Display detailed information about firefox package",
+            "sudo apt autoremove && sudo apt autoclean  # Remove unused packages and clean download cache"
+        ],
+        "platform": [
+            "linux"
+        ],
+        "category": "package-management",
+        "safety": "caution",
+        "syntaxPattern": "apt [options] <command> [package]",
+        "prerequisites": {
+            "foundational_concepts": "Understanding of system administration concepts, user permissions, and privilege escalation",
+            "prior_commands": "Understanding of sudo usage, permission commands (chmod, chown), and system service management",
+            "risk_awareness": "Critical risk: administrative commands can affect entire system - verify all parameters and understand consequences"
+        },
+        "commandCombinations": [
+            {
+                "label": "sudo && sudo && sudo # Full system update",
+                "commands": "sudo apt update && sudo apt upgrade && sudo apt autoremove",
+                "explanation": "Update database, upgrade packages, clean unused dependencies"
+            },
+            {
+                "label": "sudo && sudo # Install development environment",
+                "commands": "sudo apt update && sudo apt install -y git curl vim build-essential",
+                "explanation": "Install essential development tools in one command"
+            }
+        ],
+        "relatedCommands": [
+            {
+                "name": "snap",
+                "relationship": "alternative",
+                "reason": "Universal package manager on Ubuntu"
+            }
+        ],
+        "warnings": [
+            "Always run 'apt update' before installing packages",
+            "Requires sudo for most operations",
+            "Package names may differ from upstream project names"
+        ],
+        "manPageUrl": "https://ubuntu.com/server/docs/package-management"
+    },
+    {
+        "name": "ar",
+        "standsFor": "Archive",
+        "description": "Create and manage static library archives",
+        "keyFeatures": [
+            "The `ar` command is a specialized archiving utility primarily used in software development to create and manage static library archives (.a files). Unlike general-purpose archive tools, ar is specifically designed for bundling compiled object files (.o) into libraries that can be linked with other programs during compilation. It's an essential tool in the C/C++ development workflow, enabling code reuse and modular programming by creating reusable libraries of compiled functions.",
+            "Static Library Creation: Bundle multiple object files (.o) into single library archive (.a) for linking",
+            "Object File Management: Add, remove, replace, and extract individual object files from library archives",
+            "Library Indexing: Create symbol tables (with 's' flag) for fast symbol lookup during linking",
+            "Archive Inspection: List contents and metadata of library archives without extraction",
+            "Cross-Platform Libraries: Create portable static libraries that work across different Unix-like systems",
+            "Build System Integration: Essential component of makefiles and automated build processes",
+            "Symbol Table Generation: Maintain indices of functions and variables for efficient linking",
+            "Deterministic Builds: Support for reproducible builds with consistent archive creation",
+            "Legacy Compatibility: Long-standing Unix tool with consistent behavior across decades"
+        ],
+        "examples": [
+            "ar rcs libmylib.a object1.o object2.o  # Create static library from object files",
+            "ar tv libmylib.a  # List files in static library archive",
+            "ar x libmylib.a  # Extract all object files from archive",
+            "ar r libmylib.a newobject.o  # Add object file to existing archive"
         ],
         "platform": [
             "linux",
             "macos",
             "windows"
         ],
-        "category": "system",
+        "category": "development",
+        "safety": "safe",
+        "syntaxPattern": "ar [operation] archive [files]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity and understanding of fundamental Unix/Linux file system concepts",
+            "prior_commands": "Basic familiarity with ls, cd, pwd, cat, and fundamental file system navigation",
+            "risk_awareness": "Low risk: understand command purpose and verify syntax before execution"
+        },
+        "commandCombinations": [
+            {
+                "label": "gcc && ar && ranlib # Build static library",
+                "commands": "gcc -c *.c && ar rcs libproject.a *.o && ranlib libproject.a",
+                "explanation": "Compile sources and create indexed static library"
+            }
+        ],
+        "relatedCommands": [],
+        "warnings": [
+            "Primarily used for static libraries in development",
+            "Different from general-purpose archive formats"
+        ],
+        "manPageUrl": "https://man7.org/linux/man-pages/man1/ar.1.html"
+    },
+    {
+        "name": "arduino-cli",
+        "standsFor": "Arduino Command Line Interface",
+        "description": "Arduino command line interface",
+        "keyFeatures": [
+            "The `arduino-cli` command provides a powerful command-line interface for Arduino development, enabling automated builds, deployments, and library management without the Arduino IDE. It supports the complete Arduino development workflow from project creation to board programming, making it ideal for continuous integration, automated testing, and headless development environments. The CLI version offers faster compilation, scriptable operations, and better integration with modern development tools and workflows.",
+            "Project Management: Create, build, and manage Arduino sketches and projects from command line",
+            "Board Detection: Automatically discover and identify connected Arduino boards and compatible devices",
+            "Cross-Platform Compilation: Compile sketches for different Arduino board types and architectures",
+            "Automated Deployment: Upload compiled firmware to Arduino boards without manual intervention",
+            "Library Management: Search, install, update, and manage Arduino libraries and dependencies",
+            "Core Management: Install and manage Arduino platform cores for different board families",
+            "CI/CD Integration: Perfect for automated testing and continuous deployment pipelines",
+            "Configuration Management: Flexible configuration system for different development environments",
+            "Batch Operations: Process multiple sketches and perform bulk operations efficiently",
+            "IDE Alternative: Complete development workflow without requiring the graphical Arduino IDE",
+            "Custom Board Support: Add and manage third-party board definitions and tool chains"
+        ],
+        "examples": [
+            "arduino-cli sketch new MyProject  # Generates new Arduino project with basic structure",
+            "arduino-cli board list  # Shows all Arduino boards connected via USB",
+            "arduino-cli compile --fqbn arduino:avr:uno MyProject  # Compiles Arduino sketch for Uno board",
+            "arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno MyProject  # Uploads compiled sketch to Arduino board",
+            "arduino-cli lib install 'DHT sensor library'  # Downloads and installs DHT sensor library"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ],
+        "category": "development",
+        "safety": "safe",
+        "syntaxPattern": "arduino-cli [command] [options]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity and understanding of fundamental Unix/Linux file system concepts",
+            "prior_commands": "Basic familiarity with ls, cd, pwd, cat, and fundamental file system navigation",
+            "risk_awareness": "Low risk: understand command purpose and verify syntax before execution"
+        },
+        "commandCombinations": [
+            {
+                "label": "arduino && arduino && arduino # Complete Arduino development workflow",
+                "commands": "arduino-cli sketch new MyProject && arduino-cli compile --fqbn arduino:avr:uno MyProject && arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno MyProject",
+                "explanation": "Creates new project, compiles it, and uploads to Arduino board"
+            },
+            {
+                "label": "arduino && arduino # Install core and compile project",
+                "commands": "arduino-cli core install arduino:avr && arduino-cli compile --fqbn arduino:avr:uno MyProject",
+                "explanation": "Installs Arduino AVR core and compiles project for Uno"
+            }
+        ],
+        "relatedCommands": [
+            {
+                "name": "platformio",
+                "relationship": "alternative",
+                "reason": "More comprehensive IoT development platform supporting multiple boards"
+            },
+            {
+                "name": "esptool",
+                "relationship": "specialized",
+                "reason": "Specialized tool for ESP32/ESP8266 microcontrollers"
+            }
+        ],
+        "warnings": [
+            "Board must be connected and detected for upload operations",
+            "Correct FQBN (Fully Qualified Board Name) is required for compilation",
+            "USB permissions may need to be configured on Linux systems",
+            "Some libraries may have dependencies that need separate installation"
+        ],
+        "manPageUrl": "https://arduino.github.io/arduino-cli/latest/installation/"
+    },
+    {
+        "name": "argocd",
+        "standsFor": "Argo CD",
+        "description": "GitOps continuous delivery tool for Kubernetes",
+        "keyFeatures": [
+            "The `argocd` command is the CLI client for Argo CD, a declarative GitOps continuous delivery tool for Kubernetes that automates application deployment and management. It monitors Git repositories containing Kubernetes manifests and automatically synchronizes the desired state with live cluster state. Argo CD provides a GitOps approach where Git repositories serve as the single source of truth for application configurations, enabling automated rollouts, rollbacks, and drift detection.",
+            "GitOps Automation: Automatically deploy applications by monitoring Git repositories and syncing changes to Kubernetes",
+            "Declarative Configuration: Define application deployment through Git-stored Kubernetes manifests and Helm charts",
+            "Multi-Cluster Management: Deploy and manage applications across multiple Kubernetes clusters from single control plane",
+            "Application Synchronization: Keep cluster state synchronized with Git repository state with configurable policies",
+            "Rollback Capabilities: Easy rollback to previous application versions using Git history",
+            "Health Monitoring: Monitor application health status and resource conditions in real-time",
+            "Access Control: Role-based access control (RBAC) with integration to external identity providers",
+            "Progressive Delivery: Support for canary deployments, blue-green deployments, and progressive rollouts",
+            "Configuration Drift Detection: Identify and alert when live cluster state differs from Git repository",
+            "Web UI and CLI: Both graphical interface and command-line tools for application management",
+            "Automated Pruning: Remove resources that are no longer defined in Git repository",
+            "Sync Windows: Control when automatic deployments can occur with maintenance windows"
+        ],
+        "examples": [
+            "argocd login argocd-server.argocd.svc.cluster.local --username admin  # Authenticate with ArgoCD server",
+            "argocd app create my-app --repo https://github.com/user/repo --path manifests --dest-server https://kubernetes.default.svc --dest-namespace default  # Create new ArgoCD application from Git repository",
+            "argocd app sync my-app  # Synchronize application with Git repository state",
+            "argocd app list  # Show all applications managed by ArgoCD",
+            "argocd app get my-app  # Display detailed information about specific application",
+            "argocd app set my-app --sync-policy automated --auto-prune --self-heal  # Enable automatic synchronization with pruning and self-healing",
+            "argocd app delete my-app --cascade  # Delete application and all associated Kubernetes resources",
+            "argocd app rollback my-app --revision HEAD-1  # Rollback application to previous Git revision"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ],
+        "category": "development",
         "safety": "dangerous",
-        "syntaxPattern": "kill [options] <pid>...",
-        "prerequisites": [
-            "intermediate"
-        ],
+        "syntaxPattern": "argocd [command] [options]",
+        "prerequisites": {
+            "foundational_concepts": "Knowledge of container orchestration, Kubernetes cluster concepts, and distributed application deployment",
+            "prior_commands": "Experience with kubectl get, kubectl describe, kubectl logs, and basic cluster exploration commands",
+            "risk_awareness": "High risk: be aware of cluster-wide effects, production workload impact, and resource management"
+        },
         "commandCombinations": [
             {
-                "scenario": "Find and kill process in one command",
-                "commands": "ps aux | grep 'node server' | grep -v grep | awk '{print $2}' | xargs kill",
-                "explanation": "Find Node.js server process and terminate it",
-                "title": "ps | grep | grep | awk | xargs"
+                "label": "argocd && argocd && argocd # Complete application deployment",
+                "commands": "argocd app create my-app --repo https://github.com/user/repo --path k8s --dest-server https://kubernetes.default.svc --dest-namespace production && argocd app sync my-app && argocd app wait my-app",
+                "explanation": "Create application, sync with Git, and wait for healthy status"
             },
             {
-                "scenario": "Kill processes using specific port",
-                "commands": "lsof -ti:8080 | xargs kill -9",
-                "explanation": "Force kill all processes using port 8080",
-                "title": "lsof | xargs"
+                "label": "argocd | xargs # Batch application management",
+                "commands": "argocd app list -o name | xargs -I {} argocd app sync {}",
+                "explanation": "Synchronize all applications managed by ArgoCD"
             }
         ],
         "relatedCommands": [
             {
-                "name": "ps",
+                "name": "kubectl",
                 "relationship": "combo",
-                "reason": "Use ps to find process ID before killing"
+                "reason": "ArgoCD deploys to Kubernetes clusters"
             },
             {
-                "name": "killall",
+                "name": "git",
+                "relationship": "combo",
+                "reason": "ArgoCD synchronizes with Git repositories"
+            }
+        ],
+        "warnings": [
+            "Applications must be in same cluster as ArgoCD or configured for remote clusters",
+            "Git repository access requires proper credentials configuration",
+            "Sync windows can be configured to prevent automatic deployments during specific times",
+            "Resource hooks allow custom deployment logic"
+        ],
+        "manPageUrl": "https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd/"
+    },
+    {
+        "name": "arp",
+        "standsFor": "Address Resolution Protocol",
+        "description": "Display and manipulate Address Resolution Protocol cache",
+        "keyFeatures": [
+            "The `arp` command manages the Address Resolution Protocol (ARP) table, which maps IP addresses to MAC addresses on local network segments. It's essential for network troubleshooting, security analysis, and understanding network communication at the data link layer. ARP resolves Layer 3 (IP) addresses to Layer 2 (MAC) addresses, enabling network devices to communicate on Ethernet networks by maintaining a cache of these mappings.",
+            "ARP Table Display: View complete ARP cache showing IP to MAC address mappings for network devices",
+            "Network Discovery: Identify active devices on local network segments through ARP table entries",
+            "Static ARP Entries: Create permanent IP-to-MAC mappings to prevent ARP spoofing attacks",
+            "Cache Management: Add, remove, and modify entries in the system's ARP cache",
+            "Network Troubleshooting: Diagnose connectivity issues by examining MAC address resolution",
+            "Security Analysis: Detect potential ARP spoofing or man-in-the-middle attacks",
+            "Cross-Platform Support: Available on Linux, macOS, and Windows with consistent functionality",
+            "Network Mapping: Build understanding of local network topology and device relationships",
+            "Performance Optimization: Manage ARP cache for better network performance in specific scenarios"
+        ],
+        "examples": [
+            "arp -a  # Display all entries in ARP cache",
+            "arp 192.168.1.1  # Show ARP entry for specific IP address",
+            "arp -s 192.168.1.100 aa:bb:cc:dd:ee:ff  # Add static ARP mapping (requires root)",
+            "arp -d 192.168.1.100  # Remove ARP entry from cache",
+            "arp -n  # Display IP addresses instead of hostnames"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ],
+        "category": "networking",
+        "safety": "dangerous",
+        "syntaxPattern": "arp [options] [hostname]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity and understanding of fundamental Unix/Linux file system concepts",
+            "prior_commands": "Basic familiarity with ls, cd, pwd, cat, and fundamental file system navigation",
+            "risk_awareness": "Moderate risk: understand command purpose and verify syntax before execution"
+        },
+        "commandCombinations": [
+            {
+                "label": "ping > & arp | grep # Network device discovery",
+                "commands": "ping -c 1 192.168.1.{1..254} 2>/dev/null & arp -a | grep -v incomplete",
+                "explanation": "Ping network range then show discovered devices"
+            }
+        ],
+        "relatedCommands": [
+            {
+                "name": "ip",
+                "relationship": "modern-alternative",
+                "reason": "ip neigh provides similar functionality with more features"
+            }
+        ],
+        "warnings": [
+            "ARP entries expire automatically",
+            "May require root privileges for modifications",
+            "Limited to local network segment"
+        ],
+        "manPageUrl": "https://man7.org/linux/man-pages/man8/arp.8.html"
+    },
+    {
+        "name": "artillery",
+        "standsFor": "Artillery",
+        "description": "Cloud-native load testing toolkit",
+        "keyFeatures": [
+            "The `artillery` command is a modern, developer-centric load testing framework designed for cloud-native applications and APIs. It provides comprehensive performance testing capabilities with WebSocket, Socket.io, and HTTP/HTTPS protocol support. Artillery uses YAML configuration files for test scenarios, making tests version-controllable and easily shareable across teams. It offers detailed performance metrics, real-time monitoring, and integrates seamlessly with CI/CD pipelines for automated performance validation.",
+            "Cloud-Native Testing: Optimized for testing modern web applications, APIs, and microservices architectures",
+            "Multi-Protocol Support: Test HTTP/HTTPS, WebSocket, Socket.io, and other protocols in single framework",
+            "YAML Configuration: Define complex test scenarios using readable YAML files for version control",
+            "Real-Time Metrics: Monitor performance metrics live during test execution with detailed reporting",
+            "Load Patterns: Support for various load patterns including ramp-up, constant load, and spike testing",
+            "Plugin Architecture: Extensible with plugins for custom metrics, integrations, and specialized testing",
+            "CI/CD Integration: Built for continuous testing with easy integration into automated deployment pipelines",
+            "Distributed Testing: Scale tests across multiple machines for high-load scenarios",
+            "WebSocket Testing: Native support for testing real-time applications and bidirectional communication",
+            "Custom Metrics: Track application-specific metrics alongside standard performance indicators",
+            "Report Generation: Comprehensive HTML reports with graphs and detailed performance analysis"
+        ],
+        "examples": [
+            "artillery quick --count 10 --num 100 https://example.com  # Quick test with 10 virtual users making 100 requests each",
+            "artillery run test-scenario.yml  # Run load test defined in YAML configuration file",
+            "artillery run test.yml --output report.json && artillery report report.json  # Run test and generate HTML report from results",
+            "artillery run test.yml --quiet | artillery-plugin-publish-metrics  # Run test with real-time metrics publishing"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ],
+        "category": "development",
+        "safety": "safe",
+        "syntaxPattern": "artillery [command] [options]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity, understanding of file systems, and fundamental Unix/Linux concepts",
+            "prior_commands": "Comfortable with basic file navigation (ls, cd, pwd), file viewing (cat, less), and simple text editing",
+            "risk_awareness": "Low risk: verify command parameters and understand potential file system or configuration changes"
+        },
+        "commandCombinations": [
+            {
+                "label": "artillery && artillery && open # Complete testing workflow",
+                "commands": "artillery run load-test.yml -o results.json && artillery report results.json && open report.html",
+                "explanation": "Run load test, generate report, and open in browser"
+            }
+        ],
+        "relatedCommands": [
+            {
+                "name": "k6",
                 "relationship": "alternative",
-                "reason": "Kill processes by name instead of PID"
+                "reason": "Both are modern, developer-friendly load testing tools"
             },
             {
-                "name": "pkill",
+                "name": "locust",
                 "relationship": "alternative",
-                "reason": "Kill processes using pattern matching"
+                "reason": "Python-based alternative with web UI"
             }
         ],
         "warnings": [
-            "kill -9 should be last resort - doesn't allow clean shutdown",
-            "Cannot kill init process (PID 1)",
-            "May need sudo to kill processes owned by other users"
+            "YAML configuration makes tests easy to version control",
+            "Built-in support for WebSocket and Socket.io testing",
+            "Plugin system allows extensive customization"
         ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/kill.1.html",
-        "distroNotes": {
-            "windows": "Available in WSL only"
-        }
+        "manPageUrl": "https://www.artillery.io/docs"
     },
     {
-        "name": "killall",
-        "standsFor": "kill all",
-        "description": "Kill processes by name",
+        "name": "artisan",
+        "standsFor": "Laravel Artisan",
+        "description": "Laravel PHP framework command-line interface",
+        "keyFeatures": [
+            "The `artisan` command is Laravel's powerful command-line interface that provides dozens of helpful commands for PHP web application development. Named after skilled craftspeople, Artisan streamlines repetitive development tasks like generating boilerplate code, managing databases, handling caching, and running maintenance operations. It's built on Symfony's Console component and can be extended with custom commands, making it an essential tool for efficient Laravel development workflows.",
+            "Code Generation: Automatically generate controllers, models, migrations, and other Laravel components with proper structure",
+            "Database Management: Handle migrations, seeding, and schema changes through command-line interface",
+            "Development Server: Built-in PHP development server for quick local testing and development",
+            "Cache Management: Clear, optimize, and manage various application caches including views, routes, and configuration",
+            "Queue Operations: Manage background job queues, workers, and scheduled tasks",
+            "Custom Commands: Create and register custom Artisan commands for project-specific tasks",
+            "Environment Management: Handle environment variables, application keys, and configuration management",
+            "Testing Integration: Run PHPUnit tests and generate code coverage reports",
+            "Package Discovery: Automatic discovery and registration of service providers and facades",
+            "Maintenance Mode: Put application in maintenance mode during deployments and updates",
+            "Route Management: List, cache, and optimize application routes for better performance"
+        ],
         "examples": [
-            "killall firefox  # Terminate all Firefox processes by name",
-            "killall -HUP nginx  # Send hangup signal to nginx for configuration reload",
-            "killall -i chrome  # Prompt before killing each Chrome process",
-            "killall -e python3.9  # Kill only processes with exact name match",
-            "killall -w myapp  # Wait until all myapp processes have actually terminated",
-            "killall -9 stuck_process  # Force kill all instances of stuck_process",
-            "killall -u username -TERM  # Gracefully terminate all processes owned by specific user for session cleanup"
+            "php artisan serve  # Start Laravel development server on localhost:8000",
+            "php artisan make:controller UserController  # Create new UserController class",
+            "php artisan migrate  # Execute pending database migrations",
+            "php artisan make:model User -m  # Generate User model and corresponding migration",
+            "php artisan cache:clear  # Clear all application caches",
+            "php artisan key:generate  # Generate new application encryption key"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ],
+        "category": "development",
+        "safety": "safe",
+        "syntaxPattern": "php artisan <command> [options] [arguments]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity, understanding of file systems, and fundamental Unix/Linux concepts",
+            "prior_commands": "Comfortable with basic file navigation (ls, cd, pwd), file viewing (cat, less), and simple text editing",
+            "risk_awareness": "Low risk: verify command parameters and understand potential file system or configuration changes"
+        },
+        "commandCombinations": [
+            {
+                "label": "php && php # Fresh database setup",
+                "commands": "php artisan migrate:fresh && php artisan db:seed",
+                "explanation": "Drop all tables, run migrations, and seed database"
+            }
+        ],
+        "relatedCommands": [
+            {
+                "name": "composer",
+                "relationship": "combo",
+                "reason": "Laravel is installed and managed via Composer"
+            },
+            {
+                "name": "php",
+                "relationship": "underlying",
+                "reason": "Artisan is a PHP script"
+            }
+        ],
+        "warnings": [
+            "Must be run from Laravel project root directory",
+            "Database must be configured before running migrations",
+            "Some commands require specific Laravel version"
+        ],
+        "manPageUrl": "https://laravel.com/docs/artisan"
+    },
+    {
+        "name": "at",
+        "standsFor": "At",
+        "description": "Schedule one-time tasks to run at specified times",
+        "keyFeatures": [
+            "The `at` command is a sophisticated time-based job scheduler that provides enterprise-grade scheduling capabilities far beyond simple task timing. It offers precise scheduling with flexible time formats, natural language expressions, and complex time calculations that rival commercial job schedulers. Most system administrators underestimate its power for automation workflows, batch processing coordination, and production system management.",
+            "Natural Language Time Parsing: Accept intuitive time specifications like 'tomorrow 9:30', 'next Friday noon', 'now + 2 hours 15 minutes', enabling human-friendly scheduling without complex date calculations",
+            "Advanced Scheduling Syntax: Support complex time expressions including business day calculations, timezone handling, and relative time offsets that automatically account for daylight saving changes",
+            "Enterprise Queue Management: Provide sophisticated job queue control with priority levels, concurrent job limits, load-based scheduling, and automatic job retry mechanisms for production environments",
+            "Environment Isolation and Preservation: Execute jobs with complete environment snapshots, maintaining working directories, PATH variables, and user contexts exactly as they existed at scheduling time",
+            "Production-Grade Job Control: Enable job inspection, modification, and cancellation with detailed status reporting, execution history, and comprehensive logging for audit trails and troubleshooting",
+            "Batch Processing Integration: Coordinate with system load monitoring to delay execution during peak usage, automatically queue jobs for off-hours processing, and integrate with resource management systems",
+            "Secure Execution Framework: Implement granular permission controls through allow/deny lists, user privilege validation, and secure job execution with proper signal handling and process isolation",
+            "Mail Integration and Notifications: Provide comprehensive output handling with email delivery, log file routing, and integration with monitoring systems for job completion status and error reporting",
+            "Cross-Platform Automation: Maintain consistent behavior across Unix variants, Linux distributions, and macOS, making it ideal for heterogeneous environment automation and deployment scripts",
+            "Scripting and API Integration: Support programmatic job submission through stdin piping, file-based job definitions, and shell script integration for complex automation workflows",
+            "System Administration Workflows: Enable scheduled maintenance windows, automatic service restarts, backup job coordination, and emergency response automation with precise timing control",
+            "Development and CI/CD Integration: Facilitate delayed deployments, scheduled testing, automated cleanup tasks, and development environment management with programmable scheduling"
+        ],
+        "examples": [
+            "echo 'backup.sh' | at 2:30  # Run backup.sh at 2:30 AM",
+            "at 9:00 tomorrow  # Schedule interactive job for 9:00 AM tomorrow",
+            "echo 'rm /tmp/tempfile' | at now + 1 hour  # Delete temporary file in 1 hour",
+            "atq  # Display list of pending at jobs",
+            "atrm 3  # Remove at job number 3",
+            "at 10:00 2025-12-25  # Schedule job for Christmas morning"
         ],
         "platform": [
             "linux",
             "macos"
         ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "killall [options] <name>",
-        "prerequisites": [
-            "intermediate"
-        ],
+        "category": "automation",
+        "safety": "dangerous",
+        "syntaxPattern": "at [time] or echo 'command' | at [time]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity, understanding of file systems, and fundamental Unix/Linux concepts",
+            "prior_commands": "Comfortable with basic file navigation (ls, cd, pwd), file viewing (cat, less), and simple text editing",
+            "risk_awareness": "Low risk: verify command parameters and understand potential file system or configuration changes"
+        },
         "commandCombinations": [
             {
-                "scenario": "Restart service gracefully",
-                "commands": "killall -TERM apache2 && sleep 2 && systemctl start apache2",
-                "explanation": "Gracefully stop Apache then restart it",
-                "title": "killall && sleep && systemctl"
-            },
-            {
-                "scenario": "Force kill stuck processes",
-                "commands": "killall myapp || killall -9 myapp",
-                "explanation": "Try normal kill first, then force kill if needed",
-                "title": "killall || killall"
+                "label": "echo | at && atq # Temporary system maintenance",
+                "commands": "echo 'systemctl restart apache2' | at now + 30 minutes && atq",
+                "explanation": "Schedule service restart in 30 minutes and check queue"
             }
         ],
         "relatedCommands": [
             {
-                "name": "pkill",
-                "relationship": "similar",
-                "reason": "More flexible pattern matching for killing processes"
-            },
-            {
-                "name": "kill",
-                "relationship": "basic",
-                "reason": "Kill specific processes by PID"
-            },
-            {
-                "name": "pgrep",
-                "relationship": "find",
-                "reason": "Find process IDs before using kill"
-            }
-        ],
-        "warnings": [
-            "killall kills ALL processes with matching name",
-            "Process name must match exactly (use -e for strict matching)",
-            "On some systems, killall without arguments kills ALL processes"
-        ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/killall.1.html",
-        "distroNotes": {}
-    },
-    {
-        "name": "lsblk",
-        "standsFor": "list block devices",
-        "description": "List block devices in tree format",
-        "examples": [
-            "lsblk  # Display all block devices in tree format with mount points",
-            "lsblk -f  # Include filesystem type, labels, and UUIDs",
-            "lsblk -h  # Show sizes in KB, MB, GB instead of bytes",
-            "lsblk /dev/sda  # Show partition layout for specific disk",
-            "lsblk -J  # Machine-readable JSON output for scripts",
-            "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT,FSTYPE,UUID | grep -E 'part|disk' | awk '$3==\"part\" && $4==\"\" {print $1, $2, $5, $6}' | column -t  # Display unmounted partitions with filesystem type and UUID for mounting or maintenance planning"
-        ],
-        "platform": [
-            "linux"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "lsblk [options] [device]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Find unmounted filesystems",
-                "commands": "lsblk -f | grep -v '/$\\|\\[SWAP\\]' | awk '$4 == \"\" {print $1}'",
-                "explanation": "Identify block devices that are not currently mounted",
-                "title": "lsblk | grep | | awk"
-            },
-            {
-                "scenario": "Check disk usage with partition info",
-                "commands": "lsblk && echo '---' && df -h",
-                "explanation": "Show block device layout followed by filesystem usage",
-                "title": "lsblk && echo && df"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "df",
-                "relationship": "combo",
-                "reason": "Shows filesystem usage for mounted devices"
-            },
-            {
-                "name": "mount",
-                "relationship": "combo",
-                "reason": "Mount/unmount block devices shown by lsblk"
-            }
-        ],
-        "warnings": [
-            "Linux-specific command, not available on other systems",
-            "Some information requires root privileges",
-            "Tree format may be confusing for complex disk layouts"
-        ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man8/lsblk.8.html",
-        "distroNotes": {}
-    },
-    {
-        "name": "lscpu",
-        "standsFor": "list CPU",
-        "description": "Display detailed CPU architecture information",
-        "examples": [
-            "lscpu  # Show detailed CPU architecture, cores, threads, and cache info",
-            "lscpu | grep -i vuln  # Display CPU security vulnerability mitigations",
-            "lscpu -p  # Display CPU topology in parseable format",
-            "lscpu -J  # Generate machine-readable JSON output",
-            "lscpu | awk '/^CPU(s):|^Thread(s):|^CPU MHz:|^Model name:/ {print}' && cat /proc/meminfo | awk '/MemTotal|MemAvailable/ {print}' && echo \"Performance Scaling:\" && cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor 2>/dev/null || echo 'Not available'  # Create comprehensive system profile for performance tuning including CPU specs, memory, and power management"
-        ],
-        "platform": [
-            "linux"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "lscpu [options]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "CPU info for system inventory",
-                "commands": "echo 'CPU Info:' && lscpu | grep -E 'Model name|CPU\\(s\\)|Thread'",
-                "explanation": "Extract key CPU details for documentation",
-                "title": "echo && lscpu | grep | CPU | Thread"
-            },
-            {
-                "scenario": "Check if hyperthreading is enabled",
-                "commands": "lscpu | awk '/^CPU\\(s\\):/ {cpu=$2} /^Thread/ {thread=$4} END {if(cpu/thread > 1) print \"Hyperthreading: Enabled\"; else print \"Hyperthreading: Disabled\"}'",
-                "explanation": "Determine hyperthreading status from CPU topology",
-                "title": "lscpu | awk > 1 ; else"
-            }
-        ],
-        "relatedCommands": [],
-        "warnings": [
-            "Linux-specific command, not available on macOS",
-            "Some fields may require root privileges to display",
-            "Output format may vary between different Linux distributions"
-        ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/lscpu.1.html",
-        "distroNotes": {}
-    },
-    {
-        "name": "lsof",
-        "standsFor": "List Open Files",
-        "description": "List open files and network connections",
-        "examples": [
-            "lsof -p 1234  # Show all files opened by process ID 1234",
-            "lsof /var/log/syslog  # Show which processes have syslog file open",
-            "lsof -i  # Show all network connections",
-            "lsof -i :80  # Show which process is using port 80",
-            "lsof -u username  # Show all files opened by specific user",
-            "lsof +D /var/www/  # Show processes accessing files in directory recursively",
-            "lsof -i -P -n | grep -E '(LISTEN|ESTABLISHED)' | sort -k1,1 -k9,9 | awk '{print $1, $3, $8, $9}' | column -t  # Show detailed network connections by process with numeric ports, sorted and formatted for security analysis"
-        ],
-        "platform": [
-            "linux",
-            "macos"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "lsof [options] [files]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Web server troubleshooting",
-                "commands": "lsof -i :80 && lsof -i :443 && lsof -u www-data",
-                "explanation": "Check HTTP/HTTPS port usage and web server user files",
-                "title": "lsof && lsof && lsof"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "netstat",
-                "relationship": "similar",
-                "reason": "Both show network connections"
-            },
-            {
-                "name": "fuser",
-                "relationship": "similar",
-                "reason": "Show processes using files"
-            }
-        ],
-        "warnings": [
-            "Output can be very verbose",
-            "Some information requires root privileges"
-        ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man8/lsof.8.html",
-        "distroNotes": {}
-    },
-    {
-        "name": "mount",
-        "standsFor": "Mount",
-        "description": "Mount filesystems to directory tree",
-        "examples": [
-            "sudo mount /dev/sdb1 /mnt/usb  # Mount USB device to /mnt/usb directory",
-            "sudo mount -t ext4 /dev/sdc1 /mnt/data  # Mount device specifying ext4 filesystem type",
-            "sudo mount -o ro /dev/sdb1 /mnt/readonly  # Mount filesystem in read-only mode",
-            "mount  # Display all currently mounted filesystems",
-            "sudo mount -o loop disk.iso /mnt/iso  # Mount ISO file as loopback device",
-            "sudo mount -o remount,rw /dev/sdb1  # Remount filesystem with read-write permissions"
-        ],
-        "platform": [
-            "linux",
-            "macos"
-        ],
-        "category": "system",
-        "safety": "caution",
-        "syntaxPattern": "mount [options] device mountpoint",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Safe USB mount",
-                "commands": "sudo mkdir -p /mnt/usb && sudo mount /dev/sdb1 /mnt/usb && ls /mnt/usb",
-                "explanation": "Create mount point, mount USB, and list contents",
-                "title": "sudo && sudo && ls"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "umount",
-                "relationship": "combo",
-                "reason": "umount unmounts filesystems mounted by mount"
-            },
-            {
-                "name": "lsblk",
+                "name": "cron",
                 "relationship": "complementary",
-                "reason": "lsblk helps identify devices to mount"
+                "reason": "cron handles recurring jobs, at handles one-time jobs"
+            },
+            {
+                "name": "batch",
+                "relationship": "similar",
+                "reason": "batch runs jobs when system load is low"
             }
         ],
         "warnings": [
-            "Requires root privileges for most operations",
-            "Mount point directory must exist before mounting",
-            "Always umount before physically disconnecting devices"
+            "Jobs run with user's environment at scheduling time",
+            "Output is typically emailed unless redirected",
+            "Requires atd daemon to be running"
         ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man8/mount.8.html",
-        "distroNotes": {}
+        "manPageUrl": "https://ss64.com/osx/at.html"
     },
     {
-        "name": "nmon",
-        "standsFor": "Nigel's Monitor",
-        "description": "System performance monitor for AIX and Linux",
+        "name": "auditd",
+        "standsFor": "Audit Daemon",
+        "description": "Linux audit framework for security monitoring and compliance",
+        "keyFeatures": [
+            "The `auditd` command manages the Linux audit framework, a comprehensive security monitoring system that tracks system calls, file access, user authentication, and process execution for compliance and forensic analysis. It provides real-time event logging with detailed context about who, what, when, and how system resources are accessed. The audit framework is essential for security hardening, regulatory compliance (SOX, PCI-DSS, HIPAA), and forensic investigation, capturing tamper-resistant logs that can detect unauthorized access attempts and system changes.",
+            "System Call Auditing: Monitor all system calls including file operations, network connections, and process creation",
+            "File Integrity Monitoring: Track access, modification, and attribute changes to critical files and directories",
+            "User Activity Tracking: Log authentication events, privilege escalations, and user session activities",
+            "Process Execution Logging: Record command execution with full command lines and environmental context",
+            "Network Activity Monitoring: Audit network connections, socket creation, and data transfer events",
+            "Real-Time Alerting: Generate immediate notifications for suspicious activities or policy violations",
+            "Compliance Reporting: Built-in report generation for regulatory compliance requirements (STIG, PCI-DSS)",
+            "Rule-Based Configuration: Flexible rule system for targeting specific files, users, or system calls",
+            "Tamper-Resistant Logs: Cryptographically signed audit logs prevent unauthorized modification",
+            "Performance Optimization: Configurable buffering and filtering to minimize system performance impact",
+            "Search and Analysis: Powerful query tools (ausearch, aureport) for log analysis and forensic investigation"
+        ],
         "examples": [
-            "nmon  # Start nmon with interactive dashboard",
-            "nmon -f -s 30 -c 120  # Collect data every 30 seconds for 120 snapshots",
-            "nmon -c 10 -s 5 -f -d  # Collect disk data every 5 seconds for 10 snapshots",
-            "nmon -fT -s 60 -c 1440  # Generate 24-hour performance report with timestamps"
+            "auditctl -w /etc/passwd -p war -k passwd_changes  # Monitor passwd file for write, attribute, and read access",
+            "ausearch -k passwd_changes  # Search for events with specific key",
+            "auditctl -a always,exit -S open -k file_access  # Audit all open system calls",
+            "aureport -au  # Generate authentication attempt report"
         ],
         "platform": [
             "linux"
         ],
-        "category": "system",
+        "category": "development",
         "safety": "safe",
-        "syntaxPattern": "nmon [options]",
-        "prerequisites": [
-            "intermediate"
-        ],
+        "syntaxPattern": "auditctl [options] or ausearch [options]",
+        "prerequisites": {
+            "foundational_concepts": "Solid understanding of system architecture, advanced command-line concepts, and Unix/Linux system administration",
+            "prior_commands": "Proficient with file operations, text processing (grep, awk, sed), and system monitoring commands",
+            "risk_awareness": "Low risk: exercise elevated caution due to complex dependencies and potential system-wide effects"
+        },
         "commandCombinations": [
             {
-                "scenario": "Long-term monitoring with analysis",
-                "commands": "nmon -fT -s 300 -c 288 && ls *.nmon",
-                "explanation": "Collect 24 hours of data every 5 minutes, list output files",
-                "title": "nmon && ls"
+                "label": "auditctl && ausearch # Complete file integrity monitoring",
+                "commands": "auditctl -w /etc -p wa -k config_changes && ausearch -k config_changes",
+                "explanation": "Monitor /etc directory and search for changes"
             }
         ],
         "relatedCommands": [
             {
-                "name": "htop",
-                "relationship": "alternative",
-                "reason": "Both provide interactive system monitoring"
-            },
-            {
-                "name": "sar",
-                "relationship": "similar",
-                "reason": "Both collect comprehensive system performance data"
-            },
-            {
-                "name": "top",
-                "relationship": "alternative",
-                "reason": "Traditional process monitor vs nmon's comprehensive view"
-            }
-        ],
-        "warnings": [
-            "Interactive mode has specific key commands (c=CPU, d=disk, etc.)",
-            "Data files (.nmon) need separate tools for analysis",
-            "May not be available in standard repositories"
-        ],
-        "manPageUrl": "http://nmon.sourceforge.net/pmwiki.php",
-        "distroNotes": {
-            "linux": "Install via package manager or download from IBM"
-        }
-    },
-    {
-        "name": "nohup",
-        "standsFor": "no hangup",
-        "description": "Run commands immune to hangups, with output to non-tty",
-        "examples": [
-            "nohup ./long-running-script.sh &  # Run script that continues after terminal closes",
-            "nohup python data-processor.py > processing.log 2>&1 &  # Redirect both stdout and stderr to custom log file",
-            "nohup ./server --port 8080 &  # Start server that survives SSH session disconnect",
-            "nohup make -j4 > build.log 2>&1 &  # Start compilation that continues even if you log out"
-        ],
-        "platform": [
-            "linux",
-            "macos",
-            "windows"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "nohup <command> [arguments] &",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Monitor nohup process",
-                "commands": "nohup ./monitor.sh & echo $! > monitor.pid && tail -f nohup.out",
-                "explanation": "Start background process, save PID, and monitor output",
-                "title": "nohup & echo > monitor && tail"
-            },
-            {
-                "scenario": "Start multiple background jobs",
-                "commands": "for i in {1..3}; do nohup ./worker$i.sh > worker$i.log 2>&1 & done",
-                "explanation": "Start multiple worker processes with separate log files",
-                "title": "for ; do > worker >& 1 & done"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "screen",
-                "relationship": "alternative",
-                "reason": "Terminal multiplexer that can detach/reattach sessions"
-            },
-            {
-                "name": "tmux",
-                "relationship": "alternative",
-                "reason": "Modern terminal multiplexer with session management"
-            }
-        ],
-        "warnings": [
-            "Output goes to nohup.out by default if not redirected",
-            "Process continues even after shell exits",
-            "Need to track process ID to kill background job later"
-        ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/nohup.1.html",
-        "distroNotes": {
-            "windows": "Available in WSL and Git Bash only"
-        }
-    },
-    {
-        "name": "osquery",
-        "standsFor": "Operating System Query",
-        "description": "SQL-based framework for system monitoring and forensic analysis",
-        "examples": [
-            "osqueryi  # Start interactive osquery shell for system querying",
-            "osqueryi --line \"SELECT pid, name, cmdline FROM processes;\"  # List all running processes with command lines",
-            "osqueryi --line \"SELECT * FROM process_open_sockets WHERE family=2;\"  # Show IPv4 network connections by processes",
-            "osqueryi --line \"SELECT * FROM users WHERE uid >= 1000;\"  # List non-system users",
-            "osqueryi --json \"SELECT p.pid, p.name, p.cmdline, p.uid, u.username, f.path FROM processes p JOIN users u ON p.uid=u.uid LEFT JOIN file_events f ON p.pid=f.pid WHERE p.name IN ('bash','sh','python','node','java') AND p.start_time > (strftime('%s','now')-3600);\" | jq '[.[] | {process: .name, user: .username, command: .cmdline, recent_files: .path}]' > security-audit-$(date +%Y%m%d-%H%M).json && osqueryi --json \"SELECT * FROM process_open_sockets WHERE family=2 AND local_port < 1024\" | jq '[.[] | select(.remote_address != \"0.0.0.0\" and .remote_address != \"127.0.0.1\")]' > privileged-network-connections.json  # Advanced security forensics: correlate processes, users, file access, and network connections with JSON reporting for SIEM integration"
-        ],
-        "platform": [
-            "linux",
-            "macos",
-            "windows"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "osqueryi [options] or osquery [sql-query]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Security incident investigation",
-                "commands": "osqueryi --line \"SELECT * FROM processes WHERE parent != (SELECT pid FROM processes WHERE processes.pid = processes.parent);\" > suspicious_processes.txt",
-                "explanation": "Find processes without valid parents (potential indicators)",
-                "title": "osqueryi ; > suspicious_processes"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "lsof",
-                "relationship": "similar",
-                "reason": "System information querying capabilities"
-            },
-            {
-                "name": "netstat",
-                "relationship": "similar",
-                "reason": "Network connection monitoring"
-            }
-        ],
-        "warnings": [
-            "SQL syntax specific to osquery tables",
-            "Performance impact on system resources",
-            "Learning curve for effective query writing"
-        ],
-        "manPageUrl": "https://osquery.readthedocs.io/",
-        "distroNotes": {}
-    },
-    {
-        "name": "ps",
-        "standsFor": "process status",
-        "description": "Display information about running processes",
-        "examples": [
-            "ps aux  # Show all processes with detailed information",
-            "ps aux | grep python  # List all Python processes currently running",
-            "ps auxf  # Display processes in tree format showing parent-child relationships",
-            "ps aux --sort=-%cpu | head -10  # Show top 10 processes consuming most CPU",
-            "ps ux  # Show only processes owned by current user",
-            "ps auxww --sort=-%cpu | head -20 && ps auxww --sort=-%mem | head -20 && ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | grep -E '(apache2|nginx|mysql|postgres|java|python)' | head -20 && echo \"Enterprise process monitoring: top CPU consumers, memory usage leaders, critical services identified, system resource utilization analyzed\"  # Enterprise system process analysis with comprehensive resource monitoring, service identification, and performance insight generation"
-        ],
-        "platform": [
-            "linux",
-            "macos",
-            "windows"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "ps [options]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Kill processes by name",
-                "commands": "ps aux | grep defunct | awk '{print $2}' | xargs kill",
-                "explanation": "Find and kill zombie processes",
-                "title": "ps | grep | awk | xargs"
-            },
-            {
-                "scenario": "Monitor resource usage over time",
-                "commands": "watch 'ps aux --sort=-%cpu | head -20'",
-                "explanation": "Continuously monitor top CPU-consuming processes",
-                "title": "watch | head"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "top",
-                "relationship": "alternative",
-                "reason": "Interactive process viewer with real-time updates"
-            },
-            {
-                "name": "htop",
-                "relationship": "alternative",
-                "reason": "Enhanced interactive process viewer with better interface"
-            },
-            {
-                "name": "kill",
+                "name": "aide",
                 "relationship": "combo",
-                "reason": "Use ps to find process ID, then kill to terminate"
+                "reason": "Complementary file integrity monitoring"
             }
         ],
         "warnings": [
-            "ps output format varies between systems (BSD vs GNU)",
-            "Process IDs (PIDs) change each time process starts",
-            "Some processes may not be visible to regular users"
+            "Can generate large amounts of log data",
+            "Rules persist until reboot unless saved",
+            "Performance impact with extensive monitoring"
         ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/ps.1.html",
-        "distroNotes": {
-            "windows": "Available in WSL only"
-        }
+        "manPageUrl": "https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/chap-system_auditing"
     },
     {
-        "name": "sar",
-        "standsFor": "System Activity Reporter",
-        "description": "System Activity Reporter for collecting and reporting system statistics",
+        "name": "autoconf",
+        "standsFor": "Automatic Configuration",
+        "description": "Generate configure scripts for portable compilation",
+        "keyFeatures": [
+            "The `autoconf` command is a cornerstone of the GNU Autotools suite that automatically generates portable shell scripts (configure scripts) from template files (configure.ac). These scripts probe the target system for libraries, headers, compiler features, and system capabilities, then customize the build process accordingly. Autoconf enables software to compile across diverse Unix-like systems by detecting differences in compilers, libraries, and system features, making it essential for distributing portable C/C++ software that works across Linux, macOS, BSD, and other Unix variants.",
+            "Cross-Platform Portability: Generate configure scripts that adapt to different Unix systems, compilers, and architectures",
+            "System Feature Detection: Automatically probe for libraries, headers, functions, and system capabilities",
+            "M4 Macro Processing: Uses powerful M4 macro language for complex conditional configuration logic",
+            "Compiler Abstraction: Handle differences between GCC, Clang, ICC, and other compilers transparently",
+            "Library Discovery: Automatically locate system libraries and adjust build settings accordingly",
+            "Header File Checking: Verify availability of system headers and define appropriate preprocessor symbols",
+            "Cache Acceleration: Speed up repeated configuration runs with intelligent result caching",
+            "Custom Testing: Write custom tests for specific features, libraries, or system requirements",
+            "Environment Integration: Work with shell environment variables and user-specified options",
+            "Standards Compliance: Generate POSIX-compliant shell scripts that work across different shells",
+            "Template Processing: Transform configure.ac templates into full-featured configuration scripts"
+        ],
         "examples": [
-            "sar -u 1 10  # Display CPU utilization every second for 10 intervals",
-            "sar -r 5 6  # Show memory utilization every 5 seconds for 6 intervals",
-            "sar -b 2 5  # Display I/O and transfer statistics",
-            "sar -n DEV 1 5  # Show network device statistics",
-            "sar -q 3 4  # Display load average and run queue length",
-            "sar -u -f /var/log/sysstat/sa01  # Display historical CPU data from system logs"
+            "autoconf  # Generate configure script from configure.ac",
+            "autoconf --force  # Regenerate configure script even if up to date",
+            "autoconf -o configure configure.ac  # Generate configure script with specific name",
+            "autoconf -I m4  # Include m4 directory for macro definitions"
         ],
         "platform": [
             "linux",
             "macos"
         ],
-        "category": "system",
+        "category": "development",
         "safety": "safe",
-        "syntaxPattern": "sar [options] [interval] [count]",
-        "prerequisites": [
-            "intermediate"
-        ],
+        "syntaxPattern": "autoconf [options] [template-file]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity, understanding of file systems, and fundamental Unix/Linux concepts",
+            "prior_commands": "Comfortable with basic file navigation (ls, cd, pwd), file viewing (cat, less), and simple text editing",
+            "risk_awareness": "Low risk: verify command parameters and understand potential file system or configuration changes"
+        },
         "commandCombinations": [
             {
-                "scenario": "Daily system report",
-                "commands": "sar -u -r -b -q 1 60 > daily_report.txt",
-                "explanation": "Generate comprehensive hourly system report",
-                "title": "sar > daily_report"
+                "label": "autoreconf && && make && make # Complete autotools workflow",
+                "commands": "autoreconf -fiv && ./configure && make && make install",
+                "explanation": "Regenerate build system, configure, build, and install"
             }
         ],
         "relatedCommands": [
             {
-                "name": "iostat",
-                "relationship": "related",
-                "reason": "Both are part of sysstat package and complement each other"
-            },
-            {
-                "name": "vmstat",
-                "relationship": "similar",
-                "reason": "Both provide system performance statistics"
-            }
-        ],
-        "warnings": [
-            "Part of sysstat package",
-            "Can read historical data from system logs",
-            "Rich set of options for different statistics"
-        ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/sar.1.html",
-        "distroNotes": {}
-    },
-    {
-        "name": "systemctl",
-        "standsFor": "System Control",
-        "description": "Control systemd services and system state",
-        "examples": [
-            "sudo systemctl start nginx  # Start the nginx service",
-            "sudo systemctl stop nginx  # Stop the nginx service",
-            "sudo systemctl restart nginx  # Restart the nginx service (stop then start)",
-            "systemctl status nginx  # Show detailed status of nginx service",
-            "sudo systemctl enable nginx  # Configure nginx to start automatically at boot",
-            "sudo systemctl disable nginx  # Prevent nginx from starting automatically at boot",
-            "systemctl list-units --type=service  # Show all systemd services and their status",
-            "sudo systemctl reload nginx  # Reload service configuration without restarting"
-        ],
-        "platform": [
-            "linux"
-        ],
-        "category": "system",
-        "safety": "caution",
-        "syntaxPattern": "systemctl [command] [service]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Service deployment workflow",
-                "commands": "sudo systemctl stop myapp && sudo systemctl start myapp && systemctl status myapp",
-                "explanation": "Stop, start, and check status of custom application",
-                "title": "sudo && sudo && systemctl"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "journalctl",
+                "name": "automake",
                 "relationship": "combo",
-                "reason": "journalctl shows logs for systemd services"
+                "reason": "automake generates Makefile.in used by autoconf"
             }
         ],
         "warnings": [
-            "systemd-only, not available on non-systemd systems",
-            "Enable vs start: enable affects boot behavior, start affects current state",
-            "Some commands require root privileges"
+            "Part of GNU Autotools suite - can be complex",
+            "Generates portable shell scripts for configuration",
+            "Used mainly in traditional Unix software development"
         ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/systemctl.1.html",
-        "distroNotes": {}
+        "manPageUrl": ""
     },
     {
-        "name": "top",
-        "standsFor": "table of processes",
-        "description": "Display and update running processes in real-time",
+        "name": "automake",
+        "standsFor": "Automatic Make",
+        "description": "Generate Makefile.in templates from Makefile.am",
+        "keyFeatures": [
+            "The `automake` command is a key component of the GNU Autotools suite that automatically generates Makefile.in templates from high-level Makefile.am descriptions. It handles the complex task of creating portable makefiles that work across different Unix systems, managing dependencies, installation directories, and build rules automatically. Automake simplifies the creation of complex build systems by providing standardized targets, automatic dependency tracking, and consistent installation procedures, making it essential for professional software distribution.",
+            "Makefile Generation: Transform simple Makefile.am descriptions into complex, portable Makefile.in templates",
+            "Standard Targets: Automatically generate common targets like 'make install', 'make clean', 'make dist'",
+            "Dependency Tracking: Intelligent automatic dependency tracking for C/C++ source files",
+            "Installation Management: Handle standard directory hierarchies (bin, lib, include, share) automatically",
+            "Distribution Packaging: Create source distribution tarballs with 'make dist' target",
+            "Cross-Compilation Support: Generate makefiles that support cross-compilation to different architectures",
+            "Recursive Build: Support for recursive builds in subdirectories with automatic coordination",
+            "Auxiliary File Management: Automatically manage auxiliary files like install-sh, missing, mkinstalldirs",
+            "Libtool Integration: Seamless integration with GNU Libtool for shared library creation",
+            "Testing Framework: Built-in support for test suites and 'make check' target",
+            "Documentation Integration: Automatic handling of man pages, info files, and other documentation"
+        ],
         "examples": [
-            "top  # Real-time view of CPU, memory usage and running processes",
-            "top -o %MEM  # Display processes ordered by memory consumption",
-            "top -u username  # Show only processes owned by specific user",
-            "top -d 1  # Refresh every 1 second instead of default 3 seconds"
-        ],
-        "platform": [
-            "linux",
-            "macos",
-            "windows"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "top [options]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "Log top output to file",
-                "commands": "top -b -n 1 > system_snapshot.txt",
-                "explanation": "Take single snapshot of system state and save to file",
-                "title": "top > system_snapshot"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "htop",
-                "relationship": "alternative",
-                "reason": "More user-friendly with colors and better navigation"
-            },
-            {
-                "name": "ps",
-                "relationship": "alternative",
-                "reason": "Static process snapshot instead of real-time monitoring"
-            },
-            {
-                "name": "uptime",
-                "relationship": "similar",
-                "reason": "Shows system load averages"
-            }
-        ],
-        "warnings": [
-            "Press 'q' to quit top",
-            "Press 'k' to kill process from within top",
-            "High update frequency can consume CPU"
-        ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/top.1.html",
-        "distroNotes": {
-            "windows": "Available in WSL only"
-        }
-    },
-    {
-        "name": "umount",
-        "standsFor": "Unmount",
-        "description": "Unmount mounted filesystems",
-        "examples": [
-            "sudo umount /mnt/usb  # Unmount filesystem mounted at /mnt/usb",
-            "sudo umount /dev/sdb1  # Unmount filesystem on device /dev/sdb1",
-            "sudo umount -f /mnt/usb  # Force unmount even if filesystem is busy",
-            "sudo umount -l /mnt/usb  # Detach filesystem immediately, cleanup when not busy",
-            "sudo umount -a  # Unmount all filesystems listed in /etc/mtab"
+            "automake  # Generate Makefile.in from Makefile.am",
+            "automake --add-missing  # Copy missing standard files to package",
+            "automake --force-missing  # Replace existing standard files",
+            "automake --copy  # Copy auxiliary files instead of creating symlinks"
         ],
         "platform": [
             "linux",
             "macos"
         ],
-        "category": "system",
+        "category": "development",
         "safety": "caution",
-        "syntaxPattern": "umount [options] device|mountpoint",
-        "prerequisites": [
-            "intermediate"
-        ],
+        "syntaxPattern": "automake [options]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity, understanding of file systems, and fundamental Unix/Linux concepts",
+            "prior_commands": "Comfortable with basic file navigation (ls, cd, pwd), file viewing (cat, less), and simple text editing",
+            "risk_awareness": "Low risk: verify command parameters and understand potential file system or configuration changes"
+        },
         "commandCombinations": [
             {
-                "scenario": "Safe USB removal",
-                "commands": "sync && sudo umount /mnt/usb && sudo eject /dev/sdb",
-                "explanation": "Sync data, unmount, and eject USB device safely",
-                "title": "sync && sudo && sudo"
+                "label": "autoscan && mv && automake # Initialize autotools project",
+                "commands": "autoscan && mv configure.scan configure.ac && automake --add-missing --copy",
+                "explanation": "Create initial autotools configuration"
             }
         ],
         "relatedCommands": [
             {
-                "name": "mount",
+                "name": "autoconf",
                 "relationship": "combo",
-                "reason": "mount and umount are complementary operations"
-            },
-            {
-                "name": "sync",
-                "relationship": "recommended",
-                "reason": "sync ensures data is written before unmounting"
+                "reason": "Works with autoconf to create build system"
             }
         ],
         "warnings": [
-            "'Device or resource busy' error means files are still open",
-            "lsof or fuser can help identify processes using the filesystem",
-            "Always sync before unmounting to ensure data integrity"
+            "Requires Makefile.am template files",
+            "Complex but provides great portability",
+            "Part of traditional Unix build system"
         ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man8/umount.8.html",
-        "distroNotes": {}
+        "manPageUrl": ""
     },
     {
-        "name": "uname",
-        "standsFor": "Unix name",
-        "description": "Display system information",
+        "name": "awk",
+        "standsFor": "Aho, Weinberger, Kernighan",
+        "description": "Pattern scanning and data extraction language",
+        "keyFeatures": [
+            "The `awk` command is a powerful pattern-scanning and data extraction language that processes structured text files with field-based operations. Named after its creators (Aho, Weinberger, and Kernighan), AWK combines the best of grep's pattern matching with programming language features like variables, functions, and control structures. It excels at processing columnar data, log files, and CSV files by treating each line as a record with fields automatically separated by whitespace or custom delimiters.",
+            "Field-Based Processing: Automatically splits lines into fields ($1, $2, etc.) with customizable field separators",
+            "Pattern Matching: Powerful regular expression patterns to select specific lines for processing",
+            "Built-in Variables: Access to NR (record number), NF (number of fields), FS (field separator), and other useful variables",
+            "Programming Constructs: Full programming language with variables, arrays, loops, and conditional statements",
+            "BEGIN/END Blocks: Execute initialization code before processing and cleanup code after processing",
+            "Mathematical Operations: Built-in arithmetic operations and mathematical functions (sin, cos, sqrt, etc.)",
+            "String Manipulation: Comprehensive string functions including substr, gsub, match, and length",
+            "Associative Arrays: Powerful associative arrays for data aggregation and lookup operations",
+            "Custom Functions: Define reusable functions for complex data transformations",
+            "Report Generation: Excel-like capabilities for summarizing, counting, and formatting data output",
+            "Multi-File Processing: Process multiple files with automatic file switching and FILENAME variable"
+        ],
         "examples": [
-            "uname -a  # Display kernel name, version, architecture, and more",
-            "uname -r  # Show just the kernel release version",
-            "uname -m  # Display machine hardware architecture (x86_64, arm64, etc.)",
-            "uname -s  # Display kernel name (Linux, Darwin, etc.)"
+            "awk '{print $1, $3}' data.txt  # Print first and third columns from space-separated data",
+            "awk '{sum += $2} END {print sum}' numbers.txt  # Add up all values in second column",
+            "awk '$3 > 100 {print $0}' sales.csv  # Print lines where third column value is greater than 100",
+            "awk '/error/ {count++} END {print count}' log.txt  # Count occurrences of 'error' in log file",
+            "awk -F',' '{print $1 \" -> \" $2}' input.csv  # Use comma as field separator and format output"
         ],
         "platform": [
             "linux",
             "macos",
             "windows"
         ],
-        "category": "system",
+        "category": "text-processing",
         "safety": "safe",
-        "syntaxPattern": "uname [options]",
-        "prerequisites": [
-            "intermediate"
-        ],
+        "syntaxPattern": "awk '[pattern] {action}' [file]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity, understanding of file systems, and fundamental Unix/Linux concepts",
+            "prior_commands": "Comfortable with basic file navigation (ls, cd, pwd), file viewing (cat, less), and simple text editing",
+            "risk_awareness": "Low risk: verify command parameters and understand potential file system or configuration changes"
+        },
         "commandCombinations": [
             {
-                "scenario": "System identification for scripts",
-                "commands": "echo \"Running on $(uname -s) $(uname -r) ($(uname -m))\"",
-                "explanation": "Create system identification string",
-                "title": "echo"
+                "label": "tail | awk | sort | uniq # Process log files for monitoring",
+                "commands": "tail -f access.log | awk '{print $1, $7}' | sort | uniq -c",
+                "explanation": "Monitor web access log, show unique IP and URL combinations"
             },
             {
-                "scenario": "Check compatibility before install",
-                "commands": "uname -m | grep -q 'x86_64' && echo 'Compatible' || echo 'Not compatible'",
-                "explanation": "Verify system architecture compatibility",
-                "title": "uname | grep && echo || echo"
+                "label": "awk > threshold # Generate reports from CSV data",
+                "commands": "awk -F',' '{if($3>threshold) total+=$3} END {print \"Total:\", total}' threshold=1000 data.csv",
+                "explanation": "Sum values in CSV where column 3 exceeds threshold"
             }
         ],
         "relatedCommands": [
             {
-                "name": "lscpu",
-                "relationship": "combo",
-                "reason": "Detailed CPU information"
-            }
-        ],
-        "warnings": [
-            "uname -a may expose sensitive system information",
-            "Output format varies slightly between operating systems",
-            "Some options may not be available on all systems"
-        ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/uname.1.html",
-        "distroNotes": {
-            "windows": "Available in WSL"
-        }
-    },
-    {
-        "name": "uptime",
-        "standsFor": "uptime",
-        "description": "Show system uptime and load averages",
-        "examples": [
-            "uptime  # Show how long system has been running and load averages",
-            "uptime -p  # Display uptime in human-readable format",
-            "uptime -s  # Display when system was last booted"
-        ],
-        "platform": [
-            "linux",
-            "macos",
-            "windows"
-        ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "uptime [options]",
-        "prerequisites": [
-            "intermediate"
-        ],
-        "commandCombinations": [
-            {
-                "scenario": "System status summary",
-                "commands": "uptime && free -h && df -h",
-                "explanation": "Quick system overview: uptime, memory, and disk usage",
-                "title": "uptime && free && df"
-            },
-            {
-                "scenario": "Monitor load over time",
-                "commands": "watch -n 10 uptime",
-                "explanation": "Monitor load averages every 10 seconds",
-                "title": "watch"
-            }
-        ],
-        "relatedCommands": [
-            {
-                "name": "top",
+                "name": "sed",
                 "relationship": "similar",
-                "reason": "Shows load averages along with process information"
+                "reason": "Both are stream editors, sed for substitution, awk for field processing"
             },
             {
-                "name": "vmstat",
+                "name": "cut",
+                "relationship": "similar",
+                "reason": "Cut extracts columns, awk processes them with logic"
+            },
+            {
+                "name": "grep",
                 "relationship": "combo",
-                "reason": "More detailed system performance statistics"
+                "reason": "Grep finds lines, awk processes the found data"
             }
         ],
         "warnings": [
-            "Load average > CPU cores usually indicates high system load",
-            "Load averages are for 1, 5, and 15 minute periods",
-            "High load doesn't always mean CPU bottleneck"
+            "Field numbering starts at 1, not 0",
+            "$0 refers to entire line, $NF to last field",
+            "String comparisons need quotes: $1 == \"text\""
         ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/uptime.1.html",
-        "distroNotes": {
-            "windows": "Available in WSL or PowerShell equivalent"
-        }
+        "manPageUrl": "https://man7.org/linux/man-pages/man1/awk.1p.html"
     },
     {
-        "name": "watch",
-        "standsFor": "watch",
-        "description": "Execute command repeatedly and display output",
+        "name": "aws",
+        "standsFor": "AWS CLI Advanced",
+        "description": "Advanced AWS CLI operations for enterprise cloud management",
+        "keyFeatures": [
+            "The `aws` command is Amazon's comprehensive command-line interface that provides programmatic access to over 200 AWS services, enabling infrastructure automation, resource management, and cloud operations through scriptable commands. It transforms complex cloud operations into executable commands, supporting everything from simple file uploads to sophisticated multi-service orchestrations. The AWS CLI enables Infrastructure as Code practices, CI/CD pipeline integration, and automated cloud resource management at enterprise scale.",
+            "Multi-Service Access: Control 200+ AWS services including EC2, S3, RDS, Lambda, and specialized services through unified interface",
+            "Infrastructure as Code: Script complex cloud infrastructure deployments and modifications for reproducible environments",
+            "Batch Operations: Execute bulk operations on multiple resources simultaneously with batch commands and pagination",
+            "Output Formatting: Flexible output formats (JSON, table, text) with JMESPath queries for precise data extraction",
+            "Profile Management: Multiple credential profiles for different accounts, roles, and environments",
+            "Pagination Handling: Automatic pagination for large result sets with configurable page sizes and limits",
+            "Dry Run Support: Test commands with --dry-run option to validate operations before execution",
+            "Cross-Service Integration: Coordinate operations across multiple AWS services in single commands or scripts",
+            "Resource Filtering: Advanced filtering and querying capabilities to target specific resources or configurations",
+            "Automation Integration: Perfect for shell scripts, CI/CD pipelines, and automated deployment workflows",
+            "Error Handling: Comprehensive error reporting with HTTP status codes and detailed error messages"
+        ],
         "examples": [
-            "watch 'ps aux | head -20'  # Update process list every 2 seconds (default interval)",
-            "watch -n 1 'ls -la /tmp'  # Monitor directory contents every 1 second",
-            "watch df -h  # Track filesystem usage in real-time",
-            "watch -d 'netstat -tuln'  # Show network connections and highlight changes",
-            "watch 'wc -l /var/log/syslog'  # Watch line count increase in system log",
-            "watch -e 'ping -c 1 google.com'  # Stop watching when ping command fails"
+            "aws ec2 create-vpc --cidr-block 10.0.0.0/16 --enable-dns-hostnames --enable-dns-support  # Create Virtual Private Cloud with DNS resolution enabled",
+            "aws rds create-db-instance --db-instance-identifier mydb --db-instance-class db.t3.micro --engine mysql --master-username admin --master-user-password mypassword --multi-az --backup-retention-period 7  # Create highly available RDS MySQL instance with automated backups",
+            "aws lambda create-function --function-name MyFunction --runtime python3.9 --role arn:aws:iam::123456789012:role/lambda-role --handler lambda_function.lambda_handler --zip-file fileb://function.zip  # Deploy Lambda function with Python runtime",
+            "aws ecs create-cluster --cluster-name production-cluster --capacity-providers FARGATE EC2 --default-capacity-provider-strategy capacityProvider=FARGATE,weight=1  # Create ECS cluster with Fargate and EC2 capacity providers",
+            "aws eks create-cluster --name production-eks --version 1.27 --role-arn arn:aws:iam::123456789012:role/eks-service-role --resources-vpc-config subnetIds=subnet-12345,subnet-67890,securityGroupIds=sg-12345  # Create managed Kubernetes cluster with specified VPC configuration",
+            "aws cloudformation create-stack --stack-name my-infrastructure --template-body file://template.yaml --parameters ParameterKey=Environment,ParameterValue=production --capabilities CAPABILITY_IAM  # Deploy infrastructure using CloudFormation template with IAM capabilities",
+            "aws iam create-role --role-name MyServiceRole --assume-role-policy-document file://trust-policy.json --path /service-roles/  # Create IAM role with trust relationship policy document",
+            "aws cloudwatch put-metric-alarm --alarm-name cpu-usage-high --alarm-description 'High CPU usage' --metric-name CPUUtilization --namespace AWS/EC2 --statistic Average --period 300 --threshold 80 --comparison-operator GreaterThanThreshold  # Create CloudWatch alarm for high EC2 CPU utilization",
+            "aws s3api create-bucket --bucket my-versioned-bucket --create-bucket-configuration LocationConstraint=us-west-2 && aws s3api put-bucket-versioning --bucket my-versioned-bucket --versioning-configuration Status=Enabled  # Create S3 bucket in specific region with versioning enabled",
+            "aws apigateway create-rest-api --name MyAPI --description 'Production API' --endpoint-configuration types=REGIONAL  # Create regional REST API Gateway for production use"
         ],
         "platform": [
             "linux",
             "macos",
             "windows"
         ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "watch [options] <command>",
-        "prerequisites": [
-            "intermediate"
-        ],
+        "category": "development",
+        "safety": "caution",
+        "syntaxPattern": "aws [service] [operation] [options]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity, understanding of file systems, and fundamental Unix/Linux concepts",
+            "prior_commands": "Comfortable with basic file navigation (ls, cd, pwd), file viewing (cat, less), and simple text editing",
+            "risk_awareness": "Low risk: verify command parameters and understand potential file system or configuration changes"
+        },
         "commandCombinations": [
             {
-                "scenario": "Monitor service status",
-                "commands": "watch -n 5 'systemctl status nginx && echo \"---\" && tail -5 /var/log/nginx/error.log'",
-                "explanation": "Check nginx status and recent errors every 5 seconds",
-                "title": "watch && echo && tail"
+                "label": "aws && aws && aws && aws # Complete VPC setup with security",
+                "commands": "aws ec2 create-vpc --cidr-block 10.0.0.0/16 && aws ec2 create-subnet --vpc-id vpc-12345 --cidr-block 10.0.1.0/24 --availability-zone us-east-1a && aws ec2 create-internet-gateway && aws ec2 attach-internet-gateway --internet-gateway-id igw-12345 --vpc-id vpc-12345",
+                "explanation": "Create VPC, subnet, internet gateway and attach for complete network setup"
             },
             {
-                "scenario": "Track build progress",
-                "commands": "watch -n 2 'ls -la build/ | wc -l && du -sh build/'",
-                "explanation": "Monitor build directory file count and size",
-                "title": "watch | wc && du"
+                "label": "aws && aws && aws # Deploy application with load balancer",
+                "commands": "aws elbv2 create-load-balancer --name my-load-balancer --subnets subnet-12345 subnet-67890 && aws elbv2 create-target-group --name my-targets --protocol HTTP --port 80 --vpc-id vpc-12345 && aws elbv2 create-listener --load-balancer-arn arn:aws:elasticloadbalancing:us-east-1:123456789012:loadbalancer/app/my-load-balancer/50dc6c495c0c9188 --protocol HTTP --port 80",
+                "explanation": "Create application load balancer with target group and listener"
             }
         ],
         "relatedCommands": [
             {
-                "name": "tail",
-                "relationship": "similar",
-                "reason": "tail -f watches file changes, watch monitors any command"
-            },
-            {
-                "name": "top",
+                "name": "terraform",
                 "relationship": "alternative",
-                "reason": "top continuously updates, watch runs any command repeatedly"
+                "reason": "Infrastructure as Code alternative to CLI commands"
+            },
+            {
+                "name": "sam",
+                "relationship": "combo",
+                "reason": "SAM CLI for serverless application deployment"
             }
         ],
         "warnings": [
-            "Command output truncated to terminal size",
-            "Complex commands need proper shell quoting",
-            "High frequency updates can consume CPU"
+            "IAM permissions required for each service operation",
+            "Resource dependencies must be created in correct order",
+            "Some operations may take several minutes to complete",
+            "Cross-region replication requires specific configuration"
         ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/watch.1.html",
-        "distroNotes": {
-            "macos": "Install via Homebrew: brew install watch",
-            "windows": "Available in WSL"
-        }
+        "manPageUrl": "https://docs.aws.amazon.com/cli/"
     },
     {
-        "name": "which",
-        "standsFor": "which",
-        "description": "Locate command in PATH",
+        "name": "aws-cli",
+        "standsFor": "AWS Command Line Interface",
+        "description": "Command-line interface for Amazon Web Services CloudWatch",
+        "keyFeatures": [
+            "The `aws-cli` command provides specialized CloudWatch operations for monitoring, logging, and alerting across AWS infrastructure. It enables comprehensive monitoring of AWS resources through metrics collection, custom dashboards, and automated alerting systems. CloudWatch CLI operations are essential for DevOps practices, allowing teams to set up proactive monitoring, troubleshoot performance issues, and maintain operational visibility across complex cloud environments.",
+            "Metrics Management: Retrieve, publish, and analyze custom and AWS service metrics for performance monitoring",
+            "Alarm Configuration: Create sophisticated alarms with multiple conditions, composite metrics, and automated actions",
+            "Log Stream Operations: Query, filter, and analyze log streams from CloudWatch Logs with powerful search capabilities",
+            "Dashboard Automation: Programmatically create and manage CloudWatch dashboards for operational visibility",
+            "Custom Metric Publishing: Publish application-specific metrics for business and technical KPI tracking",
+            "Real-Time Monitoring: Set up real-time log streaming and metric monitoring for immediate incident response",
+            "Cross-Service Integration: Monitor metrics from EC2, RDS, Lambda, ELB and other AWS services in unified interface",
+            "Anomaly Detection: Configure automatic anomaly detection for metrics using machine learning models",
+            "Cost Optimization: Monitor resource utilization metrics to identify cost optimization opportunities",
+            "Automated Responses: Trigger Auto Scaling, SNS notifications, or Lambda functions based on metric thresholds"
+        ],
         "examples": [
-            "which python  # Show full path to python executable",
-            "which nonexistent-cmd  # Returns exit code 1 if command not found",
-            "which -a python  # Show all python executables in PATH"
+            "aws cloudwatch list-metrics  # List all available CloudWatch metrics",
+            "aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization  # Get EC2 CPU utilization statistics",
+            "aws cloudwatch put-metric-alarm --alarm-name cpu-alarm --metric-name CPUUtilization  # Create CloudWatch alarm for CPU utilization",
+            "aws logs get-log-events --log-group-name /aws/lambda/function-name  # Retrieve log events from CloudWatch Logs",
+            "aws logs create-log-group --log-group-name my-log-group  # Create new CloudWatch log group"
         ],
         "platform": [
             "linux",
             "macos",
             "windows"
         ],
-        "category": "system",
+        "category": "development",
         "safety": "safe",
-        "syntaxPattern": "which <command>",
-        "prerequisites": [
-            "intermediate"
-        ],
+        "syntaxPattern": "aws [service] [operation] [parameters]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity and understanding of fundamental Unix/Linux file system concepts",
+            "prior_commands": "Basic familiarity with ls, cd, pwd, cat, and fundamental file system navigation",
+            "risk_awareness": "Low risk: understand command purpose and verify syntax before execution"
+        },
         "commandCombinations": [
             {
-                "scenario": "Conditional script execution",
-                "commands": "which docker >/dev/null && docker --version || echo 'Docker not installed'",
-                "explanation": "Check if docker exists before using it",
-                "title": "which > && docker || echo"
-            },
-            {
-                "scenario": "Compare command locations",
-                "commands": "echo \"Python: $(which python)\" && echo \"Python3: $(which python3)\"",
-                "explanation": "Show locations of different Python versions",
-                "title": "echo && echo"
+                "label": "aws # Monitor EC2 instance",
+                "commands": "aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization --dimensions Name=InstanceId,Value=i-1234567890abcdef0 --start-time 2023-01-01T00:00:00Z --end-time 2023-01-01T23:59:59Z --period 3600 --statistics Average",
+                "explanation": "Get hourly average CPU utilization for specific EC2 instance"
             }
         ],
-        "relatedCommands": [],
-        "warnings": [
-            "which doesn't find shell builtins or functions",
-            "May not work with aliases in some shells",
-            "Results depend on current PATH environment"
+        "relatedCommands": [
+            {
+                "name": "az",
+                "relationship": "alternative",
+                "reason": "Azure CLI for Azure Monitor"
+            },
+            {
+                "name": "gcloud",
+                "relationship": "alternative",
+                "reason": "Google Cloud CLI for GCP monitoring"
+            }
         ],
-        "manPageUrl": "https://ss64.com/osx/which.html",
-        "distroNotes": {
-            "windows": "Available in WSL; Windows has where command"
-        }
+        "warnings": [
+            "Requires AWS credentials configuration",
+            "Rate limiting applies to CloudWatch APIs",
+            "Metric retention periods vary by resolution"
+        ],
+        "manPageUrl": "https://docs.aws.amazon.com/cli/"
     },
     {
-        "name": "whoami",
-        "standsFor": "who am I",
-        "description": "Display current username",
+        "name": "az",
+        "standsFor": "Azure CLI Advanced",
+        "description": "Advanced Azure CLI operations for enterprise cloud management",
+        "keyFeatures": [
+            "The `az` command is Microsoft's comprehensive command-line interface for Azure cloud services, providing programmatic access to 100+ Azure services for infrastructure automation, application deployment, and cloud operations. It enables enterprise-scale cloud management through scriptable commands, supporting complex multi-service orchestrations, resource lifecycle management, and DevOps integration. The Azure CLI transforms complex cloud operations into executable commands, enabling Infrastructure as Code practices and automated cloud resource management.",
+            "Multi-Service Integration: Access 100+ Azure services including AKS, App Service, SQL Database, and AI services through unified interface",
+            "Resource Group Management: Organize and manage resources with hierarchical resource groups and subscription-based access control",
+            "ARM Template Deployment: Deploy complex infrastructure using Azure Resource Manager templates with parameter validation",
+            "Identity and Access Control: Manage Azure Active Directory, service principals, and role-based access control (RBAC)",
+            "Container Orchestration: Deploy and manage AKS clusters, Azure Container Instances, and container registries",
+            "Serverless Computing: Manage Azure Functions, Logic Apps, and event-driven architectures",
+            "Database Management: Create and configure SQL databases, CosmosDB, and other data services with high availability",
+            "DevOps Integration: Automate CI/CD pipelines with Azure DevOps and GitHub Actions integration",
+            "Monitoring and Diagnostics: Configure Azure Monitor, Application Insights, and Log Analytics for operational visibility",
+            "Cross-Platform Support: Consistent functionality across Windows, Linux, and macOS environments",
+            "Output Formatting: Flexible JSON, table, and TSV output formats with JMESPath querying capabilities"
+        ],
         "examples": [
-            "whoami  # Show the username of current user"
+            "az aks create --resource-group myResourceGroup --name myAKSCluster --node-count 3 --enable-addons monitoring --generate-ssh-keys --node-vm-size Standard_D2s_v3  # Create managed Kubernetes cluster with monitoring enabled",
+            "az container create --resource-group myResourceGroup --name mycontainer --image nginx --dns-name-label aci-demo --ports 80  # Deploy container instance with public DNS name",
+            "az sql server create --resource-group myResourceGroup --name myserver --admin-user myadmin --admin-password myPassword123! && az sql db create --resource-group myResourceGroup --server myserver --name mydatabase --service-objective S0  # Create SQL Server and database with basic tier",
+            "az functionapp create --resource-group myResourceGroup --consumption-plan-location eastus --runtime python --runtime-version 3.9 --functions-version 4 --name myFunctionApp --storage-account mystorageaccount  # Create serverless Function App with Python runtime",
+            "az network vnet create --resource-group myResourceGroup --name myVNet --address-prefix 10.0.0.0/16 --subnet-name mySubnet --subnet-prefix 10.0.0.0/24  # Create VNet with subnet for network isolation",
+            "az network application-gateway create --resource-group myResourceGroup --name myAppGateway --location eastus --capacity 2 --sku Standard_v2 --public-ip-address myAGPublicIPAddress --vnet-name myVNet --subnet mySubnet  # Create layer 7 load balancer for web applications",
+            "az pipelines create --name 'Build Pipeline' --repository https://github.com/user/repo --branch main --yaml-path azure-pipelines.yml  # Create CI/CD pipeline from GitHub repository",
+            "az keyvault create --resource-group myResourceGroup --name myKeyVault --location eastus --enabled-for-deployment true --enabled-for-template-deployment true  # Create secure key and secret management service",
+            "az cdn profile create --resource-group myResourceGroup --name myCDNProfile --sku Standard_Microsoft && az cdn endpoint create --resource-group myResourceGroup --name myEndpoint --profile-name myCDNProfile --origin myorigin.azurewebsites.net  # Create Content Delivery Network for global content distribution",
+            "az monitor log-analytics workspace create --resource-group myResourceGroup --workspace-name myWorkspace --location eastus --sku pergb2018  # Create centralized logging and monitoring workspace"
         ],
         "platform": [
             "linux",
             "macos",
             "windows"
         ],
-        "category": "system",
-        "safety": "safe",
-        "syntaxPattern": "whoami",
-        "prerequisites": [
-            "intermediate"
-        ],
+        "category": "development",
+        "safety": "caution",
+        "syntaxPattern": "az [group] [subgroup] [command] [options]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity, understanding of file systems, and fundamental Unix/Linux concepts",
+            "prior_commands": "Comfortable with basic file navigation (ls, cd, pwd), file viewing (cat, less), and simple text editing",
+            "risk_awareness": "Low risk: verify command parameters and understand potential file system or configuration changes"
+        },
         "commandCombinations": [
             {
-                "scenario": "User context in scripts",
-                "commands": "echo \"Running as user: $(whoami)\" && id",
-                "explanation": "Show current user and their group memberships",
-                "title": "echo && id"
+                "label": "az && az && kubectl # Complete AKS deployment with monitoring",
+                "commands": "az aks create --resource-group myRG --name myAKS --node-count 3 --enable-addons monitoring && az aks get-credentials --resource-group myRG --name myAKS && kubectl get nodes",
+                "explanation": "Create AKS cluster, get credentials, and verify nodes"
             },
             {
-                "scenario": "Conditional execution based on user",
-                "commands": "if [ $(whoami) = 'root' ]; then echo 'Running as root'; fi",
-                "explanation": "Check if running as root user",
-                "title": "if ; then ; fi"
+                "label": "az && az && az # Web app with database deployment",
+                "commands": "az appservice plan create --resource-group myRG --name myPlan --sku B1 && az webapp create --resource-group myRG --plan myPlan --name myWebApp && az sql server create --resource-group myRG --name myserver --admin-user admin --admin-password Password123!",
+                "explanation": "Create complete web application stack with database"
             }
         ],
-        "relatedCommands": [],
-        "warnings": [
-            "Shows effective user, not necessarily login user",
-            "May show different results when using sudo",
-            "Simple command with no options needed"
+        "relatedCommands": [
+            {
+                "name": "kubectl",
+                "relationship": "combo",
+                "reason": "AKS clusters managed through kubectl"
+            },
+            {
+                "name": "terraform",
+                "relationship": "alternative",
+                "reason": "Infrastructure as Code alternative"
+            }
         ],
-        "manPageUrl": "https://man7.org/linux/man-pages/man1/whoami.1.html",
-        "distroNotes": {
-            "windows": "Available in PowerShell and WSL"
-        }
+        "warnings": [
+            "Resource naming must be globally unique for some services",
+            "Service principal authentication for automation",
+            "Resource group location affects service availability"
+        ],
+        "manPageUrl": "https://docs.microsoft.com/en-us/cli/azure/"
+    },
+    {
+        "name": "banner",
+        "standsFor": "Banner",
+        "description": "Print large banner text",
+        "keyFeatures": [
+            "The `banner` command creates large, attention-grabbing text displays using ASCII characters, perfect for system messages, alerts, and visual emphasis in scripts and terminal output. It transforms ordinary text into block-style letters that stand out in console environments, making it ideal for startup messages, warnings, status displays, and automated script notifications. Unlike complex text art tools, banner provides simple, readable large-format text that works consistently across different terminal environments.",
+            "Large Text Display: Convert text into large, block-style ASCII characters for enhanced visibility",
+            "System Integration: Perfect for startup scripts, login messages, and system status displays",
+            "Script Enhancement: Add visual emphasis to shell scripts and automated processes",
+            "Terminal Compatibility: Works consistently across different terminal types and sizes",
+            "Simple Syntax: Straightforward command structure with minimal learning curve",
+            "Automated Notifications: Integrate into cron jobs and system monitoring scripts for visual alerts",
+            "Boot Messages: Create professional-looking system boot and service startup messages",
+            "Error Highlighting: Make critical errors and warnings more visible in log output",
+            "Multi-Word Support: Handle phrases and sentences with automatic spacing"
+        ],
+        "examples": [
+            "banner 'HELLO'  # Create simple block letter banner",
+            "banner 'SYSTEM READY'  # Display system status message",
+            "banner 'WARNING'  # Create attention-grabbing warning banner"
+        ],
+        "platform": [
+            "linux",
+            "macos"
+        ],
+        "category": "text-processing",
+        "safety": "safe",
+        "syntaxPattern": "banner [text]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity, understanding of file systems, and fundamental Unix/Linux concepts",
+            "prior_commands": "Comfortable with basic file navigation (ls, cd, pwd), file viewing (cat, less), and simple text editing",
+            "risk_awareness": "Low risk: verify command parameters and understand potential file system or configuration changes"
+        },
+        "commandCombinations": [
+            {
+                "label": "banner && echo # System startup message",
+                "commands": "banner 'BOOTING' && echo 'System initialization in progress...'",
+                "explanation": "Display boot banner with status message"
+            }
+        ],
+        "relatedCommands": [
+            {
+                "name": "figlet",
+                "relationship": "advanced-alternative",
+                "reason": "figlet provides more fonts and formatting options"
+            }
+        ],
+        "warnings": [
+            "Simpler than figlet but fewer options",
+            "May not be available on all systems",
+            "Typically uses hash (#) characters for text"
+        ],
+        "manPageUrl": ""
+    },
+    {
+        "name": "basename",
+        "standsFor": "base name",
+        "description": "Extract filename from path",
+        "keyFeatures": [
+            "The `basename` command extracts the final filename component from full file paths, making it essential for file processing scripts and path manipulation tasks. It removes directory prefixes and optionally strips file extensions, enabling clean filename extraction for batch processing, file renaming operations, and dynamic script generation. This utility is crucial for portable shell scripts that need to work with files regardless of their absolute path locations.",
+            "Path Component Extraction: Remove directory path prefixes to get clean filenames from full paths",
+            "Extension Removal: Optionally strip specific file extensions with exact suffix matching",
+            "Multiple File Processing: Handle multiple paths simultaneously with -a flag for batch operations",
+            "Script Integration: Essential for shell scripts that process files dynamically",
+            "Cross-Platform Portability: Consistent behavior across Unix-like systems for reliable scripting",
+            "Pipeline Friendly: Works seamlessly in command pipelines and variable assignments",
+            "Batch File Operations: Ideal for renaming, copying, or processing files based on their base names",
+            "Dynamic Filename Generation: Create output filenames based on input filenames with different extensions",
+            "Directory Independence: Process files without caring about their directory structure"
+        ],
+        "examples": [
+            "basename /path/to/file.txt  # Extract 'file.txt' from full path",
+            "basename /path/to/file.txt .txt  # Get filename without extension: 'file'",
+            "basename -a /path/file1.txt /other/file2.txt  # Extract basenames from multiple paths",
+            "basename /path/to/directory/  # Get 'directory' from path ending with slash"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ],
+        "category": "text-processing",
+        "safety": "safe",
+        "syntaxPattern": "basename <path> [suffix]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity, understanding of file systems, and fundamental Unix/Linux concepts",
+            "prior_commands": "Comfortable with basic file navigation (ls, cd, pwd), file viewing (cat, less), and simple text editing",
+            "risk_awareness": "Low risk: verify command parameters and understand potential file system or configuration changes"
+        },
+        "commandCombinations": [
+            {
+                "label": "for ; do ; done # Rename files with basename",
+                "commands": "for file in *.backup; do mv \"$file\" \"$(basename \"$file\" .backup)\"; done",
+                "explanation": "Remove .backup extension from all backup files"
+            },
+            {
+                "label": "INPUT && OUTPUT # Create output filename from input",
+                "commands": "INPUT=data.csv && OUTPUT=\"$(basename \"$INPUT\" .csv).json\"",
+                "explanation": "Generate output filename with different extension"
+            }
+        ],
+        "relatedCommands": [
+            {
+                "name": "dirname",
+                "relationship": "opposite",
+                "reason": "dirname extracts directory path, basename extracts filename"
+            },
+            {
+                "name": "cut",
+                "relationship": "alternative",
+                "reason": "Can extract path components using delimiters"
+            }
+        ],
+        "warnings": [
+            "basename removes trailing slashes from paths",
+            "Empty path or just '/' returns specific results",
+            "Suffix removal is exact match, not pattern matching"
+        ],
+        "manPageUrl": "https://man7.org/linux/man-pages/man1/basename.1.html"
+    },
+    {
+        "name": "bash",
+        "standsFor": "Bourne Again Shell",
+        "description": "Bourne Again Shell for command execution and scripting",
+        "keyFeatures": [
+            "The `bash` command is the GNU Bourne Again Shell, an enhanced version of the original Bourne shell that serves as both an interactive command interpreter and powerful scripting language. It provides advanced features like command completion, history management, job control, and extensive programming constructs including arrays, functions, and pattern matching. Bash is the default shell on most Linux systems and macOS, making it essential for system administration, automation, and software development workflows.",
+            "Interactive Command Line: Full-featured interactive shell with command completion, history, and editing capabilities",
+            "Shell Scripting Language: Complete programming language with variables, functions, loops, and conditional statements",
+            "Job Control: Manage background processes, job suspension, and process group control",
+            "Command History: Extensive history management with search, expansion, and recall functionality",
+            "Tab Completion: Intelligent autocompletion for commands, filenames, and variables",
+            "I/O Redirection: Powerful input/output redirection and piping capabilities",
+            "Parameter Expansion: Advanced variable expansion with pattern matching and string manipulation",
+            "Process Substitution: Treat command outputs as files for complex data processing workflows",
+            "Error Handling: Configurable error handling with set -e, set -u, and trap mechanisms",
+            "Debugging Support: Built-in debugging with set -x trace mode and detailed error reporting",
+            "Alias and Function Support: Create custom commands and reusable code blocks for efficiency"
+        ],
+        "examples": [
+            "bash script.sh  # Execute bash script file",
+            "bash  # Start interactive bash session",
+            "bash -c 'echo Hello World'  # Execute command from string",
+            "bash -x script.sh  # Run script with execution trace",
+            "bash -euo pipefail script.sh  # Run script with strict error checking",
+            "bash -s < script.sh  # Run script from stdin"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ],
+        "category": "shell",
+        "safety": "safe",
+        "syntaxPattern": "bash [options] [script] [arguments]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity, understanding of file systems, and fundamental Unix/Linux concepts",
+            "prior_commands": "Comfortable with basic file navigation (ls, cd, pwd), file viewing (cat, less), and simple text editing",
+            "risk_awareness": "Low risk: verify command parameters and understand potential file system or configuration changes"
+        },
+        "commandCombinations": [
+            {
+                "label": "bash && bash # Safe script execution",
+                "commands": "bash -n script.sh && bash -euo pipefail script.sh",
+                "explanation": "Check syntax then run with strict error handling"
+            }
+        ],
+        "relatedCommands": [
+            {
+                "name": "zsh",
+                "relationship": "alternative",
+                "reason": "Advanced shell with additional features"
+            }
+        ],
+        "warnings": [
+            "Bash-specific features may not work in other shells",
+            "Error handling behavior depends on options set"
+        ],
+        "manPageUrl": ""
+    },
+    {
+        "name": "bat",
+        "standsFor": "bat",
+        "description": "Cat clone with syntax highlighting and Git integration",
+        "keyFeatures": [
+            "The `bat` command is a modern replacement for the traditional cat command that adds syntax highlighting, line numbers, and Git integration to file viewing. It automatically detects file types and applies appropriate color coding for hundreds of programming languages and file formats, making code reading significantly easier. Bat integrates with Git to show file modifications, supports paging for large files, and provides a more visually appealing and informative file viewing experience.",
+            "Syntax Highlighting: Automatic language detection with color-coded syntax highlighting for 200+ languages",
+            "Line Numbers: Display line numbers by default for easy reference and debugging",
+            "Git Integration: Show Git modifications with + and - markers for added and removed lines",
+            "Automatic Paging: Smart paging that activates automatically for files larger than terminal window",
+            "Theme Support: Multiple color themes optimized for different terminal backgrounds and preferences",
+            "Language Detection: Intelligent file type detection based on content and file extensions",
+            "Range Selection: Display specific line ranges with --range option for focused viewing",
+            "Plain Output: Fallback to plain cat-like behavior when needed with --style=plain",
+            "Multiple File Support: View multiple files with clear file separators and headers",
+            "Custom Styling: Configurable elements including headers, line numbers, and grid separators",
+            "Performance Optimization: Efficient handling of large files with lazy loading and optimized rendering"
+        ],
+        "examples": [
+            "bat script.py  # Display Python file with color syntax highlighting",
+            "bat -n config.json  # Display file with line numbers",
+            "git diff | bat --language=diff  # Highlight Git diff output with proper colors",
+            "bat --paging=always large-file.log  # Force paging for comfortable reading",
+            "bat -r 10:20 file.txt  # Display lines 10 through 20 only"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ],
+        "category": "text-processing",
+        "safety": "safe",
+        "syntaxPattern": "bat [options] [file]...",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity, understanding of file systems, and fundamental Unix/Linux concepts",
+            "prior_commands": "Comfortable with basic file navigation (ls, cd, pwd), file viewing (cat, less), and simple text editing",
+            "risk_awareness": "Low risk: verify command parameters and understand potential file system or configuration changes"
+        },
+        "commandCombinations": [
+            {
+                "label": "bat # View multiple files with headers",
+                "commands": "bat *.py",
+                "explanation": "Show all Python files with filename headers"
+            },
+            {
+                "label": "curl | bat # Combine with other tools",
+                "commands": "curl -s https://raw.githubusercontent.com/user/repo/main/README.md | bat -l md",
+                "explanation": "Download and display markdown with syntax highlighting"
+            }
+        ],
+        "relatedCommands": [
+            {
+                "name": "cat",
+                "relationship": "alternative",
+                "reason": "Traditional file viewer, bat adds syntax highlighting"
+            },
+            {
+                "name": "less",
+                "relationship": "similar",
+                "reason": "Both paginate content, bat adds colors"
+            }
+        ],
+        "warnings": [
+            "May not work well in very minimal terminal environments",
+            "Large files can be slow to syntax highlight",
+            "Theme may need adjustment for terminal color scheme"
+        ],
+        "manPageUrl": "https://github.com/sharkdp/bat"
+    },
+    {
+        "name": "batch",
+        "standsFor": "Batch",
+        "description": "Schedule jobs to run when system load is low",
+        "keyFeatures": [
+            "The `batch` command is a sophisticated job scheduler that enables deferred execution when system load is low, making it far more powerful than people realize for enterprise automation. Unlike simple schedulers, batch provides intelligent resource-aware job execution that integrates seamlessly with system monitoring and enterprise workflow orchestration. This command is essential for system administrators, developers, and automation engineers who need to optimize resource utilization while maintaining system performance.",
+            "Load-Aware Scheduling: Monitors system load average continuously and executes jobs only when resources are available, preventing performance degradation during peak usage periods",
+            "Dynamic Resource Management: Integrates with system resource monitoring to make intelligent scheduling decisions based on CPU, memory, and I/O utilization patterns",
+            "Enterprise Job Orchestration: Supports complex workflow automation by chaining batch jobs with conditional execution and dependency management capabilities",
+            "Production Environment Optimization: Enables maintenance windows and resource-intensive operations during off-peak hours without manual intervention or fixed scheduling",
+            "Advanced Queue Integration: Shares sophisticated job queue infrastructure with atd daemon, providing enterprise-grade job persistence, recovery, and management features",
+            "System Monitoring Integration: Works with system monitoring tools like Nagios, Zabbix, or Prometheus to coordinate job execution with overall system health metrics",
+            "Automated Resource Throttling: Automatically adjusts execution timing based on configurable load thresholds, preventing resource contention in multi-tenant environments",
+            "Environment Isolation: Preserves complete execution environment including user credentials, working directory, and environment variables for consistent job execution",
+            "Professional Logging: Provides detailed execution logs and optional email notifications for job completion, failure tracking, and audit trail maintenance",
+            "Script-Friendly Interface: Supports both interactive command entry and programmatic job submission through pipes, enabling integration with configuration management tools",
+            "High Availability Support: Integrates with system failover mechanisms and cluster management tools for distributed job execution across multiple nodes",
+            "Security Context Preservation: Maintains proper user permissions and security contexts when executing deferred jobs, crucial for enterprise security compliance"
+        ],
+        "examples": [
+            "echo 'heavy_computation.sh' | batch  # Run script when system load drops below threshold",
+            "batch  # Enter commands interactively for batch execution",
+            "atq  # Show pending batch jobs (same as at queue)"
+        ],
+        "platform": [
+            "linux",
+            "macos"
+        ],
+        "category": "development",
+        "safety": "safe",
+        "syntaxPattern": "batch or echo 'command' | batch",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity, understanding of file systems, and fundamental Unix/Linux concepts",
+            "prior_commands": "Comfortable with basic file navigation (ls, cd, pwd), file viewing (cat, less), and simple text editing",
+            "risk_awareness": "Low risk: verify command parameters and understand potential file system or configuration changes"
+        },
+        "commandCombinations": [
+            {
+                "label": "echo && apt | batch # System maintenance during low usage",
+                "commands": "echo 'apt update && apt upgrade -y' | batch",
+                "explanation": "Schedule system updates when load is low"
+            }
+        ],
+        "relatedCommands": [
+            {
+                "name": "at",
+                "relationship": "similar",
+                "reason": "Both use atd daemon, batch waits for low load"
+            },
+            {
+                "name": "nice",
+                "relationship": "complementary",
+                "reason": "nice adjusts process priority, batch waits for low load"
+            }
+        ],
+        "warnings": [
+            "Jobs wait until load average drops below 1.5 (configurable)",
+            "Useful for CPU-intensive tasks during off-peak hours",
+            "Same queue system as at command"
+        ],
+        "manPageUrl": ""
+    },
+    {
+        "name": "bazel",
+        "standsFor": "Bazel",
+        "description": "Scalable build tool for multi-language projects",
+        "keyFeatures": [
+            "Bazel is Google's enterprise-grade build system that powers massive codebases with millions of lines of code across multiple languages and repositories. Unlike traditional build tools, Bazel provides hermetic builds, aggressive caching, and distributed execution that can scale from individual developers to thousand-engineer teams. Most developers only scratch the surface of Bazel's capabilities - it's actually a sophisticated platform for enterprise-scale software delivery with advanced features that revolutionize how large organizations manage code compilation, testing, and deployment.",
+            "Remote Execution Architecture: Distribute builds across cloud-based build farms with automatic load balancing and intelligent work distribution across hundreds of remote machines",
+            "Hermetic Build Sandboxing: Creates completely isolated build environments that guarantee reproducible builds regardless of host system configuration, preventing 'works on my machine' issues",
+            "Multi-Language Monorepo Management: Single build system managing Java, C++, Python, Go, Scala, JavaScript, and protocol buffers with unified dependency resolution across language boundaries",
+            "Enterprise Caching Infrastructure: Multi-tier caching system with local disk cache, shared network cache, and cloud-based remote cache that can reduce build times by 90% in large teams",
+            "Incremental Build Intelligence: Advanced dependency analysis that rebuilds only affected targets when changes occur, even across complex multi-language dependency graphs spanning thousands of files",
+            "Build Action Parallelization: Massively parallel execution engine that automatically distributes independent build actions across all available CPU cores and remote workers simultaneously",
+            "Dynamic Configuration Management: Supports building multiple platform variants (iOS, Android, Linux, Windows) from single source tree with configurable toolchains and build flags",
+            "Query Language and Analysis: Powerful query system for analyzing dependency graphs, finding circular dependencies, and generating build reports for compliance and optimization",
+            "CI/CD Integration and Optimization: Built-in support for test sharding, flaky test detection, and selective testing that runs only tests affected by code changes",
+            "Custom Rule Development: Extensible rule system allowing teams to create domain-specific build logic, custom toolchain integration, and specialized artifact generation",
+            "Workspace Federation: Manage external dependencies, third-party libraries, and multi-repository builds through sophisticated workspace management and version resolution",
+            "Enterprise Security and Compliance: Built-in support for code signing, artifact attestation, and build provenance tracking required for enterprise security and regulatory compliance"
+        ],
+        "examples": [
+            "bazel build //...  # Build all targets in workspace",
+            "bazel build //myapp:binary  # Build specific binary target",
+            "bazel test //...  # Run all tests in workspace",
+            "bazel run //myapp:binary  # Build and run binary target",
+            "bazel query 'deps(//myapp:binary)'  # Show dependencies of target",
+            "bazel clean  # Clean build outputs",
+            "bazel build //... --remote_cache=http://build-cache.company.com:8080  # Build with remote cache optimization",
+            "bazel query 'deps(//...)' --output graph  # Generate dependency graph for entire workspace"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ],
+        "category": "development",
+        "safety": "safe",
+        "syntaxPattern": "bazel [command] [options] [targets]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity, understanding of file systems, and fundamental Unix/Linux concepts",
+            "prior_commands": "Comfortable with basic file navigation (ls, cd, pwd), file viewing (cat, less), and simple text editing",
+            "risk_awareness": "Low risk: verify command parameters and understand potential file system or configuration changes"
+        },
+        "commandCombinations": [
+            {
+                "label": "bazel && bazel && bazel # Continuous integration",
+                "commands": "bazel build //... && bazel test //... && bazel query 'tests(//...)'",
+                "explanation": "Build everything, run tests, and list test targets"
+            }
+        ],
+        "relatedCommands": [
+            {
+                "name": "gradle",
+                "relationship": "alternative",
+                "reason": "Gradle is popular for JVM-based projects"
+            }
+        ],
+        "warnings": [
+            "Uses BUILD files to define targets and dependencies",
+            "Excellent for large, multi-language monorepos",
+            "Steep learning curve but very powerful"
+        ],
+        "manPageUrl": "https://bazel.build/docs"
+    },
+    {
+        "name": "bc",
+        "standsFor": "Basic Calculator",
+        "description": "Arbitrary precision calculator for mathematical computations",
+        "keyFeatures": [
+            "The `bc` command is a sophisticated arbitrary-precision calculator that handles mathematical computations with unlimited precision, making it invaluable for scientific calculations, financial modeling, and cryptographic operations. Unlike standard calculators limited by floating-point precision, bc can perform calculations with hundreds or thousands of decimal places. It includes a full mathematical library with trigonometric functions, logarithms, and supports custom function definitions, making it a powerful tool for complex mathematical workflows.",
+            "Arbitrary Precision: Perform calculations with unlimited decimal precision, crucial for financial and scientific computing",
+            "Base Conversion: Convert numbers between different bases (binary, octal, decimal, hexadecimal) with ease",
+            "Mathematical Library: Built-in functions for trigonometry, logarithms, exponentials, and advanced mathematical operations",
+            "Custom Functions: Define reusable functions for complex calculations like compound interest or statistical formulas",
+            "Interactive Mode: Full-featured interactive calculator with variables, loops, and conditional statements",
+            "Script Processing: Process mathematical scripts from files for batch calculations and automation",
+            "Variable Support: Store and manipulate variables for complex multi-step calculations",
+            "Programming Constructs: Full programming language with if/else, for/while loops, and function definitions",
+            "Scientific Notation: Handle very large and very small numbers with exponential notation",
+            "Financial Calculations: Ideal for precise financial modeling, interest calculations, and accounting operations",
+            "Cryptographic Applications: Generate large prime numbers and perform modular arithmetic for cryptographic operations"
+        ],
+        "examples": [
+            "bc  # Launch bc interactive mathematical calculator",
+            "bc -l  # Start bc with math library for scientific functions",
+            "echo '2^100' | bc  # Calculate 2 to the power of 100",
+            "echo 'scale=10; 22/7' | bc -l  # Calculate pi approximation with 10 decimal places",
+            "echo 'obase=16; 255' | bc  # Convert 255 to hexadecimal",
+            "echo 'obase=2; 42' | bc  # Convert 42 to binary",
+            "echo 'scale=6; define compound(p,r,n) { return p * ((1 + r/100)^n) } compound(100000, 7.5, 30)' | bc -l  # Calculate compound interest",
+            "echo 'scale=10; sqrt(2) * sin(3.14159/4)' | bc -l  # Advanced mathematical calculations"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ],
+        "category": "development",
+        "safety": "safe",
+        "syntaxPattern": "bc [options] [file]",
+        "prerequisites": {
+            "foundational_concepts": "Basic command-line familiarity, understanding of file systems, and fundamental Unix/Linux concepts",
+            "prior_commands": "Comfortable with basic file navigation (ls, cd, pwd), file viewing (cat, less), and simple text editing",
+            "risk_awareness": "Low risk: verify command parameters and understand potential file system or configuration changes"
+        },
+        "commandCombinations": [
+            {
+                "label": "echo ; sqrt | bc # Complex mathematical expression",
+                "commands": "echo 'scale=5; sqrt(2) * sin(3.14159/4)' | bc -l",
+                "explanation": "Calculate square root of 2 times sine of pi/4"
+            },
+            {
+                "label": "echo ; 1000 | bc # Financial calculation",
+                "commands": "echo 'scale=2; 1000 * (1.05^10)' | bc -l",
+                "explanation": "Compound interest: $1000 at 5% for 10 years"
+            }
+        ],
+        "relatedCommands": [
+            {
+                "name": "dc",
+                "relationship": "similar",
+                "reason": "dc is reverse Polish calculator, bc uses infix"
+            },
+            {
+                "name": "python3",
+                "relationship": "alternative",
+                "reason": "Python interactive mode as calculator"
+            }
+        ],
+        "warnings": [
+            "Default precision may truncate results",
+            "No built-in scientific functions without -l flag",
+            "Syntax can be particular about spaces and operators"
+        ],
+        "manPageUrl": ""
     }
 ];
 

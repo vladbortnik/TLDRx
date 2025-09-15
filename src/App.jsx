@@ -302,6 +302,7 @@ function App({ mockCommands }) {
                             allCommands={commands}
                             onCommandClick={onCommandClick}
                             searchQuery={searchQuery}
+                            wavePhase={wavePhase}
                         />
                     </div>
                 )}

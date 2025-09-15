@@ -20,21 +20,21 @@
  * Comprehensive commands database containing 500 unique Unix/Linux commands
  * Each command includes name, description, examples, platform support, category, and advanced metadata
  *
- * @type {Array<Object>}
- * @property {string} name - Command name (e.g., "ls", "grep")
- * @property {string} standsFor - What the command abbreviation means
- * @property {string} description - Brief explanation of command purpose
- * @property {Array<string>} keyFeatures - Short description w/ list of key features        // 100/500 COMMANDS HAVE THIS PROPERTY
- * @property {Array<string>} examples - Practical usage examples with comments              // TO BE DISPLAYED EXPANDED ON MATCHING COMMANDS
- * @property {Array<string>} platform - 3 Supported platforms ["linux", "macos", "windows"]
- * @property {string} category - 11 Command categories for filtering: [ "file-operations", "system", "networking", "text-processing", "security", "package-management", "development", "automation", "data-processing", "shell", "containers" ]
- * @property {string} safety - 3 Safety level ['safe', 'caution', 'dangerous', 'unknown']
- * @property {string} syntaxPattern - Command syntax pattern
- * @property {Array<string>} prerequisites - Prerequisites for using the command            // NEEDS CRITICAL IMPROVEMENTS: as of now, this property is the same for all commands
- * @property {Array<Object>} commandCombinations - Complex command workflows
- * @property {Array<Object>} relatedCommands - Related commands and alternatives
- * @property {Array<string>} warnings - Important warnings and gotchas
- * @property {string} manPageUrl - Link to 'Man Page' or to Documentation
+ * @type {Array<Object>}                                                                    // EACH PROPERTY INITIALLY IS DISPLAYED COLLAPSED, UNLESS INSTRUCTED OTHERWISE
+ * @property {string} name - Command name (e.g., "ls", "grep")                              // 1. TO BE DISPLAYED IN THE LEFT TOP CORNER. | 2. FOLLOWED BY "standsFor" PROP. ON THE SAME LINE
+ * @property {string} standsFor - What the command abbreviation means                       // TO BE DISPLAYED TO THE RIGHT OF THE "name"
+ * @property {string} description - Brief explanation of command purpose                    // TO BE DISPLAYED ON A SEPARATE LINE UNDER FIRST LINE ("name" - "standsFor")
+ * @property {Array<string>} keyFeatures - Short description w/ list of key features        // 1. ONLY 100 (OUT OF 500) COMMANDS HAVE THIS PROPERTY | 2. DATA STRUCTURE IS ARRAY OF STRINGS: (A).THE FIRST ELEMENT OF THE ARRAY IS FULL COMMAND DESCRIPION. (B). ALL OTHER STRINGS ARE KEY-FEATURES (TO BE DISPLAYED AS A LIST). (C). EACH KEY-FEATURE STRING HAS STRUCTURE - "FEATURE" + ":" + "DESCRIPTION OF THE FEATURE". USE COLON AS A DIVIDER TO MAKE IT LOOK NICE. | 3. IF A COMMAND DOES NOT HAVE THIS PROPERTY => THE WHOLE UI ELEMENT MUST BE HIDDEN
+ * @property {Array<string>} examples - Practical usage examples with comments              // TO BE DISPLAYED ALWAYS EXPANDED
+ * @property {Array<string>} platform - 3 Supported platforms ["linux", "macos", "windows"]          // 1. EACH COMMAND CAN HAVE UP TO 3 "platform" PROPS. | 2. TO BE DISPLAYED AS A BADGE WITH LOGO OF THE PLATFORM IN IT (NO WORDS) | 3. NICELY LOCATED TOGETHER WITH "CATEGORY" BADGE | 4. FIND UNUSED LOCATION ON THE "COMMAND CARD" AND PLACE IT IN IT
+ * @property {string} category - 11 Command categories for filtering: [ "file-operations", "system", "networking", "text-processing", "security", "package-management", "development", "automation", "data-processing", "shell", "containers" ]                         // 1. EACH COMMAND HAS ONLY 1 CATEGORY | 2. SHOULD NOT TAKE MUCH SPACE | 3. TO BE DISPLAYED AS A BADGE, WITH THE ICON OF THE "CATEGORY", AND "CATEGORY" KEYWORD INSIDE THE BADGE
+ * @property {string} safety - 3 Safety level ["safe", "caution", "dangerous"]              // 1. TO BE DISPLAYED AS A BADGE IN THE TOP RIGHT CORNER OF THE COMPONENT | 2. COLOR-CODED (COLOR IS TO BE PICKED FROM WEBSITE COLOR SET): GREENish, YELLOWish, REDish
+ * @property {string} syntaxPattern - Command syntax syntaxPattern                          // TO BE DISPLAYED ALWAYS EXPANDED
+ * @property {Array<string>} prerequisites - Prerequisites for using the command            // NOT TO DISPLAY: as of now, this property is the same for all commands
+ * @property {Array<Object>} commandCombinations - Complex command workflows                // 1. LIST OF "label" PROPS IS ALWAYS SHOWN | 2. "label" PROP IS DISPLAYED AS "COMMAND # COMMENT" | 3. IF CLICKED: IS DISPLAYED ON 2 ROWS: ONE FOR "commands", OTHER FOR "explanation" (the same as comment)
+ * @property {Array<Object>} relatedCommands - Related commands and alternatives            // 1. EACH OBJECT IS A COLOR-CODED BUTTON. (COLOR IS TO BE PICKED FROM WEBSITE COLOR SET). | 2. COLOR IS BASED ON "relationship" PROP. | 3. "reason" PROP => POPS UP ON HOVER
+ * @property {Array<string>} warnings - Important warnings and gotchas                      // COLLAPSED UNLESS CLICKED
+ * @property {string} manPageUrl - Link to 'Man Page' or to Documentation                   // ICON. OPENS IN A NEW TAB IF CLICKED
  */
 const commandsDatabase = [
     {
