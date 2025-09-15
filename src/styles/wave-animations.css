@@ -1,0 +1,46 @@
+/* Base Wave Animation Classes */
+.wave-gradient {
+  background: linear-gradient(-45deg, #0f172a, #1e293b, #1e1b4b, #312e81, #0f172a, #475569);
+  background-size: 400% 400%;
+  animation: wave-gradient 8s ease-in-out infinite;
+}
+
+.wave-gradient-fast {
+  background: linear-gradient(-45deg, #1e293b, #0f172a, #312e81, #1e1b4b);
+  background-size: 300% 300%;
+  animation: wave-gradient 5s ease-in-out infinite;
+}
+
+@keyframes wave-gradient {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 100% 25%; }
+  50% { background-position: 50% 100%; }
+  75% { background-position: 25% 0%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 3D Animation Support */
+.perspective-1000 {
+  perspective: 1000px;
+  perspective-origin: center center;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Progressive Blur Effect (2025 trend) */
+.progressive-blur {
+  backdrop-filter: blur(8px) brightness(1.1);
+  -webkit-backdrop-filter: blur(8px) brightness(1.1);
+  transition: backdrop-filter 0.3s ease;
+}
+
+/* Dynamic Glow Effects */
+.glow-active {
+  box-shadow: 
+    0 0 0 2px rgba(59, 130, 246, 0.4),
+    0 0 20px rgba(59, 130, 246, 0.3),
+    0 0 40px rgba(59, 130, 246, 0.2),
+    0 0 60px rgba(59, 130, 246, 0.1);
+}

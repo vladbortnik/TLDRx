@@ -7,14 +7,13 @@
  * Generated from 57 JSON source files on 2025-09-02
  *
  * @fileoverview Comprehensive command database for the TL;DRx application
- * @fileversion 6
- * @version 2.3.0
+ * @fileversion 6.10
+ * @appVersion 2.5.0
  * @created Sep 2, 2025
  * @commands 500
- * @missingUrls 52
- * @modified Sep 8, 2025
- * @totalLines 26,460 @fileversion 5 (last is empty)
- * @totalLines TBD @fileversion 6 (last is empty)
+ * @missingManPageUrls 52
+ * @modified Sep 14, 2025
+ * @totalLines 31,618 (vs. 26,460 in a previous version)
  */
 
 /**
@@ -25,18 +24,17 @@
  * @property {string} name - Command name (e.g., "ls", "grep")
  * @property {string} standsFor - What the command abbreviation means
  * @property {string} description - Brief explanation of command purpose
- * @property {Array<string>} keyFeatures - Short description w/ list of key features         
- * @property {Array<string>} examples - Practical usage examples with comments
+ * @property {Array<string>} keyFeatures - Short description w/ list of key features        // 100/500 COMMANDS HAVE THIS PROPERTY
+ * @property {Array<string>} examples - Practical usage examples with comments              // TO BE DISPLAYED EXPANDED ON MATCHING COMMANDS
  * @property {Array<string>} platform - 3 Supported platforms ["linux", "macos", "windows"]
- * @property {string} category - 11 Comman categories for filtering: [ "file-operations", "system", "networking", "text-processing", "security", "package-management", "development", "automation", "data-processing", "shell", "containers" ]
+ * @property {string} category - 11 Command categories for filtering: [ "file-operations", "system", "networking", "text-processing", "security", "package-management", "development", "automation", "data-processing", "shell", "containers" ]
  * @property {string} safety - 3 Safety level ['safe', 'caution', 'dangerous', 'unknown']
  * @property {string} syntaxPattern - Command syntax pattern
- * @property {Array<string>} prerequisites - Prerequisites for using the command            // TO BE MODIFIED: to {Object} (see examples below)            
- * @property {Array<Object>} commandCombinations - Complex command workflows                // to be modified - DONE
+ * @property {Array<string>} prerequisites - Prerequisites for using the command            // NEEDS CRITICAL IMPROVEMENTS: as of now, this property is the same for all commands
+ * @property {Array<Object>} commandCombinations - Complex command workflows
  * @property {Array<Object>} relatedCommands - Related commands and alternatives
  * @property {Array<string>} warnings - Important warnings and gotchas
  * @property {string} manPageUrl - Link to 'Man Page' or to Documentation
- * @property {Object} distroNotes - Distribution-specific notes if any                      // to be removed completely - DONE
  */
 const commandsDatabase = [
     {

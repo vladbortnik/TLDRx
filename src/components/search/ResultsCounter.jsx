@@ -1,16 +1,24 @@
-export function ResultsCounter({ count, selectedPlatform, selectedCategory }) {
+export function ResultsCounter({ count, selectedPlatforms = [], selectedCategories = [] }) {
+  const formatDisplayName = (str) => {
+    return str.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  };
+
+  const formatPlatformName = (platform) => {
+    return platform === "macos" ? "macOS" : platform.charAt(0).toUpperCase() + platform.slice(1);
+  };
+
   return (
     <div className="mb-6">
       <p className="text-sm text-slate-400">
         {count} command{count !== 1 ? "s" : ""} found
-        {selectedPlatform !== "all" && (
+        {selectedPlatforms.length > 0 && (
           <span className="ml-2 text-slate-500">
-            • Filtered by {selectedPlatform === "mac" ? "macOS" : selectedPlatform}
+            • Platform{selectedPlatforms.length > 1 ? 's' : ''}: {selectedPlatforms.map(formatPlatformName).join(', ')}
           </span>
         )}
-        {selectedCategory !== "all" && (
+        {selectedCategories.length > 0 && (
           <span className="ml-2 text-slate-500">
-            • Category: {selectedCategory.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+            • Categor{selectedCategories.length > 1 ? 'ies' : 'y'}: {selectedCategories.map(formatDisplayName).join(', ')}
           </span>
         )}
       </p>

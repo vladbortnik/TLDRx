@@ -1,16 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Terminal, Filter, Code } from 'lucide-react';
 import { FaDatabase, FaDiamond, FaCircle, FaCube } from 'react-icons/fa6';
+import { useWaveAnimation } from '../../hooks/useWaveAnimation';
 
 export function SearchInput({ value, onChange, placeholder = "Search commands...", onFilterToggle }) {
     const [isFocused, setIsFocused] = useState(false);
     const [showHelpers, setShowHelpers] = useState(false);
     const [cursor, setCursor] = useState(true);
     const [iconRotation, setIconRotation] = useState(0);
-    const [wavePhase, setWavePhase] = useState(0);
     const [icon3DRotation, setIcon3DRotation] = useState({ x: 0, y: 0, z: 0 });
     const [commandCount] = useState(523);
     const inputRef = useRef(null);
+
+    // Enhanced Wave Animation System
+    const { getPrimaryWave, getSecondaryWave } = useWaveAnimation(100);
 
     // Cursor blinking animation
     useEffect(() => {
@@ -38,13 +41,7 @@ export function SearchInput({ value, onChange, placeholder = "Search commands...
         return () => clearInterval(interval);
     }, []);
 
-    // Wave phase animation for dynamic colors
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setWavePhase(prev => (prev + 1) % 360);
-        }, 100);
-        return () => clearInterval(interval);
-    }, []);
+    // Wave phase animation is now handled by the useWaveAnimation hook
 
     // Show helper suggestions when typing
     useEffect(() => {
@@ -53,32 +50,7 @@ export function SearchInput({ value, onChange, placeholder = "Search commands...
 
     const isActive = isFocused || value.length > 0;
 
-    // Dynamic wave colors
-    const getBarWave = () => {
-        const r1 = Math.floor(30 + Math.sin(wavePhase * 0.03) * 25);
-        const g1 = Math.floor(41 + Math.cos(wavePhase * 0.035) * 30);
-        const b1 = Math.floor(59 + Math.sin(wavePhase * 0.02) * 40);
-
-        const r2 = Math.floor(49 + Math.cos(wavePhase * 0.025) * 35);
-        const g2 = Math.floor(46 + Math.sin(wavePhase * 0.04) * 25);
-        const b2 = Math.floor(129 + Math.cos(wavePhase * 0.015) * 50);
-
-        return {
-            background: `linear-gradient(135deg, rgba(${r1},${g1},${b1},0.8), rgba(${r2},${g2},${b2},0.7), rgba(${r1},${g1},${b1},0.8))`,
-            transition: 'background 0.2s ease'
-        };
-    };
-
-    const getHeaderWave = () => {
-        const r = Math.floor(25 + Math.sin(wavePhase * 0.04) * 30);
-        const g = Math.floor(35 + Math.cos(wavePhase * 0.03) * 35);
-        const b = Math.floor(80 + Math.sin(wavePhase * 0.035) * 45);
-
-        return {
-            background: `linear-gradient(90deg, rgba(${r},${g},${b},0.6), rgba(${r+15},${g+10},${b+25},0.5), rgba(${r},${g},${b},0.6))`,
-            transition: 'background 0.25s ease'
-        };
-    };
+    // Wave functions are now provided by the useWaveAnimation hook
 
     const getGlowStyle = () => {
         if (isActive) {
@@ -116,7 +88,7 @@ export function SearchInput({ value, onChange, placeholder = "Search commands...
                     <div
                         className="backdrop-blur-xl border border-white/30 rounded-xl overflow-hidden transition-all duration-300 cursor-text"
                         style={{
-                            ...getBarWave(),
+                            ...getPrimaryWave(),
                             ...getGlowStyle()
                         }}
                         onClick={handleSearchContainerClick}
@@ -125,7 +97,7 @@ export function SearchInput({ value, onChange, placeholder = "Search commands...
                         {/* Header with 3D cube icon - Click anywhere to focus input */}
                         <div
                             className="border-b border-white/20 px-5 py-3 flex items-center justify-between pointer-events-none"
-                            style={getHeaderWave()}
+                            style={getSecondaryWave()}
                         >
                             <div className="flex items-center gap-3">
                                 {/* 3D Animated Cube Icon - constantly rotating in 3D space */}
@@ -250,7 +222,7 @@ export function SearchInput({ value, onChange, placeholder = "Search commands...
                 }`}>
                     <div
                         className="rounded-lg border border-white/20 px-5 py-3 flex items-center gap-2"
-                        style={getHeaderWave()}
+                        style={getSecondaryWave()}
                     >
                         <Code className="w-4 h-4 text-white/90" />
                         <span className="text-white/90 text-sm">

@@ -4,8 +4,9 @@ import PWAInstall from './components/PWAInstall';
 import { getPlatformMapping, getCategoryMapping } from "./constants/mappings";
 import { Header } from './components/layout/Header';
 import { SearchInterface } from './components/search/SearchInterface';
-import { FilterBar } from './components/filters/FilterBar';
-import { InlineExpandableFilter } from './components/filters/InlineExpandableFilter';
+import { useWaveAnimation } from './hooks/useWaveAnimation';
+
+import { FilterComponent } from './components/filters/FilterComponent';
 import { ErrorState } from './components/ui/ErrorState';
 import { LoadingState } from './components/ui/LoadingState';
 import { ResultsCounter } from './components/search/ResultsCounter';
@@ -23,12 +24,14 @@ import "./index.css";
 function App({ mockCommands }) {
     const [commands, setCommands] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
-    const [selectedPlatform, setSelectedPlatform] = useState("all");
-    const [selectedCategory, setSelectedCategory] = useState("all");
+    const [selectedPlatforms, setSelectedPlatforms] = useState([]); // 🔧 UPDATED: Array for multiple selection
+    const [selectedCategories, setSelectedCategories] = useState([]); // 🔧 UPDATED: Array for multiple selection
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const [backgroundWave, setBackgroundWave] = useState(0);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+    // Enhanced Wave Animation System
+    const { getBackgroundWave, wavePhase } = useWaveAnimation(100); // 🔧 ADDED: Extract wavePhase for FilterComponent
 
     /**
      * Get the man page URL for a command
@@ -88,13 +91,7 @@ function App({ mockCommands }) {
         loadCommands().catch(console.error);
     }, [mockCommands]);
 
-    // 🌊 WAVE ANIMATION
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setBackgroundWave(prev => (prev + 1) % 360);
-        }, 100);
-        return () => clearInterval(interval);
-    }, []);
+    // Wave animation is now handled by the useWaveAnimation hook
 
 
     /**
@@ -173,33 +170,38 @@ function App({ mockCommands }) {
     };
 
     /**
-     * Filter and rank commands based on search query and platform selection.
-     * Returns filtered commands based on both search and platform criteria.
+     * Filter and rank commands based on search query, platform, and category selections.
+     * 🔧 UPDATED: Now handles multiple platform and category selections (arrays)
+     * Returns filtered commands based on search, platform, and category criteria.
      */
     let displayCommands;
     let isExactMatch = false;
 
-    // First filter by platform
+    // First filter by platforms (multiple selection support)
     let platformFilteredCommands = commands;
-    if (selectedPlatform !== "all") {
+    if (selectedPlatforms.length > 0) {
         platformFilteredCommands = commands.filter(
             (command) =>
-                command.platform && command.platform.some(p =>
-                    typeof p === 'string' ? p === selectedPlatform : p.id === selectedPlatform
+                command.platform && selectedPlatforms.some(selectedPlatId =>
+                    command.platform.some(p =>
+                        typeof p === 'string' ? p === selectedPlatId : p.id === selectedPlatId
+                    )
                 )
         );
     }
 
-    // Then filter by category
+    // Then filter by categories (multiple selection support)
     let filteredCommands = platformFilteredCommands;
-    if (selectedCategory !== "all") {
+    if (selectedCategories.length > 0) {
         filteredCommands = platformFilteredCommands.filter(
             (command) => {
                 // Handle both adapted format (categories array) and original format (category string)
                 if (command.categories) {
-                    return command.categories.some(cat => cat.name.toLowerCase().replace(/\s+/g, '-') === selectedCategory);
+                    return selectedCategories.some(selectedCatId =>
+                        command.categories.some(cat => cat.name.toLowerCase().replace(/\s+/g, '-') === selectedCatId)
+                    );
                 }
-                return command.category === selectedCategory;
+                return selectedCategories.includes(command.category);
             }
         );
     }
@@ -255,22 +257,12 @@ function App({ mockCommands }) {
         setIsFilterOpen(prev => !prev);
     };
 
-    // Wave Background
-    const getPageWaveBackground = () => {
-        const color1 = `rgb(${Math.floor(15 + Math.sin(backgroundWave * 0.01) * 25)}, ${Math.floor(23 + Math.cos(backgroundWave * 0.012) * 30)}, ${Math.floor(42 + Math.sin(backgroundWave * 0.008) * 40)})`;
-        const color2 = `rgb(${Math.floor(30 + Math.cos(backgroundWave * 0.015) * 35)}, ${Math.floor(41 + Math.sin(backgroundWave * 0.01) * 25)}, ${Math.floor(59 + Math.cos(backgroundWave * 0.012) * 50)})`;
-        const color3 = `rgb(${Math.floor(49 + Math.sin(backgroundWave * 0.02) * 50)}, ${Math.floor(46 + Math.cos(backgroundWave * 0.018) * 35)}, ${Math.floor(129 + Math.sin(backgroundWave * 0.015) * 60)})`;
-
-        return `linear-gradient(135deg, ${color1}, ${color2}, ${color3}, ${color1})`;
-    };
+    // Wave background is now handled by the useWaveAnimation hook
 
     return (
         <div
             className="min-h-screen text-white font-inter"
-            style={{
-                background: getPageWaveBackground(),
-                transition: 'background 0.3s ease'
-            }}
+            style={getBackgroundWave()}
         >
             <div className="container mx-auto max-w-6xl px-4 py-8">
                 <Header />
@@ -281,23 +273,17 @@ function App({ mockCommands }) {
                     onFilterToggle={handleFilterToggle}
                 />
 
-                {/* Inline Expandable Filter - appears in the red area from your screenshot */}
-                <InlineExpandableFilter
-                    isOpen={isFilterOpen}
-                    onToggle={handleFilterToggle}
-                    selectedPlatform={selectedPlatform}
-                    selectedCategory={selectedCategory}
-                    onPlatformChange={setSelectedPlatform}
-                    onCategoryChange={setSelectedCategory}
+                {/* 🔧 UPDATED: New Advanced Filter Component */}
+                <FilterComponent
+                    selectedCategories={selectedCategories}
+                    selectedPlatforms={selectedPlatforms}
+                    onCategoryChange={setSelectedCategories}
+                    onPlatformChange={setSelectedPlatforms}
+                    isVisible={isFilterOpen}
+                    wavePhase={wavePhase}
                 />
 
-                {/* Original FilterBar - you can comment this out if you prefer the inline version */}
-                <FilterBar
-                    selectedPlatform={selectedPlatform}
-                    selectedCategory={selectedCategory}
-                    onPlatformChange={setSelectedPlatform}
-                    onCategoryChange={setSelectedCategory}
-                />
+
 
                 <ErrorState message={error} />
 
@@ -307,8 +293,8 @@ function App({ mockCommands }) {
                     <div>
                         <ResultsCounter
                             count={displayCommands.length}
-                            selectedPlatform={selectedPlatform}
-                            selectedCategory={selectedCategory}
+                            selectedPlatforms={selectedPlatforms} // 🔧 UPDATED: Array instead of single platform
+                            selectedCategories={selectedCategories} // 🔧 UPDATED: Array instead of single category
                         />
 
                         <CommandGrid
