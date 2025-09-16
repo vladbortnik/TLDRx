@@ -36,7 +36,6 @@ function App({ mockCommands }) {
 
     // Scroll behavior for sticky header
     const {
-        isSearchSticky,
         shouldCollapseFilter,
         getHeaderStyles
     } = useScrollBehavior();
@@ -274,26 +273,19 @@ function App({ mockCommands }) {
                     <Header />
                 </div>
 
-                {/* SearchInterface and FilterComponent with sticky positioning */}
+                {/* SearchInterface and FilterComponent with CSS sticky positioning */}
                 <div
                     style={{
-                        position: isSearchSticky ? 'fixed' : 'relative',
-                        top: isSearchSticky ? '6px' : 'auto',
-                        left: isSearchSticky ? '50%' : 'auto',
-                        width: isSearchSticky ? 'calc(100% - 2rem)' : 'auto',
-                        maxWidth: isSearchSticky ? '1152px' : 'none', // max-w-6xl equivalent
-                        zIndex: isSearchSticky ? 20 : 'auto',
+                        position: 'sticky',
+                        top: '6px',
+                        zIndex: 20,
                         transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                        transform: isSearchSticky
-                            ? 'translateX(-50%) translateZ(0)'
-                            : 'translateZ(0)',
                     }}
                 >
                     <SearchInterface
                         searchQuery={searchQuery}
                         onSearchChange={setSearchQuery}
                         onFilterToggle={handleFilterToggle}
-                        isSticky={isSearchSticky}
                     />
 
                     {/* 🔧 UPDATED: New Advanced Filter Component */}
@@ -313,9 +305,7 @@ function App({ mockCommands }) {
                 {/* Main content area with proper z-index for layering */}
                 <div style={{
                     position: 'relative',
-                    zIndex: 10,
-                    paddingTop: isSearchSticky ? '120px' : '0', // Add space when sticky
-                    transition: 'padding-top 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                    zIndex: 10
                 }}>
                     <ErrorState message={error} />
 
