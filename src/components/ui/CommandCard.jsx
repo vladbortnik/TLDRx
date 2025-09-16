@@ -143,48 +143,62 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
   };
 
   const parseExample = (example) => {
+    if (!example || typeof example !== 'string') {
+      return { command: '', comment: '' };
+    }
     const parts = example.split(' #');
     return {
-      command: parts[0].trim(),
-      comment: parts[1] ? parts[1].trim() : ''
+      command: parts[0]?.trim() || '',
+      comment: parts[1]?.trim() || ''
     };
   };
 
   const parseKeyFeature = (feature) => {
-    const [title, ...descParts] = feature.split(':');
+    if (!feature || typeof feature !== 'string') {
+      return { title: '', description: '' };
+    }
+    const colonIndex = feature.indexOf(':');
+    if (colonIndex === -1) {
+      return { title: feature.trim(), description: '' };
+    }
     return {
-      title: title.trim(),
-      description: descParts.join(':').trim()
+      title: feature.substring(0, colonIndex).trim(),
+      description: feature.substring(colonIndex + 1).trim()
     };
   };
 
   const safetyConfig = SAFETY_COLORS[command?.safety] || SAFETY_COLORS.safe;
   const CategoryIcon = CATEGORY_ICONS[command?.category] || Terminal;
 
-  // Safe platform rendering function
+  // Safe platform rendering function - handles both string and object formats
   const renderPlatformIcon = (platform) => {
-    // Handle both string and object platform formats
-    let platformId, platformName;
+    // Normalize platform data
+    const platformId = typeof platform === 'string' 
+      ? platform 
+      : platform?.id || platform?.name || 'unknown';
     
-    if (typeof platform === 'string') {
-      platformId = platform;
-      platformName = platform;
-    } else if (platform && typeof platform === 'object') {
-      platformId = platform.id || platform.name;
-      platformName = platform.name || platform.id;
-    } else {
-      return <span className="text-xs">Unknown</span>;
-    }
+    const platformName = typeof platform === 'string'
+      ? platform
+      : platform?.name || platform?.id || 'unknown';
     
     const PlatformIcon = PLATFORM_ICONS[platformId];
+    
+    // Return icon or fallback text
     if (!PlatformIcon) {
-      // Fallback for unknown platforms - render the name, not the whole object
-      return <span className="text-xs">{platformName}</span>;
+      return <span className="text-xs text-white/70">{platformName}</span>;
     }
+    
+    // Apply unique rotation for each platform icon for visual variety
+    const rotationMap = {
+      'macos': 45,
+      'windows': 90,
+      'linux': 0
+    };
+    
     return (
       <PlatformIcon 
         className="w-4 h-4 text-white/90"
-        style={get3DIconStyle(platformId === 'macos' ? 45 : platformId === 'windows' ? 90 : 0)}
+        style={get3DIconStyle(rotationMap[platformId] || 0)}
       />
     );
   };
@@ -204,9 +218,9 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
       >
         
         {/* Top Section: Command Name + Safety Badge */}
-        <div className="relative p-6 border-b border-white/10">
+        <div className="relative p-4 sm:p-6 border-b border-white/10">
           {/* Safety Badge - Top Right Corner */}
-          <div className="absolute top-4 right-4">
+          <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
             <div 
               className={`
                 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide
@@ -220,40 +234,41 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
           </div>
 
           {/* Command Name + Stands For */}
-          <div className="mr-20"> {/* Leave space for safety badge */}
-            <div className="flex items-baseline gap-3 mb-3">
-              <h1 className="text-2xl font-bold font-mono text-white bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">
+          <div className="mr-16 sm:mr-20"> {/* Leave space for safety badge */}
+            <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3 mb-2 sm:mb-3">
+              <h1 className="text-xl sm:text-2xl font-bold font-mono text-white bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">
                 {command?.name || 'Unknown Command'}
               </h1>
-              <span className="text-lg text-white/70 font-medium">
+              <span className="text-sm sm:text-lg text-white/70 font-medium">
                 {command?.standsFor || ''}
               </span>
             </div>
 
             {/* Description */}
-            <p className="text-white/80 text-base leading-relaxed">
+            <p className="text-white/80 text-sm sm:text-base leading-relaxed">
               {command?.description || 'No description available'}
             </p>
           </div>
         </div>
 
         {/* Badges Section: Platform + Category */}
-        <div className="px-6 py-4 border-b border-white/10 bg-gradient-to-r from-white/5 to-white/10">
-          <div className="flex items-center justify-between">
+        <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-white/10 bg-gradient-to-r from-white/5 to-white/10">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             {/* Platform Badges */}
             <div className="flex items-center gap-2">
               <span className="text-xs text-white/60 uppercase tracking-wide font-medium mr-2">
                 Platforms:
               </span>
               {(command?.platform || []).map((platform, index) => {
-                // Handle both string and object platform formats for tooltip
-                const platformName = typeof platform === 'string' ? platform : (platform?.name || platform?.id || 'unknown');
+                const platformName = typeof platform === 'string' 
+                  ? platform 
+                  : platform?.name || platform?.id || 'unknown';
                 
                 return (
                   <div
-                    key={`${platformName}-${index}`}
-                    className="relative p-2 rounded-lg bg-gradient-to-br from-white/10 to-white/5 border border-white/20"
-                    title={platformName}
+                    key={`platform-${platformName}-${index}`}
+                    className="relative p-2 rounded-lg bg-gradient-to-br from-white/10 to-white/5 border border-white/20 hover:border-white/30 transition-colors"
+                    title={platformName.charAt(0).toUpperCase() + platformName.slice(1)}
                   >
                     {renderPlatformIcon(platform)}
                   </div>
@@ -275,20 +290,20 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
         </div>
 
         {/* Key Features Section - Conditional */}
-        {command?.keyFeatures && (
-          <div className="px-6 py-5 border-b border-white/10">
-            <h3 className="flex items-center gap-2 text-lg font-semibold text-white mb-4">
-              <Zap className="w-5 h-5 text-yellow-400" style={get3DIconStyle()} />
+        {command?.keyFeatures && command.keyFeatures.length > 0 && (
+          <div className="px-4 sm:px-6 py-4 sm:py-5 border-b border-white/10">
+            <h3 className="flex items-center gap-2 text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">
+              <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" style={get3DIconStyle()} />
               Key Features
             </h3>
             
             {/* Full Description */}
-            <p className="text-white/80 text-sm leading-relaxed mb-4 italic">
+            <p className="text-white/80 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 italic">
               {command.keyFeatures[0]}
             </p>
 
             {/* Feature List */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
               {command.keyFeatures.slice(1).map((feature, index) => {
                 const parsed = parseKeyFeature(feature);
                 return (
@@ -310,24 +325,24 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
         )}
 
         {/* Examples Section - Always Expanded */}
-        <div className="px-6 py-5 border-b border-white/10">
-          <h3 className="flex items-center gap-2 text-lg font-semibold text-white mb-4">
-            <Terminal className="w-5 h-5 text-green-400" style={get3DIconStyle()} />
+        <div className="px-4 sm:px-6 py-4 sm:py-5 border-b border-white/10">
+          <h3 className="flex items-center gap-2 text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">
+            <Terminal className="w-4 h-4 sm:w-5 sm:h-5 text-green-400" style={get3DIconStyle()} />
             Examples
           </h3>
-          <div className="space-y-3">
+          <div className="space-y-2 sm:space-y-3">
             {(command?.examples || []).map((example, index) => {
               const parsed = parseExample(example);
               return (
                 <div 
                   key={index}
-                  className="group/example relative p-4 rounded-xl bg-gradient-to-r from-slate-900/80 to-slate-800/80 border border-white/10 hover:border-green-400/30 transition-all duration-300"
+                  className="group/example relative p-3 sm:p-4 rounded-xl bg-gradient-to-r from-slate-900/80 to-slate-800/80 border border-white/10 hover:border-green-400/30 transition-all duration-300"
                 >
                   {/* Terminal Prompt */}
                   <div className="flex items-start gap-3">
                     <span className="text-green-400 font-mono text-sm flex-shrink-0 mt-0.5">$</span>
                     <div className="flex-1 min-w-0">
-                      <code className="text-white font-mono text-sm break-all">
+                      <code className="text-white font-mono text-xs sm:text-sm break-all">
                         {parsed.command}
                       </code>
                       {parsed.comment && (
@@ -340,7 +355,7 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
                     {/* Copy Button */}
                     <button
                       onClick={() => copyExample(example, index)}
-                      className="opacity-0 group-hover/example:opacity-100 p-1.5 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-300"
+                      className="opacity-0 group-hover/example:opacity-100 p-1 sm:p-1.5 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-300"
                       title="Copy command"
                     >
                       {copiedExample === index ? (
@@ -357,13 +372,13 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
         </div>
 
         {/* Syntax Pattern Section - Always Expanded */}
-        <div className="px-6 py-5 border-b border-white/10">
-          <h3 className="flex items-center gap-2 text-lg font-semibold text-white mb-3">
-            <Code className="w-5 h-5 text-purple-400" style={get3DIconStyle()} />
+        <div className="px-4 sm:px-6 py-4 sm:py-5 border-b border-white/10">
+          <h3 className="flex items-center gap-2 text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">
+            <Code className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400" style={get3DIconStyle()} />
             Syntax
           </h3>
-          <div className="p-4 rounded-xl bg-gradient-to-r from-purple-900/30 to-indigo-900/30 border border-purple-400/20">
-            <code className="text-purple-300 font-mono text-base">
+          <div className="p-3 sm:p-4 rounded-xl bg-gradient-to-r from-purple-900/30 to-indigo-900/30 border border-purple-400/20 overflow-x-auto">
+            <code className="text-purple-300 font-mono text-xs sm:text-sm lg:text-base whitespace-nowrap">
               {command?.syntaxPattern || 'No syntax available'}
             </code>
           </div>
@@ -371,13 +386,13 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
 
         {/* Command Combinations Section - Expandable */}
         {command?.commandCombinations && command.commandCombinations.length > 0 && (
-          <div className="px-6 py-5 border-b border-white/10">
+          <div className="px-4 sm:px-6 py-4 sm:py-5 border-b border-white/10">
             <button
               onClick={() => toggleSection('combinations')}
               className="flex items-center justify-between w-full text-left group/header"
             >
-              <h3 className="flex items-center gap-2 text-lg font-semibold text-white">
-                <Play className="w-5 h-5 text-orange-400" style={get3DIconStyle()} />
+              <h3 className="flex items-center gap-2 text-base sm:text-lg font-semibold text-white">
+                <Play className="w-4 h-4 sm:w-5 sm:h-5 text-orange-400" style={get3DIconStyle()} />
                 Command Combinations
               </h3>
               {expandedSections.combinations ? (
@@ -418,9 +433,9 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
 
         {/* Related Commands Section */}
         {command?.relatedCommands && command.relatedCommands.length > 0 && (
-          <div className="px-6 py-5 border-b border-white/10">
-            <h3 className="flex items-center gap-2 text-lg font-semibold text-white mb-4">
-              <Zap className="w-5 h-5 text-cyan-400" style={get3DIconStyle()} />
+          <div className="px-4 sm:px-6 py-4 sm:py-5 border-b border-white/10">
+            <h3 className="flex items-center gap-2 text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">
+              <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" style={get3DIconStyle()} />
               Related Commands
             </h3>
             <div className="flex flex-wrap gap-3">
@@ -432,8 +447,8 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
                   onMouseLeave={() => setHoveredRelated(null)}
                 >
                   <button className={`
-                    px-4 py-2 rounded-xl font-mono font-medium text-sm
-                    bg-gradient-to-r ${RELATIONSHIP_COLORS[related.relationship]}
+                    px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl font-mono font-medium text-xs sm:text-sm
+                    bg-gradient-to-r ${RELATIONSHIP_COLORS[related.relationship || 'similar']}
                     border transition-all duration-300 hover:scale-105
                   `}>
                     {related.name}
@@ -454,13 +469,13 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
 
         {/* Warnings Section - Collapsible */}
         {command?.warnings && command.warnings.length > 0 && (
-          <div className="px-6 py-5 border-b border-white/10">
+          <div className="px-4 sm:px-6 py-4 sm:py-5 border-b border-white/10">
             <button
               onClick={() => toggleSection('warnings')}
               className="flex items-center justify-between w-full text-left group/header"
             >
-              <h3 className="flex items-center gap-2 text-lg font-semibold text-red-300">
-                <AlertTriangle className="w-5 h-5 text-red-400" style={get3DIconStyle()} />
+              <h3 className="flex items-center gap-2 text-base sm:text-lg font-semibold text-red-300">
+                <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-red-400" style={get3DIconStyle()} />
                 Warnings
               </h3>
               {expandedSections.warnings ? (
@@ -489,22 +504,22 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
         )}
 
         {/* Footer: Man Page Link */}
-        <div className="px-6 py-4 bg-gradient-to-r from-white/5 to-white/10">
-          <div className="flex items-center justify-between">
-            <span className="text-white/60 text-sm">
+        <div className="px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-white/5 to-white/10">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <span className="text-white/60 text-xs sm:text-sm">
               Need more details?
             </span>
             <a
               href={command?.manPageUrl || '#'}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-400/20 to-blue-500/20 border border-cyan-400/30 text-cyan-300 hover:from-cyan-400/30 hover:to-blue-500/30 transition-all duration-300 group"
+              className="flex items-center justify-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-gradient-to-r from-cyan-400/20 to-blue-500/20 border border-cyan-400/30 text-cyan-300 hover:from-cyan-400/30 hover:to-blue-500/30 transition-all duration-300 group"
             >
               <ExternalLink 
                 className="w-4 h-4 group-hover:rotate-12 transition-transform" 
                 style={get3DIconStyle()} 
               />
-              <span className="text-sm font-medium">Man Page</span>
+              <span className="text-xs sm:text-sm font-medium">Man Page</span>
             </a>
           </div>
         </div>
