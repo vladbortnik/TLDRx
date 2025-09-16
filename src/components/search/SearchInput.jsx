@@ -3,7 +3,7 @@ import { Terminal, Filter, Code } from 'lucide-react';
 import { FaDatabase, FaDiamond, FaCircle, FaCube } from 'react-icons/fa6';
 import { useWaveAnimation } from '../../hooks/useWaveAnimation';
 
-export function SearchInput({ value, onChange, placeholder = "Search commands...", onFilterToggle }) {
+export function SearchInput({ value, onChange, placeholder = "Search commands...", onFilterToggle, isSticky = false }) {
     const [isFocused, setIsFocused] = useState(false);
     const [showHelpers, setShowHelpers] = useState(false);
     const [cursor, setCursor] = useState(true);
@@ -86,18 +86,30 @@ export function SearchInput({ value, onChange, placeholder = "Search commands...
                 }`}>
 
                     <div
-                        className="backdrop-blur-xl border border-white/30 rounded-xl overflow-hidden transition-all duration-300 cursor-text"
+                        className={`backdrop-blur-xl border overflow-hidden transition-all duration-300 cursor-text ${
+                            isSticky
+                                ? 'border-white/50 rounded-lg bg-black/20'
+                                : 'border-white/30 rounded-xl'
+                        }`}
                         style={{
-                            ...getPrimaryWave(),
-                            ...getGlowStyle()
+                            ...(!isSticky ? getPrimaryWave() : {}),
+                            ...getGlowStyle(),
+                            ...(isSticky ? {
+                                backdropFilter: 'blur(24px) saturate(180%)',
+                                background: 'rgba(0, 0, 0, 0.3)',
+                                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.2)',
+                                border: '1px solid rgba(255, 255, 255, 0.3)'
+                            } : {})
                         }}
                         onClick={handleSearchContainerClick}
                     >
 
                         {/* Header with 3D cube icon - Click anywhere to focus input */}
                         <div
-                            className="border-b border-white/20 px-5 py-3 flex items-center justify-between pointer-events-none"
-                            style={getSecondaryWave()}
+                            className={`border-b border-white/20 flex items-center justify-between pointer-events-none ${
+                                isSticky ? 'px-4 py-2' : 'px-5 py-3'
+                            }`}
+                            style={!isSticky ? getSecondaryWave() : {}}
                         >
                             <div className="flex items-center gap-3">
                                 {/* 3D Animated Cube Icon - constantly rotating in 3D space */}
@@ -175,7 +187,7 @@ export function SearchInput({ value, onChange, placeholder = "Search commands...
                         </div>
 
                         {/* Search Input Area - Click handled by parent container */}
-                        <div className="p-5">
+                        <div className={isSticky ? 'p-4' : 'p-5'}>
                             <div className="flex items-center gap-3 group">
                 <span className="text-yellow-300 font-mono text-sm font-semibold pointer-events-none">
                   search

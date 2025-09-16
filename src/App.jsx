@@ -5,6 +5,7 @@ import { getPlatformMapping, getCategoryMapping } from "./constants/mappings";
 import { Header } from './components/layout/Header';
 import { SearchInterface } from './components/search/SearchInterface';
 import { useWaveAnimation } from './hooks/useWaveAnimation';
+import { useScrollBehavior } from './hooks/useScrollBehavior';
 
 import { FilterComponent } from './components/filters/FilterComponent';
 import { ErrorState } from './components/ui/ErrorState';
@@ -32,6 +33,13 @@ function App({ mockCommands }) {
 
     // Enhanced Wave Animation System
     const { getBackgroundWave, wavePhase } = useWaveAnimation(100); // 🔧 ADDED: Extract wavePhase for FilterComponent
+
+    // Scroll behavior for sticky header
+    const {
+        isSearchSticky,
+        shouldCollapseFilter,
+        getHeaderStyles
+    } = useScrollBehavior();
 
     /**
      * Get the man page URL for a command
@@ -175,7 +183,6 @@ function App({ mockCommands }) {
      * Returns filtered commands based on search, platform, and category criteria.
      */
     let displayCommands;
-    let isExactMatch = false;
 
     // First filter by platforms (multiple selection support)
     let platformFilteredCommands = commands;
@@ -211,12 +218,6 @@ function App({ mockCommands }) {
         displayCommands = filteredCommands.slice();
     } else {
         const query = searchQuery.toLowerCase();
-
-        // Check for the exact command name match (Phase 4.1a)
-        const exactMatchCommand = filteredCommands.find(
-            (command) => command.name.toLowerCase() === query
-        );
-        isExactMatch = !!exactMatchCommand;
 
         const scoredCommands = filteredCommands.map((command) => ({
             ...command,
@@ -261,51 +262,83 @@ function App({ mockCommands }) {
 
     return (
         <div
-            className="min-h-screen text-white font-inter"
-            style={getBackgroundWave()}
+            className="min-h-screen text-white font-inter relative"
+            style={{
+                ...getBackgroundWave(),
+                zIndex: 0
+            }}
         >
             <div className="container mx-auto max-w-6xl px-4 py-8">
-                <Header />
+                {/* Header with scroll-based visibility */}
+                <div data-header style={getHeaderStyles()}>
+                    <Header />
+                </div>
 
-                <SearchInterface
-                    searchQuery={searchQuery}
-                    onSearchChange={setSearchQuery}
-                    onFilterToggle={handleFilterToggle}
-                />
+                {/* SearchInterface and FilterComponent with sticky positioning */}
+                <div
+                    style={{
+                        position: isSearchSticky ? 'fixed' : 'relative',
+                        top: isSearchSticky ? '6px' : 'auto',
+                        left: isSearchSticky ? '50%' : 'auto',
+                        width: isSearchSticky ? 'calc(100% - 2rem)' : 'auto',
+                        maxWidth: isSearchSticky ? '1152px' : 'none', // max-w-6xl equivalent
+                        zIndex: isSearchSticky ? 20 : 'auto',
+                        transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                        transform: isSearchSticky
+                            ? 'translateX(-50%) translateZ(0)'
+                            : 'translateZ(0)',
+                    }}
+                >
+                    <SearchInterface
+                        searchQuery={searchQuery}
+                        onSearchChange={setSearchQuery}
+                        onFilterToggle={handleFilterToggle}
+                        isSticky={isSearchSticky}
+                    />
 
-                {/* 🔧 UPDATED: New Advanced Filter Component */}
-                <FilterComponent
-                    selectedCategories={selectedCategories}
-                    selectedPlatforms={selectedPlatforms}
-                    onCategoryChange={setSelectedCategories}
-                    onPlatformChange={setSelectedPlatforms}
-                    isVisible={isFilterOpen}
-                    wavePhase={wavePhase}
-                />
+                    {/* 🔧 UPDATED: New Advanced Filter Component */}
+                    <FilterComponent
+                        selectedCategories={selectedCategories}
+                        selectedPlatforms={selectedPlatforms}
+                        onCategoryChange={setSelectedCategories}
+                        onPlatformChange={setSelectedPlatforms}
+                        isVisible={isFilterOpen}
+                        wavePhase={wavePhase}
+                        shouldAutoCollapse={shouldCollapseFilter}
+                    />
+                </div>
 
 
 
-                <ErrorState message={error} />
+                {/* Main content area with proper z-index for layering */}
+                <div style={{
+                    position: 'relative',
+                    zIndex: 10,
+                    paddingTop: isSearchSticky ? '120px' : '0', // Add space when sticky
+                    transition: 'padding-top 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                }}>
+                    <ErrorState message={error} />
 
-                {isLoading ? (
-                    <LoadingState />
-                ) : (
-                    <div>
-                        <ResultsCounter
-                            count={displayCommands.length}
-                            selectedPlatforms={selectedPlatforms} // 🔧 UPDATED: Array instead of single platform
-                            selectedCategories={selectedCategories} // 🔧 UPDATED: Array instead of single category
-                        />
+                    {isLoading ? (
+                        <LoadingState />
+                    ) : (
+                        <div>
+                            <ResultsCounter
+                                count={displayCommands.length}
+                                selectedPlatforms={selectedPlatforms} // 🔧 UPDATED: Array instead of single platform
+                                selectedCategories={selectedCategories} // 🔧 UPDATED: Array instead of single category
+                            />
 
-                        <CommandGrid
-                            commands={displayCommands}
-                            allCommands={commands}
-                            onCommandClick={onCommandClick}
-                            searchQuery={searchQuery}
-                            wavePhase={wavePhase}
-                        />
-                    </div>
-                )}
+                            <CommandGrid
+                                commands={displayCommands}
+                                allCommands={commands}
+                                onCommandClick={onCommandClick}
+                                searchQuery={searchQuery}
+                                wavePhase={wavePhase}
+                            />
+                        </div>
+                    )}
+                </div>
             </div>
             <PWAInstall />
         </div>

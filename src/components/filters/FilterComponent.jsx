@@ -24,13 +24,14 @@ const PLATFORMS = [
   { id: "windows", icon: FaWindows, color: "from-blue-400 to-blue-600", glow: "blue" }
 ];
 
-export function FilterComponent({ 
-  selectedCategories = [], 
-  selectedPlatforms = [], 
-  onCategoryChange, 
+export function FilterComponent({
+  selectedCategories = [],
+  selectedPlatforms = [],
+  onCategoryChange,
   onPlatformChange,
   isVisible,
-  wavePhase = 0
+  wavePhase = 0,
+  shouldAutoCollapse = false
 }) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [hoveredItem, setHoveredItem] = useState(null);
@@ -43,6 +44,7 @@ export function FilterComponent({
   const [iconAnimationPhases, setIconAnimationPhases] = useState({});
   const [isExpanded, setIsExpanded] = useState(true); // New state for collapse/expand
   const [expandTime, setExpandTime] = useState(Date.now()); // Track when expanded
+  const [wasAutoCollapsed, setWasAutoCollapsed] = useState(false); // Track if collapsed by scroll
   const filterRef = useRef(null);
   const animationFrameRef = useRef();
 
@@ -89,6 +91,17 @@ export function FilterComponent({
       setIconAnimationPhases({});
     }
   }, [isVisible, isExpanded, expandTime]); // Added expandTime to trigger reset
+
+  // Handle auto-collapse from scroll behavior
+  useEffect(() => {
+    if (shouldAutoCollapse && isExpanded && !wasAutoCollapsed) {
+      setIsExpanded(false);
+      setWasAutoCollapsed(true);
+    } else if (!shouldAutoCollapse && wasAutoCollapsed) {
+      // Reset the auto-collapse flag when sticky state ends
+      setWasAutoCollapsed(false);
+    }
+  }, [shouldAutoCollapse, isExpanded, wasAutoCollapsed]);
 
   // Async animation loop for icons
   useEffect(() => {
@@ -351,6 +364,8 @@ export function FilterComponent({
       if (!prev) {
         // If expanding, update expand time to trigger animation reset
         setExpandTime(Date.now());
+        // Reset auto-collapse flag when manually expanding
+        setWasAutoCollapsed(false);
       }
       return !prev;
     });
