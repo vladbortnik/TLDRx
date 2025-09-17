@@ -13,6 +13,36 @@
 /* Injects Tailwind's utility classes */
 @tailwind utilities;
 
+/* Solution 1: CSS scroll-padding-top for sticky header */
+:root {
+  /* Base dimensions for sticky components */
+  --search-input-height: 120px;
+  --sticky-offset: 6px;
+
+  /* Calculated heights */
+  --base-sticky-height: calc(var(--search-input-height) + var(--sticky-offset));
+  --total-sticky-height: var(--base-sticky-height);
+}
+
+/* Mobile-first responsive breakpoints */
+@media (max-width: 768px) {
+  :root {
+    --search-input-height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --search-input-height: 90px;
+  }
+}
+
+/* Scroll padding to prevent content from hiding behind sticky header */
+html {
+  scroll-padding-top: var(--total-sticky-height);
+  scroll-behavior: smooth;
+}
+
 /* 3D Animation Support */
 .perspective-1000 {
     perspective: 1000px;
@@ -21,6 +51,18 @@
 
 .preserve-3d {
     transform-style: preserve-3d;
+}
+
+/* Keyframe animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .font-inter {

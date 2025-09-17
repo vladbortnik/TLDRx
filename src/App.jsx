@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { CommandCard } from './components/ui/CommandCard';
+import React, { useState, useEffect, useRef } from "react";
 import PWAInstall from './components/PWAInstall';
 import { getPlatformMapping, getCategoryMapping } from "./constants/mappings";
 import { Header } from './components/layout/Header';
@@ -7,7 +6,6 @@ import { SearchInterface } from './components/search/SearchInterface';
 import { useWaveAnimation } from './hooks/useWaveAnimation';
 import { useScrollBehavior } from './hooks/useScrollBehavior';
 
-import { FilterComponent } from './components/filters/FilterComponent';
 import { ErrorState } from './components/ui/ErrorState';
 import { LoadingState } from './components/ui/LoadingState';
 import { ResultsCounter } from './components/search/ResultsCounter';
@@ -32,13 +30,15 @@ function App({ mockCommands }) {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
 
     // Enhanced Wave Animation System
-    const { getBackgroundWave, wavePhase } = useWaveAnimation(100); // 🔧 ADDED: Extract wavePhase for FilterComponent
+    const { getBackgroundWave, wavePhase } = useWaveAnimation(1000);
 
     // Scroll behavior for sticky header
     const {
-        shouldCollapseFilter,
         getHeaderStyles
     } = useScrollBehavior();
+
+    // Ref for dynamic height calculation
+    const stickyWrapperRef = useRef(null);
 
     /**
      * Get the man page URL for a command
@@ -97,6 +97,33 @@ function App({ mockCommands }) {
 
         loadCommands().catch(console.error);
     }, [mockCommands]);
+
+    // Dynamic sticky height calculation for CSS scroll-padding-top
+    useEffect(() => {
+        const updateStickyHeight = () => {
+            if (stickyWrapperRef.current) {
+                const stickyHeight = stickyWrapperRef.current.offsetHeight;
+                const totalHeight = stickyHeight + 6; // Add 6px offset
+
+                // Update CSS custom property
+                document.documentElement.style.setProperty(
+                    '--total-sticky-height',
+                    `${totalHeight}px`
+                );
+            }
+        };
+
+        // Update on mount and when filter visibility changes
+        updateStickyHeight();
+
+        // Update on window resize for responsive design
+        const handleResize = () => {
+            updateStickyHeight();
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [isFilterOpen]);
 
     // Wave animation is now handled by the useWaveAnimation hook
 
@@ -237,15 +264,15 @@ function App({ mockCommands }) {
         });
     }
 
-    if (import.meta.env.MODE === "development") {
-        console.log(
-            `Search: "${searchQuery}", Found: ${displayCommands.length} commands`
-        );
-        console.log(
-            "Displaying:",
-            displayCommands.map((cmd) => cmd.name)
-        );
-    }
+    // if (import.meta.env.MODE === "development") {
+    //     console.log(
+    //         `Search: "${searchQuery}", Found: ${displayCommands.length} commands`
+    //     );
+    //     console.log(
+    //         "Displaying:",
+    //         displayCommands.map((cmd) => cmd.name)
+    //     );
+    // }
 
     // Handle command click for navigation
     const onCommandClick = (commandName) => {
@@ -275,6 +302,7 @@ function App({ mockCommands }) {
 
                 {/* SearchInterface and FilterComponent with CSS sticky positioning */}
                 <div
+                    ref={stickyWrapperRef}
                     style={{
                         position: 'sticky',
                         top: '6px',
@@ -288,16 +316,6 @@ function App({ mockCommands }) {
                         onFilterToggle={handleFilterToggle}
                     />
 
-                    {/* 🔧 UPDATED: New Advanced Filter Component */}
-                    <FilterComponent
-                        selectedCategories={selectedCategories}
-                        selectedPlatforms={selectedPlatforms}
-                        onCategoryChange={setSelectedCategories}
-                        onPlatformChange={setSelectedPlatforms}
-                        isVisible={isFilterOpen}
-                        wavePhase={wavePhase}
-                        shouldAutoCollapse={shouldCollapseFilter}
-                    />
                 </div>
 
 

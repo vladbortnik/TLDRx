@@ -7,25 +7,16 @@ export function SearchInput({ value, onChange, placeholder = "Search commands...
     const [isFocused, setIsFocused] = useState(false);
     const [showHelpers, setShowHelpers] = useState(false);
     const [cursor, setCursor] = useState(true);
-    const [iconRotation, setIconRotation] = useState(0);
     const [icon3DRotation, setIcon3DRotation] = useState({ x: 0, y: 0, z: 0 });
     const [commandCount] = useState(523);
     const inputRef = useRef(null);
 
     // Enhanced Wave Animation System
-    const { getPrimaryWave, getSecondaryWave } = useWaveAnimation(100);
+    const { getPrimaryWave, getSecondaryWave } = useWaveAnimation(1000);
 
     // Cursor blinking animation
     useEffect(() => {
         const interval = setInterval(() => setCursor(c => !c), 500);
-        return () => clearInterval(interval);
-    }, []);
-
-    // Constantly moving icon animation (2D - commented out)
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setIconRotation(prev => (prev + 2) % 360);
-        }, 100);
         return () => clearInterval(interval);
     }, []);
 
@@ -37,7 +28,7 @@ export function SearchInput({ value, onChange, placeholder = "Search commands...
                 y: (prev.y + 2) % 360,
                 z: (prev.z + 0.8) % 360
             }));
-        }, 50);
+        }, 200);
         return () => clearInterval(interval);
     }, []);
 

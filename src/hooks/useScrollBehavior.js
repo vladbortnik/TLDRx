@@ -3,12 +3,9 @@ import { useState, useEffect, useRef } from 'react';
 export function useScrollBehavior() {
   const [scrollY, setScrollY] = useState(0);
   const [scrollDirection, setScrollDirection] = useState('down');
-  const [isSearchSticky, setIsSearchSticky] = useState(false);
-  const [shouldCollapseFilter, setShouldCollapseFilter] = useState(false);
 
   const lastScrollY = useRef(0);
   const headerHeight = useRef(0);
-  const searchInterfaceRef = useRef(null);
 
   useEffect(() => {
     // Calculate header height on mount
@@ -35,16 +32,6 @@ export function useScrollBehavior() {
       // Calculate sticky threshold (when header disappears + 6px)
       const stickyThreshold = Math.max(0, headerHeight.current - 6);
 
-      // Update sticky state
-      const shouldBeSticky = currentScrollY >= stickyThreshold;
-      setIsSearchSticky(shouldBeSticky);
-
-      // Auto-collapse filter when search becomes sticky
-      if (shouldBeSticky && !shouldCollapseFilter) {
-        setShouldCollapseFilter(true);
-      } else if (!shouldBeSticky && shouldCollapseFilter) {
-        setShouldCollapseFilter(false);
-      }
 
       lastScrollY.current = currentScrollY;
     };
@@ -69,14 +56,7 @@ export function useScrollBehavior() {
     return () => {
       window.removeEventListener('scroll', throttledHandleScroll);
     };
-  }, [shouldCollapseFilter]);
-
-  // Get styles for sticky positioning - removed backdrop styles for proper layering
-  const getStickyStyles = () => {
-    return {
-      // Styles are now handled directly in App.jsx for better control
-    };
-  };
+  }, []);
 
   // Get header visibility styles
   const getHeaderStyles = () => {
@@ -91,10 +71,6 @@ export function useScrollBehavior() {
   return {
     scrollY,
     scrollDirection,
-    isSearchSticky,
-    shouldCollapseFilter,
-    searchInterfaceRef,
-    getStickyStyles,
     getHeaderStyles,
   };
 }
