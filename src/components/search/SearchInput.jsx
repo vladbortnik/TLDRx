@@ -138,8 +138,8 @@ export function SearchInput({
                             <div className="flex items-center gap-3">
                                 {/* Matrix Terminal Icon */}
                                 <VscTerminalBash className="w-5 h-5 animate-pulse" style={{
-                                    color: '#00d435',
-                                    filter: 'drop-shadow(0 0 8px rgba(0, 212, 53, 0.8)) saturate(1.8)'
+                                    color: '#00a82d',
+                                    filter: 'drop-shadow(0 0 8px rgba(0, 168, 45, 0.8)) saturate(1.8)'
                                 }} />
 
                                 {/* COMMENTED OUT: 2D Diamond Icon - Constantly moving diamond with rotation, scaling, and hue shifts
