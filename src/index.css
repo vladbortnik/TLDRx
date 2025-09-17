@@ -65,6 +65,199 @@ html {
   }
 }
 
+@keyframes wave-progress {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-wave-progress {
+  animation: wave-progress 2s ease-in-out infinite;
+}
+
+@keyframes logo-glow {
+  0% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(34, 211, 238, 0.8), 0 0 30px rgba(34, 211, 238, 0.6);
+    transform: scale(1.02);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    transform: scale(1);
+  }
+}
+
+.animate-logo-glow {
+  animation: logo-glow 3s ease-in-out infinite;
+  background: linear-gradient(45deg, #0891b2, #1d4ed8, #0891b2);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: logo-glow 3s ease-in-out infinite, gradient-shift 4s ease-in-out infinite;
+  filter: saturate(1.5);
+}
+
+.animate-logo-glow-matrix {
+  animation: logo-glow-matrix 3s ease-in-out infinite;
+  background: linear-gradient(45deg, #00d435, #006b0d, #00d435);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: logo-glow-matrix 3s ease-in-out infinite, gradient-shift 4s ease-in-out infinite;
+  filter: saturate(1.8);
+}
+
+@keyframes logo-glow-matrix {
+  0% {
+    text-shadow: 0 0 5px rgba(0, 212, 53, 0.5);
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(0, 212, 53, 0.8), 0 0 30px rgba(0, 212, 53, 0.6);
+    transform: scale(1.02);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(0, 212, 53, 0.5);
+    transform: scale(1);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Progress Line Animations */
+@keyframes dots-progress {
+  0%, 80%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.animate-dots-progress {
+  animation: dots-progress 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-bar {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-pulse-bar {
+  animation: pulse-bar 2s ease-in-out infinite;
+}
+
+@keyframes scanner {
+  0% {
+    left: -10px;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.animate-scanner {
+  animation: scanner 2s linear infinite;
+}
+
+.bg-gradient-wave {
+  background: linear-gradient(90deg, #22d3ee, #3b82f6, #22d3ee, #3b82f6);
+  background-size: 400% 100%;
+}
+
+@keyframes gradient-wave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-wave {
+  animation: gradient-wave 3s ease-in-out infinite;
+}
+
+@keyframes particles-1 {
+  0%, 100% { opacity: 0; }
+  20% { opacity: 1; }
+}
+@keyframes particles-2 {
+  0%, 100% { opacity: 0; }
+  40% { opacity: 1; }
+}
+@keyframes particles-3 {
+  0%, 100% { opacity: 0; }
+  60% { opacity: 1; }
+}
+@keyframes particles-4 {
+  0%, 100% { opacity: 0; }
+  80% { opacity: 1; }
+}
+@keyframes particles-5 {
+  0%, 100% { opacity: 0; }
+  30% { opacity: 1; }
+}
+
+.animate-particles-1 { animation: particles-1 3s ease-in-out infinite; }
+.animate-particles-2 { animation: particles-2 3s ease-in-out infinite; }
+.animate-particles-3 { animation: particles-3 3s ease-in-out infinite; }
+.animate-particles-4 { animation: particles-4 3s ease-in-out infinite; }
+.animate-particles-5 { animation: particles-5 3s ease-in-out infinite; }
+
+/* Hint Text Color Animations */
+.animate-hint-gradient {
+  background: linear-gradient(90deg, #22d3ee, #3b82f6, #22d3ee, #3b82f6);
+  background-size: 400% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-wave 3s ease-in-out infinite;
+}
+
+.animate-hint-particles {
+  animation: hint-particles 3s ease-in-out infinite;
+}
+
+@keyframes hint-particles {
+  0% { color: rgba(255, 255, 255, 0.8); }
+  20% { color: rgba(34, 211, 238, 1); }
+  40% { color: rgba(59, 130, 246, 1); }
+  60% { color: rgba(34, 211, 238, 1); }
+  80% { color: rgba(255, 255, 255, 0.8); }
+  100% { color: rgba(255, 255, 255, 0.8); }
+}
+
 .font-inter {
     font-family: 'Inter', system-ui, sans-serif;
 }

@@ -1,18 +1,62 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Terminal, Filter, Code } from 'lucide-react';
+import { Terminal, Filter, Code2, Binary, Cpu, Server, Database, GitBranch } from 'lucide-react';
 import { FaDatabase, FaDiamond, FaCircle, FaCube } from 'react-icons/fa6';
+import { FiTerminal, FiCode, FiCpu } from 'react-icons/fi';
+import { BiChip, BiCodeBlock } from 'react-icons/bi';
+import { GiProcessor } from 'react-icons/gi';
+import { SiMatrix } from 'react-icons/si';
+import { TbBrandMatrix, TbTerminal2 } from 'react-icons/tb';
+import { VscTerminalBash } from 'react-icons/vsc';
 import { useWaveAnimation } from '../../hooks/useWaveAnimation';
+import { FilterBar } from '../filters/FilterBar.jsx';
+import { CategoryFilters } from '../filters/CategoryFilters.jsx';
 
-export function SearchInput({ value, onChange, placeholder = "Search commands...", onFilterToggle }) {
+export function SearchInput({
+    value,
+    onChange,
+    placeholder = "Search commands...",
+    onFilterToggle,
+    selectedPlatforms,
+    onPlatformChange,
+    selectedCategories,
+    onCategoryChange,
+    showAdvancedFilters,
+    onAdvancedFiltersToggle,
+    onClearAllFilters,
+    totalCommands = 0
+}) {
     const [isFocused, setIsFocused] = useState(false);
-    const [showHelpers, setShowHelpers] = useState(false);
     const [cursor, setCursor] = useState(true);
     const [icon3DRotation, setIcon3DRotation] = useState({ x: 0, y: 0, z: 0 });
-    const [commandCount] = useState(523);
+    const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+    // Remove hardcoded command count - use totalCommands prop instead
     const inputRef = useRef(null);
+
+    // Dynamic status messages
+    const statusMessages = [
+        `Type to search ${totalCommands.toLocaleString()} commands...`,
+        "Use filters to narrow results...",
+        "Supports fuzzy search for quick results...",
+        "Try: 'git', 'docker', 'ssh'...",
+        "Filter by multiple platforms simultaneously...",
+        "Combine category filters for precise results...",
+        "Real-time search as you type...",
+        "Case-insensitive command matching...",
+        "Find commands by platform or category...",
+        "Discover new CLI tools and utilities..."
+    ];
 
     // Enhanced Wave Animation System
     const { getPrimaryWave, getSecondaryWave } = useWaveAnimation(1000);
+
+    // Cycle through status messages
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentMessageIndex((prev) => (prev + 1) % statusMessages.length);
+        }, 7000); // Change message every 7 seconds
+
+        return () => clearInterval(interval);
+    }, [statusMessages.length]);
 
     // Cursor blinking animation
     useEffect(() => {
@@ -34,10 +78,6 @@ export function SearchInput({ value, onChange, placeholder = "Search commands...
 
     // Wave phase animation is now handled by the useWaveAnimation hook
 
-    // Show helper suggestions when typing
-    useEffect(() => {
-        setShowHelpers(value.length > 0);
-    }, [value]);
 
     const isActive = isFocused || value.length > 0;
 
@@ -62,7 +102,12 @@ export function SearchInput({ value, onChange, placeholder = "Search commands...
     };
 
     // Handle search container click to focus input
-    const handleSearchContainerClick = () => {
+    const handleSearchContainerClick = (e) => {
+        // Don't focus input if clicking on interactive elements
+        if (e.target.closest('button') || e.target.closest('input')) {
+            return;
+        }
+
         if (inputRef.current) {
             inputRef.current.focus();
         }
@@ -91,36 +136,11 @@ export function SearchInput({ value, onChange, placeholder = "Search commands...
                             style={getSecondaryWave()}
                         >
                             <div className="flex items-center gap-3">
-                                {/* 3D Animated Cube Icon - constantly rotating in 3D space */}
-                                <div className="relative perspective-1000">
-                                    <div
-                                        className="w-5 h-5 relative"
-                                        style={{
-                                            transform: `perspective(100px) rotateX(${icon3DRotation.x}deg) rotateY(${icon3DRotation.y}deg) rotateZ(${icon3DRotation.z}deg)`,
-                                            transformStyle: 'preserve-3d',
-                                            filter: `hue-rotate(${icon3DRotation.y}deg) brightness(1.4)`,
-                                            transition: 'all 0.05s ease'
-                                        }}
-                                    >
-                                        <FaCube
-                                            className="w-5 h-5 text-cyan-300"
-                                            style={{
-                                                transform: 'translateZ(2px)',
-                                                filter: 'drop-shadow(0 0 8px rgba(34, 211, 238, 0.6))'
-                                            }}
-                                        />
-                                        {/* Additional 3D layers for depth */}
-                                        <FaCube
-                                            className="absolute inset-0 w-5 h-5 text-blue-400/60"
-                                            style={{
-                                                transform: 'translateZ(-2px) scale(1.1)',
-                                            }}
-                                        />
-                                    </div>
-                                    <div className="absolute inset-0 w-5 h-5">
-                                        <FaCircle className="w-full h-full text-cyan-300/30 animate-pulse" />
-                                    </div>
-                                </div>
+                                {/* Matrix Terminal Icon */}
+                                <VscTerminalBash className="w-5 h-5 animate-pulse" style={{
+                                    color: '#00d435',
+                                    filter: 'drop-shadow(0 0 8px rgba(0, 212, 53, 0.8)) saturate(1.8)'
+                                }} />
 
                                 {/* COMMENTED OUT: 2D Diamond Icon - Constantly moving diamond with rotation, scaling, and hue shifts
                 <div className="relative">
@@ -138,30 +158,39 @@ export function SearchInput({ value, onChange, placeholder = "Search commands...
                 </div>
                 */}
 
-                                <span className="text-white text-sm font-semibold tracking-wide">
-                  TL;DRx
-                </span>
+                                {/* Matrix Logo */}
+                                <span className="text-sm font-semibold tracking-wide animate-logo-glow-matrix">
+                                    TL;DRx
+                                </span>
                             </div>
 
                             <div className="flex items-center gap-4">
                                 {/* Dynamic command count with React Icons */}
                                 <div className="flex items-center gap-2">
-                                    <FaDatabase className="w-4 h-4 text-white/90" />
-                                    <span className="text-white/90 text-xs font-medium">
-                    {commandCount.toLocaleString()}+ commands
+                                    <FaDatabase className="w-4 h-4 text-cyan-400" />
+                                    <span className="bg-gradient-to-r from-sky-400 to-cyan-600 bg-clip-text text-transparent text-xs font-medium">
+                    {totalCommands.toLocaleString()} commands
                   </span>
                                 </div>
 
                                 {/* Filter icon for OS and Category functionality */}
-                                <button
-                                    className="text-white/90 hover:text-yellow-300 transition-colors duration-200 group pointer-events-auto"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        onFilterToggle && onFilterToggle();
-                                    }}
-                                >
-                                    <Filter className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
-                                </button>
+                                <div className="flex items-center gap-2">
+                                    <button
+                                        className="text-yellow-400 hover:text-yellow-300 transition-colors duration-200 group pointer-events-auto"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            onFilterToggle && onFilterToggle();
+                                        }}
+                                    >
+                                        <Filter className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
+                                    </button>
+                                    {/* Active filters text indicator */}
+                                    {(selectedPlatforms.length > 0 || selectedCategories.length > 0) && (
+                                        <span className="text-yellow-400 text-xs font-medium">
+                                            {selectedPlatforms.length + selectedCategories.length} filter{(selectedPlatforms.length + selectedCategories.length) > 1 ? 's' : ''}
+                                        </span>
+                                    )}
+                                </div>
                             </div>
                         </div>
 
@@ -191,34 +220,52 @@ export function SearchInput({ value, onChange, placeholder = "Search commands...
                                 </div>
                             </div>
 
-                            {/* Status indicator under search */}
-                            {value && (
-                                <div className="mt-3 flex items-center gap-2 text-white/80 text-sm animate-in slide-in-from-left duration-300">
-                                    <Terminal className="w-4 h-4" />
-                                    <span>Parsing command database...</span>
-                                    <div className="flex gap-1">
-                                        <div className="w-1 h-1 bg-yellow-300 rounded-full animate-bounce"></div>
-                                        <div className="w-1 h-1 bg-yellow-300 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                                        <div className="w-1 h-1 bg-yellow-300 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                            {/* Status indicator and filters under search */}
+                            <div className="mt-3 flex items-center justify-between text-white/80 text-sm">
+                                {/* Left side: Dynamic status messages */}
+                                <div className="flex flex-col gap-1">
+                                    {/* Gradient wave animation for hint text */}
+                                    <div className="flex items-center gap-2 animate-in slide-in-from-left duration-300">
+                                        <Terminal className="w-4 h-4" />
+                                        <span
+                                            key={currentMessageIndex}
+                                            className="animate-in fade-in duration-500 animate-hint-gradient"
+                                        >
+                                            {statusMessages[currentMessageIndex]}
+                                        </span>
+                                    </div>
+                                    {/* Particles progress indicator */}
+                                    <div className="w-full h-0.5 relative">
+                                        <div className="absolute w-0.5 h-0.5 bg-cyan-400 rounded-full animate-particles-1" style={{ left: '10%' }}></div>
+                                        <div className="absolute w-0.5 h-0.5 bg-blue-400 rounded-full animate-particles-2" style={{ left: '30%' }}></div>
+                                        <div className="absolute w-0.5 h-0.5 bg-cyan-300 rounded-full animate-particles-3" style={{ left: '50%' }}></div>
+                                        <div className="absolute w-0.5 h-0.5 bg-blue-300 rounded-full animate-particles-4" style={{ left: '70%' }}></div>
+                                        <div className="absolute w-0.5 h-0.5 bg-cyan-400 rounded-full animate-particles-5" style={{ left: '90%' }}></div>
                                     </div>
                                 </div>
-                            )}
+
+                                {/* Right side: Filter Bar */}
+                                <FilterBar
+                                    selectedPlatforms={selectedPlatforms}
+                                    selectedCategories={selectedCategories}
+                                    onPlatformChange={onPlatformChange}
+                                    onAdvancedFiltersToggle={onAdvancedFiltersToggle}
+                                    onClearAll={onClearAllFilters}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Helper suggestions from Progressive Disclosure */}
+                {/* Category Filters - shown when advanced filters are toggled */}
                 <div className={`transition-all duration-300 overflow-hidden ${
-                    showHelpers ? 'max-h-20 opacity-100' : 'max-h-0 opacity-0'
+                    showAdvancedFilters ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
                 }`}>
-                    <div
-                        className="rounded-lg border border-white/20 px-5 py-3 flex items-center gap-2"
-                        style={getSecondaryWave()}
-                    >
-                        <Code className="w-4 h-4 text-white/90" />
-                        <span className="text-white/90 text-sm">
-              Try searching: "file", "git", "network", "system", "docker"
-            </span>
+                    <div className="px-5 py-3">
+                        <CategoryFilters
+                            selectedCategories={selectedCategories}
+                            onCategoryChange={onCategoryChange}
+                        />
                     </div>
                 </div>
             </div>

@@ -28,6 +28,7 @@ function App({ mockCommands }) {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
 
     // Enhanced Wave Animation System
     const { getBackgroundWave, wavePhase } = useWaveAnimation(1000);
@@ -279,9 +280,21 @@ function App({ mockCommands }) {
         setSearchQuery(commandName);
     };
 
-    // Handle filter toggle
+    // Handle filter toggle (for both search icon and advanced filters button)
     const handleFilterToggle = () => {
-        setIsFilterOpen(prev => !prev);
+        setShowAdvancedFilters(prev => !prev);
+    };
+
+    // Handle advanced filters toggle (same as filter toggle)
+    const handleAdvancedFiltersToggle = () => {
+        setShowAdvancedFilters(prev => !prev);
+    };
+
+    // Handle clearing all filters
+    const handleClearAllFilters = () => {
+        setSelectedPlatforms([]);
+        setSelectedCategories([]);
+        setShowAdvancedFilters(false);
     };
 
     // Wave background is now handled by the useWaveAnimation hook
@@ -314,6 +327,14 @@ function App({ mockCommands }) {
                         searchQuery={searchQuery}
                         onSearchChange={setSearchQuery}
                         onFilterToggle={handleFilterToggle}
+                        selectedPlatforms={selectedPlatforms}
+                        onPlatformChange={setSelectedPlatforms}
+                        selectedCategories={selectedCategories}
+                        onCategoryChange={setSelectedCategories}
+                        showAdvancedFilters={showAdvancedFilters}
+                        onAdvancedFiltersToggle={handleAdvancedFiltersToggle}
+                        onClearAllFilters={handleClearAllFilters}
+                        totalCommands={commands.length}
                     />
 
                 </div>
