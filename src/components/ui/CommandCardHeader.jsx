@@ -63,25 +63,25 @@ const CATEGORIES = [
   { id: "automation", icon: Bot, color: "from-amber-400 to-orange-600", name: "Automation" }
 ];
 
-// Safety Configuration
+// Safety Configuration - Distinct from category colors
 const SAFETY_COLORS = {
   safe: {
-    bg: 'from-emerald-400 to-green-600',
-    border: 'border-emerald-400/60',
-    text: 'text-white',
-    glow: '0 0 15px rgba(16, 185, 129, 0.5)'
+    bg: 'from-lime-500 to-lime-700',  // Lime green instead of emerald
+    border: 'border-lime-500/60',
+    text: 'text-black',
+    glow: '0 0 15px rgba(132, 204, 22, 0.5)'
   },
   caution: {
-    bg: 'from-amber-400 to-orange-600',
-    border: 'border-amber-400/60',
-    text: 'text-white',
-    glow: '0 0 15px rgba(251, 146, 60, 0.5)'
+    bg: 'from-yellow-500 to-yellow-600',  // Pure yellow instead of amber
+    border: 'border-yellow-500/60',
+    text: 'text-black',
+    glow: '0 0 15px rgba(234, 179, 8, 0.5)'
   },
   dangerous: {
-    bg: 'from-purple-400 to-violet-600',
-    border: 'border-purple-400/60',
+    bg: 'from-red-500 to-red-700',  // Red instead of purple
+    border: 'border-red-500/60',
     text: 'text-white',
-    glow: '0 0 15px rgba(139, 92, 246, 0.5)'
+    glow: '0 0 15px rgba(239, 68, 68, 0.5)'
   }
 };
 
@@ -151,7 +151,7 @@ const StandsForSection = ({ standsFor, description, showDescription }) => {
   if (!standsFor) return null;
   
   // Debug logging
-  console.log('StandsForSection:', { standsFor, description, showDescription });
+  // console.log('StandsForSection:', { standsFor, description, showDescription });
   
   /**
    * Calculate responsive max-width for description based on viewport
@@ -174,31 +174,31 @@ const StandsForSection = ({ standsFor, description, showDescription }) => {
       {/* Vertical Divider between name and standsFor */}
       <div className="h-6 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent self-center" />
       
-      <div className="relative flex items-baseline">
-        <span className="text-sm sm:text-base md:text-lg text-white/40 font-light italic transition-all duration-300 hover:text-white/60">
+      <div className="relative flex items-baseline overflow-hidden">
+        {/* StandsFor text - hidden when description is shown */}
+        <span 
+          className="text-xs sm:text-sm text-white/50 font-normal transition-all hover:text-white/70 whitespace-nowrap"
+          style={{
+            opacity: showDescription ? 0 : 1,
+            transform: showDescription ? 'translateX(-20px)' : 'translateX(0)',
+            transition: 'opacity 0.8s ease, transform 0.8s ease',
+            position: showDescription ? 'absolute' : 'relative'
+          }}
+        >
           {standsFor}
         </span>
         
-        {/* Rolling Description */}
+        {/* Rolling Description - appears in place */}
         <div 
-          className="block ml-2 md:ml-3 overflow-hidden pointer-events-none"
+          className="overflow-hidden pointer-events-none"
           style={{
             maxWidth: showDescription ? getDescriptionMaxWidth() : '0px',
             opacity: showDescription ? 1 : 0,
-            transition: 'max-width 1.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease',
+            transition: 'max-width 2.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease 0.2s',
             whiteSpace: 'nowrap'
           }}
         >
-          <span 
-            className="text-xs md:text-sm text-white/80 font-normal"
-            style={{
-              textShadow: `
-                0 1px 3px rgba(0, 0, 0, 1),
-                0 0 20px rgba(0, 0, 0, 0.8)
-              `
-            }}
-          >
-            <span className="text-white/30 mr-1 md:mr-2">—</span>
+          <span className="text-xs sm:text-sm text-white/60 font-normal">
             {description || 'No description available'}
           </span>
         </div>
@@ -215,7 +215,7 @@ const PlatformIcons = ({ platforms }) => {
   if (!platforms || platforms.length === 0) return null;
 
   return (
-    <div className="flex items-center gap-0.5 md:gap-1">
+    <div className="flex items-center gap-1.5 md:gap-2">
       {platforms.slice(0, 3).map((platform, index) => {
         const platformId = typeof platform === 'string' 
           ? platform 
@@ -228,14 +228,14 @@ const PlatformIcons = ({ platforms }) => {
         return (
           <div
             key={`platform-${platformId}-${index}`}
-            className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded flex items-center justify-center bg-white/5 border border-white/20 transition-transform duration-200 hover:scale-110"
+            className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 rounded-lg flex items-center justify-center bg-black/40 backdrop-blur-sm border border-white/30 transition-transform duration-200 hover:scale-110"
             style={{
-              boxShadow: `0 0 6px rgba(${iconColor.match(/\d+/g).join(', ')}, 0.25)`
+              boxShadow: `0 0 10px rgba(${iconColor.match(/\d+/g).join(', ')}, 0.4)`
             }}
             title={platformId.charAt(0).toUpperCase() + platformId.slice(1)}
           >
             <PlatformIcon
-              className="w-2.5 h-2.5 sm:w-3 sm:h-3"
+              className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4"
               style={{ color: iconColor }}
             />
           </div>
@@ -244,7 +244,7 @@ const PlatformIcons = ({ platforms }) => {
       
       {/* Show +N indicator if more than 3 platforms */}
       {platforms.length > 3 && (
-        <span className="text-[8px] sm:text-[9px] text-white/50 font-medium">
+        <span className="text-[9px] sm:text-[10px] text-white/50 font-medium">
           +{platforms.length - 3}
         </span>
       )}
@@ -256,18 +256,32 @@ const PlatformIcons = ({ platforms }) => {
  * Category Badge Component
  * Displays the command category with icon and colored background
  */
+// Category abbreviations for space-saving
+const CATEGORY_ABBREVIATIONS = {
+  "file-operations": "Files",
+  "text-processing": "Text",
+  "data-processing": "Data",
+  "package-management": "Packages",
+  "system": "System",
+  "security": "Security",
+  "shell": "Shell",
+  "networking": "Network",
+  "development": "Dev",
+  "containers": "Containers",
+  "automation": "Automation"
+};
+
 const CategoryBadge = ({ category }) => {
   if (!category) return null;
   
   const categoryConfig = CATEGORIES.find(cat => cat.id === category);
   if (!categoryConfig) return null;
   
-  const CategoryIcon = categoryConfig.icon;
+  const displayText = CATEGORY_ABBREVIATIONS[category] || categoryConfig.name;
   
   return (
     <div className={`
-      flex items-center gap-0.5 sm:gap-1 
-      px-1 sm:px-1.5 md:px-2 
+      px-1.5 sm:px-2 md:px-2.5 
       py-0.5 
       rounded-md 
       text-[8px] sm:text-[9px] md:text-[10px] 
@@ -280,10 +294,8 @@ const CategoryBadge = ({ category }) => {
     style={{
       boxShadow: `0 0 12px rgba(${getCategoryGlow(categoryConfig.id)}, 0.4)`
     }}>
-      <CategoryIcon className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3" />
-      {/* Show text only on larger screens, icon-only on very small screens */}
-      <span className="hidden xs:inline whitespace-nowrap">
-        {categoryConfig.name}
+      <span className="whitespace-nowrap">
+        {displayText}
       </span>
     </div>
   );

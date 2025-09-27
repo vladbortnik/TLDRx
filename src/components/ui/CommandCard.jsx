@@ -234,9 +234,13 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
           onDescriptionHover={handleDescriptionHover}
         />
 
-        {/* Syntax Pattern - Single line, no title */}
-        <div className="px-4 py-2 border-b border-white/10">
-          <code className="text-purple-300 font-mono text-xs whitespace-nowrap block overflow-x-auto">
+        {/* Syntax Pattern - More prominent with better color */}
+        <div className="px-4 py-3 border-b border-white/10 bg-gradient-to-r from-indigo-900/20 to-blue-900/20">
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[10px] font-normal text-indigo-300/50 uppercase tracking-wider">Syntax</span>
+          </div>
+          <code className="text-cyan-300 font-mono text-base font-medium whitespace-nowrap block overflow-x-auto"
+                style={{ fontFamily: "'Courier New', Courier, monospace" }}>
             {command?.syntaxPattern || 'No syntax available'}
           </code>
         </div>
@@ -246,23 +250,27 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
           <div className="px-4 py-2.5 border-b border-white/10">
             <button
               onClick={() => toggleSection('keyFeatures')}
-              className="flex items-center justify-between w-full text-left group/header"
+              className="flex items-center justify-between w-full text-left group/header hover:bg-white/5 -mx-2 px-2 py-1 rounded-lg transition-all duration-200"
             >
-              <h3 className="flex items-center gap-1.5 text-xs font-semibold text-white">
-                <Zap className="w-3.5 h-3.5 text-yellow-400" />
-                Key Features
-              </h3>
-              {expandedSections.keyFeatures ? (
-                <ChevronUp className="w-4 h-4 text-white/70 group-hover/header:text-yellow-400 transition-colors" />
-              ) : (
-                <ChevronDown className="w-4 h-4 text-white/70 group-hover/header:text-yellow-400 transition-colors" />
-              )}
+              <div className="flex items-center gap-2">
+                {/* Chevron on the left as primary expandable indicator */}
+                {expandedSections.keyFeatures ? (
+                  <ChevronUp className="w-4 h-4 text-yellow-300/80 transition-transform duration-200" />
+                ) : (
+                  <ChevronDown className="w-4 h-4 text-white/50 group-hover/header:text-yellow-300/80 transition-all duration-200" />
+                )}
+                <h3 className="flex items-center gap-1.5 text-xs font-semibold text-yellow-200/80">
+                  <Zap className="w-3.5 h-3.5 text-yellow-300/80" />
+                  Key Features
+                </h3>
+              </div>
+              <span className="text-[10px] text-white/40">Click to {expandedSections.keyFeatures ? 'collapse' : 'expand'}</span>
             </button>
             
             {expandedSections.keyFeatures && (
               <div className="mt-2 animate-in slide-in-from-top duration-300">
                 {/* Full Description - First item in array */}
-                <p className="text-white/80 text-xs leading-relaxed mb-2 italic">
+                <p className="text-white/80 text-xs leading-relaxed mb-2">
                   {command.keyFeatures[0]}
                 </p>
 
@@ -300,32 +308,37 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
               return (
                 <div 
                   key={index}
-                  className="group/example relative p-2.5 rounded-lg bg-gradient-to-r from-slate-900/80 to-slate-800/80 border border-white/10 hover:border-green-400/30 transition-all duration-300"
+                  className="group/example relative p-2.5 rounded-lg bg-gradient-to-r from-slate-900/80 to-slate-800/80 border border-white/10 hover:border-green-400/30 transition-all duration-300 cursor-pointer"
+                  onClick={() => copyExample(example, index)}
                 >
                   {/* Terminal Prompt - Single Line */}
                   <div className="flex items-center gap-3">
                     <span className="text-green-400 font-mono text-sm flex-shrink-0">$</span>
                     <div className="flex-1 min-w-0 flex items-baseline gap-2">
-                      <code className="text-green-400 font-mono text-xs">
+                      <code className="text-green-400 font-mono text-sm font-medium"
+                            style={{ fontFamily: "'Courier New', Courier, monospace" }}>
                         {parsed.command}
                       </code>
                       {parsed.comment && (
-                        <span className="text-gray-400 text-xs italic">
+                        <span className="text-gray-400 text-xs">
                           # {parsed.comment}
                         </span>
                       )}
                     </div>
                     
-                    {/* Copy Button */}
+                    {/* Copy Button - Minimal, no background */}
                     <button
-                      onClick={() => copyExample(example, index)}
-                      className="opacity-0 group-hover/example:opacity-100 p-1 rounded-md bg-white/10 hover:bg-white/20 transition-all duration-300 flex-shrink-0"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        copyExample(example, index);
+                      }}
+                      className="p-1.5 hover:bg-white/10 rounded-md transition-all duration-300 flex-shrink-0"
                       title="Copy command"
                     >
                       {copiedExample === index ? (
-                        <span className="text-green-400 text-[10px] font-medium">✓</span>
+                        <span className="text-green-400 text-xs font-medium">✓</span>
                       ) : (
-                        <Copy className="w-2.5 h-2.5 text-white/60" />
+                        <Copy className="w-3.5 h-3.5 text-white/40 hover:text-white/70" />
                       )}
                     </button>
                   </div>
@@ -383,62 +396,30 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
         {/*  </div>*/}
         {/*)}*/}
 
-        {/* Related Commands Section - Conditional */}
-        {command?.relatedCommands && command.relatedCommands.length > 0 && (
-          <div className="px-4 py-2.5 border-b border-white/10">
-            <h3 className="flex items-center gap-1.5 text-xs font-semibold text-white mb-1.5">
-              <Zap className="w-3.5 h-3.5 text-cyan-400" />
-              Related Commands
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {(command?.relatedCommands || []).map((related, index) => (
-                <div
-                  key={index}
-                  className="relative"
-                  onMouseEnter={() => setHoveredRelated(index)}
-                  onMouseLeave={() => setHoveredRelated(null)}
-                >
-                  <button className={`
-                    px-2.5 py-1 rounded-lg font-mono font-medium text-xs
-                    bg-gradient-to-r ${RELATIONSHIP_COLORS[related.relationship || 'similar']}
-                    border transition-all duration-300 hover:scale-105
-                  `}>
-                    {related.name}
-                  </button>
-                  
-                  {/* Hover Tooltip */}
-                  {hoveredRelated === index && (
-                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-slate-900 text-white text-xs rounded-lg border border-white/20 shadow-xl z-10 whitespace-nowrap">
-                      {related.reason}
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-slate-900"></div>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
         {/* Warnings Section - Collapsible, initially collapsed */}
         {command?.warnings && command.warnings.length > 0 && (
           <div className="px-4 py-2.5 border-b border-white/10">
             <button
               onClick={() => toggleSection('warnings')}
-              className="flex items-center justify-between w-full text-left group/header"
+              className="flex items-center justify-between w-full text-left group/header hover:bg-white/5 -mx-2 px-2 py-1 rounded-lg transition-all duration-200"
             >
-              <h3 className="flex items-center gap-1.5 text-xs font-semibold text-red-300">
-                <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
-                Warnings
-              </h3>
-              {expandedSections.warnings ? (
-                <ChevronUp className="w-4 h-4 text-white/70 group-hover/header:text-red-400 transition-colors" />
-              ) : (
-                <ChevronDown className="w-4 h-4 text-white/70 group-hover/header:text-red-400 transition-colors" />
-              )}
+              <div className="flex items-center gap-2">
+                {/* Chevron on the left as primary expandable indicator */}
+                {expandedSections.warnings ? (
+                  <ChevronUp className="w-4 h-4 text-red-400 transition-transform duration-200" />
+                ) : (
+                  <ChevronDown className="w-4 h-4 text-white/50 group-hover/header:text-red-400 transition-all duration-200" />
+                )}
+                <h3 className="flex items-center gap-1.5 text-xs font-semibold text-red-300">
+                  <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
+                  Warnings
+                </h3>
+              </div>
+              <span className="text-[10px] text-white/40">Click to {expandedSections.warnings ? 'collapse' : 'expand'}</span>
             </button>
             
             {expandedSections.warnings && (
-              <div className="mt-2 space-y-1 animate-in slide-in-from-top duration-300">
+              <div className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-2 animate-in slide-in-from-top duration-300">
                 {(command?.warnings || []).map((warning, index) => (
                   <div 
                     key={index}
@@ -455,17 +436,47 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
           </div>
         )}
 
-        {/* Footer: Man Page Link */}
-        <div className="px-4 py-1.5 bg-gradient-to-r from-white/5 to-white/10">
-          <div className="flex items-center justify-between">
-            <span className="text-white/50 text-[10px]">
-              Full documentation
-            </span>
+        {/* Footer: Related Commands and Man Page Link */}
+        <div className="px-4 py-2 bg-gradient-to-r from-white/5 to-white/10">
+          <div className="flex items-center justify-between gap-2">
+            {/* Related Commands - Left side */}
+            {command?.relatedCommands && command.relatedCommands.length > 0 ? (
+              <div className="flex flex-wrap gap-2">
+                {(command?.relatedCommands || []).map((related, index) => (
+                  <div
+                    key={index}
+                    className="relative"
+                    onMouseEnter={() => setHoveredRelated(index)}
+                    onMouseLeave={() => setHoveredRelated(null)}
+                  >
+                    <button className={`
+                      px-2.5 py-1 rounded-lg font-mono font-medium text-xs
+                      bg-gradient-to-r ${RELATIONSHIP_COLORS[related.relationship || 'similar']}
+                      border transition-all duration-300 hover:scale-105
+                    `}
+                    style={{ fontFamily: "'Courier New', Courier, monospace" }}>
+                      {related.name}
+                    </button>
+                    
+                    {/* Hover Tooltip - Above button, left-aligned */}
+                    {hoveredRelated === index && (
+                      <div className="absolute bottom-full left-0 mb-1 px-2 py-1 bg-slate-900 text-white text-xs rounded border border-white/20 shadow-xl z-50 whitespace-nowrap">
+                        {related.reason}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div></div>
+            )}
+            
+            {/* Man Page Link - Right side */}
             <a
               href={command?.manPageUrl || '#'}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-gradient-to-r from-cyan-400/20 to-blue-500/20 border border-cyan-400/30 text-cyan-300 hover:from-cyan-400/30 hover:to-blue-500/30 transition-all duration-300 group"
+              className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-gradient-to-r from-cyan-400/20 to-blue-500/20 border border-cyan-400/30 text-cyan-300 hover:from-cyan-400/30 hover:to-blue-500/30 transition-all duration-300 group flex-shrink-0"
             >
               <ExternalLink 
                 className="w-3 h-3 group-hover:rotate-12 transition-transform" 
