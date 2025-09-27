@@ -3,6 +3,7 @@ import PWAInstall from './components/PWAInstall';
 import { getPlatformMapping, getCategoryMapping } from "./constants/mappings";
 import { Header } from './components/layout/Header';
 import { SearchInterface } from './components/search/SearchInterface';
+import { SearchInterfaceMini } from './components/search/SearchInterfaceMini';
 import { useWaveAnimation } from './hooks/useWaveAnimation';
 import { useScrollBehavior } from './hooks/useScrollBehavior';
 
@@ -29,6 +30,7 @@ function App({ mockCommands }) {
     const [isLoading, setIsLoading] = useState(true);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
+    const [showMiniSearch, setShowMiniSearch] = useState(false);
 
     // Enhanced Wave Animation System
     const { getBackgroundWave, wavePhase } = useWaveAnimation(1000);
@@ -40,6 +42,7 @@ function App({ mockCommands }) {
 
     // Ref for dynamic height calculation
     const stickyWrapperRef = useRef(null);
+    const scrollThreshold = 100; // Pixels to scroll before switching to mini
 
     /**
      * Get the man page URL for a command
@@ -125,6 +128,17 @@ function App({ mockCommands }) {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, [isFilterOpen]);
+
+    // Handle scroll to switch between full and mini search interface
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            setShowMiniSearch(scrollTop > scrollThreshold);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     // Wave animation is now handled by the useWaveAnimation hook
 
@@ -318,25 +332,36 @@ function App({ mockCommands }) {
                     ref={stickyWrapperRef}
                     style={{
                         position: 'sticky',
-                        top: '6px',
+                        top: showMiniSearch ? '0px' : '6px',
                         zIndex: 20,
                         transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                     }}
                 >
-                    <SearchInterface
-                        searchQuery={searchQuery}
-                        onSearchChange={setSearchQuery}
-                        onFilterToggle={handleFilterToggle}
-                        selectedPlatforms={selectedPlatforms}
-                        onPlatformChange={setSelectedPlatforms}
-                        selectedCategories={selectedCategories}
-                        onCategoryChange={setSelectedCategories}
-                        showAdvancedFilters={showAdvancedFilters}
-                        onAdvancedFiltersToggle={handleAdvancedFiltersToggle}
-                        onClearAllFilters={handleClearAllFilters}
-                        totalCommands={commands.length}
-                    />
-
+                    {/* Mini Search Interface - shown when scrolled */}
+                    {showMiniSearch ? (
+                        <SearchInterfaceMini
+                            searchQuery={searchQuery}
+                            totalCommands={commands.length}
+                            selectedPlatforms={selectedPlatforms}
+                            selectedCategories={selectedCategories}
+                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                        />
+                    ) : (
+                        /* Full Search Interface - shown at top */
+                        <SearchInterface
+                            searchQuery={searchQuery}
+                            onSearchChange={setSearchQuery}
+                            onFilterToggle={handleFilterToggle}
+                            selectedPlatforms={selectedPlatforms}
+                            onPlatformChange={setSelectedPlatforms}
+                            selectedCategories={selectedCategories}
+                            onCategoryChange={setSelectedCategories}
+                            showAdvancedFilters={showAdvancedFilters}
+                            onAdvancedFiltersToggle={handleAdvancedFiltersToggle}
+                            onClearAllFilters={handleClearAllFilters}
+                            totalCommands={commands.length}
+                        />
+                    )}
                 </div>
 
 

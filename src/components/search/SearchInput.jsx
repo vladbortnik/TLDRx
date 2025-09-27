@@ -234,14 +234,6 @@ export function SearchInput({
                                             {statusMessages[currentMessageIndex]}
                                         </span>
                                     </div>
-                                    {/* Particles progress indicator */}
-                                    <div className="w-full h-0.5 relative">
-                                        <div className="absolute w-0.5 h-0.5 bg-cyan-400 rounded-full animate-particles-1" style={{ left: '10%' }}></div>
-                                        <div className="absolute w-0.5 h-0.5 bg-blue-400 rounded-full animate-particles-2" style={{ left: '30%' }}></div>
-                                        <div className="absolute w-0.5 h-0.5 bg-cyan-300 rounded-full animate-particles-3" style={{ left: '50%' }}></div>
-                                        <div className="absolute w-0.5 h-0.5 bg-blue-300 rounded-full animate-particles-4" style={{ left: '70%' }}></div>
-                                        <div className="absolute w-0.5 h-0.5 bg-cyan-400 rounded-full animate-particles-5" style={{ left: '90%' }}></div>
-                                    </div>
                                 </div>
 
                                 {/* Right side: Filter Bar */}
