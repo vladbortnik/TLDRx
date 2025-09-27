@@ -15,6 +15,7 @@ _scripts-temp/
 .cascade-rules
 _README/
 _Trash/
+.playwright-mcp/
 
 # Claude Code
 CLAUDE.md

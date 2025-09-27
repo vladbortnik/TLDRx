@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  FileText,
+FileText,
   Wrench,
   Settings,
   Globe,

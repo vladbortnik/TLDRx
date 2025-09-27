@@ -1,93 +1,142 @@
+/**
+ * CommandCard Component
+ * 
+ * Main card component for displaying command information
+ * Includes header (name, standsFor, description, badges) and collapsible sections
+ * Features wave animation synchronized across all cards
+ */
+
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   ChevronDown, 
   ChevronUp, 
   ExternalLink,
-  Terminal,
   AlertTriangle,
-  Shield,
   Zap,
   Copy,
-  Play,
-  FileText,
-  Settings,
-  Globe,
-  Database,
-  Package,
-  Code,
-  Bot,
-  Container,
-  Wrench
+  Play
 } from 'lucide-react';
-import { FaApple, FaWindows, FaLinux } from 'react-icons/fa6';
+import { CommandCardHeader } from './CommandCardHeader';
 
-// Platform and Category Icon Mappings
-const PLATFORM_ICONS = {
-  linux: FaLinux,
-  macos: FaApple,
-  windows: FaWindows
-};
-
-const CATEGORY_ICONS = {
-  'file-operations': FileText,
-  'text-processing': Wrench,
-  'system': Settings,
-  'networking': Globe,
-  'shell': Terminal,
-  'development': Code,
-  'package-management': Package,
-  'security': Shield,
-  'containers': Container,
-  'automation': Bot,
-  'data-processing': Database
-};
-
-const SAFETY_COLORS = {
-  safe: {
-    bg: 'from-emerald-400/20 to-green-500/20',
-    border: 'border-emerald-400/40',
-    text: 'text-emerald-300',
-    glow: '0 0 20px rgba(16, 185, 129, 0.3)'
-  },
-  caution: {
-    bg: 'from-yellow-400/20 to-orange-500/20',
-    border: 'border-yellow-400/40',
-    text: 'text-yellow-300',
-    glow: '0 0 20px rgba(245, 158, 11, 0.3)'
-  },
-  dangerous: {
-    bg: 'from-red-400/20 to-pink-500/20',
-    border: 'border-red-400/40',
-    text: 'text-red-300',
-    glow: '0 0 20px rgba(239, 68, 68, 0.3)'
-  }
-};
-
+/**
+ * Color configuration for related commands based on relationship type
+ */
 const RELATIONSHIP_COLORS = {
   similar: 'from-blue-400/20 to-cyan-500/20 border-blue-400/40 text-blue-300',
   alternative: 'from-purple-400/20 to-indigo-500/20 border-purple-400/40 text-purple-300',
   complement: 'from-green-400/20 to-emerald-500/20 border-green-400/40 text-green-300'
 };
 
+/**
+ * Main CommandCard Component
+ * Displays complete command information with expandable sections
+ */
 export function CommandCard({ command, wavePhase: externalWavePhase }) {
-  // Defensive programming - ensure command exists
+  // Defensive check for required data
   if (!command) {
     return <div className="text-red-400">Error: No command data provided</div>;
   }
 
-  // 🔧 FIX: Use shared wave phase for synchronization
+  // Wave animation phase from parent for synchronization
   const wavePhase = externalWavePhase || 0;
+  
+  // State for expandable sections (collapsed by default)
   const [expandedSections, setExpandedSections] = useState({
+    keyFeatures: false,
     combinations: false,
     warnings: false
   });
+  
+  // UI interaction states
   const [hoveredRelated, setHoveredRelated] = useState(null);
   const [copiedExample, setCopiedExample] = useState(null);
+  const [showDescription, setShowDescription] = useState(false);
+  const [screenSize, setScreenSize] = useState('desktop');
+  
+  // Refs for DOM and timing
   const cardRef = useRef(null);
+  const descriptionTimeoutRef = useRef(null);
+  const descriptionShowTimeRef = useRef(null);
+  const isHoveringRef = useRef(false);
 
-  // 🔧 FIX: Wave animation now managed by parent component
+  /**
+   * Responsive screen size detection
+   * Updates screenSize state for responsive styling
+   */
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== 'undefined') {
+        const width = window.innerWidth;
+        if (width < 640) setScreenSize('mobile');
+        else if (width < 768) setScreenSize('tablet');
+        else if (width < 1024) setScreenSize('laptop');
+        else if (width < 1440) setScreenSize('desktop');
+        else setScreenSize('wide');
+      }
+    };
 
-  // Terminal-style wave effect for command cards
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  /**
+   * Cleanup timeouts on unmount
+   */
+  useEffect(() => {
+    return () => {
+      if (descriptionTimeoutRef.current) {
+        clearTimeout(descriptionTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  /**
+   * Handle description hover with minimum 10-second display
+   * Description stays visible while hovering, but has minimum 10s display time
+   */
+  const handleDescriptionHover = (hovering) => {
+    isHoveringRef.current = hovering;
+    
+    if (hovering) {
+      // Show description and record the time
+      setShowDescription(true);
+      descriptionShowTimeRef.current = Date.now();
+      
+      // Clear any existing hide timeout
+      if (descriptionTimeoutRef.current) {
+        clearTimeout(descriptionTimeoutRef.current);
+        descriptionTimeoutRef.current = null;
+      }
+    } else {
+      // Mouse left - check if 10 seconds have passed
+      if (descriptionShowTimeRef.current) {
+        const elapsed = Date.now() - descriptionShowTimeRef.current;
+        const remaining = Math.max(0, 10000 - elapsed);
+        
+        if (remaining > 0) {
+          // Haven't reached minimum time, schedule hide after remaining time
+          descriptionTimeoutRef.current = setTimeout(() => {
+            // Only hide if still not hovering
+            if (!isHoveringRef.current) {
+              setShowDescription(false);
+              descriptionShowTimeRef.current = null;
+            }
+            descriptionTimeoutRef.current = null;
+          }, remaining);
+        } else {
+          // Already passed minimum time, hide immediately
+          setShowDescription(false);
+          descriptionShowTimeRef.current = null;
+        }
+      }
+    }
+  };
+
+  /**
+   * Generate wave animation gradient for card background
+   * Creates dynamic color shifts synchronized across all cards
+   */
   const getCardWave = () => {
     const r1 = Math.floor(10 + Math.sin(wavePhase * 0.02) * 10);
     const g1 = Math.floor(20 + Math.cos(wavePhase * 0.025) * 15);
@@ -106,19 +155,9 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
     };
   };
 
-  // 3D icon animation
-  const get3DIconStyle = (baseRotation = 0) => ({
-    transform: `
-      perspective(100px) 
-      rotateX(${wavePhase * 0.2 + baseRotation}deg) 
-      rotateY(${wavePhase * 0.3}deg) 
-      rotateZ(${wavePhase * 0.1}deg)
-    `,
-    filter: `drop-shadow(0 0 8px rgba(59, 130, 246, 0.3))`,
-    transition: 'all 0.1s ease',
-    transformStyle: 'preserve-3d'
-  });
-
+  /**
+   * Toggle expanded state for collapsible sections
+   */
   const toggleSection = (section) => {
     setExpandedSections(prev => ({
       ...prev,
@@ -126,6 +165,10 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
     }));
   };
 
+  /**
+   * Copy command example to clipboard
+   * Shows confirmation feedback for 2 seconds
+   */
   const copyExample = async (example, index) => {
     try {
       await navigator.clipboard.writeText(example.split(' #')[0].trim());
@@ -136,12 +179,10 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
     }
   };
 
-  const formatDisplayName = (str) => {
-    return str.split('-').map(word => 
-      word.charAt(0).toUpperCase() + word.slice(1)
-    ).join(' ');
-  };
-
+  /**
+   * Parse example string into command and comment parts
+   * Split on '#' to separate command from explanation
+   */
   const parseExample = (example) => {
     if (!example || typeof example !== 'string') {
       return { command: '', comment: '' };
@@ -153,6 +194,10 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
     };
   };
 
+  /**
+   * Parse key feature string into title and description
+   * First feature is full description, rest are title:description format
+   */
   const parseKeyFeature = (feature) => {
     if (!feature || typeof feature !== 'string') {
       return { title: '', description: '' };
@@ -165,42 +210,6 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
       title: feature.substring(0, colonIndex).trim(),
       description: feature.substring(colonIndex + 1).trim()
     };
-  };
-
-  const safetyConfig = SAFETY_COLORS[command?.safety] || SAFETY_COLORS.safe;
-  const CategoryIcon = CATEGORY_ICONS[command?.category] || Terminal;
-
-  // Safe platform rendering function - handles both string and object formats
-  const renderPlatformIcon = (platform) => {
-    // Normalize platform data
-    const platformId = typeof platform === 'string' 
-      ? platform 
-      : platform?.id || platform?.name || 'unknown';
-    
-    const platformName = typeof platform === 'string'
-      ? platform
-      : platform?.name || platform?.id || 'unknown';
-    
-    const PlatformIcon = PLATFORM_ICONS[platformId];
-    
-    // Return icon or fallback text
-    if (!PlatformIcon) {
-      return <span className="text-xs text-white/70">{platformName}</span>;
-    }
-    
-    // Apply unique rotation for each platform icon for visual variety
-    const rotationMap = {
-      'macos': 45,
-      'windows': 90,
-      'linux': 0
-    };
-    
-    return (
-      <PlatformIcon 
-        className="w-4 h-4 text-white/90"
-        style={get3DIconStyle(rotationMap[platformId] || 0)}
-      />
-    );
   };
 
   return (
@@ -217,151 +226,106 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
         style={getCardWave()}
       >
         
-        {/* Top Section: Command Name + Safety Badge */}
-        <div className="relative p-4 sm:p-6 border-b border-white/10">
-          {/* Safety Badge - Top Right Corner */}
-          <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
-            <div 
-              className={`
-                px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide
-                bg-gradient-to-r ${safetyConfig.bg} ${safetyConfig.border} border
-                ${safetyConfig.text} backdrop-blur-sm
-              `}
-              style={{ boxShadow: safetyConfig.glow }}
-            >
-              {command?.safety || 'safe'}
-            </div>
-          </div>
+        {/* Header Section: Command Name + Stands For + Description + Badges */}
+        <CommandCardHeader 
+          command={command}
+          screenSize={screenSize}
+          showDescription={showDescription}
+          onDescriptionHover={handleDescriptionHover}
+        />
 
-          {/* Command Name + Stands For */}
-          <div className="mr-16 sm:mr-20"> {/* Leave space for safety badge */}
-            <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3 mb-2 sm:mb-3">
-              <h1 className="text-xl sm:text-2xl font-bold font-mono text-white bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">
-                {command?.name || 'Unknown Command'}
-              </h1>
-              <span className="text-sm sm:text-lg text-white/70 font-medium">
-                {command?.standsFor || ''}
-              </span>
-            </div>
-
-            {/* Description */}
-            <p className="text-white/80 text-sm sm:text-base leading-relaxed">
-              {command?.description || 'No description available'}
-            </p>
-          </div>
+        {/* Syntax Pattern - Single line, no title */}
+        <div className="px-4 py-2 border-b border-white/10">
+          <code className="text-purple-300 font-mono text-xs whitespace-nowrap block overflow-x-auto">
+            {command?.syntaxPattern || 'No syntax available'}
+          </code>
         </div>
 
-        {/* Badges Section: Platform + Category */}
-        <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-white/10 bg-gradient-to-r from-white/5 to-white/10">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            {/* Platform Badges */}
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-white/60 uppercase tracking-wide font-medium mr-2">
-                Platforms:
-              </span>
-              {(command?.platform || []).map((platform, index) => {
-                const platformName = typeof platform === 'string' 
-                  ? platform 
-                  : platform?.name || platform?.id || 'unknown';
-                
-                return (
-                  <div
-                    key={`platform-${platformName}-${index}`}
-                    className="relative p-2 rounded-lg bg-gradient-to-br from-white/10 to-white/5 border border-white/20 hover:border-white/30 transition-colors"
-                    title={platformName.charAt(0).toUpperCase() + platformName.slice(1)}
-                  >
-                    {renderPlatformIcon(platform)}
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Category Badge */}
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-cyan-400/20 to-blue-500/20 border border-cyan-400/30">
-              <CategoryIcon 
-                className="w-4 h-4 text-cyan-300"
-                style={get3DIconStyle(180)}
-              />
-              <span className="text-xs font-medium text-cyan-300 uppercase tracking-wide">
-                {formatDisplayName(command?.category || 'general')}
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Key Features Section - Conditional */}
+        {/* Key Features Section - Collapsible */}
         {command?.keyFeatures && command.keyFeatures.length > 0 && (
-          <div className="px-4 sm:px-6 py-4 sm:py-5 border-b border-white/10">
-            <h3 className="flex items-center gap-2 text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">
-              <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" style={get3DIconStyle()} />
-              Key Features
-            </h3>
+          <div className="px-4 py-2.5 border-b border-white/10">
+            <button
+              onClick={() => toggleSection('keyFeatures')}
+              className="flex items-center justify-between w-full text-left group/header"
+            >
+              <h3 className="flex items-center gap-1.5 text-xs font-semibold text-white">
+                <Zap className="w-3.5 h-3.5 text-yellow-400" />
+                Key Features
+              </h3>
+              {expandedSections.keyFeatures ? (
+                <ChevronUp className="w-4 h-4 text-white/70 group-hover/header:text-yellow-400 transition-colors" />
+              ) : (
+                <ChevronDown className="w-4 h-4 text-white/70 group-hover/header:text-yellow-400 transition-colors" />
+              )}
+            </button>
             
-            {/* Full Description */}
-            <p className="text-white/80 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 italic">
-              {command.keyFeatures[0]}
-            </p>
+            {expandedSections.keyFeatures && (
+              <div className="mt-2 animate-in slide-in-from-top duration-300">
+                {/* Full Description - First item in array */}
+                <p className="text-white/80 text-xs leading-relaxed mb-2 italic">
+                  {command.keyFeatures[0]}
+                </p>
 
-            {/* Feature List */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
-              {command.keyFeatures.slice(1).map((feature, index) => {
-                const parsed = parseKeyFeature(feature);
-                return (
-                  <div 
-                    key={index}
-                    className="p-3 rounded-lg bg-gradient-to-br from-white/5 to-white/10 border border-white/10 hover:border-white/20 transition-all duration-300"
-                  >
-                    <h4 className="text-cyan-300 font-medium text-sm mb-1">
-                      {parsed.title}
-                    </h4>
-                    <p className="text-white/70 text-xs leading-relaxed">
-                      {parsed.description}
-                    </p>
+                {/* Feature List - Remaining items */}
+                {command.keyFeatures.length > 1 && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-1.5">
+                    {command.keyFeatures.slice(1).map((feature, index) => {
+                      const parsed = parseKeyFeature(feature);
+                      return (
+                        <div 
+                          key={index}
+                          className="p-2 rounded-md bg-gradient-to-br from-white/5 to-white/10 border border-white/10 hover:border-white/20 transition-all duration-300"
+                        >
+                          <h4 className="text-cyan-300 font-medium text-xs mb-0.5">
+                            {parsed.title}
+                          </h4>
+                          <p className="text-white/60 text-[10px] leading-relaxed">
+                            {parsed.description}
+                          </p>
+                        </div>
+                      );
+                    })}
                   </div>
-                );
-              })}
-            </div>
+                )}
+              </div>
+            )}
           </div>
         )}
 
         {/* Examples Section - Always Expanded */}
-        <div className="px-4 sm:px-6 py-4 sm:py-5 border-b border-white/10">
-          <h3 className="flex items-center gap-2 text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">
-            <Terminal className="w-4 h-4 sm:w-5 sm:h-5 text-green-400" style={get3DIconStyle()} />
-            Examples
-          </h3>
-          <div className="space-y-2 sm:space-y-3">
+        <div className="px-4 py-2.5 border-b border-white/10">
+          <div className="space-y-1.5">
             {(command?.examples || []).map((example, index) => {
               const parsed = parseExample(example);
               return (
                 <div 
                   key={index}
-                  className="group/example relative p-3 sm:p-4 rounded-xl bg-gradient-to-r from-slate-900/80 to-slate-800/80 border border-white/10 hover:border-green-400/30 transition-all duration-300"
+                  className="group/example relative p-2.5 rounded-lg bg-gradient-to-r from-slate-900/80 to-slate-800/80 border border-white/10 hover:border-green-400/30 transition-all duration-300"
                 >
-                  {/* Terminal Prompt */}
-                  <div className="flex items-start gap-3">
-                    <span className="text-green-400 font-mono text-sm flex-shrink-0 mt-0.5">$</span>
-                    <div className="flex-1 min-w-0">
-                      <code className="text-white font-mono text-xs sm:text-sm break-all">
+                  {/* Terminal Prompt - Single Line */}
+                  <div className="flex items-center gap-3">
+                    <span className="text-green-400 font-mono text-sm flex-shrink-0">$</span>
+                    <div className="flex-1 min-w-0 flex items-baseline gap-2">
+                      <code className="text-green-400 font-mono text-xs">
                         {parsed.command}
                       </code>
                       {parsed.comment && (
-                        <p className="text-green-300/70 text-xs mt-1 italic">
-                          {parsed.comment}
-                        </p>
+                        <span className="text-gray-400 text-xs italic">
+                          # {parsed.comment}
+                        </span>
                       )}
                     </div>
                     
                     {/* Copy Button */}
                     <button
                       onClick={() => copyExample(example, index)}
-                      className="opacity-0 group-hover/example:opacity-100 p-1 sm:p-1.5 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-300"
+                      className="opacity-0 group-hover/example:opacity-100 p-1 rounded-md bg-white/10 hover:bg-white/20 transition-all duration-300 flex-shrink-0"
                       title="Copy command"
                     >
                       {copiedExample === index ? (
-                        <span className="text-green-400 text-xs font-medium">✓</span>
+                        <span className="text-green-400 text-[10px] font-medium">✓</span>
                       ) : (
-                        <Copy className="w-3 h-3 text-white/60" />
+                        <Copy className="w-2.5 h-2.5 text-white/60" />
                       )}
                     </button>
                   </div>
@@ -371,74 +335,62 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
           </div>
         </div>
 
-        {/* Syntax Pattern Section - Always Expanded */}
-        <div className="px-4 sm:px-6 py-4 sm:py-5 border-b border-white/10">
-          <h3 className="flex items-center gap-2 text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">
-            <Code className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400" style={get3DIconStyle()} />
-            Syntax
-          </h3>
-          <div className="p-3 sm:p-4 rounded-xl bg-gradient-to-r from-purple-900/30 to-indigo-900/30 border border-purple-400/20 overflow-x-auto">
-            <code className="text-purple-300 font-mono text-xs sm:text-sm lg:text-base whitespace-nowrap">
-              {command?.syntaxPattern || 'No syntax available'}
-            </code>
-          </div>
-        </div>
+        {/* Command Combinations Section - Hidden per requirements */}
+        {/* Keeping code for future use but not displaying */}
+        {/*{command?.commandCombinations && command.commandCombinations.length > 0 && (*/}
+        {/*  <div className="px-4 py-2.5 border-b border-white/10">*/}
+        {/*    <button*/}
+        {/*      onClick={() => toggleSection('combinations')}*/}
+        {/*      className="flex items-center justify-between w-full text-left group/header"*/}
+        {/*    >*/}
+        {/*      <h3 className="flex items-center gap-1.5 text-xs font-semibold text-white">*/}
+        {/*        <Play className="w-3.5 h-3.5 text-orange-400" />*/}
+        {/*        Command Combinations*/}
+        {/*      </h3>*/}
+        {/*      {expandedSections.combinations ? (*/}
+        {/*        <ChevronUp className="w-4 h-4 text-white/70 group-hover/header:text-orange-400 transition-colors" />*/}
+        {/*      ) : (*/}
+        {/*        <ChevronDown className="w-4 h-4 text-white/70 group-hover/header:text-orange-400 transition-colors" />*/}
+        {/*      )}*/}
+        {/*    </button>*/}
+        {/*    */}
+        {/*    {expandedSections.combinations && (*/}
+        {/*      <div className="mt-2 space-y-1.5 animate-in slide-in-from-top duration-300">*/}
+        {/*        {(command?.commandCombinations || []).map((combo, index) => (*/}
+        {/*          <div */}
+        {/*            key={index}*/}
+        {/*            className="p-2.5 rounded-lg bg-gradient-to-br from-orange-900/20 to-yellow-900/20 border border-orange-400/20"*/}
+        {/*          >*/}
+        {/*            <div className="mb-1">*/}
+        {/*              <span className="text-orange-300 font-mono text-xs">*/}
+        {/*                {combo.label}*/}
+        {/*              </span>*/}
+        {/*            </div>*/}
+        {/*            <div className="space-y-1">*/}
+        {/*              <div className="p-2 rounded-md bg-slate-900/60">*/}
+        {/*                <code className="text-white font-mono text-xs">*/}
+        {/*                  {combo.commands}*/}
+        {/*                </code>*/}
+        {/*              </div>*/}
+        {/*              <p className="text-white/60 text-xs italic">*/}
+        {/*                {combo.explanation}*/}
+        {/*              </p>*/}
+        {/*            </div>*/}
+        {/*          </div>*/}
+        {/*        ))}*/}
+        {/*      </div>*/}
+        {/*    )}*/}
+        {/*  </div>*/}
+        {/*)}*/}
 
-        {/* Command Combinations Section - Expandable */}
-        {command?.commandCombinations && command.commandCombinations.length > 0 && (
-          <div className="px-4 sm:px-6 py-4 sm:py-5 border-b border-white/10">
-            <button
-              onClick={() => toggleSection('combinations')}
-              className="flex items-center justify-between w-full text-left group/header"
-            >
-              <h3 className="flex items-center gap-2 text-base sm:text-lg font-semibold text-white">
-                <Play className="w-4 h-4 sm:w-5 sm:h-5 text-orange-400" style={get3DIconStyle()} />
-                Command Combinations
-              </h3>
-              {expandedSections.combinations ? (
-                <ChevronUp className="w-5 h-5 text-white/70 group-hover/header:text-orange-400 transition-colors" />
-              ) : (
-                <ChevronDown className="w-5 h-5 text-white/70 group-hover/header:text-orange-400 transition-colors" />
-              )}
-            </button>
-            
-            {expandedSections.combinations && (
-              <div className="mt-4 space-y-3 animate-in slide-in-from-top duration-300">
-                {(command?.commandCombinations || []).map((combo, index) => (
-                  <div 
-                    key={index}
-                    className="p-4 rounded-xl bg-gradient-to-br from-orange-900/20 to-yellow-900/20 border border-orange-400/20"
-                  >
-                    <div className="mb-2">
-                      <span className="text-orange-300 font-mono text-sm">
-                        {combo.label}
-                      </span>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="p-3 rounded-lg bg-slate-900/60">
-                        <code className="text-white font-mono text-sm">
-                          {combo.commands}
-                        </code>
-                      </div>
-                      <p className="text-white/70 text-sm italic">
-                        {combo.explanation}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Related Commands Section */}
+        {/* Related Commands Section - Conditional */}
         {command?.relatedCommands && command.relatedCommands.length > 0 && (
-          <div className="px-4 sm:px-6 py-4 sm:py-5 border-b border-white/10">
-            <h3 className="flex items-center gap-2 text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">
-              <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" style={get3DIconStyle()} />
+          <div className="px-4 py-2.5 border-b border-white/10">
+            <h3 className="flex items-center gap-1.5 text-xs font-semibold text-white mb-1.5">
+              <Zap className="w-3.5 h-3.5 text-cyan-400" />
               Related Commands
             </h3>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2">
               {(command?.relatedCommands || []).map((related, index) => (
                 <div
                   key={index}
@@ -447,7 +399,7 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
                   onMouseLeave={() => setHoveredRelated(null)}
                 >
                   <button className={`
-                    px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl font-mono font-medium text-xs sm:text-sm
+                    px-2.5 py-1 rounded-lg font-mono font-medium text-xs
                     bg-gradient-to-r ${RELATIONSHIP_COLORS[related.relationship || 'similar']}
                     border transition-all duration-300 hover:scale-105
                   `}>
@@ -467,33 +419,33 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
           </div>
         )}
 
-        {/* Warnings Section - Collapsible */}
+        {/* Warnings Section - Collapsible, initially collapsed */}
         {command?.warnings && command.warnings.length > 0 && (
-          <div className="px-4 sm:px-6 py-4 sm:py-5 border-b border-white/10">
+          <div className="px-4 py-2.5 border-b border-white/10">
             <button
               onClick={() => toggleSection('warnings')}
               className="flex items-center justify-between w-full text-left group/header"
             >
-              <h3 className="flex items-center gap-2 text-base sm:text-lg font-semibold text-red-300">
-                <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-red-400" style={get3DIconStyle()} />
+              <h3 className="flex items-center gap-1.5 text-xs font-semibold text-red-300">
+                <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
                 Warnings
               </h3>
               {expandedSections.warnings ? (
-                <ChevronUp className="w-5 h-5 text-white/70 group-hover/header:text-red-400 transition-colors" />
+                <ChevronUp className="w-4 h-4 text-white/70 group-hover/header:text-red-400 transition-colors" />
               ) : (
-                <ChevronDown className="w-5 h-5 text-white/70 group-hover/header:text-red-400 transition-colors" />
+                <ChevronDown className="w-4 h-4 text-white/70 group-hover/header:text-red-400 transition-colors" />
               )}
             </button>
             
             {expandedSections.warnings && (
-              <div className="mt-4 space-y-2 animate-in slide-in-from-top duration-300">
+              <div className="mt-2 space-y-1 animate-in slide-in-from-top duration-300">
                 {(command?.warnings || []).map((warning, index) => (
                   <div 
                     key={index}
-                    className="p-3 rounded-lg bg-gradient-to-r from-red-900/30 to-pink-900/30 border border-red-400/30"
+                    className="p-2 rounded-md bg-gradient-to-r from-red-900/30 to-pink-900/30 border border-red-400/30"
                   >
-                    <p className="text-red-200 text-sm flex items-start gap-2">
-                      <AlertTriangle className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
+                    <p className="text-red-200 text-xs flex items-start gap-1.5">
+                      <AlertTriangle className="w-3 h-3 text-red-400 flex-shrink-0 mt-0.5" />
                       {warning}
                     </p>
                   </div>
@@ -504,22 +456,21 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
         )}
 
         {/* Footer: Man Page Link */}
-        <div className="px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-white/5 to-white/10">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-            <span className="text-white/60 text-xs sm:text-sm">
-              Need more details?
+        <div className="px-4 py-1.5 bg-gradient-to-r from-white/5 to-white/10">
+          <div className="flex items-center justify-between">
+            <span className="text-white/50 text-[10px]">
+              Full documentation
             </span>
             <a
               href={command?.manPageUrl || '#'}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-gradient-to-r from-cyan-400/20 to-blue-500/20 border border-cyan-400/30 text-cyan-300 hover:from-cyan-400/30 hover:to-blue-500/30 transition-all duration-300 group"
+              className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-gradient-to-r from-cyan-400/20 to-blue-500/20 border border-cyan-400/30 text-cyan-300 hover:from-cyan-400/30 hover:to-blue-500/30 transition-all duration-300 group"
             >
               <ExternalLink 
-                className="w-4 h-4 group-hover:rotate-12 transition-transform" 
-                style={get3DIconStyle()} 
+                className="w-3 h-3 group-hover:rotate-12 transition-transform" 
               />
-              <span className="text-xs sm:text-sm font-medium">Man Page</span>
+              <span className="text-[10px] font-medium">Man Page</span>
             </a>
           </div>
         </div>
@@ -532,7 +483,6 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
           transform: 'translateY(8px) scale(0.95)',
         }}
       />
-
     </div>
   );
 }

@@ -13,34 +13,52 @@ const mockCommand = {
   standsFor: "list directory contents", 
   description: "List information about files and directories",
   safety: "safe",
-  platform: [
-    { id: 'linux', name: 'Linux', color: 'text-green-400 bg-green-500/20 border-green-500/50' },
-    { id: 'mac', name: 'macOS', color: 'text-blue-400 bg-blue-500/20 border-blue-500/50' }
-  ],
-  categories: [
-    { name: 'File Operations', icon: '📁' }
-  ],
-  prerequisites: [],
+  platform: ['linux', 'macos'],
+  category: 'file-operations',
   syntaxPattern: "ls [options] [directory]",
-  commonFlags: ["-l", "-a", "-h"],
-  notes: ["Shows hidden files with -a flag"],
-  warnings: [],
   examples: [
     "ls -la",
     "ls -la /home # List detailed info for /home directory", 
     "ls -lh # List with human readable sizes"
   ],
-  relatedCommands: ["dir", "find", "tree"],
-  documentationUrl: "https://man7.org/linux/man-pages/man1/ls.1.html"
+  keyFeatures: [
+    "Lists files and directories in the current directory by default",
+    "Display Format: Shows file names, permissions, owners, sizes, and timestamps",
+    "Hidden Files: Use -a flag to show hidden files (those starting with '.')",
+    "Human Readable: Use -h flag for human-readable file sizes"
+  ],
+  commandCombinations: [
+    {
+      label: "Find large files",
+      commands: "ls -lhS | head -10",
+      explanation: "List files sorted by size (largest first) and show top 10"
+    }
+  ],
+  relatedCommands: [
+    { name: "dir", relationship: "similar", reason: "DOS/Windows equivalent" },
+    { name: "find", relationship: "complement", reason: "Search for files recursively" },
+    { name: "tree", relationship: "alternative", reason: "Show directory structure as tree" }
+  ],
+  warnings: [],
+  manPageUrl: "https://man7.org/linux/man-pages/man1/ls.1.html"
 };
 
 const mockCommandComplex = {
   ...mockCommand,
   name: "docker",
   examples: Array.from({ length: 20 }, (_, i) => `docker command ${i} # Example ${i}`),
-  notes: Array.from({ length: 10 }, (_, i) => `Note ${i} about docker usage`),
+  keyFeatures: Array.from({ length: 10 }, (_, i) => `Feature ${i}: Description of feature ${i}`),
   warnings: Array.from({ length: 5 }, (_, i) => `Warning ${i} about docker security`),
-  relatedCommands: Array.from({ length: 15 }, (_, i) => `related-cmd-${i}`)
+  relatedCommands: Array.from({ length: 15 }, (_, i) => ({ 
+    name: `related-cmd-${i}`, 
+    relationship: "similar", 
+    reason: `Related to docker command ${i}` 
+  })),
+  commandCombinations: Array.from({ length: 5 }, (_, i) => ({
+    label: `Combination ${i}`,
+    commands: `docker cmd ${i} | pipe ${i}`,
+    explanation: `Explanation for combination ${i}`
+  }))
 };
 
 // Performance measurement utilities
@@ -75,7 +93,7 @@ describe('CommandCard Performance Tests', () => {
   describe('Single Component Render Performance', () => {
     it('should render a simple command card within acceptable time', () => {
       const { renderTime } = measureRenderTime(() => 
-        render(<CommandCard {...mockCommand} />)
+        render(<CommandCard command={mockCommand} wavePhase={0} />)
       );
 
       // Expect single card to render under 50ms (generous threshold)
@@ -85,7 +103,7 @@ describe('CommandCard Performance Tests', () => {
 
     it('should render a complex command card within acceptable time', () => {
       const { renderTime } = measureRenderTime(() => 
-        render(<CommandCard {...mockCommandComplex} />)
+        render(<CommandCard command={mockCommandComplex} wavePhase={0} />)
       );
 
       // Complex card should render under 100ms
@@ -100,7 +118,7 @@ describe('CommandCard Performance Tests', () => {
       };
 
       const { renderTime } = measureRenderTime(() => 
-        render(<CommandCard {...minimalCommand} />)
+        render(<CommandCard command={minimalCommand} wavePhase={0} />)
       );
 
       // Minimal card should be even faster
@@ -120,7 +138,7 @@ describe('CommandCard Performance Tests', () => {
         const { container } = render(
           <div>
             {commands.map((cmd, index) => 
-              <CommandCard key={index} {...cmd} />
+              <CommandCard key={index} command={cmd} wavePhase={0} />
             )}
           </div>
         );
@@ -146,7 +164,7 @@ describe('CommandCard Performance Tests', () => {
         const { container } = render(
           <div>
             {commands.map((cmd, index) => 
-              <CommandCard key={index} {...cmd} />
+              <CommandCard key={index} command={cmd} wavePhase={0} />
             )}
           </div>
         );
@@ -208,7 +226,7 @@ describe('CommandCard Performance Tests', () => {
       // Wrap CommandCard to count renders
       const TestWrapper = ({ command }) => {
         renderCount++;
-        return <CommandCard {...command} />;
+        return <CommandCard command={command} wavePhase={0} />;
       };
 
       const { rerender } = render(
