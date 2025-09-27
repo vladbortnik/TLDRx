@@ -341,9 +341,10 @@ function App({ mockCommands }) {
                     {showMiniSearch ? (
                         <SearchInterfaceMini
                             searchQuery={searchQuery}
+                            onSearchChange={setSearchQuery}
                             totalCommands={commands.length}
-                            selectedPlatforms={selectedPlatforms}
-                            selectedCategories={selectedCategories}
+                            activeFiltersCount={selectedPlatforms.length + selectedCategories.length}
+                            onClearFilters={handleClearAllFilters}
                             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                         />
                     ) : (

@@ -1,5 +1,5 @@
 import { Badge } from "./badge.jsx";
-import { PlatformIcon } from "./PlatformIcon.jsx";
+import { PlatformIcon } from "../../../_Trash/Lagacy/PlatformIcon.jsx";
 
 export function PlatformBadge({ platform }) {
   // Handle both string and object platform formats
