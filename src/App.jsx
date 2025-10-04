@@ -6,8 +6,8 @@ import { SearchInterfaceMini } from './components/search/SearchInterfaceMini';
 import { useWaveAnimation } from './hooks/useWaveAnimation';
 import { useScrollBehavior } from './hooks/useScrollBehavior';
 
-import { ErrorState } from './components/ui/ErrorState';
-import { LoadingState } from './components/ui/LoadingState';
+import { ErrorState } from './components/feedback/ErrorState';
+import { LoadingState } from './components/feedback/LoadingState';
 import { ResultsCounter } from './components/search/ResultsCounter';
 import { CommandGrid } from './components/results/CommandGrid';
 import "./index.css";

@@ -1,4 +1,4 @@
-import { CommandCard } from '../ui/CommandCard.jsx';
+import { CommandCard } from '../command/CommandCard.jsx';
 
 export function CommandGrid({ 
   commands, 
