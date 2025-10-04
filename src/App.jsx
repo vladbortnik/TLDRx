@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import PWAInstall from './components/PWAInstall';
-import { Header } from './components/layout/Header';
+import { Header } from './components/Header';
 import { SearchInterface } from './components/search/SearchInterface';
 import { SearchInterfaceMini } from './components/search/SearchInterfaceMini';
 import { useWaveAnimation } from './hooks/useWaveAnimation';
 import { useScrollBehavior } from './hooks/useScrollBehavior';
 
-import { ErrorState } from './components/feedback/ErrorState';
-import { LoadingState } from './components/feedback/LoadingState';
+import { ErrorState } from './components/ui/ErrorState';
+import { LoadingState } from './components/ui/LoadingState';
 import { ResultsCounter } from './components/search/ResultsCounter';
-import { CommandGrid } from './components/results/CommandGrid';
+import { CommandGrid } from './components/commands/CommandGrid';
 import "./index.css";
 
 /**

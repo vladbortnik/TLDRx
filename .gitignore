@@ -1,3 +1,6 @@
+# WebStorm
+.idea
+
 # Project Specific
 _*
 _TEMP/
@@ -39,7 +42,7 @@ dist-ssr
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea
+#.idea
 .DS_Store
 *.suo
 *.ntvs*

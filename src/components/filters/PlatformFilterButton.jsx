@@ -1,5 +1,5 @@
 import React from 'react';
-import { PLATFORM_ICONS, PLATFORM_COLORS } from '../../constants/ui-icons';
+import { PLATFORM_ICONS, PLATFORM_COLORS } from '../../utils/ui-icons';
 
 export function PlatformFilterButton({ platform, isSelected, onClick }) {
   const IconComponent = PLATFORM_ICONS[platform];

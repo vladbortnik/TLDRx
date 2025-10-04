@@ -1,5 +1,5 @@
 import React from 'react';
-import { CATEGORIES } from '../../constants/ui-icons';
+import { CATEGORIES } from '../../utils/ui-icons';
 
 // Add group properties to imported categories for UI grouping
 const CATEGORIES_WITH_GROUPS = CATEGORIES.map(category => ({

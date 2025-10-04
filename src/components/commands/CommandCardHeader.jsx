@@ -18,7 +18,7 @@ import {
   PLATFORM_COLORS,
   CATEGORIES,
   CATEGORY_ABBREVIATIONS
-} from '../../constants/ui-icons';
+} from '../../utils/ui-icons';
 
 
 // Safety Configuration - Distinct from category colors
