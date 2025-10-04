@@ -1,37 +1,14 @@
 import React from 'react';
-import {
-FileText,
-  Wrench,
-  Settings,
-  Globe,
-  Code,
-  Package,
-  Shield,
-  Container,
-  Bot,
-  Database
-} from 'lucide-react';
+import { CATEGORIES } from '../../constants/ui-icons';
 
-const CATEGORIES = [
-  // System Group (Purple/Violet)
-  { id: "system", icon: Settings, color: "from-purple-400 to-violet-600", group: "system", name: "System" },
-  { id: "security", icon: Shield, color: "from-violet-400 to-purple-600", group: "system", name: "Security" },
-  { id: "shell", icon: Code, color: "from-indigo-400 to-purple-600", group: "system", name: "Shell" },
-
-  // File/Data Group (Blue/Cyan)
-  { id: "file-operations", icon: FileText, color: "from-blue-400 to-cyan-600", group: "data", name: "File Operations" },
-  { id: "text-processing", icon: Wrench, color: "from-cyan-400 to-blue-600", group: "data", name: "Text Processing" },
-  { id: "data-processing", icon: Database, color: "from-sky-400 to-cyan-600", group: "data", name: "Data Processing" },
-
-  // Network/Dev Group (Green/Emerald)
-  { id: "networking", icon: Globe, color: "from-emerald-400 to-green-600", group: "dev", name: "Networking" },
-  { id: "development", icon: Code, color: "from-green-400 to-emerald-600", group: "dev", name: "Development" },
-  { id: "package-management", icon: Package, color: "from-teal-400 to-emerald-600", group: "dev", name: "Package Management" },
-
-  // Automation Group (Orange/Yellow)
-  { id: "containers", icon: Container, color: "from-orange-400 to-amber-600", group: "automation", name: "Containers" },
-  { id: "automation", icon: Bot, color: "from-amber-400 to-orange-600", group: "automation", name: "Automation" }
-];
+// Add group properties to imported categories for UI grouping
+const CATEGORIES_WITH_GROUPS = CATEGORIES.map(category => ({
+  ...category,
+  group: category.id === 'system' || category.id === 'security' || category.id === 'shell' ? 'system' :
+         category.id === 'file-operations' || category.id === 'text-processing' || category.id === 'data-processing' ? 'data' :
+         category.id === 'networking' || category.id === 'development' || category.id === 'package-management' ? 'dev' :
+         'automation'
+}));
 
 export function CategoryFilters({
   selectedCategories = [],
@@ -48,7 +25,7 @@ export function CategoryFilters({
   return (
     <div className="mt-3 animate-in slide-in-from-top duration-300">
       <div className="flex flex-wrap gap-2 justify-center">
-        {CATEGORIES.map((category) => {
+        {CATEGORIES_WITH_GROUPS.map((category) => {
           const isSelected = selectedCategories.includes(category.id);
           const IconComponent = category.icon;
 

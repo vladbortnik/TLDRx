@@ -1,21 +1,9 @@
 import React from 'react';
-import { FaApple, FaWindows, FaLinux } from 'react-icons/fa';
-
-const platformIcons = {
-  macos: FaApple,
-  windows: FaWindows,
-  linux: FaLinux
-};
-
-const platformColors = {
-  macos: 'rgb(200, 200, 200)',  // Changed from pure white to silver/gray
-  windows: 'rgb(6, 182, 212)',  // Changed to cyan to match "Text Processing" category
-  linux: 'rgb(251, 146, 60)'    // Changed to orange to match "Containers" category
-};
+import { PLATFORM_ICONS, PLATFORM_COLORS } from '../../constants/ui-icons';
 
 export function PlatformFilterButton({ platform, isSelected, onClick }) {
-  const IconComponent = platformIcons[platform];
-  const iconColor = platformColors[platform];
+  const IconComponent = PLATFORM_ICONS[platform];
+  const iconColor = PLATFORM_COLORS[platform];
 
   return (
     <button
