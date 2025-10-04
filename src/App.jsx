@@ -83,7 +83,7 @@ function App({ mockCommands }) {
                 if (isDevelopment) {
                     console.log(`🚀 Dev Mode: Loaded ${rawCommands.length} commands for optimal DevTools performance`);
                 }
-                // Simplified command enhancement - keep platforms and categories as strings
+                // Transform commands for UI requirements
                 const enhancedCommands = rawCommands.map(command => ({
                     ...command,
                     platform: command.platform || ['linux'],
@@ -137,12 +137,20 @@ function App({ mockCommands }) {
 
         const observer = new IntersectionObserver(
             ([entry]) => {
-                // When sentinel is visible (in viewport) -> show full interface
-                // When sentinel is not visible (scrolled past) -> show mini interface
-                setShowMiniSearch(!entry.isIntersecting);
+                // Only check content height at the moment of intersection
+                const documentHeight = document.documentElement.scrollHeight;
+                const viewportHeight = window.innerHeight;
+                const scrollableDistance = documentHeight - viewportHeight;
+                
+                // If we have enough scrollable content, allow the transition
+                if (scrollableDistance > 300) {
+                    setShowMiniSearch(!entry.isIntersecting);
+                } else {
+                    // Not enough content - always show full interface
+                    setShowMiniSearch(false);
+                }
             },
             {
-                // Trigger as soon as the sentinel starts to leave the viewport
                 threshold: 0,
                 rootMargin: '0px'
             }
@@ -316,6 +324,41 @@ function App({ mockCommands }) {
         setShowAdvancedFilters(false);
     };
 
+    // Re-check scrollability when filtered commands change
+    useEffect(() => {
+        // Small delay to let DOM update
+        const timeoutId = setTimeout(() => {
+            const documentHeight = document.documentElement.scrollHeight;
+            const viewportHeight = window.innerHeight;
+            const scrollableDistance = documentHeight - viewportHeight;
+            
+            // If not enough content, ensure mini search is hidden
+            if (scrollableDistance < 300) {
+                setShowMiniSearch(false);
+            }
+        }, 100);
+        
+        return () => clearTimeout(timeoutId);
+    }, [displayCommands.length]);
+
+    // Collapse advanced filters when scrolling with only 1 command
+    useEffect(() => {
+        if (displayCommands.length === 1 && showAdvancedFilters) {
+            const handleScroll = () => {
+                // Only collapse if filters are still open
+                if (showAdvancedFilters) {
+                    setShowAdvancedFilters(false);
+                }
+            };
+            
+            // Add scroll listener
+            window.addEventListener('scroll', handleScroll);
+            
+            // Cleanup
+            return () => window.removeEventListener('scroll', handleScroll);
+        }
+    }, [displayCommands.length, showAdvancedFilters]);
+
     // Wave background is now handled by the useWaveAnimation hook
 
     return (
@@ -380,7 +423,7 @@ function App({ mockCommands }) {
                             showAdvancedFilters={showAdvancedFilters}
                             onAdvancedFiltersToggle={handleAdvancedFiltersToggle}
                             onClearAllFilters={handleClearAllFilters}
-                            totalCommands={commands.length}
+                            totalCommands={displayCommands.length}
                         />
                     </div>
 
@@ -400,7 +443,7 @@ function App({ mockCommands }) {
                         <SearchInterfaceMini
                             searchQuery={searchQuery}
                             onSearchChange={setSearchQuery}
-                            totalCommands={commands.length}
+                            totalCommands={displayCommands.length}
                             activeFiltersCount={selectedPlatforms.length + selectedCategories.length}
                             onClearFilters={handleClearAllFilters}
                             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
