@@ -175,9 +175,7 @@ const PlatformIcons = ({ platforms }) => {
   return (
     <div className="flex items-center gap-1.5 md:gap-2">
       {platforms.slice(0, 3).map((platform, index) => {
-        const platformId = typeof platform === 'string' 
-          ? platform 
-          : platform?.id || platform?.name || 'unknown';
+        const platformId = platform || 'unknown';
         const PlatformIcon = PLATFORM_ICONS[platformId];
         const iconColor = PLATFORM_COLORS[platformId] || 'rgb(200, 200, 200)';
         

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import PWAInstall from './components/PWAInstall';
-import { getPlatformMapping, getCategoryMapping } from "./constants/mappings";
 import { Header } from './components/layout/Header';
 import { SearchInterface } from './components/search/SearchInterface';
 import { SearchInterfaceMini } from './components/search/SearchInterfaceMini';
@@ -42,7 +41,9 @@ function App({ mockCommands }) {
 
     // Ref for dynamic height calculation
     const stickyWrapperRef = useRef(null);
-    const scrollThreshold = 100; // Pixels to scroll before switching to mini
+    
+    // Sentinel element ref for intersection observer
+    const sentinelRef = useRef(null);
 
     /**
      * Get the man page URL for a command
@@ -82,11 +83,11 @@ function App({ mockCommands }) {
                 if (isDevelopment) {
                     console.log(`🚀 Dev Mode: Loaded ${rawCommands.length} commands for optimal DevTools performance`);
                 }
-                // Transform commands for UI requirements (platforms and categories)
+                // Simplified command enhancement - keep platforms and categories as strings
                 const enhancedCommands = rawCommands.map(command => ({
                     ...command,
-                    platform: command.platform ? command.platform.map(getPlatformMapping) : [getPlatformMapping('linux')],
-                    categories: command.category ? [getCategoryMapping(command.category)] : [getCategoryMapping('general')],
+                    platform: command.platform || ['linux'],
+                    category: command.category || 'general',
                     manPageUrl: getManPageUrl(command)
                 }));
                 setCommands(enhancedCommands);
@@ -129,15 +130,29 @@ function App({ mockCommands }) {
         return () => window.removeEventListener('resize', handleResize);
     }, [isFilterOpen]);
 
-    // Handle scroll to switch between full and mini search interface
+    // Use IntersectionObserver with sentinel element to prevent flicker
     useEffect(() => {
-        const handleScroll = () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            setShowMiniSearch(scrollTop > scrollThreshold);
-        };
+        const sentinel = sentinelRef.current;
+        if (!sentinel) return;
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                // When sentinel is visible (in viewport) -> show full interface
+                // When sentinel is not visible (scrolled past) -> show mini interface
+                setShowMiniSearch(!entry.isIntersecting);
+            },
+            {
+                // Trigger as soon as the sentinel starts to leave the viewport
+                threshold: 0,
+                rootMargin: '0px'
+            }
+        );
+
+        observer.observe(sentinel);
+
+        return () => {
+            observer.disconnect();
+        };
     }, []);
 
     // Wave animation is now handled by the useWaveAnimation hook
@@ -231,9 +246,7 @@ function App({ mockCommands }) {
         platformFilteredCommands = commands.filter(
             (command) =>
                 command.platform && selectedPlatforms.some(selectedPlatId =>
-                    command.platform.some(p =>
-                        typeof p === 'string' ? p === selectedPlatId : p.id === selectedPlatId
-                    )
+                    command.platform.includes(selectedPlatId)
                 )
         );
     }
@@ -242,15 +255,7 @@ function App({ mockCommands }) {
     let filteredCommands = platformFilteredCommands;
     if (selectedCategories.length > 0) {
         filteredCommands = platformFilteredCommands.filter(
-            (command) => {
-                // Handle both adapted format (categories array) and original format (category string)
-                if (command.categories) {
-                    return selectedCategories.some(selectedCatId =>
-                        command.categories.some(cat => cat.name.toLowerCase().replace(/\s+/g, '-') === selectedCatId)
-                    );
-                }
-                return selectedCategories.includes(command.category);
-            }
+            (command) => selectedCategories.includes(command.category)
         );
     }
 
@@ -327,28 +332,43 @@ function App({ mockCommands }) {
                     <Header />
                 </div>
 
+                {/* Sentinel element for intersection observer - invisible trigger */}
+                <div 
+                    ref={sentinelRef}
+                    style={{
+                        position: 'absolute',
+                        top: '100px', // Adjust this to control when the switch happens
+                        left: 0,
+                        width: '1px',
+                        height: '1px',
+                        pointerEvents: 'none',
+                        opacity: 0
+                    }}
+                    aria-hidden="true"
+                />
+
                 {/* SearchInterface and FilterComponent with CSS sticky positioning */}
                 <div
                     ref={stickyWrapperRef}
                     style={{
                         position: 'sticky',
-                        top: showMiniSearch ? '0px' : '6px',
+                        top: '6px',
                         zIndex: 20,
-                        transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                        minHeight: showMiniSearch ? '60px' : 'auto', // Prevent layout shift
+                        transition: 'min-height 0.3s ease',
                     }}
                 >
-                    {/* Mini Search Interface - shown when scrolled */}
-                    {showMiniSearch ? (
-                        <SearchInterfaceMini
-                            searchQuery={searchQuery}
-                            onSearchChange={setSearchQuery}
-                            totalCommands={commands.length}
-                            activeFiltersCount={selectedPlatforms.length + selectedCategories.length}
-                            onClearFilters={handleClearAllFilters}
-                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                        />
-                    ) : (
-                        /* Full Search Interface - shown at top */
+                    {/* Full Search Interface - always rendered but with opacity transition */}
+                    <div
+                        style={{
+                            opacity: showMiniSearch ? 0 : 1,
+                            visibility: showMiniSearch ? 'hidden' : 'visible',
+                            transition: 'opacity 0.3s ease, visibility 0.3s ease',
+                            position: showMiniSearch ? 'absolute' : 'relative',
+                            width: '100%',
+                            pointerEvents: showMiniSearch ? 'none' : 'auto'
+                        }}
+                    >
                         <SearchInterface
                             searchQuery={searchQuery}
                             onSearchChange={setSearchQuery}
@@ -362,7 +382,30 @@ function App({ mockCommands }) {
                             onClearAllFilters={handleClearAllFilters}
                             totalCommands={commands.length}
                         />
-                    )}
+                    </div>
+
+                    {/* Mini Search Interface - always rendered but with opacity transition */}
+                    <div
+                        style={{
+                            opacity: showMiniSearch ? 1 : 0,
+                            visibility: showMiniSearch ? 'visible' : 'hidden',
+                            transition: 'opacity 0.3s ease, visibility 0.3s ease',
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            pointerEvents: showMiniSearch ? 'auto' : 'none'
+                        }}
+                    >
+                        <SearchInterfaceMini
+                            searchQuery={searchQuery}
+                            onSearchChange={setSearchQuery}
+                            totalCommands={commands.length}
+                            activeFiltersCount={selectedPlatforms.length + selectedCategories.length}
+                            onClearFilters={handleClearAllFilters}
+                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                        />
+                    </div>
                 </div>
 
 
