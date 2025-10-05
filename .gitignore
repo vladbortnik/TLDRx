@@ -21,6 +21,7 @@ _README/
 _Trash/
 .playwright-mcp/
 CODEBASE_ANALYSIS.md
+DEVTOOLS-PERFORMANCE-PROFILER.md
 
 # Claude Code
 CLAUDE.md

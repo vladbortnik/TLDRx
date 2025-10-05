@@ -154,6 +154,8 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
                                     
                                     <input
                                         ref={inputRef}
+                                        id="search-input-mini"
+                                        name="search-mini"
                                         type="text"
                                         value={searchQuery}
                                         onChange={(e) => onSearchChange && onSearchChange(e.target.value)}
@@ -163,6 +165,7 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
                                         className="bg-transparent text-white font-mono outline-none flex-1 placeholder-white/50 text-sm min-w-0"
                                         autoComplete="off"
                                         onClick={(e) => e.stopPropagation()}
+                                        aria-label="Search commands (mini)"
                                     />
                                 </div>
                             </div>

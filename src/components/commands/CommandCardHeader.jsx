@@ -12,7 +12,7 @@
  * Mobile-first responsive design with proper breakpoints
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   PLATFORM_ICONS,
   PLATFORM_COLORS,
@@ -104,37 +104,56 @@ const CommandName = ({ name, screenSize }) => (
  * StandsFor Section Component
  * Displays what the command stands for with rolling description animation
  * Description appears on hover over the entire name-standsFor section
+ *
+ * PERFORMANCE FIX: Moved window.innerWidth read to useEffect to prevent forced reflows
+ * (was causing 138.95ms bottleneck with 41,402 elements affected)
  */
 const StandsForSection = ({ standsFor, description, showDescription }) => {
-  if (!standsFor) return null;
-  
-  // Debug logging
-  // console.log('StandsForSection:', { standsFor, description, showDescription });
-  
+  const [descriptionMaxWidth, setDescriptionMaxWidth] = useState('700px');
+
   /**
    * Calculate responsive max-width for description based on viewport
    * Mobile-first approach with progressive enhancement
+   *
+   * IMPORTANT: Runs in useEffect to avoid reading window.innerWidth during render,
+   * which causes forced layout recalculation (layout thrashing)
    */
-  const getDescriptionMaxWidth = () => {
-    const width = window.innerWidth;
-    
-    if (width < 360) return '150px';    // Very small phones
-    if (width < 480) return '200px';    // Small phones
-    if (width < 640) return '250px';    // Large phones
-    if (width < 768) return '300px';    // Tablets
-    if (width < 1024) return '400px';   // Small laptops
-    if (width < 1440) return '500px';   // Desktop
-    return '700px';                      // Wide screens
-  };
+  useEffect(() => {
+    const calculateMaxWidth = () => {
+      const width = window.innerWidth;
+
+      if (width < 360) return '150px';    // Very small phones
+      if (width < 480) return '200px';    // Small phones
+      if (width < 640) return '250px';    // Large phones
+      if (width < 768) return '300px';    // Tablets
+      if (width < 1024) return '400px';   // Small laptops
+      if (width < 1440) return '500px';   // Desktop
+      return '700px';                      // Wide screens
+    };
+
+    // Set initial value
+    setDescriptionMaxWidth(calculateMaxWidth());
+
+    // Update on window resize
+    const handleResize = () => {
+      setDescriptionMaxWidth(calculateMaxWidth());
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Early return after hooks to comply with Rules of Hooks
+  if (!standsFor) return null;
 
   return (
     <>
       {/* Vertical Divider between name and standsFor */}
       <div className="h-6 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent self-center" />
-      
+
       <div className="relative flex items-baseline overflow-hidden">
         {/* StandsFor text - hidden when description is shown */}
-        <span 
+        <span
           className="text-xs sm:text-sm text-white/50 font-normal transition-all hover:text-white/70 whitespace-nowrap"
           style={{
             opacity: showDescription ? 0 : 1,
@@ -145,12 +164,12 @@ const StandsForSection = ({ standsFor, description, showDescription }) => {
         >
           {standsFor}
         </span>
-        
+
         {/* Rolling Description - appears in place */}
-        <div 
+        <div
           className="overflow-hidden pointer-events-none"
           style={{
-            maxWidth: showDescription ? getDescriptionMaxWidth() : '0px',
+            maxWidth: showDescription ? descriptionMaxWidth : '0px',
             opacity: showDescription ? 1 : 0,
             transition: 'max-width 2.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease 0.2s',
             whiteSpace: 'nowrap'

@@ -98,6 +98,7 @@ const searchCommand = (searchTerm, command) => {
 function App({ mockCommands }) {
     const [commands, setCommands] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
+    const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(""); // Debounced version for filtering
     const [selectedPlatforms, setSelectedPlatforms] = useState([]); // 🔧 UPDATED: Array for multiple selection
     const [selectedCategories, setSelectedCategories] = useState([]); // 🔧 UPDATED: Array for multiple selection
     const [error, setError] = useState(null);
@@ -177,6 +178,15 @@ function App({ mockCommands }) {
 
         loadCommands().catch(console.error);
     }, [mockCommands]);
+
+    // Debounce search query to improve performance (fixes 965ms processing delay)
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedSearchQuery(searchQuery);
+        }, 150); // 150ms delay - fast enough to feel instant, slow enough to skip intermediate keystrokes
+
+        return () => clearTimeout(timer);
+    }, [searchQuery]);
 
     // Dynamic sticky height calculation for CSS scroll-padding-top
     useEffect(() => {
@@ -266,11 +276,11 @@ function App({ mockCommands }) {
             );
         }
 
-        // Then apply a search filter
-        if (searchQuery.trim() === "") {
+        // Then apply a search filter using DEBOUNCED query
+        if (debouncedSearchQuery.trim() === "") {
             return filteredCommands.slice();
         } else {
-            const query = searchQuery.toLowerCase();
+            const query = debouncedSearchQuery.toLowerCase();
 
             const scoredCommands = filteredCommands.map((command) => ({
                 ...command,
@@ -290,7 +300,7 @@ function App({ mockCommands }) {
                 return false;
             });
         }
-    }, [commands, searchQuery, selectedPlatforms, selectedCategories]);
+    }, [commands, debouncedSearchQuery, selectedPlatforms, selectedCategories]);
 
     // if (import.meta.env.MODE === "development") {
     //     console.log(
@@ -386,50 +396,46 @@ function App({ mockCommands }) {
         prevSearchQueryRef.current = currentQuery;
     }, [searchQuery, showMiniSearch]);
 
+    // DISABLED: Focus management was causing 517ms input delay
     // Persistent focus management - keep cursor in active search input
-    useEffect(() => {
-        let focusInterval;
+    // Uses event-based approach instead of polling for better performance
+    // useEffect(() => {
+    //     // Determine which search input is currently active/visible
+    //     const activeSearchRef = showMiniSearch ? miniSearchRef : fullSearchRef;
 
-        // Function to maintain focus on the active search input
-        const maintainFocus = () => {
-            // Determine which search input is currently active/visible
-            const activeSearchRef = showMiniSearch ? miniSearchRef : fullSearchRef;
+    //     // Focus on mount or when switching between search modes
+    //     if (activeSearchRef.current) {
+    //         activeSearchRef.current.focus();
+    //     }
 
-            // Only refocus if:
-            // 1. The ref exists
-            // 2. The active element is not already a text input (prevents disrupting typing)
-            // 3. The active element is not a button or link (allows interaction with UI)
-            if (activeSearchRef.current) {
-                const activeElement = document.activeElement;
-                const isTextInput = activeElement && (
-                    activeElement.tagName === 'INPUT' ||
-                    activeElement.tagName === 'TEXTAREA'
-                );
-                const isInteractiveElement = activeElement && (
-                    activeElement.tagName === 'BUTTON' ||
-                    activeElement.tagName === 'A'
-                );
+    //     // Event handler to refocus after interactions
+    //     const handleFocusLoss = (e) => {
+    //         // Only refocus if user clicked outside interactive elements
+    //         const target = e.target;
+    //         const isInteractive = target.tagName === 'BUTTON' ||
+    //                              target.tagName === 'A' ||
+    //                              target.tagName === 'INPUT' ||
+    //                              target.tagName === 'TEXTAREA' ||
+    //                              target.closest('button') ||
+    //                              target.closest('a');
 
-                // If user is not typing or clicking buttons, refocus search
-                if (!isTextInput && !isInteractiveElement) {
-                    activeSearchRef.current.focus();
-                }
-            }
-        };
+    //         // Small delay to allow click handlers to complete
+    //         if (!isInteractive && activeSearchRef.current) {
+    //             setTimeout(() => {
+    //                 if (activeSearchRef.current && document.activeElement !== activeSearchRef.current) {
+    //                     activeSearchRef.current.focus();
+    //                 }
+    //             }, 100);
+    //         }
+    //     };
 
-        // Initial focus when component mounts or when switching between search modes
-        maintainFocus();
+    //     // Listen for clicks to manage focus
+    //     document.addEventListener('click', handleFocusLoss, true);
 
-        // Periodically check and maintain focus every 100ms
-        // This ensures focus returns to search after any interaction
-        focusInterval = setInterval(maintainFocus, 100);
-
-        return () => {
-            if (focusInterval) {
-                clearInterval(focusInterval);
-            }
-        };
-    }, [showMiniSearch]); // Re-run when switching between full and mini search
+    //     return () => {
+    //         document.removeEventListener('click', handleFocusLoss, true);
+    //     };
+    // }, [showMiniSearch]); // Re-run when switching between full and mini search
 
     // Wave background is now handled by the useWaveAnimation hook
 

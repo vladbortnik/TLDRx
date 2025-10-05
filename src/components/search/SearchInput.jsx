@@ -179,6 +179,8 @@ export const SearchInput = forwardRef(function SearchInput({
                                 <div className="flex-1 flex items-center">
                                     <input
                                         ref={inputRef}
+                                        id="search-input"
+                                        name="search"
                                         type="text"
                                         value={value}
                                         onChange={(e) => onChange(e.target.value)}
@@ -188,6 +190,7 @@ export const SearchInput = forwardRef(function SearchInput({
                                         className="bg-transparent text-white font-mono outline-none flex-1 placeholder-white/50 text-base cursor-text pointer-events-auto"
                                         autoComplete="off"
                                         onClick={(e) => e.stopPropagation()}
+                                        aria-label="Search commands"
                                     />
 
                                     {/* Cursor indicator - yellow blinking cursor when empty, red clear icon when has text */}

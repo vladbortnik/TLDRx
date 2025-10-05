@@ -31,14 +31,13 @@ const RELATIONSHIP_COLORS = {
  * Main CommandCard Component
  * Displays complete command information with expandable sections
  */
-export const CommandCard = React.memo(function CommandCard({ command, wavePhase: externalWavePhase }) {
+export const CommandCard = React.memo(function CommandCard({ command }) {
   // Defensive check for required data
   if (!command) {
     return <div className="text-red-400">Error: No command data provided</div>;
   }
 
   // Wave animation phase from parent for synchronization
-  const wavePhase = externalWavePhase || 0;
   
   // State for expandable sections (collapsed by default)
   const [expandedSections, setExpandedSections] = useState({
@@ -52,12 +51,14 @@ export const CommandCard = React.memo(function CommandCard({ command, wavePhase:
   const [copiedExample, setCopiedExample] = useState(null);
   const [showDescription, setShowDescription] = useState(false);
   const [screenSize, setScreenSize] = useState('desktop');
-  
+  const [isHighlighted, setIsHighlighted] = useState(false);
+
   // Refs for DOM and timing
   const cardRef = useRef(null);
   const descriptionTimeoutRef = useRef(null);
   const descriptionShowTimeRef = useRef(null);
   const isHoveringRef = useRef(false);
+  const highlightTimeoutRef = useRef(null);
 
   /**
    * Responsive screen size detection
@@ -134,24 +135,12 @@ export const CommandCard = React.memo(function CommandCard({ command, wavePhase:
   }, []); // Empty deps: uses refs and setState (which are stable)
 
   /**
-   * Generate wave animation gradient for card background
-   * Creates dynamic color shifts synchronized across all cards
+   * Static gradient for card background
+   * Removed wave animation for performance - was causing 100+ re-renders every 100ms
    */
-  const getCardWave = () => {
-    const r1 = Math.floor(10 + Math.sin(wavePhase * 0.02) * 10);
-    const g1 = Math.floor(20 + Math.cos(wavePhase * 0.025) * 15);
-    const b1 = Math.floor(40 + Math.sin(wavePhase * 0.03) * 20);
-    
-    const r2 = Math.floor(25 + Math.cos(wavePhase * 0.015) * 15);
-    const g2 = Math.floor(35 + Math.sin(wavePhase * 0.035) * 10);
-    const b2 = Math.floor(75 + Math.cos(wavePhase * 0.02) * 25);
-
+  const getCardBackground = () => {
     return {
-      background: `linear-gradient(135deg, 
-        rgba(${r1},${g1},${b1},0.7), 
-        rgba(${r2},${g2},${b2},0.5), 
-        rgba(${r1+5},${g1+5},${b1+10},0.7))`,
-      transition: 'background 0.3s ease'
+      background: `linear-gradient(135deg, rgba(15,25,45,0.7), rgba(30,40,80,0.5), rgba(20,30,55,0.7))`
     };
   };
 
@@ -212,18 +201,73 @@ export const CommandCard = React.memo(function CommandCard({ command, wavePhase:
     };
   };
 
+  /**
+   * Handle related command click - scroll to and highlight target command
+   */
+  const handleRelatedCommandClick = (commandName) => {
+    const targetElement = document.getElementById(`command-${commandName}`);
+    if (targetElement) {
+      // Scroll to the target command with offset for sticky header
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Trigger highlight by dispatching custom event
+      // We use event instead of direct manipulation to avoid flickering
+      setTimeout(() => {
+        const event = new CustomEvent('highlightCommand', {
+          detail: { commandName }
+        });
+        window.dispatchEvent(event);
+      }, 500); // Wait for scroll to mostly complete
+    }
+  };
+
+  /**
+   * Listen for highlight events and trigger highlight animation
+   */
+  useEffect(() => {
+    const handleHighlight = (event) => {
+      if (event.detail.commandName === command?.name) {
+        setIsHighlighted(true);
+
+        // Clear any existing timeout
+        if (highlightTimeoutRef.current) {
+          clearTimeout(highlightTimeoutRef.current);
+        }
+
+        // Remove highlight after 3 seconds
+        highlightTimeoutRef.current = setTimeout(() => {
+          setIsHighlighted(false);
+        }, 3000);
+      }
+    };
+
+    window.addEventListener('highlightCommand', handleHighlight);
+
+    return () => {
+      window.removeEventListener('highlightCommand', handleHighlight);
+      if (highlightTimeoutRef.current) {
+        clearTimeout(highlightTimeoutRef.current);
+      }
+    };
+  }, [command?.name]);
+
   return (
-    <div 
+    <div
       ref={cardRef}
-      className="relative group"
+      id={`command-${command?.name}`}
+      className="relative group scroll-mt-24"
       style={{
         animation: 'slideInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)'
       }}
     >
       {/* Main Card Container */}
-      <div 
-        className="relative backdrop-blur-xl border border-white/20 rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 hover:shadow-[0_0_40px_rgba(59,130,246,0.2)] hover:-translate-y-1"
-        style={getCardWave()}
+      <div
+        className={`relative backdrop-blur-xl border rounded-2xl overflow-hidden shadow-2xl transition-all duration-700 hover:-translate-y-1 ${
+          isHighlighted
+            ? 'border-cyan-400 shadow-[0_0_60px_rgba(34,211,238,0.6)] ring-4 ring-cyan-400/50'
+            : 'border-white/20 hover:shadow-[0_0_40px_rgba(59,130,246,0.2)]'
+        }`}
+        style={getCardBackground()}
       >
         
         {/* Header Section: Command Name + Stands For + Description + Badges */}
@@ -449,12 +493,18 @@ export const CommandCard = React.memo(function CommandCard({ command, wavePhase:
                     onMouseEnter={() => setHoveredRelated(index)}
                     onMouseLeave={() => setHoveredRelated(null)}
                   >
-                    <button className={`
-                      px-2.5 py-1 rounded-lg font-mono font-medium text-xs
-                      bg-gradient-to-r ${RELATIONSHIP_COLORS[related.relationship || 'similar']}
-                      border transition-all duration-300 hover:scale-105
-                    `}
-                    style={{ fontFamily: "'Courier New', Courier, monospace" }}>
+                    <button
+                      className={`
+                        px-2.5 py-1 rounded-lg font-mono font-medium text-xs
+                        bg-gradient-to-r ${RELATIONSHIP_COLORS[related.relationship || 'similar']}
+                        border transition-all duration-300 hover:scale-105 cursor-pointer
+                      `}
+                      style={{ fontFamily: "'Courier New', Courier, monospace" }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleRelatedCommandClick(related.name);
+                      }}
+                    >
                       {related.name}
                     </button>
                     

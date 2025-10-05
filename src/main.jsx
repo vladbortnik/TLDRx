@@ -13,7 +13,7 @@ import "./index.css";
  * Uses React 18's createRoot API for improved concurrent features
  */
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <App />
-  </React.StrictMode>
+  // </React.StrictMode>
 );
