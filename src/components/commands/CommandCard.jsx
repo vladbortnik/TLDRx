@@ -6,7 +6,7 @@
  * Features wave animation synchronized across all cards
  */
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { 
   ChevronDown, 
   ChevronUp, 
@@ -31,7 +31,7 @@ const RELATIONSHIP_COLORS = {
  * Main CommandCard Component
  * Displays complete command information with expandable sections
  */
-export function CommandCard({ command, wavePhase: externalWavePhase }) {
+export const CommandCard = React.memo(function CommandCard({ command, wavePhase: externalWavePhase }) {
   // Defensive check for required data
   if (!command) {
     return <div className="text-red-400">Error: No command data provided</div>;
@@ -95,14 +95,14 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
    * Handle description hover with minimum 10-second display
    * Description stays visible while hovering, but has minimum 10s display time
    */
-  const handleDescriptionHover = (hovering) => {
+  const handleDescriptionHover = useCallback((hovering) => {
     isHoveringRef.current = hovering;
-    
+
     if (hovering) {
       // Show description and record the time
       setShowDescription(true);
       descriptionShowTimeRef.current = Date.now();
-      
+
       // Clear any existing hide timeout
       if (descriptionTimeoutRef.current) {
         clearTimeout(descriptionTimeoutRef.current);
@@ -112,8 +112,8 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
       // Mouse left - check if 10 seconds have passed
       if (descriptionShowTimeRef.current) {
         const elapsed = Date.now() - descriptionShowTimeRef.current;
-        const remaining = Math.max(0, 10000 - elapsed);
-        
+        const remaining = Math.max(0, 15000 - elapsed);
+
         if (remaining > 0) {
           // Haven't reached minimum time, schedule hide after remaining time
           descriptionTimeoutRef.current = setTimeout(() => {
@@ -131,7 +131,7 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
         }
       }
     }
-  };
+  }, []); // Empty deps: uses refs and setState (which are stable)
 
   /**
    * Generate wave animation gradient for card background
@@ -496,6 +496,6 @@ export function CommandCard({ command, wavePhase: externalWavePhase }) {
       />
     </div>
   );
-}
+});
 
 export default CommandCard;

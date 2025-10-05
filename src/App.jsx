@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import PWAInstall from './components/PWAInstall';
 import { Header } from './components/Header';
 import { SearchInterface } from './components/search/SearchInterface';
@@ -11,6 +11,81 @@ import { LoadingState } from './components/ui/LoadingState';
 import { ResultsCounter } from './components/search/ResultsCounter';
 import { CommandGrid } from './components/commands/CommandGrid';
 import "./index.css";
+
+/**
+ * Enhanced fuzzy search algorithm that matches characters in sequence
+ * with bonus scoring for consecutive matches and substring matches.
+ *
+ * @param {string} searchTerm - The search query to match against
+ * @param {string} targetString - The target string to search within
+ * @returns {number} Match score (0 for no match, higher numbers for better matches)
+ */
+const fuzzySearch = (searchTerm, targetString) => {
+    const search = searchTerm.toLowerCase();
+    const target = targetString.toLowerCase();
+
+    // Exact match gets the highest score
+    if (target.includes(search)) {
+        return 100 - (target.length - search.length);
+    }
+
+    // Fuzzy matching: check if all characters from the search appear in order in target
+    let searchIndex = 0;
+    let score = 0;
+    let consecutiveMatches = 0;
+
+    for (let i = 0; i < target.length && searchIndex < search.length; i++) {
+        if (target[i] === search[searchIndex]) {
+            searchIndex++;
+            consecutiveMatches++;
+            score += consecutiveMatches * 2; // Bonus for consecutive matches
+        } else {
+            consecutiveMatches = 0;
+        }
+    }
+
+    // If we matched all search characters, return a score based on match quality
+    if (searchIndex === search.length) {
+        const matchRatio = search.length / target.length;
+        return Math.floor(score * matchRatio * 10);
+    }
+
+    return 0; // No match
+};
+
+/**
+ * Searches a command by both name and description, with improved logic for short queries.
+ *
+ * @param {string} searchTerm - The search query
+ * @param {Object} command - Command object with name and description properties
+ * @returns {number} Combined search score with name matches getting priority
+ */
+const searchCommand = (searchTerm, command) => {
+    const nameScore = fuzzySearch(searchTerm, command.name);
+    const descriptionScore = fuzzySearch(searchTerm, command.description);
+
+    // For short queries (1-2 characters), prioritize exact name matches heavily
+    if (searchTerm.length <= 2) {
+        if (command.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+            return nameScore + 2000; // Very high score for an exact substring in name
+        }
+        // For short queries, only allow high-scoring fuzzy matches in descriptions
+        if (descriptionScore > 50) {
+            return descriptionScore;
+        }
+        return 0;
+    }
+
+    // For longer queries, use the original logic but be more selective
+    if (nameScore > 0) {
+        return nameScore + 1000; // Boost name matches significantly
+    } else if (descriptionScore > 30) {
+        // Higher threshold for description matches
+        return descriptionScore;
+    }
+
+    return 0; // No match
+};
 
 /**
  * Main TL;DRx application component that displays a searchable command reference.
@@ -33,6 +108,7 @@ function App({ mockCommands }) {
 
     // Enhanced Wave Animation System
     const { getBackgroundWave, wavePhase } = useWaveAnimation(1000);
+    // const { getBackgroundWave, wavePhase } = useWaveAnimation(100000000);
 
     // Scroll behavior for sticky header
     const {
@@ -70,19 +146,12 @@ function App({ mockCommands }) {
                     return;
                 }
 
-                // Use development-optimized data loader to prevent DevTools freezing
-                const module = isDevelopment
-                    ? await import("./data/dev-loader.js")
-                    : await import("./data/commands.js");
+                // TEMP: Force production data for performance testing
+                const module = await import("./data/commands.js");
+                const rawCommands = module.commands || module.default;
 
-                const rawCommands = isDevelopment
-                    ? await module.loadCommands()
-                    : (module.commands || module.default);
-
-                // Development performance optimization
-                if (isDevelopment) {
-                    console.log(`🚀 Dev Mode: Loaded ${rawCommands.length} commands for optimal DevTools performance`);
-                }
+                // TEMP: Performance testing mode
+                console.log(`📊 Performance Testing: Loaded ${rawCommands.length} commands for baseline measurement`);
                 // Transform commands for UI requirements
                 const enhancedCommands = rawCommands.map(command => ({
                     ...command,
@@ -165,132 +234,57 @@ function App({ mockCommands }) {
 
     // Wave animation is now handled by the useWaveAnimation hook
 
-
-    /**
-     * Enhanced fuzzy search algorithm that matches characters in sequence
-     * with bonus scoring for consecutive matches and substring matches.
-     *
-     * @param {string} searchTerm - The search query to match against
-     * @param {string} targetString - The target string to search within
-     * @returns {number} Match score (0 for no match, higher numbers for better matches)
-     */
-    const fuzzySearch = (searchTerm, targetString) => {
-        const search = searchTerm.toLowerCase();
-        const target = targetString.toLowerCase();
-
-        // Exact match gets the highest score
-        if (target.includes(search)) {
-            return 100 - (target.length - search.length);
-        }
-
-        // Fuzzy matching: check if all characters from the search appear in order in target
-        let searchIndex = 0;
-        let score = 0;
-        let consecutiveMatches = 0;
-
-        for (let i = 0; i < target.length && searchIndex < search.length; i++) {
-            if (target[i] === search[searchIndex]) {
-                searchIndex++;
-                consecutiveMatches++;
-                score += consecutiveMatches * 2; // Bonus for consecutive matches
-            } else {
-                consecutiveMatches = 0;
-            }
-        }
-
-        // If we matched all search characters, return a score based on match quality
-        if (searchIndex === search.length) {
-            const matchRatio = search.length / target.length;
-            return Math.floor(score * matchRatio * 10);
-        }
-
-        return 0; // No match
-    };
-
-    /**
-     * Searches a command by both name and description, with improved logic for short queries.
-     *
-     * @param {string} searchTerm - The search query
-     * @param {Object} command - Command object with name and description properties
-     * @returns {number} Combined search score with name matches getting priority
-     */
-    const searchCommand = (searchTerm, command) => {
-        const nameScore = fuzzySearch(searchTerm, command.name);
-        const descriptionScore = fuzzySearch(searchTerm, command.description);
-
-        // For short queries (1-2 characters), prioritize exact name matches heavily
-        if (searchTerm.length <= 2) {
-            if (command.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-                return nameScore + 2000; // Very high score for an exact substring in name
-            }
-            // For short queries, only allow high-scoring fuzzy matches in descriptions
-            if (descriptionScore > 50) {
-                return descriptionScore;
-            }
-            return 0;
-        }
-
-        // For longer queries, use the original logic but be more selective
-        if (nameScore > 0) {
-            return nameScore + 1000; // Boost name matches significantly
-        } else if (descriptionScore > 30) {
-            // Higher threshold for description matches
-            return descriptionScore;
-        }
-
-        return 0; // No match
-    };
-
     /**
      * Filter and rank commands based on search query, platform, and category selections.
      * 🔧 UPDATED: Now handles multiple platform and category selections (arrays)
      * Returns filtered commands based on search, platform, and category criteria.
+     * 🚀 OPTIMIZED: Wrapped in useMemo to prevent recalculation on unrelated re-renders
      */
-    let displayCommands;
+    const displayCommands = useMemo(() => {
+        // First filter by platforms (multiple selection support)
+        let platformFilteredCommands = commands;
+        if (selectedPlatforms.length > 0) {
+            platformFilteredCommands = commands.filter(
+                (command) =>
+                    command.platform && selectedPlatforms.some(selectedPlatId =>
+                        command.platform.includes(selectedPlatId)
+                    )
+            );
+        }
 
-    // First filter by platforms (multiple selection support)
-    let platformFilteredCommands = commands;
-    if (selectedPlatforms.length > 0) {
-        platformFilteredCommands = commands.filter(
-            (command) =>
-                command.platform && selectedPlatforms.some(selectedPlatId =>
-                    command.platform.includes(selectedPlatId)
-                )
-        );
-    }
+        // Then filter by categories (multiple selection support)
+        let filteredCommands = platformFilteredCommands;
+        if (selectedCategories.length > 0) {
+            filteredCommands = platformFilteredCommands.filter(
+                (command) => selectedCategories.includes(command.category)
+            );
+        }
 
-    // Then filter by categories (multiple selection support)
-    let filteredCommands = platformFilteredCommands;
-    if (selectedCategories.length > 0) {
-        filteredCommands = platformFilteredCommands.filter(
-            (command) => selectedCategories.includes(command.category)
-        );
-    }
+        // Then apply a search filter
+        if (searchQuery.trim() === "") {
+            return filteredCommands.slice();
+        } else {
+            const query = searchQuery.toLowerCase();
 
-    // Then apply a search filter
-    if (searchQuery.trim() === "") {
-        displayCommands = filteredCommands.slice();
-    } else {
-        const query = searchQuery.toLowerCase();
+            const scoredCommands = filteredCommands.map((command) => ({
+                ...command,
+                score: searchCommand(query, command),
+            }));
 
-        const scoredCommands = filteredCommands.map((command) => ({
-            ...command,
-            score: searchCommand(query, command),
-        }));
+            const matched = scoredCommands
+                .filter((command) => command.score > 0)
+                .sort((a, b) => b.score - a.score);
 
-        const matched = scoredCommands
-            .filter((command) => command.score > 0)
-            .sort((a, b) => b.score - a.score);
-
-        const uniqueMatches = {};
-        displayCommands = matched.filter((command) => {
-            if (!uniqueMatches[command.name]) {
-                uniqueMatches[command.name] = true;
-                return true;
-            }
-            return false;
-        });
-    }
+            const uniqueMatches = {};
+            return matched.filter((command) => {
+                if (!uniqueMatches[command.name]) {
+                    uniqueMatches[command.name] = true;
+                    return true;
+                }
+                return false;
+            });
+        }
+    }, [commands, searchQuery, selectedPlatforms, selectedCategories]);
 
     // if (import.meta.env.MODE === "development") {
     //     console.log(
@@ -303,26 +297,26 @@ function App({ mockCommands }) {
     // }
 
     // Handle command click for navigation
-    const onCommandClick = (commandName) => {
+    const onCommandClick = useCallback((commandName) => {
         setSearchQuery(commandName);
-    };
+    }, []);
 
     // Handle filter toggle (for both search icon and advanced filters button)
-    const handleFilterToggle = () => {
+    const handleFilterToggle = useCallback(() => {
         setShowAdvancedFilters(prev => !prev);
-    };
+    }, []);
 
     // Handle advanced filters toggle (same as filter toggle)
-    const handleAdvancedFiltersToggle = () => {
+    const handleAdvancedFiltersToggle = useCallback(() => {
         setShowAdvancedFilters(prev => !prev);
-    };
+    }, []);
 
     // Handle clearing all filters
-    const handleClearAllFilters = () => {
+    const handleClearAllFilters = useCallback(() => {
         setSelectedPlatforms([]);
         setSelectedCategories([]);
         setShowAdvancedFilters(false);
-    };
+    }, []);
 
     // Re-check scrollability when filtered commands change
     useEffect(() => {
@@ -475,7 +469,8 @@ function App({ mockCommands }) {
                                 allCommands={commands}
                                 onCommandClick={onCommandClick}
                                 searchQuery={searchQuery}
-                                wavePhase={wavePhase}
+                                // TEMP: Disabled for performance testing
+                                // wavePhase={wavePhase}
                             />
                         </div>
                     )}

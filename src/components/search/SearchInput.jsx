@@ -1,11 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Terminal, Filter, Code2, Binary, Cpu, Server, Database, GitBranch } from 'lucide-react';
-import { FaDatabase, FaDiamond, FaCircle, FaCube } from 'react-icons/fa6';
-import { FiTerminal, FiCode, FiCpu } from 'react-icons/fi';
-import { BiChip, BiCodeBlock } from 'react-icons/bi';
-import { GiProcessor } from 'react-icons/gi';
-import { SiMatrix } from 'react-icons/si';
-import { TbBrandMatrix, TbTerminal2 } from 'react-icons/tb';
+import { Terminal, Filter } from 'lucide-react';
+import { FaDatabase } from 'react-icons/fa6';
 import { VscTerminalBash } from 'react-icons/vsc';
 import { useWaveAnimation } from '../../hooks/useWaveAnimation';
 import { FilterBar } from '../filters/FilterBar.jsx';
@@ -27,7 +22,6 @@ export function SearchInput({
 }) {
     const [isFocused, setIsFocused] = useState(false);
     const [cursor, setCursor] = useState(true);
-    const [icon3DRotation, setIcon3DRotation] = useState({ x: 0, y: 0, z: 0 });
     const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
     // Remove hardcoded command count - use totalCommands prop instead
     const inputRef = useRef(null);
@@ -61,18 +55,6 @@ export function SearchInput({
     // Cursor blinking animation
     useEffect(() => {
         const interval = setInterval(() => setCursor(c => !c), 500);
-        return () => clearInterval(interval);
-    }, []);
-
-    // 3D icon animation - rotates in 3D space with perspective
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setIcon3DRotation(prev => ({
-                x: (prev.x + 1.5) % 360,
-                y: (prev.y + 2) % 360,
-                z: (prev.z + 0.8) % 360
-            }));
-        }, 200);
         return () => clearInterval(interval);
     }, []);
 
@@ -141,22 +123,6 @@ export function SearchInput({
                                     color: '#00a82d',
                                     filter: 'drop-shadow(0 0 8px rgba(0, 168, 45, 0.8)) saturate(1.8)'
                                 }} />
-
-                                {/* COMMENTED OUT: 2D Diamond Icon - Constantly moving diamond with rotation, scaling, and hue shifts
-                <div className="relative">
-                  <FaDiamond 
-                    className="w-4 h-4 text-yellow-300"
-                    style={{
-                      transform: `rotate(${iconRotation}deg) scale(${1.2 + Math.sin(iconRotation * 0.05) * 0.3})`,
-                      filter: `hue-rotate(${iconRotation * 2}deg) brightness(1.3)`,
-                      transition: 'all 0.1s ease'
-                    }}
-                  />
-                  <div className="absolute inset-0 w-4 h-4">
-                    <FaCircle className="w-full h-full text-blue-300/40 animate-ping" />
-                  </div>
-                </div>
-                */}
 
                                 {/* Matrix Logo */}
                                 <span className="text-sm font-semibold tracking-wide animate-logo-glow-matrix">

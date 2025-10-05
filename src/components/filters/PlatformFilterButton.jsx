@@ -1,7 +1,7 @@
 import React from 'react';
 import { PLATFORM_ICONS, PLATFORM_COLORS } from '../../utils/ui-icons';
 
-export function PlatformFilterButton({ platform, isSelected, onClick }) {
+export const PlatformFilterButton = React.memo(function PlatformFilterButton({ platform, isSelected, onClick }) {
   const IconComponent = PLATFORM_ICONS[platform];
   const iconColor = PLATFORM_COLORS[platform];
 
@@ -40,4 +40,4 @@ export function PlatformFilterButton({ platform, isSelected, onClick }) {
       {/* Removed blue circle indicator - using enhanced glow instead */}
     </button>
   );
-}
+});

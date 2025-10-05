@@ -277,8 +277,8 @@ const SafetyBadge = ({ safety }) => {
  * Main CommandCardHeader Component
  * Orchestrates the first line of the command card
  */
-export function CommandCardHeader({ 
-  command, 
+export const CommandCardHeader = React.memo(function CommandCardHeader({
+  command,
   screenSize,
   showDescription,
   onDescriptionHover
@@ -310,6 +310,6 @@ export function CommandCardHeader({
       </div>
     </div>
   );
-}
+});
 
 export default CommandCardHeader;

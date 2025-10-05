@@ -10,7 +10,7 @@ const CATEGORIES_WITH_GROUPS = CATEGORIES.map(category => ({
          'automation'
 }));
 
-export function CategoryFilters({
+export const CategoryFilters = React.memo(function CategoryFilters({
   selectedCategories = [],
   onCategoryChange
 }) {
@@ -63,4 +63,4 @@ export function CategoryFilters({
       </div>
     </div>
   );
-}
+});
