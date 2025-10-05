@@ -117,9 +117,12 @@ function App({ mockCommands }) {
 
     // Ref for dynamic height calculation
     const stickyWrapperRef = useRef(null);
-    
+
     // Sentinel element ref for intersection observer
     const sentinelRef = useRef(null);
+
+    // Ref to track previous search query for detecting transitions
+    const prevSearchQueryRef = useRef("");
 
     /**
      * Get the man page URL for a command
@@ -352,6 +355,33 @@ function App({ mockCommands }) {
             return () => window.removeEventListener('scroll', handleScroll);
         }
     }, [displayCommands.length, showAdvancedFilters]);
+
+    // Scroll to top when user STARTS a search in mini interface
+    // Only scrolls on transition from empty to non-empty query (not on every keystroke)
+    // This ensures best results are visible and avoids the sticky header overlap issue
+    useEffect(() => {
+        const prevQuery = prevSearchQueryRef.current;
+        const currentQuery = searchQuery.trim();
+
+        // Detect transition: empty → non-empty (user just started searching)
+        const isStartingNewSearch = prevQuery.length === 0 && currentQuery.length > 0;
+
+        if (isStartingNewSearch && showMiniSearch) {
+            // Wait for React to finish rendering the filtered results
+            // Double requestAnimationFrame ensures DOM is fully updated before scrolling
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        }
+
+        // Update ref for next comparison
+        prevSearchQueryRef.current = currentQuery;
+    }, [searchQuery, showMiniSearch]);
 
     // Wave background is now handled by the useWaveAnimation hook
 

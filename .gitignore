@@ -20,6 +20,7 @@ _scripts-temp/
 _README/
 _Trash/
 .playwright-mcp/
+CODEBASE_ANALYSIS.md
 
 # Claude Code
 CLAUDE.md
