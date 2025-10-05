@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import { FaDatabase } from 'react-icons/fa6';
 import { VscTerminalBash } from 'react-icons/vsc';
-import { Filter, X, Terminal } from 'lucide-react';
+import { Filter, X, Terminal, XCircle } from 'lucide-react';
 import { useWaveAnimation } from '../../hooks/useWaveAnimation';
 
 /**
@@ -41,12 +41,12 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
     // Enhanced Wave Animation System
     const { getPrimaryWave, getSecondaryWave } = useWaveAnimation(1000);
 
-    // Mini status messages - shorter for compact display
+    // Mini status messages - shorter for compact display, all include command count
     const statusMessages = [
-        `${totalCommands.toLocaleString()} commands`,
-        "Type to search...",
-        "Fuzzy search enabled",
-        "Click to expand"
+        `${totalCommands.toLocaleString()} • Type to search...`,
+        `${totalCommands.toLocaleString()} • Fuzzy search enabled`,
+        `${totalCommands.toLocaleString()} • Click to expand`,
+        `${totalCommands.toLocaleString()} • Commands available`
     ];
 
     // Cycle through status messages
@@ -217,15 +217,34 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
                                     </>
                                 )}
 
-                                {/* Blinking cursor with glow */}
-                                <span 
-                                    className={`w-1.5 h-4 bg-yellow-300 transition-opacity duration-100 ${
-                                        cursor ? 'opacity-100' : 'opacity-0'
-                                    }`}
-                                    style={{
-                                        boxShadow: cursor ? '0 0 8px rgba(250, 204, 21, 0.8)' : 'none'
-                                    }}
-                                />
+                                {/* Cursor indicator - yellow blinking cursor when empty, red clear icon when has text */}
+                                {searchQuery.length === 0 ? (
+                                    // Yellow blinking cursor with glow when empty
+                                    <span
+                                        className={`w-1.5 h-4 bg-yellow-300 transition-opacity duration-100 pointer-events-none ${
+                                            cursor ? 'opacity-100' : 'opacity-0'
+                                        }`}
+                                        style={{
+                                            boxShadow: cursor ? '0 0 8px rgba(250, 204, 21, 0.8)' : 'none'
+                                        }}
+                                    ></span>
+                                ) : (
+                                    // Red clear icon when has text
+                                    <XCircle
+                                        className="w-4 h-4 text-red-500 cursor-pointer hover:scale-110 hover:text-red-400 transition-all duration-200 flex-shrink-0"
+                                        style={{
+                                            filter: 'drop-shadow(0 0 4px rgba(239, 68, 68, 0.6))'
+                                        }}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            onSearchChange(''); // Clear the search input
+                                            if (inputRef.current) {
+                                                inputRef.current.focus();
+                                            }
+                                        }}
+                                        title="Click to clear search"
+                                    />
+                                )}
                             </div>
                         </div>
                     </div>

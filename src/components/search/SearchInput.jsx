@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
-import { Terminal, Filter } from 'lucide-react';
+import { Terminal, Filter, XCircle } from 'lucide-react';
 import { FaDatabase } from 'react-icons/fa6';
 import { VscTerminalBash } from 'react-icons/vsc';
 import { useWaveAnimation } from '../../hooks/useWaveAnimation';
@@ -189,9 +189,29 @@ export const SearchInput = forwardRef(function SearchInput({
                                         autoComplete="off"
                                         onClick={(e) => e.stopPropagation()}
                                     />
-                                    <span className={`w-2 h-5 bg-yellow-300 ml-1 transition-opacity duration-100 pointer-events-none ${
-                                        cursor ? 'opacity-100' : 'opacity-0'
-                                    }`}></span>
+
+                                    {/* Cursor indicator - yellow blinking cursor when empty, red clear icon when has text */}
+                                    {value.length === 0 ? (
+                                        // Yellow blinking cursor when empty
+                                        <span
+                                            className={`w-2 h-5 ml-1 bg-yellow-300 transition-opacity duration-100 pointer-events-none ${
+                                                cursor ? 'opacity-100' : 'opacity-0'
+                                            }`}
+                                        ></span>
+                                    ) : (
+                                        // Red clear icon when has text
+                                        <XCircle
+                                            className="w-5 h-5 ml-1 text-red-500 cursor-pointer hover:scale-110 hover:text-red-400 transition-all duration-200 flex-shrink-0"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                onChange(''); // Clear the search input
+                                                if (inputRef.current) {
+                                                    inputRef.current.focus();
+                                                }
+                                            }}
+                                            title="Click to clear search"
+                                        />
+                                    )}
                                 </div>
                             </div>
 
