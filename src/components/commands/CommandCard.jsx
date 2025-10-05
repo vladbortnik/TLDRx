@@ -31,7 +31,7 @@ const RELATIONSHIP_COLORS = {
  * Main CommandCard Component
  * Displays complete command information with expandable sections
  */
-export const CommandCard = React.memo(function CommandCard({ command }) {
+export const CommandCard = React.memo(function CommandCard({ command, onScrollToCommand }) {
   // Defensive check for required data
   if (!command) {
     return <div className="text-red-400">Error: No command data provided</div>;
@@ -203,21 +203,11 @@ export const CommandCard = React.memo(function CommandCard({ command }) {
 
   /**
    * Handle related command click - scroll to and highlight target command
+   * Uses callback provided by parent to work with virtualized list
    */
   const handleRelatedCommandClick = (commandName) => {
-    const targetElement = document.getElementById(`command-${commandName}`);
-    if (targetElement) {
-      // Scroll to the target command with offset for sticky header
-      targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-      // Trigger highlight by dispatching custom event
-      // We use event instead of direct manipulation to avoid flickering
-      setTimeout(() => {
-        const event = new CustomEvent('highlightCommand', {
-          detail: { commandName }
-        });
-        window.dispatchEvent(event);
-      }, 500); // Wait for scroll to mostly complete
+    if (onScrollToCommand) {
+      onScrollToCommand(commandName);
     }
   };
 

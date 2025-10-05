@@ -129,6 +129,9 @@ function App({ mockCommands }) {
     const fullSearchRef = useRef(null);
     const miniSearchRef = useRef(null);
 
+    // Ref for CommandGrid to enable programmatic scrolling
+    const commandGridRef = useRef(null);
+
     /**
      * Get the man page URL for a command
      * @param {Object} command - Command object with manPageUrl field
@@ -333,6 +336,38 @@ function App({ mockCommands }) {
         setSelectedCategories([]);
         setShowAdvancedFilters(false);
     }, []);
+
+    /**
+     * Scroll to a specific command by name
+     * Used for related command navigation
+     *
+     * @param {string} commandName - Name of command to scroll to
+     */
+    const handleScrollToCommand = useCallback((commandName) => {
+        const index = displayCommands.findIndex(cmd => cmd.name === commandName);
+
+        if (index !== -1) {
+            // Use double requestAnimationFrame to ensure DOM is ready
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    commandGridRef.current?.scrollToIndex(index, {
+                        align: 'center',
+                        behavior: 'smooth'
+                    });
+
+                    // Trigger highlight event after scroll
+                    setTimeout(() => {
+                        const event = new CustomEvent('highlightCommand', {
+                            detail: { commandName }
+                        });
+                        window.dispatchEvent(event);
+                    }, 500);
+                });
+            });
+        } else {
+            console.warn(`Command "${commandName}" not found in filtered list`);
+        }
+    }, [displayCommands]);
 
     // Re-check scrollability when filtered commands change
     useEffect(() => {
@@ -551,9 +586,11 @@ function App({ mockCommands }) {
                             />
 
                             <CommandGrid
+                                ref={commandGridRef}
                                 commands={displayCommands}
                                 allCommands={commands}
                                 onCommandClick={onCommandClick}
+                                onScrollToCommand={handleScrollToCommand}
                                 searchQuery={searchQuery}
                                 // TEMP: Disabled for performance testing
                                 // wavePhase={wavePhase}

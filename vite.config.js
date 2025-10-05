@@ -54,8 +54,57 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
 
-      // TEMPORARILY DISABLED: Testing if PWA causes 721ms INP in production
-      // PWA plugin removed to test performance without service worker
+      // PWA Plugin - Re-enabled after confirming it's NOT the INP bottleneck
+      // INP issue was caused by rendering 500 cards, solved with React Virtuoso
+      VitePWA({
+        registerType: 'autoUpdate',
+        includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+        manifest: {
+          name: 'TLDRx - Command Reference',
+          short_name: 'TLDRx',
+          description: 'Interactive Unix/Linux command reference with 500+ commands',
+          theme_color: '#0f172a',
+          background_color: '#0f172a',
+          display: 'standalone',
+          icons: [
+            {
+              src: 'pwa-192x192.png',
+              sizes: '192x192',
+              type: 'image/png'
+            },
+            {
+              src: 'pwa-512x512.png',
+              sizes: '512x512',
+              type: 'image/png'
+            },
+            {
+              src: 'pwa-512x512.png',
+              sizes: '512x512',
+              type: 'image/png',
+              purpose: 'any maskable'
+            }
+          ]
+        },
+        workbox: {
+          globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+          runtimeCaching: [
+            {
+              urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'google-fonts-cache',
+                expiration: {
+                  maxEntries: 10,
+                  maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
+                },
+                cacheableResponse: {
+                  statuses: [0, 200]
+                }
+              }
+            }
+          ]
+        }
+      })
     ]
   }
 })
