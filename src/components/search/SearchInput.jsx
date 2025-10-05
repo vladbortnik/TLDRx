@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import { Terminal, Filter } from 'lucide-react';
 import { FaDatabase } from 'react-icons/fa6';
 import { VscTerminalBash } from 'react-icons/vsc';
@@ -6,7 +6,7 @@ import { useWaveAnimation } from '../../hooks/useWaveAnimation';
 import { FilterBar } from '../filters/FilterBar.jsx';
 import { CategoryFilters } from '../filters/CategoryFilters.jsx';
 
-export function SearchInput({
+export const SearchInput = forwardRef(function SearchInput({
     value,
     onChange,
     placeholder = "Search commands...",
@@ -19,12 +19,21 @@ export function SearchInput({
     onAdvancedFiltersToggle,
     onClearAllFilters,
     totalCommands = 0
-}) {
+}, ref) {
     const [isFocused, setIsFocused] = useState(false);
     const [cursor, setCursor] = useState(true);
     const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
     // Remove hardcoded command count - use totalCommands prop instead
     const inputRef = useRef(null);
+
+    // Expose focus method to parent component
+    useImperativeHandle(ref, () => ({
+        focus: () => {
+            if (inputRef.current) {
+                inputRef.current.focus();
+            }
+        }
+    }));
 
     // Dynamic status messages
     const statusMessages = [
@@ -229,4 +238,4 @@ export function SearchInput({
             </div>
         </div>
     );
-}
+});

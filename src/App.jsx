@@ -124,6 +124,10 @@ function App({ mockCommands }) {
     // Ref to track previous search query for detecting transitions
     const prevSearchQueryRef = useRef("");
 
+    // Refs for both search inputs to manage focus
+    const fullSearchRef = useRef(null);
+    const miniSearchRef = useRef(null);
+
     /**
      * Get the man page URL for a command
      * @param {Object} command - Command object with manPageUrl field
@@ -140,7 +144,6 @@ function App({ mockCommands }) {
          */
         async function loadCommands() {
             try {
-                const isDevelopment = import.meta.env.MODE === 'development';
                 setIsLoading(true);
 
                 if (mockCommands) {
@@ -383,6 +386,51 @@ function App({ mockCommands }) {
         prevSearchQueryRef.current = currentQuery;
     }, [searchQuery, showMiniSearch]);
 
+    // Persistent focus management - keep cursor in active search input
+    useEffect(() => {
+        let focusInterval;
+
+        // Function to maintain focus on the active search input
+        const maintainFocus = () => {
+            // Determine which search input is currently active/visible
+            const activeSearchRef = showMiniSearch ? miniSearchRef : fullSearchRef;
+
+            // Only refocus if:
+            // 1. The ref exists
+            // 2. The active element is not already a text input (prevents disrupting typing)
+            // 3. The active element is not a button or link (allows interaction with UI)
+            if (activeSearchRef.current) {
+                const activeElement = document.activeElement;
+                const isTextInput = activeElement && (
+                    activeElement.tagName === 'INPUT' ||
+                    activeElement.tagName === 'TEXTAREA'
+                );
+                const isInteractiveElement = activeElement && (
+                    activeElement.tagName === 'BUTTON' ||
+                    activeElement.tagName === 'A'
+                );
+
+                // If user is not typing or clicking buttons, refocus search
+                if (!isTextInput && !isInteractiveElement) {
+                    activeSearchRef.current.focus();
+                }
+            }
+        };
+
+        // Initial focus when component mounts or when switching between search modes
+        maintainFocus();
+
+        // Periodically check and maintain focus every 100ms
+        // This ensures focus returns to search after any interaction
+        focusInterval = setInterval(maintainFocus, 100);
+
+        return () => {
+            if (focusInterval) {
+                clearInterval(focusInterval);
+            }
+        };
+    }, [showMiniSearch]); // Re-run when switching between full and mini search
+
     // Wave background is now handled by the useWaveAnimation hook
 
     return (
@@ -437,6 +485,7 @@ function App({ mockCommands }) {
                         }}
                     >
                         <SearchInterface
+                            ref={fullSearchRef}
                             searchQuery={searchQuery}
                             onSearchChange={setSearchQuery}
                             onFilterToggle={handleFilterToggle}
@@ -465,6 +514,7 @@ function App({ mockCommands }) {
                         }}
                     >
                         <SearchInterfaceMini
+                            ref={miniSearchRef}
                             searchQuery={searchQuery}
                             onSearchChange={setSearchQuery}
                             totalCommands={displayCommands.length}

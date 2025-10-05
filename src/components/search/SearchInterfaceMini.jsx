@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import { FaDatabase } from 'react-icons/fa6';
 import { VscTerminalBash } from 'react-icons/vsc';
 import { Filter, X, Terminal } from 'lucide-react';
@@ -7,7 +7,7 @@ import { useWaveAnimation } from '../../hooks/useWaveAnimation';
 /**
  * Compact search interface component that appears when scrolling down.
  * Provides essential search functionality with a minimalistic, sleek design.
- * 
+ *
  * @param {Object} props - Component props
  * @param {string} props.searchQuery - Current search query value
  * @param {Function} props.onSearchChange - Handler for search query changes
@@ -16,18 +16,27 @@ import { useWaveAnimation } from '../../hooks/useWaveAnimation';
  * @param {Function} props.onClearFilters - Handler to clear all active filters
  * @param {Function} props.onClick - Handler for container click (scrolls to top)
  */
-export function SearchInterfaceMini({ 
+export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
     searchQuery,
     onSearchChange,
     totalCommands = 0,
     activeFiltersCount = 0,
     onClearFilters,
     onClick
-}) {
+}, ref) {
     const [cursor, setCursor] = useState(true);
     const [isFocused, setIsFocused] = useState(false);
     const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
     const inputRef = useRef(null);
+
+    // Expose focus method to parent component
+    useImperativeHandle(ref, () => ({
+        focus: () => {
+            if (inputRef.current) {
+                inputRef.current.focus();
+            }
+        }
+    }));
 
     // Enhanced Wave Animation System
     const { getPrimaryWave, getSecondaryWave } = useWaveAnimation(1000);
@@ -227,4 +236,4 @@ export function SearchInterfaceMini({
             </div>
         </div>
     );
-}
+});
