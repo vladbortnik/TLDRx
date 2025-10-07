@@ -3,7 +3,6 @@ import PWAInstall from './components/PWAInstall';
 import { Header } from './components/Header';
 import { SearchInterface } from './components/search/SearchInterface';
 import { SearchInterfaceMini } from './components/search/SearchInterfaceMini';
-import { useWaveAnimation } from './hooks/useWaveAnimation';
 import { useScrollBehavior } from './hooks/useScrollBehavior';
 
 import { ErrorState } from './components/ui/ErrorState';
@@ -61,6 +60,19 @@ const fuzzySearch = (searchTerm, targetString) => {
  * @returns {number} Combined search score with name matches getting priority
  */
 const searchCommand = (searchTerm, command) => {
+    const lowerSearchTerm = searchTerm.toLowerCase();
+    const lowerCommandName = command.name.toLowerCase();
+
+    // PRIORITY 1: Exact name match (the highest priority)
+    if (lowerCommandName === lowerSearchTerm) {
+        return 100000; // Massive score to ensure exact matches always appear first
+    }
+
+    // PRIORITY 2: Name starts with the search term (very high priority)
+    if (lowerCommandName.startsWith(lowerSearchTerm)) {
+        return 50000 + (100 - searchTerm.length); // Boost with a slight preference for shorter matches
+    }
+
     const nameScore = fuzzySearch(searchTerm, command.name);
     const descriptionScore = fuzzySearch(searchTerm, command.description);
 
@@ -107,10 +119,6 @@ function App({ mockCommands }) {
     const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
     const [showMiniSearch, setShowMiniSearch] = useState(false);
 
-    // Enhanced Wave Animation System
-    const { getBackgroundWave, wavePhase } = useWaveAnimation(1000);
-    // const { getBackgroundWave, wavePhase } = useWaveAnimation(100000000);
-
     // Scroll behavior for sticky header
     const {
         getHeaderStyles
@@ -121,9 +129,6 @@ function App({ mockCommands }) {
 
     // Sentinel element ref for intersection observer
     const sentinelRef = useRef(null);
-
-    // Ref to track previous search query for detecting transitions
-    const prevSearchQueryRef = useRef("");
 
     // Refs for both search inputs to manage focus
     const fullSearchRef = useRef(null);
@@ -182,7 +187,7 @@ function App({ mockCommands }) {
         loadCommands().catch(console.error);
     }, [mockCommands]);
 
-    // Debounce search query to improve performance (fixes 965ms processing delay)
+    // Debounce a search query to improve performance (fixes 965ms processing delay)
     useEffect(() => {
         const timer = setTimeout(() => {
             setDebouncedSearchQuery(searchQuery);
@@ -218,7 +223,7 @@ function App({ mockCommands }) {
         return () => window.removeEventListener('resize', handleResize);
     }, [isFilterOpen]);
 
-    // Use IntersectionObserver with sentinel element to prevent flicker
+    // Use IntersectionObserver with a sentinel element to prevent flicker
     useEffect(() => {
         const sentinel = sentinelRef.current;
         if (!sentinel) return;
@@ -234,7 +239,7 @@ function App({ mockCommands }) {
                 if (scrollableDistance > 300) {
                     setShowMiniSearch(!entry.isIntersecting);
                 } else {
-                    // Not enough content - always show full interface
+                    // Not enough content - always show a full interface
                     setShowMiniSearch(false);
                 }
             },
@@ -279,7 +284,7 @@ function App({ mockCommands }) {
             );
         }
 
-        // Then apply a search filter using DEBOUNCED query
+        // Then apply a search filter using a DEBOUNCED query
         if (debouncedSearchQuery.trim() === "") {
             return filteredCommands.slice();
         } else {
@@ -338,36 +343,16 @@ function App({ mockCommands }) {
     }, []);
 
     /**
-     * Scroll to a specific command by name
-     * Used for related command navigation
+     * Handle related command click - simply search for it
+     * This matches the old working behavior: filter the list instead of scrolling
      *
-     * @param {string} commandName - Name of command to scroll to
+     * @param {string} commandName - Name of command to search for
      */
     const handleScrollToCommand = useCallback((commandName) => {
-        const index = displayCommands.findIndex(cmd => cmd.name === commandName);
-
-        if (index !== -1) {
-            // Use double requestAnimationFrame to ensure DOM is ready
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    commandGridRef.current?.scrollToIndex(index, {
-                        align: 'center',
-                        behavior: 'smooth'
-                    });
-
-                    // Trigger highlight event after scroll
-                    setTimeout(() => {
-                        const event = new CustomEvent('highlightCommand', {
-                            detail: { commandName }
-                        });
-                        window.dispatchEvent(event);
-                    }, 500);
-                });
-            });
-        } else {
-            console.warn(`Command "${commandName}" not found in filtered list`);
-        }
-    }, [displayCommands]);
+        // Simply set the search query to the clicked command name
+        // This will filter the results and show that command at the top
+        setSearchQuery(commandName);
+    }, []);
 
     // Re-check scrollability when filtered commands change
     useEffect(() => {
@@ -404,32 +389,26 @@ function App({ mockCommands }) {
         }
     }, [displayCommands.length, showAdvancedFilters]);
 
-    // Scroll to top when user STARTS a search in mini interface
-    // Only scrolls on transition from empty to non-empty query (not on every keystroke)
-    // This ensures best results are visible and avoids the sticky header overlap issue
+    // Auto-scroll to the top when a search query changes (after debouncing)
+    // Triggers for both user typing and related command clicks
+    // FIXED: Use Virtuoso's scrollToIndex to ensure the first result is visible
     useEffect(() => {
-        const prevQuery = prevSearchQueryRef.current;
-        const currentQuery = searchQuery.trim();
-
-        // Detect transition: empty → non-empty (user just started searching)
-        const isStartingNewSearch = prevQuery.length === 0 && currentQuery.length > 0;
-
-        if (isStartingNewSearch && showMiniSearch) {
-            // Wait for React to finish rendering the filtered results
-            // Double requestAnimationFrame ensures DOM is fully updated before scrolling
+        if (debouncedSearchQuery.trim() !== '' && commandGridRef.current) {
             requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
+                // First, scroll Virtuoso to index 0
+                commandGridRef.current.scrollToIndex(0, {
+                    align: 'start',
+                    behavior: 'auto' // Instant scroll for search results
+                });
+
+                // Then scroll a window to top to show full search interface
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
                 });
             });
         }
-
-        // Update ref for next comparison
-        prevSearchQueryRef.current = currentQuery;
-    }, [searchQuery, showMiniSearch]);
+    }, [debouncedSearchQuery]);
 
     // DISABLED: Focus management was causing 517ms input delay
     // Persistent focus management - keep cursor in active search input
@@ -478,7 +457,7 @@ function App({ mockCommands }) {
         <div
             className="min-h-screen text-white font-inter relative"
             style={{
-                ...getBackgroundWave(),
+                background: 'linear-gradient(45deg, rgb(15,23,42), rgb(30,41,59), rgb(49,46,129), rgb(15,23,42))',
                 zIndex: 0
             }}
         >
@@ -562,6 +541,12 @@ function App({ mockCommands }) {
                             activeFiltersCount={selectedPlatforms.length + selectedCategories.length}
                             onClearFilters={handleClearAllFilters}
                             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                            onLogoClick={() => {
+                                // Reset everything and go home
+                                setSearchQuery('');
+                                handleClearAllFilters();
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
                         />
                     </div>
                 </div>

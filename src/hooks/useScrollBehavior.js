@@ -5,6 +5,8 @@ export function useScrollBehavior() {
   const [scrollDirection, setScrollDirection] = useState('down');
 
   const lastScrollY = useRef(0);
+  const lastScrollYState = useRef(0); // Track previous scrollY state
+  const lastScrollDirectionState = useRef('down'); // Track previous direction state
   const headerHeight = useRef(0);
 
   useEffect(() => {
@@ -16,22 +18,36 @@ export function useScrollBehavior() {
   }, []);
 
   useEffect(() => {
+    // Initialize refs with current values to prevent initial setState
+    const initialScrollY = window.scrollY;
+    lastScrollYState.current = initialScrollY;
+    lastScrollY.current = initialScrollY;
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Update scroll position
-      setScrollY(currentScrollY);
+      // Only update scrollY state if value changed (use Math.round to avoid floating-point issues)
+      const roundedScrollY = Math.round(currentScrollY);
+      const roundedLastScrollY = Math.round(lastScrollYState.current);
 
-      // Update scroll direction
-      if (currentScrollY > lastScrollY.current) {
-        setScrollDirection('down');
-      } else {
-        setScrollDirection('up');
+      if (roundedLastScrollY !== roundedScrollY) {
+        lastScrollYState.current = currentScrollY;
+        setScrollY(currentScrollY);
       }
 
-      // Calculate sticky threshold (when header disappears + 6px)
-      const stickyThreshold = Math.max(0, headerHeight.current - 6);
+      // Calculate new direction
+      let newDirection;
+      if (currentScrollY > lastScrollY.current) {
+        newDirection = 'down';
+      } else {
+        newDirection = 'up';
+      }
 
+      // Only update direction state if value changed
+      if (lastScrollDirectionState.current !== newDirection) {
+        lastScrollDirectionState.current = newDirection;
+        setScrollDirection(newDirection);
+      }
 
       lastScrollY.current = currentScrollY;
     };
@@ -49,9 +65,6 @@ export function useScrollBehavior() {
     };
 
     window.addEventListener('scroll', throttledHandleScroll, { passive: true });
-
-    // Initial calculation
-    handleScroll();
 
     return () => {
       window.removeEventListener('scroll', throttledHandleScroll);

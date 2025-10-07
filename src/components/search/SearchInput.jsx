@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } f
 import { Terminal, Filter, XCircle } from 'lucide-react';
 import { FaDatabase } from 'react-icons/fa6';
 import { VscTerminalBash } from 'react-icons/vsc';
-import { useWaveAnimation } from '../../hooks/useWaveAnimation';
 import { FilterBar } from '../filters/FilterBar.jsx';
 import { CategoryFilters } from '../filters/CategoryFilters.jsx';
 
@@ -48,9 +47,6 @@ export const SearchInput = forwardRef(function SearchInput({
         "Find commands by platform or category...",
         "Discover new CLI tools and utilities..."
     ];
-
-    // Enhanced Wave Animation System
-    const { getPrimaryWave, getSecondaryWave } = useWaveAnimation(1000);
 
     // Cycle through status messages
     useEffect(() => {
@@ -115,7 +111,7 @@ export const SearchInput = forwardRef(function SearchInput({
                     <div
                         className="backdrop-blur-xl border border-white/30 rounded-xl overflow-hidden transition-all duration-300 cursor-text"
                         style={{
-                            ...getPrimaryWave(),
+                            background: 'linear-gradient(135deg, rgba(30,41,59,0.8), rgba(49,46,129,0.7), rgba(30,41,59,0.8))',
                             ...getGlowStyle()
                         }}
                         onClick={handleSearchContainerClick}
@@ -124,7 +120,9 @@ export const SearchInput = forwardRef(function SearchInput({
                         {/* Header with 3D cube icon - Click anywhere to focus input */}
                         <div
                             className="border-b border-white/20 px-5 py-3 flex items-center justify-between pointer-events-none"
-                            style={getSecondaryWave()}
+                            style={{
+                                background: 'linear-gradient(90deg, rgba(25,35,80,0.6), rgba(40,45,105,0.5), rgba(25,35,80,0.6))'
+                            }}
                         >
                             <div className="flex items-center gap-3">
                                 {/* Matrix Terminal Icon */}

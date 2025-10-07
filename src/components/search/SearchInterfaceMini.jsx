@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } f
 import { FaDatabase } from 'react-icons/fa6';
 import { VscTerminalBash } from 'react-icons/vsc';
 import { Filter, X, Terminal, XCircle } from 'lucide-react';
-import { useWaveAnimation } from '../../hooks/useWaveAnimation';
 
 /**
  * Compact search interface component that appears when scrolling down.
@@ -22,7 +21,8 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
     totalCommands = 0,
     activeFiltersCount = 0,
     onClearFilters,
-    onClick
+    onClick,
+    onLogoClick
 }, ref) {
     const [cursor, setCursor] = useState(true);
     const [isFocused, setIsFocused] = useState(false);
@@ -37,9 +37,6 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
             }
         }
     }));
-
-    // Enhanced Wave Animation System
-    const { getPrimaryWave, getSecondaryWave } = useWaveAnimation(1000);
 
     // Mini status messages - shorter for compact display, all include command count
     const statusMessages = [
@@ -65,16 +62,16 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
 
     // Handle container click to focus input or scroll to top
     const handleContainerClick = (e) => {
-        // Don't trigger if clicking on buttons
-        if (e.target.closest('button')) {
+        // Don't trigger if clicking on buttons or logo
+        if (e.target.closest('button') || e.target.closest('[data-logo]')) {
             return;
         }
-        
+
         // If clicking on the container (not input), trigger the onClick prop to scroll to top
         if (!e.target.closest('input')) {
             onClick && onClick();
         }
-        
+
         // Focus the input
         if (inputRef.current) {
             inputRef.current.focus();
@@ -111,35 +108,48 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
         <div className="relative w-full animate-in slide-in-from-top duration-300">
             {/* Add top margin/padding for better spacing */}
             <div className="pt-2 pb-2 px-4">
-                <div 
+                <div
                     className="backdrop-blur-xl border border-white/30 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer hover:transform hover:scale-[1.02]"
                     style={{
-                        ...getPrimaryWave(),
+                        background: 'linear-gradient(135deg, rgba(30,41,59,0.8), rgba(49,46,129,0.7), rgba(30,41,59,0.8))',
                         ...getGlowStyle()
                     }}
                     onClick={handleContainerClick}
                 >
                     {/* Compact header bar with gradient background */}
-                    <div 
+                    <div
                         className="px-4 py-2.5 border-b border-white/20"
-                        style={getSecondaryWave()}
+                        style={{
+                            background: 'linear-gradient(90deg, rgba(25,35,80,0.6), rgba(40,45,105,0.5), rgba(25,35,80,0.6))'
+                        }}
                     >
                         <div className="flex items-center justify-between">
                             {/* Left side: Logo and search input */}
                             <div className="flex items-center gap-3 flex-1">
-                                {/* Matrix Terminal Icon with glow */}
-                                <VscTerminalBash 
-                                    className="w-4 h-4 animate-pulse flex-shrink-0" 
-                                    style={{
-                                        color: '#00a82d',
-                                        filter: 'drop-shadow(0 0 6px rgba(0, 168, 45, 0.8)) saturate(1.8)'
-                                    }} 
-                                />
-                                
-                                {/* Logo with matrix glow animation */}
-                                <span className="text-xs font-semibold tracking-wide animate-logo-glow-matrix hidden sm:inline">
-                                    TL;DRx
-                                </span>
+                                {/* Logo area - acts as home button */}
+                                <div
+                                    data-logo
+                                    className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        onLogoClick && onLogoClick();
+                                    }}
+                                    title="Reset and go home"
+                                >
+                                    {/* Matrix Terminal Icon with glow */}
+                                    <VscTerminalBash
+                                        className="w-4 h-4 animate-pulse flex-shrink-0"
+                                        style={{
+                                            color: '#00a82d',
+                                            filter: 'drop-shadow(0 0 6px rgba(0, 168, 45, 0.8)) saturate(1.8)'
+                                        }}
+                                    />
+
+                                    {/* Logo with matrix glow animation */}
+                                    <span className="text-xs font-semibold tracking-wide animate-logo-glow-matrix hidden sm:inline">
+                                        TL;DRx
+                                    </span>
+                                </div>
 
                                 {/* Divider */}
                                 <div className="h-4 w-px bg-white/30 hidden sm:block" />

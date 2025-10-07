@@ -32,20 +32,15 @@ const RELATIONSHIP_COLORS = {
  * Displays complete command information with expandable sections
  */
 export const CommandCard = React.memo(function CommandCard({ command, onScrollToCommand }) {
-  // Defensive check for required data
-  if (!command) {
-    return <div className="text-red-400">Error: No command data provided</div>;
-  }
+  // ===== ALL HOOKS MUST COME FIRST (React Rules of Hooks) =====
 
-  // Wave animation phase from parent for synchronization
-  
   // State for expandable sections (collapsed by default)
   const [expandedSections, setExpandedSections] = useState({
     keyFeatures: false,
     combinations: false,
     warnings: false
   });
-  
+
   // UI interaction states
   const [hoveredRelated, setHoveredRelated] = useState(null);
   const [copiedExample, setCopiedExample] = useState(null);
@@ -59,20 +54,27 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
   const descriptionShowTimeRef = useRef(null);
   const isHoveringRef = useRef(false);
   const highlightTimeoutRef = useRef(null);
+  const lastScreenSizeRef = useRef('desktop'); // Track last size to prevent unnecessary updates
 
   /**
    * Responsive screen size detection
    * Updates screenSize state for responsive styling
+   * FIXED: Uses ref to track previous value and prevent infinite loop
    */
   useEffect(() => {
     const handleResize = () => {
-      if (typeof window !== 'undefined') {
-        const width = window.innerWidth;
-        if (width < 640) setScreenSize('mobile');
-        else if (width < 768) setScreenSize('tablet');
-        else if (width < 1024) setScreenSize('laptop');
-        else if (width < 1440) setScreenSize('desktop');
-        else setScreenSize('wide');
+      const width = window.innerWidth;
+      let newSize;
+      if (width < 640) newSize = 'mobile';
+      else if (width < 768) newSize = 'tablet';
+      else if (width < 1024) newSize = 'laptop';
+      else if (width < 1440) newSize = 'desktop';
+      else newSize = 'wide';
+
+      // Only update if value changed - check against ref, not state
+      if (lastScreenSizeRef.current !== newSize) {
+        lastScreenSizeRef.current = newSize;
+        setScreenSize(newSize);
       }
     };
 
@@ -82,7 +84,7 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
   }, []);
 
   /**
-   * Cleanup timeouts on unmount
+   * Cleanup timeouts on unmounting
    */
   useEffect(() => {
     return () => {
@@ -116,7 +118,7 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
         const remaining = Math.max(0, 15000 - elapsed);
 
         if (remaining > 0) {
-          // Haven't reached minimum time, schedule hide after remaining time
+          // Haven't reached minimum time, schedule hides after remaining time
           descriptionTimeoutRef.current = setTimeout(() => {
             // Only hide if still not hovering
             if (!isHoveringRef.current) {
@@ -133,16 +135,6 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
       }
     }
   }, []); // Empty deps: uses refs and setState (which are stable)
-
-  /**
-   * Static gradient for card background
-   * Removed wave animation for performance - was causing 100+ re-renders every 100ms
-   */
-  const getCardBackground = () => {
-    return {
-      background: `linear-gradient(135deg, rgba(15,25,45,0.7), rgba(30,40,80,0.5), rgba(20,30,55,0.7))`
-    };
-  };
 
   /**
    * Toggle expanded state for collapsible sections
@@ -169,7 +161,7 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
   };
 
   /**
-   * Parse example string into command and comment parts
+   * Parse an example string into command and comment parts
    * Split on '#' to separate command from explanation
    */
   const parseExample = (example) => {
@@ -203,7 +195,7 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
 
   /**
    * Handle related command click - scroll to and highlight target command
-   * Uses callback provided by parent to work with virtualized list
+   * Uses callback provided by parent to work with a virtualized list
    */
   const handleRelatedCommandClick = (commandName) => {
     if (onScrollToCommand) {
@@ -241,14 +233,18 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
     };
   }, [command?.name]);
 
+  // ===== DEFENSIVE CHECK (AFTER ALL HOOKS) =====
+  // Hooks must be called in the same order every render
+  // so this check comes AFTER all hooks, not before
+  if (!command) {
+    return <div className="text-red-400">Error: No command data provided</div>;
+  }
+
   return (
     <div
       ref={cardRef}
       id={`command-${command?.name}`}
-      className="relative group scroll-mt-24"
-      style={{
-        animation: 'slideInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)'
-      }}
+      className="relative group"
     >
       {/* Main Card Container */}
       <div
@@ -257,7 +253,9 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
             ? 'border-cyan-400 shadow-[0_0_60px_rgba(34,211,238,0.6)] ring-4 ring-cyan-400/50'
             : 'border-white/20 hover:shadow-[0_0_40px_rgba(59,130,246,0.2)]'
         }`}
-        style={getCardBackground()}
+        style={{
+          background: 'linear-gradient(135deg, rgba(15,25,45,0.7), rgba(30,40,80,0.5), rgba(20,30,55,0.7))'
+        }}
       >
         
         {/* Header Section: Command Name + Stands For + Description + Badges */}

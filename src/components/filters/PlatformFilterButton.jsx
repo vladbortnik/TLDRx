@@ -37,7 +37,7 @@ export const PlatformFilterButton = React.memo(function PlatformFilterButton({ p
         style={{ color: iconColor }}
       />
 
-      {/* Removed blue circle indicator - using enhanced glow instead */}
+      {/* Removed the blue circle indicator - using enhanced glow instead */}
     </button>
   );
 });
