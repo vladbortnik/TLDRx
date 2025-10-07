@@ -2,7 +2,7 @@
 .idea
 
 # Project Specific
-PLAN.md
+#PLAN.md
 _*
 _TEMP/
 _TEMP-*
@@ -24,7 +24,7 @@ CODEBASE_ANALYSIS.md
 DEVTOOLS-PERFORMANCE-PROFILER.md
 
 # Claude Code
-CLAUDE.md
+#CLAUDE.md
 .claude/
 
 # Logs
