@@ -50,9 +50,9 @@
 - **📱 Fully Responsive** - Optimized layouts for all screen sizes from mobile to desktop
 - **🆓 Free & Open Source** - MIT licensed, community-driven
 
-### 🌟 Live Demo
+### 🌟 Live Demo: [TL;DRx](https://tldrx.vladbortnik.dev)
 
-**Experience it now:** [TL;DRx](https://tldrx.vladbortnik.dev)
+**Experience it now:** 
 
 Try searching for commands like `grep`, `docker`, `ssh`, or `git` to see instant, intelligent results.
 
