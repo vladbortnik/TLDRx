@@ -247,6 +247,23 @@ function App({ mockCommands }) {
     }, []);
 
     /**
+     * Unified scroll utility - used by ALL triggers that change displayCommands
+     * Scrolls to top instantly to prevent Virtuoso rendering issues
+     */
+    const scrollToTopInstantly = useCallback(() => {
+        console.log('📜 SCROLL: Instant scroll to top (prevents Virtuoso bug)', {
+            currentScrollY: window.scrollY,
+            behavior: 'instant'
+        });
+        console.log(''); // Visual separator
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'instant'
+        });
+    }, []);
+
+    /**
      * Handle search submission (Enter key or clear button)
      * @param {string} [queryOverride] - Optional explicit query value
      *   Used by clear button to pass empty string and avoid closure issues
@@ -261,20 +278,11 @@ function App({ mockCommands }) {
         });
         console.log(''); // Visual separator
 
-        // CRITICAL: Scroll to top IMMEDIATELY (before data changes) with instant behavior
-        // This prevents Virtuoso from being stuck with scroll position > content height
-        console.log('📜 SCROLL: Instant scroll to top (before filtering)', {
-            currentScrollY: window.scrollY,
-            behavior: 'instant'
-        });
-        console.log(''); // Visual separator
-        window.scrollTo({
-            top: 0,
-            behavior: 'instant' // Instant, not smooth
-        });
+        // Scroll to top before filtering (prevents Virtuoso from rendering at wrong position)
+        scrollToTopInstantly();
 
         setSubmittedSearchQuery(queryToSubmit);
-    }, [searchQuery]);
+    }, [searchQuery, scrollToTopInstantly]);
 
     // Log search query changes (typing in input)
     useEffect(() => {
@@ -449,11 +457,15 @@ function App({ mockCommands }) {
             action: 'Immediate search (no Enter needed)'
         });
         console.log(''); // Visual separator
+
+        // Scroll to top before filtering (prevents Virtuoso bug)
+        scrollToTopInstantly();
+
         // Set display value
         setSearchQuery(commandName);
         // Immediately submit for filtering (no Enter needed)
         setSubmittedSearchQuery(commandName);
-    }, []);
+    }, [scrollToTopInstantly]);
 
     // Re-check scrollability when filtered commands change
     useEffect(() => {
@@ -634,11 +646,14 @@ function App({ mockCommands }) {
                                     previousSubmitted: submittedSearchQuery
                                 });
                                 console.log(''); // Visual separator
+
+                                // Scroll to top before clearing (prevents Virtuoso bug)
+                                scrollToTopInstantly();
+
                                 // Reset everything and go home
                                 setSearchQuery('');
                                 setSubmittedSearchQuery(''); // CRITICAL: Also clear submitted query
                                 handleClearAllFilters();
-                                window.scrollTo({ top: 0, behavior: 'smooth' });
                             }}
                         />
                     </div>
