@@ -106,9 +106,7 @@ export const SearchInput = forwardRef(function SearchInput({
         <div className="relative flex-1">
             <div className="space-y-3">
                 {/* Main search container with surrounding glow */}
-                <div className={`relative transition-all duration-400 ${
-                    isFocused ? 'transform -translate-y-1 scale-105' : ''
-                }`}>
+                <div className="relative transition-all duration-400">
 
                     <div
                         className="backdrop-blur-xl border border-white/30 rounded-xl overflow-hidden transition-all duration-300 cursor-text"
@@ -188,8 +186,14 @@ export const SearchInput = forwardRef(function SearchInput({
                                         onBlur={() => setIsFocused(false)}
                                         onKeyDown={(e) => {
                                             if (e.key === 'Enter') {
+                                                e.preventDefault();
                                                 onSearchSubmit && onSearchSubmit();
-                                                if (inputRef.current) inputRef.current.focus(); // Keep focus
+                                                // Maintain focus after search submission
+                                                setTimeout(() => {
+                                                    if (inputRef.current) {
+                                                        inputRef.current.focus();
+                                                    }
+                                                }, 50);
                                             }
                                         }}
                                         placeholder={placeholder}
@@ -215,9 +219,12 @@ export const SearchInput = forwardRef(function SearchInput({
                                                 e.stopPropagation();
                                                 onChange(''); // Clear the search input
                                                 onSearchSubmit && onSearchSubmit(''); // Submit empty search
-                                                if (inputRef.current) {
-                                                    inputRef.current.focus();
-                                                }
+                                                // Restore focus after clearing
+                                                setTimeout(() => {
+                                                    if (inputRef.current) {
+                                                        inputRef.current.focus();
+                                                    }
+                                                }, 50);
                                             }}
                                             title="Click to clear search"
                                         />

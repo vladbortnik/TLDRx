@@ -260,6 +260,21 @@ function App({ mockCommands }) {
     }, []);
 
     /**
+     * Maintain focus when switching between full and mini search interfaces
+     * This ensures the cursor stays visible after transitions
+     */
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            const activeSearchRef = showMiniSearch ? miniSearchRef : fullSearchRef;
+            if (activeSearchRef.current && activeSearchRef.current.focus) {
+                activeSearchRef.current.focus();
+            }
+        }, 350); // Wait for transition to complete (300ms transition + 50ms buffer)
+
+        return () => clearTimeout(timeout);
+    }, [showMiniSearch]);
+
+    /**
      * Unified scroll utility - used by ALL triggers that change displayCommands
      * Scrolls to top instantly to prevent Virtuoso rendering issues
      */

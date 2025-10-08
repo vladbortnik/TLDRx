@@ -174,8 +174,14 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
                                         onBlur={() => setIsFocused(false)}
                                         onKeyDown={(e) => {
                                             if (e.key === 'Enter') {
+                                                e.preventDefault();
                                                 onSearchSubmit && onSearchSubmit();
-                                                if (inputRef.current) inputRef.current.focus(); // Keep focus
+                                                // Maintain focus after search submission
+                                                setTimeout(() => {
+                                                    if (inputRef.current) {
+                                                        inputRef.current.focus();
+                                                    }
+                                                }, 50);
                                             }
                                         }}
                                         placeholder="query (press Enter)"
@@ -259,9 +265,12 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
                                             e.stopPropagation();
                                             onSearchChange(''); // Clear the search input
                                             onSearchSubmit && onSearchSubmit(''); // Submit empty search
-                                            if (inputRef.current) {
-                                                inputRef.current.focus();
-                                            }
+                                            // Restore focus after clearing
+                                            setTimeout(() => {
+                                                if (inputRef.current) {
+                                                    inputRef.current.focus();
+                                                }
+                                            }, 50);
                                         }}
                                         title="Click to clear search"
                                     />
