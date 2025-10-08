@@ -36,8 +36,20 @@ import { useState, useEffect, useRef } from 'react';
 
 /**
  * Ocean Wave Animation Hook
- * Creates a powerful, realistic wave effect that sweeps across the UI
- * Wave arrives every 6-7 seconds with strong impact and gentle recession
+ * Creates a powerful, realistic wave effect that sweeps across the UI with configurable presets.
+ * Implements smooth animation using requestAnimationFrame for optimal performance.
+ *
+ * @param {string} [preset='deep-ocean'] - Wave preset name. Options: 'deep-ocean', 'stormy-seas', 'calm-shore', 'tidal-surge', 'rhythmic-pulse'
+ * @returns {Object} Wave animation controls and style generators
+ * @returns {number} returns.wavePhase - Current wave position (0-100) for backwards compatibility
+ * @returns {number} returns.waveIntensity - Current wave intensity (0-1.5)
+ * @returns {number} returns.wavePosition - Current wave position (0-100)
+ * @returns {Function} returns.getPrimaryWave - Returns styles for primary backgrounds
+ * @returns {Function} returns.getSecondaryWave - Returns styles for headers/sections
+ * @returns {Function} returns.getAccentWave - Returns styles for special elements with offset
+ * @returns {Function} returns.getBackgroundWave - Returns styles for full-page backgrounds
+ * @returns {Function} returns.getWaveStats - Returns current wave statistics for debugging
+ * @returns {Array<Object>} returns.availablePresets - List of available presets with descriptions
  */
 export function useWaveAnimation(preset = 'deep-ocean') {
   const [waveIntensity, setWaveIntensity] = useState(0);

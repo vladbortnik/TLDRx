@@ -1,5 +1,17 @@
+/**
+ * @fileoverview Loading state component with animated indicators
+ * Displays while command data is being loaded
+ */
+
 import { Search } from 'lucide-react';
 
+/**
+ * LoadingState Component
+ * Displays animated loading indicator with search icon and bouncing dots
+ *
+ * @component
+ * @returns {JSX.Element} Loading indicator with accessibility labels
+ */
 export function LoadingState() {
   return (
     <div className="text-center py-12" role="status" aria-label="Loading search results">

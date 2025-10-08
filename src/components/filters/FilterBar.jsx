@@ -1,12 +1,26 @@
+/**
+ * @fileoverview Mobile-responsive filter bar component
+ * Platform toggles and advanced filter controls with adaptive sizing
+ */
+
 import React from 'react';
 import { Filter, X } from 'lucide-react';
 import { PlatformFilterButton } from './PlatformFilterButton.jsx';
 
 /**
- * Mobile-responsive filter bar with platform toggles and advanced filters
- * Adapts button sizes and text visibility based on screen size
+ * FilterBar Component
+ * Mobile-responsive filter bar with platform toggles and advanced filters.
+ * Adapts button sizes and text visibility based on screen size.
+ *
+ * @component
+ * @param {Object} props - Component props
+ * @param {Array<string>} [props.selectedPlatforms=[]] - Selected platform filters
+ * @param {Array<string>} [props.selectedCategories=[]] - Selected category filters
+ * @param {Function} props.onPlatformChange - Platform selection change handler
+ * @param {Function} props.onAdvancedFiltersToggle - Advanced filters toggle handler
+ * @param {Function} props.onClearAll - Clear all filters handler
+ * @returns {JSX.Element} Filter bar with platform toggles
  */
-
 export function FilterBar({
   selectedPlatforms = [],
   selectedCategories = [],

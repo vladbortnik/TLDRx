@@ -1,5 +1,17 @@
+/**
+ * @fileoverview Main header component with TL;DRx branding
+ * Displays application logo and tagline with Matrix-themed styling
+ */
+
 import { VscTerminalBash } from 'react-icons/vsc';
 
+/**
+ * Header Component
+ * Displays the TL;DRx logo with animated terminal icon and tagline
+ *
+ * @component
+ * @returns {JSX.Element} Application header with branding
+ */
 export function Header() {
   return (
     <header className="mb-12">

@@ -1,3 +1,17 @@
+/**
+ * @fileoverview Error state display component
+ * Shows error messages with consistent styling
+ */
+
+/**
+ * ErrorState Component
+ * Displays error messages in a styled alert box
+ *
+ * @component
+ * @param {Object} props - Component props
+ * @param {string} props.message - Error message to display
+ * @returns {JSX.Element|null} Error alert or null if no message
+ */
 export function ErrorState({ message }) {
   if (!message) return null;
 

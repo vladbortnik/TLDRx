@@ -1,7 +1,14 @@
 /**
- * Copy text to clipboard with fallback for environments where Clipboard API is blocked
+ * @fileoverview Robust clipboard utilities with multiple fallback strategies
+ * Supports modern Clipboard API, legacy execCommand, and selection-based copying
+ */
+
+/**
+ * Copy text to clipboard with automatic fallback chain for maximum compatibility
+ * Attempts modern Clipboard API first, then legacy methods for older browsers
+ *
  * @param {string} text - Text to copy to clipboard
- * @returns {Promise<boolean>} - Success status
+ * @returns {Promise<boolean>} Promise resolving to true if copy succeeded, false otherwise
  */
 export async function copyToClipboard(text) {
   if (!text) {
@@ -9,9 +16,8 @@ export async function copyToClipboard(text) {
     return false;
   }
 
-  // Skip modern Clipboard API in development/insecure contexts and go straight to fallback
+  // Skip modern Clipboard API in insecure contexts and use legacy fallback
   if (!window.isSecureContext || window.location.protocol !== 'https:') {
-    console.info('Using legacy copy method due to insecure context');
     return legacyCopyToClipboard(text);
   }
 
@@ -19,10 +25,8 @@ export async function copyToClipboard(text) {
   if (navigator.clipboard) {
     try {
       await navigator.clipboard.writeText(text);
-      console.info('Text copied using Clipboard API');
       return true;
     } catch (err) {
-      console.info('Clipboard API failed, using legacy method');
       return legacyCopyToClipboard(text);
     }
   }
@@ -32,17 +36,19 @@ export async function copyToClipboard(text) {
 }
 
 /**
- * Legacy copy method using document.execCommand
- * @param {string} text - Text to copy
- * @returns {boolean} - Success status
+ * Legacy copy method using document.execCommand for older browser support
+ * Creates a temporary textarea element to enable text selection and copying
+ *
+ * @param {string} text - Text to copy to clipboard
+ * @returns {boolean} True if copy succeeded, false otherwise
  */
 function legacyCopyToClipboard(text) {
   try {
-    // Create a temporary textarea element
+    // Create a temporary textarea element positioned off-screen
     const textArea = document.createElement('textarea');
     textArea.value = text;
-    
-    // Position it off-screen but keep it accessible
+
+    // Position off-screen but keep accessible for selection
     textArea.style.position = 'absolute';
     textArea.style.left = '-9999px';
     textArea.style.top = '0';
@@ -50,26 +56,24 @@ function legacyCopyToClipboard(text) {
     textArea.style.pointerEvents = 'none';
     textArea.setAttribute('readonly', 'readonly');
     textArea.setAttribute('tabindex', '-1');
-    
+
     document.body.appendChild(textArea);
-    
+
     // Select and copy the text
     textArea.focus({ preventScroll: true });
     textArea.select();
     textArea.setSelectionRange(0, text.length);
-    
+
     // Try execCommand
     const successful = document.execCommand && document.execCommand('copy');
-    
+
     // Clean up immediately
     document.body.removeChild(textArea);
-    
+
     if (successful) {
-      console.info('Text copied using legacy method');
       return true;
     } else {
       console.warn('Legacy copy method not supported');
-      // Final fallback - attempt to use selection API
       return fallbackCopyToClipboard(text);
     }
   } catch (err) {
@@ -79,28 +83,30 @@ function legacyCopyToClipboard(text) {
 }
 
 /**
- * Final fallback copy method using selection API
- * @param {string} text - Text to copy
- * @returns {boolean} - Success status
+ * Final fallback copy method using Selection API
+ * Last resort for environments where other copy methods fail
+ *
+ * @param {string} text - Text to copy to clipboard
+ * @returns {boolean} True if copy succeeded, false otherwise
  */
 function fallbackCopyToClipboard(text) {
   try {
-    // Create a span element with the text
+    // Create a span element with the text positioned off-screen
     const span = document.createElement('span');
     span.textContent = text;
     span.style.position = 'absolute';
     span.style.left = '-9999px';
     span.style.whiteSpace = 'pre';
-    
+
     document.body.appendChild(span);
-    
+
     // Select the text using Selection API
     const selection = window.getSelection();
     const range = document.createRange();
     range.selectNodeContents(span);
     selection.removeAllRanges();
     selection.addRange(range);
-    
+
     // Attempt to copy
     let successful = false;
     try {
@@ -108,13 +114,12 @@ function fallbackCopyToClipboard(text) {
     } catch (execErr) {
       console.warn('execCommand not available');
     }
-    
+
     // Clean up
     selection.removeAllRanges();
     document.body.removeChild(span);
-    
+
     if (successful) {
-      console.info('Text copied using selection fallback');
       return true;
     } else {
       console.warn('All copy methods failed - clipboard functionality not available');

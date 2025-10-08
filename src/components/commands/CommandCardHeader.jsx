@@ -1,15 +1,7 @@
 /**
- * CommandCardHeader Component
- * 
- * The first line of the command card displaying:
- * - Command name (highlighted as main element)
- * - Stands for text
- * - Rolling description on hover
- * - Platform icons
- * - Category badge
- * - Safety badge
- * 
- * Mobile-first responsive design with proper breakpoints
+ * @fileoverview Command card header component with Matrix-themed styling
+ * Displays command name, description, platform icons, category, and safety badges
+ * Implements responsive design with mobile-first approach
  */
 
 import React, { useState, useEffect } from 'react';
@@ -21,7 +13,10 @@ import {
 } from '../../utils/ui-icons';
 
 
-// Safety Configuration - Distinct from category colors
+/**
+ * Safety badge color configuration with distinct visual indicators
+ * @type {Object<string, {bg: string, border: string, text: string, glow: string}>}
+ */
 const SAFETY_COLORS = {
   safe: {
     bg: 'from-lime-500 to-lime-700',  // Lime green instead of emerald
@@ -44,8 +39,11 @@ const SAFETY_COLORS = {
 };
 
 /**
- * Helper function to get category glow color based on category ID
- * Groups categories by their visual theme colors
+ * Get RGB color values for category badge glow effect
+ * Groups categories by visual theme for consistent styling
+ *
+ * @param {string} categoryId - Category identifier
+ * @returns {string} RGB color values as comma-separated string
  */
 const getCategoryGlow = (categoryId) => {
   if (categoryId.includes('system') || categoryId.includes('security') || categoryId.includes('shell')) {
@@ -62,7 +60,12 @@ const getCategoryGlow = (categoryId) => {
 
 /**
  * Command Name Component
- * Displays the command name with Matrix-style green glow effects
+ * Displays command name with animated Matrix-style green glow effects
+ *
+ * @param {Object} props - Component props
+ * @param {string} props.name - Command name to display
+ * @param {string} props.screenSize - Current screen size ('mobile', 'tablet', 'desktop')
+ * @returns {JSX.Element} Styled command name element
  */
 const CommandName = ({ name, screenSize }) => (
   <div className="relative">
@@ -294,7 +297,15 @@ const SafetyBadge = ({ safety }) => {
 
 /**
  * Main CommandCardHeader Component
- * Orchestrates the first line of the command card
+ * Orchestrates the header section of command cards with all visual elements
+ *
+ * @component
+ * @param {Object} props - Component props
+ * @param {Object} props.command - Command data object
+ * @param {string} props.screenSize - Current screen size for responsive styling
+ * @param {boolean} props.showDescription - Whether to show rolling description
+ * @param {Function} props.onDescriptionHover - Callback for description hover state
+ * @returns {JSX.Element} Complete command card header
  */
 export const CommandCardHeader = React.memo(function CommandCardHeader({
   command,

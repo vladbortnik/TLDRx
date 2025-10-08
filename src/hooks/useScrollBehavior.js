@@ -1,5 +1,19 @@
+/**
+ * @fileoverview Custom hook for tracking scroll position and direction
+ * Provides optimized scroll behavior detection with throttling
+ */
+
 import { useState, useEffect, useRef } from 'react';
 
+/**
+ * Hook for monitoring scroll behavior and providing header animation styles
+ * Uses requestAnimationFrame throttling for optimal performance
+ *
+ * @returns {Object} Scroll behavior state and utilities
+ * @returns {number} returns.scrollY - Current vertical scroll position in pixels
+ * @returns {string} returns.scrollDirection - Current scroll direction ('up' or 'down')
+ * @returns {Function} returns.getHeaderStyles - Returns inline styles for header hide/show animation
+ */
 export function useScrollBehavior() {
   const [scrollY, setScrollY] = useState(0);
   const [scrollDirection, setScrollDirection] = useState('down');

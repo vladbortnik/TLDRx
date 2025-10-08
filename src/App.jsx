@@ -1,11 +1,14 @@
+/**
+ * @fileoverview Main application component for TL;DRx command reference
+ * Orchestrates search, filtering, and command display with fuzzy search algorithm
+ * Implements virtual scrolling, responsive design, and progressive web app features
+ */
+
 import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import PWAInstall from './components/PWAInstall';
 import { Header } from './components/Header';
 import { SearchInterface } from './components/search/SearchInterface';
 import { SearchInterfaceMini } from './components/search/SearchInterfaceMini';
-// TEMP DISABLED: useScrollBehavior causing infinite loop
-// import { useScrollBehavior } from './hooks/useScrollBehavior';
-
 import { ErrorState } from './components/ui/ErrorState';
 import { LoadingState } from './components/ui/LoadingState';
 import { ResultsCounter } from './components/search/ResultsCounter';
@@ -111,22 +114,16 @@ const searchCommand = (searchTerm, command) => {
 function App({ mockCommands }) {
     const [commands, setCommands] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
-    const [submittedSearchQuery, setSubmittedSearchQuery] = useState(""); // Submitted search query (Enter key or clear)
-    const [selectedPlatforms, setSelectedPlatforms] = useState([]); // 🔧 UPDATED: Array for multiple selection
-    const [selectedCategories, setSelectedCategories] = useState([]); // 🔧 UPDATED: Array for multiple selection
+    const [submittedSearchQuery, setSubmittedSearchQuery] = useState("");
+    const [selectedPlatforms, setSelectedPlatforms] = useState([]);
+    const [selectedCategories, setSelectedCategories] = useState([]);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
     const [showMiniSearch, setShowMiniSearch] = useState(false);
 
-    // TEMP DISABLED: useScrollBehavior causing infinite loop (see PLAN.md Phase 2 Post-Implementation Issues)
-    // Scroll behavior for sticky header
-    // const {
-    //     getHeaderStyles
-    // } = useScrollBehavior();
-
-    // Ref for dynamic height calculation
+    // Ref for dynamic height calculation of sticky search wrapper
     const stickyWrapperRef = useRef(null);
 
     // Sentinel element ref for intersection observer
@@ -304,9 +301,10 @@ function App({ mockCommands }) {
 
     /**
      * Filter and rank commands based on search query, platform, and category selections.
-     * 🔧 UPDATED: Now handles multiple platform and category selections (arrays)
-     * Returns filtered commands based on search, platform, and category criteria.
-     * 🚀 OPTIMIZED: Wrapped in useMemo to prevent recalculation on unrelated re-renders
+     * Handles multiple platform and category selections with efficient array operations.
+     * Memoized to prevent unnecessary recalculations on unrelated re-renders.
+     *
+     * @returns {Array<Object>} Filtered and scored commands sorted by relevance
      */
     const displayCommands = useMemo(() => {
         // First filter by platforms (multiple selection support)
@@ -356,32 +354,31 @@ function App({ mockCommands }) {
         }
     }, [commands, submittedSearchQuery, selectedPlatforms, selectedCategories]);
 
-    // if (import.meta.env.MODE === "development") {
-    //     console.log(
-    //         `Search: "${searchQuery}", Found: ${displayCommands.length} commands`
-    //     );
-    //     console.log(
-    //         "Displaying:",
-    //         displayCommands.map((cmd) => cmd.name)
-    //     );
-    // }
-
-    // Handle command click for navigation
+    /**
+     * Handle command click for navigation
+     * @param {string} commandName - Name of the command to search for
+     */
     const onCommandClick = useCallback((commandName) => {
         setSearchQuery(commandName);
     }, []);
 
-    // Handle filter toggle (for both search icon and advanced filters button)
+    /**
+     * Toggle advanced filters panel visibility
+     */
     const handleFilterToggle = useCallback(() => {
         setShowAdvancedFilters(prev => !prev);
     }, []);
 
-    // Handle advanced filters toggle (same as filter toggle)
+    /**
+     * Toggle advanced filters panel (alias for handleFilterToggle)
+     */
     const handleAdvancedFiltersToggle = useCallback(() => {
         setShowAdvancedFilters(prev => !prev);
     }, []);
 
-    // Handle clearing all filters
+    /**
+     * Clear all platform and category filters and close advanced filters panel
+     */
     const handleClearAllFilters = useCallback(() => {
         setSelectedPlatforms([]);
         setSelectedCategories([]);
@@ -421,7 +418,10 @@ function App({ mockCommands }) {
         return () => clearTimeout(timeoutId);
     }, [displayCommands.length]);
 
-    // Collapse advanced filters when scrolling with only 1 command
+    /**
+     * Collapse advanced filters when scrolling with only 1 command visible
+     * Improves UX by preventing filters from blocking the single result
+     */
     useEffect(() => {
         if (displayCommands.length === 1 && showAdvancedFilters) {
             const handleScroll = () => {
@@ -438,53 +438,6 @@ function App({ mockCommands }) {
             return () => window.removeEventListener('scroll', handleScroll);
         }
     }, [displayCommands.length, showAdvancedFilters]);
-
-    // REMOVED: Auto-scroll useEffect no longer needed
-    // Scroll now happens in handleSearchSubmit BEFORE data changes (instant scroll)
-    // This prevents Virtuoso from being stuck at scroll position > content height
-
-    // DISABLED: Focus management was causing 517ms input delay
-    // Persistent focus management - keep cursor in active search input
-    // Uses event-based approach instead of polling for better performance
-    // useEffect(() => {
-    //     // Determine which search input is currently active/visible
-    //     const activeSearchRef = showMiniSearch ? miniSearchRef : fullSearchRef;
-
-    //     // Focus on mount or when switching between search modes
-    //     if (activeSearchRef.current) {
-    //         activeSearchRef.current.focus();
-    //     }
-
-    //     // Event handler to refocus after interactions
-    //     const handleFocusLoss = (e) => {
-    //         // Only refocus if user clicked outside interactive elements
-    //         const target = e.target;
-    //         const isInteractive = target.tagName === 'BUTTON' ||
-    //                              target.tagName === 'A' ||
-    //                              target.tagName === 'INPUT' ||
-    //                              target.tagName === 'TEXTAREA' ||
-    //                              target.closest('button') ||
-    //                              target.closest('a');
-
-    //         // Small delay to allow click handlers to complete
-    //         if (!isInteractive && activeSearchRef.current) {
-    //             setTimeout(() => {
-    //                 if (activeSearchRef.current && document.activeElement !== activeSearchRef.current) {
-    //                     activeSearchRef.current.focus();
-    //                 }
-    //             }, 100);
-    //         }
-    //     };
-
-    //     // Listen for clicks to manage focus
-    //     document.addEventListener('click', handleFocusLoss, true);
-
-    //     return () => {
-    //         document.removeEventListener('click', handleFocusLoss, true);
-    //     };
-    // }, [showMiniSearch]); // Re-run when switching between full and mini search
-
-    // Wave background is now handled by the useWaveAnimation hook
 
     return (
         <div
@@ -604,8 +557,8 @@ function App({ mockCommands }) {
                         <div>
                             <ResultsCounter
                                 count={displayCommands.length}
-                                selectedPlatforms={selectedPlatforms} // 🔧 UPDATED: Array instead of single platform
-                                selectedCategories={selectedCategories} // 🔧 UPDATED: Array instead of single category
+                                selectedPlatforms={selectedPlatforms}
+                                selectedCategories={selectedCategories}
                             />
 
                             <CommandGrid
@@ -614,8 +567,6 @@ function App({ mockCommands }) {
                                 onCommandClick={onCommandClick}
                                 onScrollToCommand={handleScrollToCommand}
                                 searchQuery={searchQuery}
-                                // TEMP: Disabled for performance testing
-                                // wavePhase={wavePhase}
                             />
                         </div>
                     )}

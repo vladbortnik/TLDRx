@@ -1,9 +1,7 @@
 /**
- * CommandCard Component
- * 
- * Main card component for displaying command information
- * Includes header (name, standsFor, description, badges) and collapsible sections
- * Features wave animation synchronized across all cards
+ * @fileoverview Main command card component with collapsible sections
+ * Displays comprehensive command information with responsive design and copy functionality
+ * Memoized for optimal performance in virtual scrolling context
  */
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
@@ -19,8 +17,9 @@ import {
 import { CommandCardHeader } from './CommandCardHeader';
 
 /**
- * Random color styles for related command buttons
- * 7 different gradient styles assigned randomly to each button
+ * Color-coded gradient styles for related command buttons
+ * Provides visual variety and improves discoverability of related commands
+ * @type {Array<string>}
  */
 const BUTTON_STYLES = [
   'from-purple-400/20 to-indigo-500/20 border-purple-400/40 text-purple-300',
@@ -33,7 +32,11 @@ const BUTTON_STYLES = [
 ];
 
 /**
- * Get a random button style based on index for consistent coloring
+ * Get a deterministic button style based on index for consistent coloring
+ * Uses modulo to cycle through available styles
+ *
+ * @param {number} index - Button index in the list
+ * @returns {string} Tailwind CSS classes for button styling
  */
 const getButtonStyle = (index) => {
   return BUTTON_STYLES[index % BUTTON_STYLES.length];
@@ -41,7 +44,14 @@ const getButtonStyle = (index) => {
 
 /**
  * Main CommandCard Component
- * Displays complete command information with expandable sections
+ * Displays complete command information with collapsible sections and interactive examples.
+ * Implements responsive design and copy-to-clipboard functionality.
+ *
+ * @component
+ * @param {Object} props - Component props
+ * @param {Object} props.command - Command object with all metadata
+ * @param {Function} props.onScrollToCommand - Callback when related command is clicked
+ * @returns {JSX.Element} Rendered command card
  */
 export const CommandCard = React.memo(function CommandCard({ command, onScrollToCommand }) {
   // ===== ALL HOOKS MUST COME FIRST (React Rules of Hooks) =====
@@ -403,54 +413,6 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
             })}
           </div>
         </div>
-
-        {/* Command Combinations Section - Hidden per requirements */}
-        {/* Keeping code for future use but not displaying */}
-        {/*{command?.commandCombinations && command.commandCombinations.length > 0 && (*/}
-        {/*  <div className="px-4 py-2.5 border-b border-white/10">*/}
-        {/*    <button*/}
-        {/*      onClick={() => toggleSection('combinations')}*/}
-        {/*      className="flex items-center justify-between w-full text-left group/header"*/}
-        {/*    >*/}
-        {/*      <h3 className="flex items-center gap-1.5 text-xs font-semibold text-white">*/}
-        {/*        <Play className="w-3.5 h-3.5 text-orange-400" />*/}
-        {/*        Command Combinations*/}
-        {/*      </h3>*/}
-        {/*      {expandedSections.combinations ? (*/}
-        {/*        <ChevronUp className="w-4 h-4 text-white/70 group-hover/header:text-orange-400 transition-colors" />*/}
-        {/*      ) : (*/}
-        {/*        <ChevronDown className="w-4 h-4 text-white/70 group-hover/header:text-orange-400 transition-colors" />*/}
-        {/*      )}*/}
-        {/*    </button>*/}
-        {/*    */}
-        {/*    {expandedSections.combinations && (*/}
-        {/*      <div className="mt-2 space-y-1.5 animate-in slide-in-from-top duration-300">*/}
-        {/*        {(command?.commandCombinations || []).map((combo, index) => (*/}
-        {/*          <div */}
-        {/*            key={index}*/}
-        {/*            className="p-2.5 rounded-lg bg-gradient-to-br from-orange-900/20 to-yellow-900/20 border border-orange-400/20"*/}
-        {/*          >*/}
-        {/*            <div className="mb-1">*/}
-        {/*              <span className="text-orange-300 font-mono text-xs">*/}
-        {/*                {combo.label}*/}
-        {/*              </span>*/}
-        {/*            </div>*/}
-        {/*            <div className="space-y-1">*/}
-        {/*              <div className="p-2 rounded-md bg-slate-900/60">*/}
-        {/*                <code className="text-white font-mono text-xs">*/}
-        {/*                  {combo.commands}*/}
-        {/*                </code>*/}
-        {/*              </div>*/}
-        {/*              <p className="text-white/60 text-xs italic">*/}
-        {/*                {combo.explanation}*/}
-        {/*              </p>*/}
-        {/*            </div>*/}
-        {/*          </div>*/}
-        {/*        ))}*/}
-        {/*      </div>*/}
-        {/*    )}*/}
-        {/*  </div>*/}
-        {/*)}*/}
 
         {/* Warnings Section - Collapsible, initially collapsed */}
         {command?.warnings && command.warnings.length > 0 && (

@@ -1,4 +1,8 @@
-// Single source of truth for all UI icon definitions
+/**
+ * @fileoverview Centralized configuration for UI icons, colors, and categories
+ * Single source of truth for all platform and category definitions
+ */
+
 import { FaApple, FaWindows, FaLinux } from 'react-icons/fa';
 import {
   Settings,
@@ -8,26 +12,37 @@ import {
   Globe,
   Database,
   Package,
-  Brackets,  // unique icon for Development category
+  Brackets,
   Bot,
   Container,
   Wrench
 } from 'lucide-react';
 
-// Platform Configuration
+/**
+ * Platform icon components mapping
+ * @type {Object<string, React.ComponentType>}
+ */
 export const PLATFORM_ICONS = {
   linux: FaLinux,
   macos: FaApple,
   windows: FaWindows
 };
 
+/**
+ * Platform-specific color scheme for badges and indicators
+ * @type {Object<string, string>}
+ */
 export const PLATFORM_COLORS = {
   macos: 'rgb(200, 200, 200)',  // Silver/gray
   windows: 'rgb(6, 182, 212)',   // Cyan
   linux: 'rgb(251, 146, 60)'     // Orange
 };
 
-// Category Configuration - Single definition
+/**
+ * Category configuration with icons, colors, and display names
+ * Organized by functional groups for visual consistency
+ * @type {Array<{id: string, icon: React.ComponentType, color: string, name: string}>}
+ */
 export const CATEGORIES = [
   // System Group (Purple/Violet)
   { id: "system", icon: Settings, color: "from-purple-400 to-violet-600", name: "System" },
@@ -49,7 +64,10 @@ export const CATEGORIES = [
   { id: "automation", icon: Bot, color: "from-amber-400 to-orange-600", name: "Automation" }
 ];
 
-// Category abbreviations for space-saving
+/**
+ * Shortened category names for space-constrained UI elements
+ * @type {Object<string, string>}
+ */
 export const CATEGORY_ABBREVIATIONS = {
   "file-operations": "Files",
   "text-processing": "Text",

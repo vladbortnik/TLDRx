@@ -181,7 +181,7 @@ Each command card displays comprehensive information:
 │ Syntax: grep [options] pattern [files]  │
 ├─────────────────────────────────────────┤
 │ 📌 Key Features                         │
-│ 💻 Code Examples (click to copy)       │
+│ 💻 Code Examples (click to copy)        │
 │ ⚠️  Warnings                            │
 │ 🔗 Related Commands                     │
 │ 📖 Man Page Link                        │
@@ -277,7 +277,7 @@ Traditional Rendering          Virtual Rendering
 ## 📁 Project Structure
 
 ```
-refactor-app-jsx/
+TL;DRx/
 ├── public/                          # Static assets
 │   ├── icons/                       # PWA icons and app images
 │   │   ├── icon-192x192.png
@@ -319,8 +319,8 @@ refactor-app-jsx/
 │   │
 │   ├── data/
 │   │   ├── commands.js              # 500+ commands (production)
-│   │   ├── dev-loader.js            # Development data optimizer (100 commands)
-│   │   └── chunks/                  # Command category modules
+│   │   ├── dev-loader.js            # Development data optimizer (development only)
+│   │   └── chunks/                  # Command category modules (development only)
 │   │       ├── index.js
 │   │       ├── system.js
 │   │       ├── security.js
@@ -354,9 +354,7 @@ refactor-app-jsx/
 ├── eslint.config.js                 # ESLint configuration
 ├── package.json                     # Dependencies and scripts
 ├── README.md                        # This file
-├── LICENSE                          # MIT License
-├── CLAUDE.md                        # Technical documentation
-└── WAVE-INTEGRATION.md              # Wave animation documentation
+└── LICENSE                          # MIT License
 ```
 
 ---

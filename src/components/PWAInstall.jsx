@@ -1,20 +1,38 @@
+/**
+ * @fileoverview PWA installation prompt component
+ * Displays a native-like install prompt for Progressive Web App functionality
+ */
+
 import { useState, useEffect } from 'react';
 
+/**
+ * PWA Install Component
+ * Displays installation prompt when PWA installation is available
+ * Handles beforeinstallprompt and appinstalled events
+ *
+ * @component
+ * @returns {JSX.Element|null} Install prompt UI or null if not available
+ */
 export default function PWAInstall() {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [showInstall, setShowInstall] = useState(false);
 
   useEffect(() => {
+    /**
+     * Handle beforeinstallprompt event
+     * Prevents default browser prompt and shows custom UI
+     */
     const handleBeforeInstallPrompt = (e) => {
-      // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();
-      // Save the event for later use
       setDeferredPrompt(e);
       setShowInstall(true);
     };
 
+    /**
+     * Handle appinstalled event
+     * Clears install prompt when app is successfully installed
+     */
     const handleAppInstalled = () => {
-      console.log('PWA was installed');
       setShowInstall(false);
       setDeferredPrompt(null);
     };
@@ -33,6 +51,10 @@ export default function PWAInstall() {
     };
   }, []);
 
+  /**
+   * Handle install button click
+   * Triggers the browser's native PWA installation flow
+   */
   const handleInstallClick = async () => {
     if (!deferredPrompt) return;
 
@@ -40,8 +62,7 @@ export default function PWAInstall() {
     deferredPrompt.prompt();
 
     // Wait for the user to respond to the prompt
-    const { outcome } = await deferredPrompt.userChoice;
-    console.log(`User response to the install prompt: ${outcome}`);
+    await deferredPrompt.userChoice;
 
     // Clear the deferred prompt
     setDeferredPrompt(null);

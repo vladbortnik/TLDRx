@@ -1,12 +1,19 @@
+/**
+ * @fileoverview Compact mini search interface for scrolled state
+ * Appears when user scrolls down, providing space-efficient search access
+ */
+
 import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import { FaDatabase } from 'react-icons/fa6';
 import { VscTerminalBash } from 'react-icons/vsc';
 import { Filter, X, Terminal, XCircle } from 'lucide-react';
 
 /**
- * Compact search interface component that appears when scrolling down.
- * Provides essential search functionality with a minimalistic, sleek design.
+ * SearchInterfaceMini Component
+ * Compact search interface that appears when scrolling down.
+ * Provides essential search functionality with minimalistic design.
  *
+ * @component
  * @param {Object} props - Component props
  * @param {string} props.searchQuery - Current search query value
  * @param {Function} props.onSearchChange - Handler for search query changes
@@ -14,6 +21,10 @@ import { Filter, X, Terminal, XCircle } from 'lucide-react';
  * @param {number} props.activeFiltersCount - Number of active filters
  * @param {Function} props.onClearFilters - Handler to clear all active filters
  * @param {Function} props.onClick - Handler for container click (scrolls to top)
+ * @param {Function} props.onLogoClick - Handler for logo click
+ * @param {Function} props.onSearchSubmit - Handler for search submission
+ * @param {React.Ref} ref - Forward ref for focus management
+ * @returns {JSX.Element} Mini search interface
  */
 export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
     searchQuery,
