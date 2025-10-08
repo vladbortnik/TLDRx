@@ -310,6 +310,15 @@ function App({ mockCommands }) {
     [searchQuery, scrollToTopInstantly]
   );
 
+  // Auto-clear search results when user deletes all characters
+  useEffect(() => {
+    // If search query is empty but there's a submitted query, auto-clear
+    if (searchQuery === "" && submittedSearchQuery !== "") {
+      setSubmittedSearchQuery("");
+      scrollToTopInstantly();
+    }
+  }, [searchQuery, submittedSearchQuery, scrollToTopInstantly]);
+
   // Wave animation is now handled by the useWaveAnimation hook
 
   /**
