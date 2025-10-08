@@ -52,7 +52,7 @@
 
 ### 🌟 Live Demo
 
-**Experience it now:** [https://tldrx.vladbortnik.dev](https://tldrx.vladbortnik.dev)
+**Experience it now:** [TL;DRx](https://tldrx.vladbortnik.dev)
 
 Try searching for commands like `grep`, `docker`, `ssh`, or `git` to see instant, intelligent results.
 
