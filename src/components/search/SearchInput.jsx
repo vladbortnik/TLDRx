@@ -188,11 +188,6 @@ export const SearchInput = forwardRef(function SearchInput({
                                         onBlur={() => setIsFocused(false)}
                                         onKeyDown={(e) => {
                                             if (e.key === 'Enter') {
-                                                console.log('⌨️ ENTER: Enter key pressed in SearchInput', {
-                                                    query: value,
-                                                    action: 'Submitting search'
-                                                });
-                                                console.log(''); // Visual separator
                                                 onSearchSubmit && onSearchSubmit();
                                                 if (inputRef.current) inputRef.current.focus(); // Keep focus
                                             }
@@ -218,11 +213,6 @@ export const SearchInput = forwardRef(function SearchInput({
                                             className="w-5 h-5 ml-1 text-red-500 cursor-pointer hover:scale-110 hover:text-red-400 transition-all duration-200 flex-shrink-0"
                                             onClick={(e) => {
                                                 e.stopPropagation();
-                                                console.log('🧹 CLEAR: Clear button clicked in SearchInput', {
-                                                    previousValue: value,
-                                                    action: 'Clearing search and submitting empty query'
-                                                });
-                                                console.log(''); // Visual separator
                                                 onChange(''); // Clear the search input
                                                 onSearchSubmit && onSearchSubmit(''); // Submit empty search
                                                 if (inputRef.current) {

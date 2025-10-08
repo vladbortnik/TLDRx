@@ -174,11 +174,6 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
                                         onBlur={() => setIsFocused(false)}
                                         onKeyDown={(e) => {
                                             if (e.key === 'Enter') {
-                                                console.log('⌨️ ENTER: Enter key pressed in SearchInterfaceMini', {
-                                                    query: searchQuery,
-                                                    action: 'Submitting search from mini interface'
-                                                });
-                                                console.log(''); // Visual separator
                                                 onSearchSubmit && onSearchSubmit();
                                                 if (inputRef.current) inputRef.current.focus(); // Keep focus
                                             }
@@ -262,11 +257,6 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
                                         }}
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            console.log('🧹 CLEAR: Clear button clicked in SearchInterfaceMini', {
-                                                previousValue: searchQuery,
-                                                action: 'Clearing search and submitting empty query'
-                                            });
-                                            console.log(''); // Visual separator
                                             onSearchChange(''); // Clear the search input
                                             onSearchSubmit && onSearchSubmit(''); // Submit empty search
                                             if (inputRef.current) {

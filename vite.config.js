@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => {
   
   return {
     build: {
-      sourcemap: true,
+      sourcemap: mode === 'development',
       rollupOptions: {
         output: {
           // Exclude large data files from source maps to prevent DevTools freezing
@@ -68,17 +68,17 @@ export default defineConfig(({ mode }) => {
           display: 'standalone',
           icons: [
             {
-              src: 'pwa-192x192.png',
+              src: 'icons/icon-192x192.png',
               sizes: '192x192',
               type: 'image/png'
             },
             {
-              src: 'pwa-512x512.png',
+              src: 'icons/icon-512x512.png',
               sizes: '512x512',
               type: 'image/png'
             },
             {
-              src: 'pwa-512x512.png',
+              src: 'icons/icon-512x512.png',
               sizes: '512x512',
               type: 'image/png',
               purpose: 'any maskable'

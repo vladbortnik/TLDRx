@@ -164,8 +164,6 @@ function App({ mockCommands }) {
                 const module = await import("./data/commands.js");
                 const rawCommands = module.commands || module.default;
 
-                // TEMP: Performance testing mode
-                console.log(`📊 Performance Testing: Loaded ${rawCommands.length} commands for baseline measurement`);
                 // Transform commands for UI requirements
                 const enhancedCommands = rawCommands.map(command => ({
                     ...command,
@@ -251,12 +249,6 @@ function App({ mockCommands }) {
      * Scrolls to top instantly to prevent Virtuoso rendering issues
      */
     const scrollToTopInstantly = useCallback(() => {
-        console.log('📜 SCROLL: Instant scroll to top (prevents Virtuoso bug)', {
-            currentScrollY: window.scrollY,
-            behavior: 'instant'
-        });
-        console.log(''); // Visual separator
-
         window.scrollTo({
             top: 0,
             behavior: 'instant'
@@ -271,58 +263,12 @@ function App({ mockCommands }) {
     const handleSearchSubmit = useCallback((queryOverride) => {
         // Allow explicit query override (e.g., '' for clear button)
         const queryToSubmit = queryOverride !== undefined ? queryOverride : searchQuery;
-        console.log('🎯 SUBMIT: Search submitted', {
-            submitted: queryToSubmit,
-            override: queryOverride !== undefined ? 'YES (from clear button)' : 'NO',
-            currentSearchQuery: searchQuery
-        });
-        console.log(''); // Visual separator
 
         // Scroll to top before filtering (prevents Virtuoso from rendering at wrong position)
         scrollToTopInstantly();
 
         setSubmittedSearchQuery(queryToSubmit);
     }, [searchQuery, scrollToTopInstantly]);
-
-    // Log search query changes (typing in input)
-    useEffect(() => {
-        console.log('🔍 SEARCH: searchQuery changed (display only)', {
-            value: searchQuery,
-            note: 'Not filtering yet - waiting for Enter key or related command click'
-        });
-        console.log(''); // Visual separator
-    }, [searchQuery]);
-
-    // Log submitted search changes (actual filtering trigger)
-    useEffect(() => {
-        console.log('🎯 STATE: submittedSearchQuery changed (triggers filtering)', {
-            value: submittedSearchQuery,
-            isEmpty: submittedSearchQuery.trim() === ''
-        });
-        console.log(''); // Visual separator
-    }, [submittedSearchQuery]);
-
-    // Log platform filter changes
-    useEffect(() => {
-        if (selectedPlatforms.length > 0) {
-            console.log('🏷️ FILTER: Platform selection changed', {
-                selected: selectedPlatforms,
-                count: selectedPlatforms.length
-            });
-            console.log(''); // Visual separator
-        }
-    }, [selectedPlatforms]);
-
-    // Log category filter changes
-    useEffect(() => {
-        if (selectedCategories.length > 0) {
-            console.log('🏷️ FILTER: Category selection changed', {
-                selected: selectedCategories,
-                count: selectedCategories.length
-            });
-            console.log(''); // Visual separator
-        }
-    }, [selectedCategories]);
 
     // Wave animation is now handled by the useWaveAnimation hook
 
@@ -333,13 +279,6 @@ function App({ mockCommands }) {
      * 🚀 OPTIMIZED: Wrapped in useMemo to prevent recalculation on unrelated re-renders
      */
     const displayCommands = useMemo(() => {
-        console.log('🔄 MEMO: Recalculating displayCommands', {
-            totalCommands: commands.length,
-            submittedQuery: submittedSearchQuery,
-            platforms: selectedPlatforms,
-            categories: selectedCategories
-        });
-
         // First filter by platforms (multiple selection support)
         let platformFilteredCommands = commands;
         if (selectedPlatforms.length > 0) {
@@ -349,11 +288,6 @@ function App({ mockCommands }) {
                         command.platform.includes(selectedPlatId)
                     )
             );
-            console.log('  🏷️ Platform filter:', {
-                selected: selectedPlatforms,
-                before: commands.length,
-                after: platformFilteredCommands.length
-            });
         }
 
         // Then filter by categories (multiple selection support)
@@ -362,17 +296,10 @@ function App({ mockCommands }) {
             filteredCommands = platformFilteredCommands.filter(
                 (command) => selectedCategories.includes(command.category)
             );
-            console.log('  🏷️ Category filter:', {
-                selected: selectedCategories,
-                before: platformFilteredCommands.length,
-                after: filteredCommands.length
-            });
         }
 
         // Then apply a search filter using the SUBMITTED query (Enter key or clear)
         if (submittedSearchQuery.trim() === "") {
-            console.log('  ✅ No search query - returning', filteredCommands.length, 'commands');
-            console.log(''); // Visual separator
             return filteredCommands.slice();
         } else {
             const query = submittedSearchQuery.toLowerCase();
@@ -394,15 +321,6 @@ function App({ mockCommands }) {
                 }
                 return false;
             });
-
-            console.log('  🔍 Search filter:', {
-                query: query,
-                before: filteredCommands.length,
-                matched: matched.length,
-                afterDedup: result.length,
-                topResults: result.slice(0, 3).map(c => ({ name: c.name, score: c.score }))
-            });
-            console.log(''); // Visual separator
 
             return result;
         }
@@ -435,11 +353,6 @@ function App({ mockCommands }) {
 
     // Handle clearing all filters
     const handleClearAllFilters = useCallback(() => {
-        console.log('🧹 CLEAR: Clearing all filters', {
-            previousPlatforms: selectedPlatforms,
-            previousCategories: selectedCategories
-        });
-        console.log(''); // Visual separator
         setSelectedPlatforms([]);
         setSelectedCategories([]);
         setShowAdvancedFilters(false);
@@ -452,12 +365,6 @@ function App({ mockCommands }) {
      * @param {string} commandName - Name of command to search for
      */
     const handleScrollToCommand = useCallback((commandName) => {
-        console.log('🔗 RELATED: Related command clicked', {
-            command: commandName,
-            action: 'Immediate search (no Enter needed)'
-        });
-        console.log(''); // Visual separator
-
         // Scroll to top before filtering (prevents Virtuoso bug)
         scrollToTopInstantly();
 
@@ -640,13 +547,6 @@ function App({ mockCommands }) {
                             onClearFilters={handleClearAllFilters}
                             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                             onLogoClick={() => {
-                                console.log('🏠 LOGO: Logo clicked - resetting to home', {
-                                    action: 'Clear search + filters, scroll to top',
-                                    previousSearch: searchQuery,
-                                    previousSubmitted: submittedSearchQuery
-                                });
-                                console.log(''); // Visual separator
-
                                 // Scroll to top before clearing (prevents Virtuoso bug)
                                 scrollToTopInstantly();
 
