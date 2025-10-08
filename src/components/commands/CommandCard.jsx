@@ -19,12 +19,24 @@ import {
 import { CommandCardHeader } from './CommandCardHeader';
 
 /**
- * Color configuration for related commands based on relationship type
+ * Random color styles for related command buttons
+ * 7 different gradient styles assigned randomly to each button
  */
-const RELATIONSHIP_COLORS = {
-  similar: 'from-blue-400/20 to-cyan-500/20 border-blue-400/40 text-blue-300',
-  alternative: 'from-purple-400/20 to-indigo-500/20 border-purple-400/40 text-purple-300',
-  complement: 'from-green-400/20 to-emerald-500/20 border-green-400/40 text-green-300'
+const BUTTON_STYLES = [
+  'from-purple-400/20 to-indigo-500/20 border-purple-400/40 text-purple-300',
+  'from-green-400/20 to-emerald-500/20 border-green-400/40 text-green-300',
+  'from-red-400/20 to-rose-500/20 border-red-400/40 text-red-300',
+  'from-orange-400/20 to-amber-500/20 border-orange-400/40 text-orange-300',
+  'from-yellow-400/20 to-lime-500/20 border-yellow-400/40 text-yellow-300',
+  'from-teal-400/20 to-cyan-500/20 border-teal-400/40 text-teal-300',
+  'from-pink-400/20 to-fuchsia-500/20 border-pink-400/40 text-pink-300'
+];
+
+/**
+ * Get a random button style based on index for consistent coloring
+ */
+const getButtonStyle = (index) => {
+  return BUTTON_STYLES[index % BUTTON_STYLES.length];
 };
 
 /**
@@ -484,7 +496,7 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
                     <button
                       className={`
                         px-2.5 py-1 rounded-lg font-mono font-medium text-xs
-                        bg-gradient-to-r ${RELATIONSHIP_COLORS[related.relationship || 'similar']}
+                        bg-gradient-to-r ${getButtonStyle(index)}
                         border transition-all duration-300 hover:scale-105 cursor-pointer
                       `}
                       style={{ fontFamily: "'Courier New', Courier, monospace" }}
