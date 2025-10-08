@@ -214,7 +214,7 @@ function App({ mockCommands }) {
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [showAdvancedFilters]); // Recalculate when filters toggle
 
   // Use IntersectionObserver with a sentinel element to prevent flicker
   // Track scroll direction to prevent mini search from disappearing when scrolling up
@@ -272,7 +272,8 @@ function App({ mockCommands }) {
     const timeout = setTimeout(() => {
       const activeSearchRef = showMiniSearch ? miniSearchRef : fullSearchRef;
       if (activeSearchRef.current && activeSearchRef.current.focus) {
-        activeSearchRef.current.focus();
+        // Prevent scroll jump when focusing - fixes typing scroll bug
+        activeSearchRef.current.focus({ preventScroll: true });
       }
     }, 350); // Wait for transition to complete (300ms transition + 50ms buffer)
 
@@ -418,21 +419,23 @@ function App({ mockCommands }) {
   );
 
   // Re-check scrollability when filtered commands change
+  // Debounced to prevent rapid state changes during typing
   useEffect(() => {
-    // Small delay to let DOM update
+    // Longer delay to avoid interfering with typing/scrolling
     const timeoutId = setTimeout(() => {
       const documentHeight = document.documentElement.scrollHeight;
       const viewportHeight = window.innerHeight;
       const scrollableDistance = documentHeight - viewportHeight;
 
       // If not enough content, ensure mini search is hidden
-      if (scrollableDistance < 300) {
+      // Only update if we're currently showing mini search
+      if (scrollableDistance < 300 && showMiniSearch) {
         setShowMiniSearch(false);
       }
-    }, 100);
+    }, 300); // Increased delay to reduce fighting
 
     return () => clearTimeout(timeoutId);
-  }, [displayCommands.length]);
+  }, [displayCommands.length, showMiniSearch]);
 
   /**
    * Collapse advanced filters when scrolling with only 1 command visible
@@ -492,8 +495,7 @@ function App({ mockCommands }) {
             position: "sticky",
             top: "6px",
             zIndex: 20,
-            minHeight: showMiniSearch ? "60px" : "auto", // Prevent layout shift
-            transition: "min-height 0.3s ease",
+            // Fixed height to prevent layout shifts - mini search is absolutely positioned
           }}
         >
           {/* Full Search Interface - always rendered but with opacity transition */}

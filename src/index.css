@@ -39,8 +39,9 @@
 
 /* Scroll padding to prevent content from hiding behind sticky header */
 html {
-  scroll-padding-top: var(--total-sticky-height);
-  scroll-behavior: smooth;
+  /* scroll-padding-top disabled - was causing unwanted scroll adjustments during typing */
+  /* scroll-padding-top: var(--total-sticky-height); */
+  scroll-behavior: auto; /* Changed from smooth - prevents unwanted scroll animations during typing */
   /* Mobile-optimized touch scrolling */
   -webkit-overflow-scrolling: touch;
 }

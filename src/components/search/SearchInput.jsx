@@ -57,7 +57,7 @@ export const SearchInput = forwardRef(function SearchInput({
     useImperativeHandle(ref, () => ({
         focus: () => {
             if (inputRef.current) {
-                inputRef.current.focus();
+                inputRef.current.focus({ preventScroll: true });
             }
         }
     }));
@@ -125,7 +125,7 @@ export const SearchInput = forwardRef(function SearchInput({
         }
 
         if (inputRef.current) {
-            inputRef.current.focus();
+            inputRef.current.focus({ preventScroll: true });
         }
     };
 
@@ -133,10 +133,10 @@ export const SearchInput = forwardRef(function SearchInput({
         <div className="relative flex-1">
             <div className="space-y-3">
                 {/* Main search container with surrounding glow */}
-                <div className="relative transition-all duration-400">
+                <div className="relative">
 
                     <div
-                        className="backdrop-blur-xl border border-white/30 rounded-xl overflow-hidden transition-all duration-300 cursor-text"
+                        className="backdrop-blur-xl border border-white/30 rounded-xl overflow-hidden cursor-text"
                         style={{
                             background: 'linear-gradient(135deg, rgba(30,41,59,0.8), rgba(49,46,129,0.7), rgba(30,41,59,0.8))',
                             ...getGlowStyle()
@@ -218,7 +218,7 @@ export const SearchInput = forwardRef(function SearchInput({
                                                 // Maintain focus after search submission
                                                 setTimeout(() => {
                                                     if (inputRef.current) {
-                                                        inputRef.current.focus();
+                                                        inputRef.current.focus({ preventScroll: true });
                                                     }
                                                 }, 50);
                                             }
@@ -241,7 +241,7 @@ export const SearchInput = forwardRef(function SearchInput({
                                     ) : (
                                         // Red clear icon when has text
                                         <XCircle
-                                            className="w-5 h-5 ml-1 text-red-500 cursor-pointer hover:scale-110 hover:text-red-400 transition-all duration-200 flex-shrink-0"
+                                            className="w-5 h-5 ml-1 text-red-500 cursor-pointer hover:text-red-400 flex-shrink-0"
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 onChange(''); // Clear the search input
@@ -249,7 +249,7 @@ export const SearchInput = forwardRef(function SearchInput({
                                                 // Restore focus after clearing
                                                 setTimeout(() => {
                                                     if (inputRef.current) {
-                                                        inputRef.current.focus();
+                                                        inputRef.current.focus({ preventScroll: true });
                                                     }
                                                 }, 50);
                                             }}

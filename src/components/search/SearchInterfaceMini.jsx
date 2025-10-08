@@ -45,7 +45,7 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
     useImperativeHandle(ref, () => ({
         focus: () => {
             if (inputRef.current) {
-                inputRef.current.focus();
+                inputRef.current.focus({ preventScroll: true });
             }
         }
     }));
@@ -86,7 +86,7 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
 
         // Focus the input
         if (inputRef.current) {
-            inputRef.current.focus();
+            inputRef.current.focus({ preventScroll: true });
         }
     };
 
@@ -103,7 +103,7 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
                     0 0 45px rgba(59, 130, 246, 0.2),
                     inset 0 0 20px rgba(59, 130, 246, 0.1)
                 `,
-                transition: 'all 0.3s ease'
+                transition: 'box-shadow 0.3s ease' // Only animate shadow, not layout
             };
         }
         return {
@@ -112,7 +112,7 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
                 0 0 10px rgba(59, 130, 246, 0.2),
                 inset 0 0 10px rgba(59, 130, 246, 0.05)
             `,
-            transition: 'all 0.3s ease'
+            transition: 'box-shadow 0.3s ease' // Only animate shadow, not layout
         };
     };
 
@@ -121,7 +121,7 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
             {/* Add top margin/padding for better spacing */}
             <div className="pt-2 pb-2 px-2 sm:px-4">
                 <div
-                    className="backdrop-blur-xl border border-white/30 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer hover:transform hover:scale-[1.02]"
+                    className="backdrop-blur-xl border border-white/30 rounded-xl overflow-hidden cursor-pointer"
                     style={{
                         background: 'linear-gradient(135deg, rgba(30,41,59,0.8), rgba(49,46,129,0.7), rgba(30,41,59,0.8))',
                         ...getGlowStyle()
@@ -190,7 +190,7 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
                                                 // Maintain focus after search submission
                                                 setTimeout(() => {
                                                     if (inputRef.current) {
-                                                        inputRef.current.focus();
+                                                        inputRef.current.focus({ preventScroll: true });
                                                     }
                                                 }, 50);
                                             }
@@ -279,7 +279,7 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
                                             // Restore focus after clearing
                                             setTimeout(() => {
                                                 if (inputRef.current) {
-                                                    inputRef.current.focus();
+                                                    inputRef.current.focus({ preventScroll: true });
                                                 }
                                             }, 50);
                                         }}
