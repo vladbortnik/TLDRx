@@ -2,8 +2,6 @@
 
 ![TL;DRx Banner](./public/icons/tldr.png)
 
-# TL;DRx
-
 ### Commands Made Simple 🚀
 
 **An intelligent, lightning-fast Unix/Linux command reference Progressive Web App**
@@ -18,7 +16,7 @@
 [![Performance](https://img.shields.io/badge/INP-47ms-00C853?style=for-the-badge&logo=lightning&logoColor=white)](https://web.dev/inp/)
 [![Commands](https://img.shields.io/badge/Commands-500+-FF6B6B?style=for-the-badge&logo=terminal&logoColor=white)](https://tldrx.vladbortnik.dev)
 
-[🌐 Live Demo](https://tldrx.vladbortnik.dev) • [📖 Documentation](./CLAUDE.md) • [🐛 Report Bug](https://github.com/yourusername/tldrx/issues) • [✨ Request Feature](https://github.com/yourusername/tldrx/issues)
+[🌐 Live Demo](https://tldrx.vladbortnik.dev) • [🐛 Report Bug](https://github.com/vladbortnik/TLDRx/issues) • [💡 Request Feature](https://github.com/vladbortnik/TLDRx/issues)
 
 </div>
 
@@ -116,8 +114,8 @@ Try searching for commands like `grep`, `docker`, `ssh`, or `git` to see instant
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/tldrx.git
-cd tldrx
+git clone https://github.com/vladbortnik/TLDRx.git
+cd TLDRx
 
 # Install dependencies
 npm install
@@ -367,7 +365,7 @@ Contributions are welcome and appreciated! TL;DRx is a community-driven project 
 
 When reporting issues, please:
 
-- Use the [GitHub issue tracker](https://github.com/yourusername/tldrx/issues)
+- Use the [GitHub issue tracker](https://github.com/vladbortnik/TLDRx/issues)
 - Provide clear, detailed reproduction steps
 - Include browser and OS information
 - Attach screenshots or screen recordings if relevant
@@ -398,7 +396,6 @@ When reporting issues, please:
 
 ### 📝 Development Guidelines
 
-- Follow the component architecture patterns documented in `CLAUDE.md`
 - Use **React.memo** for expensive components
 - Implement proper error handling and loading states
 - Write tests for new features (target >80% coverage)
@@ -473,9 +470,9 @@ Special thanks to the maintainers and contributors of:
 
 Thank you to all contributors who have helped shape TL;DRx:
 
-- [Contributors](https://github.com/yourusername/tldrx/graphs/contributors)
-- [Issue reporters](https://github.com/yourusername/tldrx/issues)
-- [Feature suggesters](https://github.com/yourusername/tldrx/issues?q=label%3Aenhancement)
+- [Contributors](https://github.com/vladbortnik/TLDRx/graphs/contributors)
+- [Issue reporters](https://github.com/vladbortnik/TLDRx/issues)
+- [Feature suggesters](https://github.com/vladbortnik/TLDRx/issues?q=label%3Aenhancement)
 
 ---
 
@@ -485,13 +482,12 @@ Thank you to all contributors who have helped shape TL;DRx:
 
 ### 🌐 Links
 
-[🚀 Live Demo](https://tldrx.vladbortnik.dev) • [📖 Technical Docs](./CLAUDE.md) • [🐛 Report Bug](https://github.com/yourusername/tldrx/issues) • [💡 Request Feature](https://github.com/yourusername/tldrx/issues)
+[🚀 Live Demo](https://tldrx.vladbortnik.dev) • [🐛 Report Bug](https://github.com/vladbortnik/TLDRx/issues) • [💡 Request Feature](https://github.com/vladbortnik/TLDRx/issues)
 
 ### 💬 Stay Connected
 
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github)](https://github.com/yourusername)
-[![Twitter](https://img.shields.io/badge/Twitter-Follow-1DA1F2?style=for-the-badge&logo=twitter)](https://twitter.com/yourusername)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/yourusername)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github)](https://github.com/vladbortnik)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/vladbortnik)
 
 </div>
 
@@ -501,7 +497,7 @@ Thank you to all contributors who have helped shape TL;DRx:
 
 ### 🌟 Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=yourusername/tldrx&type=Date)](https://star-history.com/#yourusername/tldrx&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=vladbortnik/TLDRx&type=Date)](https://star-history.com/#vladbortnik/TLDRx&Date)
 
 ---
 
