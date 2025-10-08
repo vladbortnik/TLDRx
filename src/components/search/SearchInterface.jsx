@@ -12,7 +12,8 @@ export const SearchInterface = forwardRef(function SearchInterface({
     showAdvancedFilters,
     onAdvancedFiltersToggle,
     onClearAllFilters,
-    totalCommands
+    totalCommands,
+    onSearchSubmit
 }, ref) {
     return (
         <div className="mb-6 transition-all duration-300">
@@ -31,6 +32,7 @@ export const SearchInterface = forwardRef(function SearchInterface({
                     onAdvancedFiltersToggle={onAdvancedFiltersToggle}
                     onClearAllFilters={onClearAllFilters}
                     totalCommands={totalCommands}
+                    onSearchSubmit={onSearchSubmit}
                 />
             </div>
         </div>

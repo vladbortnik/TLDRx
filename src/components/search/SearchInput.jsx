@@ -17,7 +17,8 @@ export const SearchInput = forwardRef(function SearchInput({
     showAdvancedFilters,
     onAdvancedFiltersToggle,
     onClearAllFilters,
-    totalCommands = 0
+    totalCommands = 0,
+    onSearchSubmit
 }, ref) {
     const [isFocused, setIsFocused] = useState(false);
     const [cursor, setCursor] = useState(true);
@@ -36,13 +37,14 @@ export const SearchInput = forwardRef(function SearchInput({
 
     // Dynamic status messages
     const statusMessages = [
-        `Type to search ${totalCommands.toLocaleString()} commands...`,
+        `Press Enter to search ${totalCommands.toLocaleString()} commands...`,
+        "Type your query and press Enter to search...",
         "Use filters to narrow results...",
         "Supports fuzzy search for quick results...",
-        "Try: 'git', 'docker', 'ssh'...",
+        "Try: 'git', 'docker', 'ssh' + Enter...",
         "Filter by multiple platforms simultaneously...",
         "Combine category filters for precise results...",
-        "Real-time search as you type...",
+        "Press Enter to submit your search...",
         "Case-insensitive command matching...",
         "Find commands by platform or category...",
         "Discover new CLI tools and utilities..."
@@ -184,6 +186,17 @@ export const SearchInput = forwardRef(function SearchInput({
                                         onChange={(e) => onChange(e.target.value)}
                                         onFocus={() => setIsFocused(true)}
                                         onBlur={() => setIsFocused(false)}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter') {
+                                                console.log('⌨️ ENTER: Enter key pressed in SearchInput', {
+                                                    query: value,
+                                                    action: 'Submitting search'
+                                                });
+                                                console.log(''); // Visual separator
+                                                onSearchSubmit && onSearchSubmit();
+                                                if (inputRef.current) inputRef.current.focus(); // Keep focus
+                                            }
+                                        }}
                                         placeholder={placeholder}
                                         className="bg-transparent text-white font-mono outline-none flex-1 placeholder-white/50 text-base cursor-text pointer-events-auto"
                                         autoComplete="off"
@@ -205,7 +218,13 @@ export const SearchInput = forwardRef(function SearchInput({
                                             className="w-5 h-5 ml-1 text-red-500 cursor-pointer hover:scale-110 hover:text-red-400 transition-all duration-200 flex-shrink-0"
                                             onClick={(e) => {
                                                 e.stopPropagation();
+                                                console.log('🧹 CLEAR: Clear button clicked in SearchInput', {
+                                                    previousValue: value,
+                                                    action: 'Clearing search and submitting empty query'
+                                                });
+                                                console.log(''); // Visual separator
                                                 onChange(''); // Clear the search input
+                                                onSearchSubmit && onSearchSubmit(''); // Submit empty search
                                                 if (inputRef.current) {
                                                     inputRef.current.focus();
                                                 }

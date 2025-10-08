@@ -22,7 +22,8 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
     activeFiltersCount = 0,
     onClearFilters,
     onClick,
-    onLogoClick
+    onLogoClick,
+    onSearchSubmit
 }, ref) {
     const [cursor, setCursor] = useState(true);
     const [isFocused, setIsFocused] = useState(false);
@@ -40,9 +41,9 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
 
     // Mini status messages - shorter for compact display, all include command count
     const statusMessages = [
-        `${totalCommands.toLocaleString()} • Type to search...`,
+        `${totalCommands.toLocaleString()} • Press Enter to search`,
+        `${totalCommands.toLocaleString()} • Type + Enter`,
         `${totalCommands.toLocaleString()} • Fuzzy search enabled`,
-        `${totalCommands.toLocaleString()} • Click to expand`,
         `${totalCommands.toLocaleString()} • Commands available`
     ];
 
@@ -171,7 +172,18 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
                                         onChange={(e) => onSearchChange && onSearchChange(e.target.value)}
                                         onFocus={() => setIsFocused(true)}
                                         onBlur={() => setIsFocused(false)}
-                                        placeholder="query"
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter') {
+                                                console.log('⌨️ ENTER: Enter key pressed in SearchInterfaceMini', {
+                                                    query: searchQuery,
+                                                    action: 'Submitting search from mini interface'
+                                                });
+                                                console.log(''); // Visual separator
+                                                onSearchSubmit && onSearchSubmit();
+                                                if (inputRef.current) inputRef.current.focus(); // Keep focus
+                                            }
+                                        }}
+                                        placeholder="query (press Enter)"
                                         className="bg-transparent text-white font-mono outline-none flex-1 placeholder-white/50 text-sm min-w-0"
                                         autoComplete="off"
                                         onClick={(e) => e.stopPropagation()}
@@ -250,7 +262,13 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
                                         }}
                                         onClick={(e) => {
                                             e.stopPropagation();
+                                            console.log('🧹 CLEAR: Clear button clicked in SearchInterfaceMini', {
+                                                previousValue: searchQuery,
+                                                action: 'Clearing search and submitting empty query'
+                                            });
+                                            console.log(''); // Visual separator
                                             onSearchChange(''); // Clear the search input
+                                            onSearchSubmit && onSearchSubmit(''); // Submit empty search
                                             if (inputRef.current) {
                                                 inputRef.current.focus();
                                             }

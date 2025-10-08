@@ -3,7 +3,8 @@ import PWAInstall from './components/PWAInstall';
 import { Header } from './components/Header';
 import { SearchInterface } from './components/search/SearchInterface';
 import { SearchInterfaceMini } from './components/search/SearchInterfaceMini';
-import { useScrollBehavior } from './hooks/useScrollBehavior';
+// TEMP DISABLED: useScrollBehavior causing infinite loop
+// import { useScrollBehavior } from './hooks/useScrollBehavior';
 
 import { ErrorState } from './components/ui/ErrorState';
 import { LoadingState } from './components/ui/LoadingState';
@@ -110,7 +111,7 @@ const searchCommand = (searchTerm, command) => {
 function App({ mockCommands }) {
     const [commands, setCommands] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
-    const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(""); // Debounced version for filtering
+    const [submittedSearchQuery, setSubmittedSearchQuery] = useState(""); // Submitted search query (Enter key or clear)
     const [selectedPlatforms, setSelectedPlatforms] = useState([]); // 🔧 UPDATED: Array for multiple selection
     const [selectedCategories, setSelectedCategories] = useState([]); // 🔧 UPDATED: Array for multiple selection
     const [error, setError] = useState(null);
@@ -119,10 +120,11 @@ function App({ mockCommands }) {
     const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
     const [showMiniSearch, setShowMiniSearch] = useState(false);
 
+    // TEMP DISABLED: useScrollBehavior causing infinite loop (see PLAN.md Phase 2 Post-Implementation Issues)
     // Scroll behavior for sticky header
-    const {
-        getHeaderStyles
-    } = useScrollBehavior();
+    // const {
+    //     getHeaderStyles
+    // } = useScrollBehavior();
 
     // Ref for dynamic height calculation
     const stickyWrapperRef = useRef(null);
@@ -133,9 +135,6 @@ function App({ mockCommands }) {
     // Refs for both search inputs to manage focus
     const fullSearchRef = useRef(null);
     const miniSearchRef = useRef(null);
-
-    // Ref for CommandGrid to enable programmatic scrolling
-    const commandGridRef = useRef(null);
 
     /**
      * Get the man page URL for a command
@@ -186,15 +185,6 @@ function App({ mockCommands }) {
 
         loadCommands().catch(console.error);
     }, [mockCommands]);
-
-    // Debounce a search query to improve performance (fixes 965ms processing delay)
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setDebouncedSearchQuery(searchQuery);
-        }, 150); // 150ms delay - fast enough to feel instant, slow enough to skip intermediate keystrokes
-
-        return () => clearTimeout(timer);
-    }, [searchQuery]);
 
     // Dynamic sticky height calculation for CSS scroll-padding-top
     useEffect(() => {
@@ -256,6 +246,76 @@ function App({ mockCommands }) {
         };
     }, []);
 
+    /**
+     * Handle search submission (Enter key or clear button)
+     * @param {string} [queryOverride] - Optional explicit query value
+     *   Used by clear button to pass empty string and avoid closure issues
+     */
+    const handleSearchSubmit = useCallback((queryOverride) => {
+        // Allow explicit query override (e.g., '' for clear button)
+        const queryToSubmit = queryOverride !== undefined ? queryOverride : searchQuery;
+        console.log('🎯 SUBMIT: Search submitted', {
+            submitted: queryToSubmit,
+            override: queryOverride !== undefined ? 'YES (from clear button)' : 'NO',
+            currentSearchQuery: searchQuery
+        });
+        console.log(''); // Visual separator
+
+        // CRITICAL: Scroll to top IMMEDIATELY (before data changes) with instant behavior
+        // This prevents Virtuoso from being stuck with scroll position > content height
+        console.log('📜 SCROLL: Instant scroll to top (before filtering)', {
+            currentScrollY: window.scrollY,
+            behavior: 'instant'
+        });
+        console.log(''); // Visual separator
+        window.scrollTo({
+            top: 0,
+            behavior: 'instant' // Instant, not smooth
+        });
+
+        setSubmittedSearchQuery(queryToSubmit);
+    }, [searchQuery]);
+
+    // Log search query changes (typing in input)
+    useEffect(() => {
+        console.log('🔍 SEARCH: searchQuery changed (display only)', {
+            value: searchQuery,
+            note: 'Not filtering yet - waiting for Enter key or related command click'
+        });
+        console.log(''); // Visual separator
+    }, [searchQuery]);
+
+    // Log submitted search changes (actual filtering trigger)
+    useEffect(() => {
+        console.log('🎯 STATE: submittedSearchQuery changed (triggers filtering)', {
+            value: submittedSearchQuery,
+            isEmpty: submittedSearchQuery.trim() === ''
+        });
+        console.log(''); // Visual separator
+    }, [submittedSearchQuery]);
+
+    // Log platform filter changes
+    useEffect(() => {
+        if (selectedPlatforms.length > 0) {
+            console.log('🏷️ FILTER: Platform selection changed', {
+                selected: selectedPlatforms,
+                count: selectedPlatforms.length
+            });
+            console.log(''); // Visual separator
+        }
+    }, [selectedPlatforms]);
+
+    // Log category filter changes
+    useEffect(() => {
+        if (selectedCategories.length > 0) {
+            console.log('🏷️ FILTER: Category selection changed', {
+                selected: selectedCategories,
+                count: selectedCategories.length
+            });
+            console.log(''); // Visual separator
+        }
+    }, [selectedCategories]);
+
     // Wave animation is now handled by the useWaveAnimation hook
 
     /**
@@ -265,6 +325,13 @@ function App({ mockCommands }) {
      * 🚀 OPTIMIZED: Wrapped in useMemo to prevent recalculation on unrelated re-renders
      */
     const displayCommands = useMemo(() => {
+        console.log('🔄 MEMO: Recalculating displayCommands', {
+            totalCommands: commands.length,
+            submittedQuery: submittedSearchQuery,
+            platforms: selectedPlatforms,
+            categories: selectedCategories
+        });
+
         // First filter by platforms (multiple selection support)
         let platformFilteredCommands = commands;
         if (selectedPlatforms.length > 0) {
@@ -274,6 +341,11 @@ function App({ mockCommands }) {
                         command.platform.includes(selectedPlatId)
                     )
             );
+            console.log('  🏷️ Platform filter:', {
+                selected: selectedPlatforms,
+                before: commands.length,
+                after: platformFilteredCommands.length
+            });
         }
 
         // Then filter by categories (multiple selection support)
@@ -282,13 +354,20 @@ function App({ mockCommands }) {
             filteredCommands = platformFilteredCommands.filter(
                 (command) => selectedCategories.includes(command.category)
             );
+            console.log('  🏷️ Category filter:', {
+                selected: selectedCategories,
+                before: platformFilteredCommands.length,
+                after: filteredCommands.length
+            });
         }
 
-        // Then apply a search filter using a DEBOUNCED query
-        if (debouncedSearchQuery.trim() === "") {
+        // Then apply a search filter using the SUBMITTED query (Enter key or clear)
+        if (submittedSearchQuery.trim() === "") {
+            console.log('  ✅ No search query - returning', filteredCommands.length, 'commands');
+            console.log(''); // Visual separator
             return filteredCommands.slice();
         } else {
-            const query = debouncedSearchQuery.toLowerCase();
+            const query = submittedSearchQuery.toLowerCase();
 
             const scoredCommands = filteredCommands.map((command) => ({
                 ...command,
@@ -300,15 +379,26 @@ function App({ mockCommands }) {
                 .sort((a, b) => b.score - a.score);
 
             const uniqueMatches = {};
-            return matched.filter((command) => {
+            const result = matched.filter((command) => {
                 if (!uniqueMatches[command.name]) {
                     uniqueMatches[command.name] = true;
                     return true;
                 }
                 return false;
             });
+
+            console.log('  🔍 Search filter:', {
+                query: query,
+                before: filteredCommands.length,
+                matched: matched.length,
+                afterDedup: result.length,
+                topResults: result.slice(0, 3).map(c => ({ name: c.name, score: c.score }))
+            });
+            console.log(''); // Visual separator
+
+            return result;
         }
-    }, [commands, debouncedSearchQuery, selectedPlatforms, selectedCategories]);
+    }, [commands, submittedSearchQuery, selectedPlatforms, selectedCategories]);
 
     // if (import.meta.env.MODE === "development") {
     //     console.log(
@@ -337,21 +427,32 @@ function App({ mockCommands }) {
 
     // Handle clearing all filters
     const handleClearAllFilters = useCallback(() => {
+        console.log('🧹 CLEAR: Clearing all filters', {
+            previousPlatforms: selectedPlatforms,
+            previousCategories: selectedCategories
+        });
+        console.log(''); // Visual separator
         setSelectedPlatforms([]);
         setSelectedCategories([]);
         setShowAdvancedFilters(false);
-    }, []);
+    }, [selectedPlatforms, selectedCategories]);
 
     /**
-     * Handle related command click - simply search for it
-     * This matches the old working behavior: filter the list instead of scrolling
+     * Handle related command click - immediately search and filter
+     * Related commands should filter results without requiring Enter key
      *
      * @param {string} commandName - Name of command to search for
      */
     const handleScrollToCommand = useCallback((commandName) => {
-        // Simply set the search query to the clicked command name
-        // This will filter the results and show that command at the top
+        console.log('🔗 RELATED: Related command clicked', {
+            command: commandName,
+            action: 'Immediate search (no Enter needed)'
+        });
+        console.log(''); // Visual separator
+        // Set display value
         setSearchQuery(commandName);
+        // Immediately submit for filtering (no Enter needed)
+        setSubmittedSearchQuery(commandName);
     }, []);
 
     // Re-check scrollability when filtered commands change
@@ -389,26 +490,9 @@ function App({ mockCommands }) {
         }
     }, [displayCommands.length, showAdvancedFilters]);
 
-    // Auto-scroll to the top when a search query changes (after debouncing)
-    // Triggers for both user typing and related command clicks
-    // FIXED: Use Virtuoso's scrollToIndex to ensure the first result is visible
-    useEffect(() => {
-        if (debouncedSearchQuery.trim() !== '' && commandGridRef.current) {
-            requestAnimationFrame(() => {
-                // First, scroll Virtuoso to index 0
-                commandGridRef.current.scrollToIndex(0, {
-                    align: 'start',
-                    behavior: 'auto' // Instant scroll for search results
-                });
-
-                // Then scroll a window to top to show full search interface
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        }
-    }, [debouncedSearchQuery]);
+    // REMOVED: Auto-scroll useEffect no longer needed
+    // Scroll now happens in handleSearchSubmit BEFORE data changes (instant scroll)
+    // This prevents Virtuoso from being stuck at scroll position > content height
 
     // DISABLED: Focus management was causing 517ms input delay
     // Persistent focus management - keep cursor in active search input
@@ -462,8 +546,8 @@ function App({ mockCommands }) {
             }}
         >
             <div className="container mx-auto max-w-6xl px-4 py-8">
-                {/* Header with scroll-based visibility */}
-                <div data-header style={getHeaderStyles()}>
+                {/* Header with static visibility (scroll behavior temporarily disabled) */}
+                <div data-header style={{ position: 'relative' }}>
                     <Header />
                 </div>
 
@@ -508,6 +592,7 @@ function App({ mockCommands }) {
                             ref={fullSearchRef}
                             searchQuery={searchQuery}
                             onSearchChange={setSearchQuery}
+                            onSearchSubmit={handleSearchSubmit}
                             onFilterToggle={handleFilterToggle}
                             selectedPlatforms={selectedPlatforms}
                             onPlatformChange={setSelectedPlatforms}
@@ -537,13 +622,21 @@ function App({ mockCommands }) {
                             ref={miniSearchRef}
                             searchQuery={searchQuery}
                             onSearchChange={setSearchQuery}
+                            onSearchSubmit={handleSearchSubmit}
                             totalCommands={displayCommands.length}
                             activeFiltersCount={selectedPlatforms.length + selectedCategories.length}
                             onClearFilters={handleClearAllFilters}
                             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                             onLogoClick={() => {
+                                console.log('🏠 LOGO: Logo clicked - resetting to home', {
+                                    action: 'Clear search + filters, scroll to top',
+                                    previousSearch: searchQuery,
+                                    previousSubmitted: submittedSearchQuery
+                                });
+                                console.log(''); // Visual separator
                                 // Reset everything and go home
                                 setSearchQuery('');
+                                setSubmittedSearchQuery(''); // CRITICAL: Also clear submitted query
                                 handleClearAllFilters();
                                 window.scrollTo({ top: 0, behavior: 'smooth' });
                             }}
@@ -571,7 +664,6 @@ function App({ mockCommands }) {
                             />
 
                             <CommandGrid
-                                ref={commandGridRef}
                                 commands={displayCommands}
                                 allCommands={commands}
                                 onCommandClick={onCommandClick}
