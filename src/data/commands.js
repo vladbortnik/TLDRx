@@ -16691,7 +16691,7 @@ const commandsDatabase = [
         "commandCombinations": [
             {
                 "label": "echo && lscpu | grep | CPU | Thread # CPU info for system inventory",
-                "commands": "echo 'CPU Info:' && lscpu | grep -E 'Model name|CPU\\\\\(s\\\\\)|Thread'",
+                "commands": "echo 'CPU Info:' && lscpu | grep -E 'Model name|CPU\\(s\\)|Thread'",
                 "explanation": "Extract key CPU details for documentation"
             },
             {
@@ -21546,11 +21546,11 @@ const commandsDatabase = [
         ],
         "examples": [
             "psql -c 'SELECT pid, usename, datname, state, query FROM pg_stat_activity;'  # Show all current database connections and their queries",
-            "psql -c 'SELECT pid, now() - pg_stat_activity.query_start AS duration, query FROM pg_stat_activity WHERE state = \\\'active\\\' ORDER BY duration DESC;'  # Show active queries ordered by execution time",
+            "psql -c 'SELECT pid, now() - pg_stat_activity.query_start AS duration, query FROM pg_stat_activity WHERE state = \\'active\\' ORDER BY duration DESC;'  # Show active queries ordered by execution time",
             "psql -c 'SELECT pg_terminate_backend(12345);'  # Terminate connection with specific process ID",
             "psql -c 'SELECT datname, count(*) as connections FROM pg_stat_activity GROUP BY datname;'  # Show connection count per database",
             "psql -c 'SELECT a.pid as blocked_pid, a.query as blocked_query, b.pid as blocking_pid, b.query as blocking_query FROM pg_stat_activity a JOIN pg_locks l ON l.pid = a.pid JOIN pg_locks l2 ON l2.transactionid = l.transactionid JOIN pg_stat_activity b ON b.pid = l2.pid WHERE a.pid != b.pid AND NOT l.granted;'  # Identify queries blocking other queries",
-            "psql -c 'SELECT * FROM pg_stat_activity WHERE usename = \\\'appuser\\\' AND state = \\\'active\\\';'  # Show active queries for specific user"
+            "psql -c 'SELECT * FROM pg_stat_activity WHERE usename = \\'appuser\\' AND state = \\'active\\';'  # Show active queries for specific user"
         ],
         "platform": [
             "linux",
@@ -21568,7 +21568,7 @@ const commandsDatabase = [
         "commandCombinations": [
             {
                 "label": "psql ; && psql ; # Database health monitoring",
-                "commands": "psql -c 'SELECT count(*) as total_connections FROM pg_stat_activity;' && psql -c 'SELECT count(*) as active_queries FROM pg_stat_activity WHERE state = \\\'active\\\';'",
+                "commands": "psql -c 'SELECT count(*) as total_connections FROM pg_stat_activity;' && psql -c 'SELECT count(*) as active_queries FROM pg_stat_activity WHERE state = \\'active\\';'",
                 "explanation": "Check total connections and active query count"
             }
         ],
@@ -22982,7 +22982,7 @@ const commandsDatabase = [
         ],
         "warnings": [
             "Uses environment variables PGUSER, PGHOST, PGDATABASE",
-            "Meta-commands start with backslash (\\\d, \\\l, \\\q)",
+            "Meta-commands start with backslash (\\d, \\l, \\q)",
             "Different SQL syntax from MySQL in some cases"
         ],
         "manPageUrl": "https://www.postgresql.org/docs/current/app-psql.html"
@@ -25489,7 +25489,7 @@ const commandsDatabase = [
         "examples": [
             "sed 's/old/new/g' file.txt  # Replace all occurrences of 'old' with 'new'",
             "sed '/pattern/d' file.txt  # Remove all lines containing 'pattern'",
-            "sed '3i\\\This is inserted text' file.txt  # Insert text before line 3",
+            "sed '3i\\This is inserted text' file.txt  # Insert text before line 3",
             "sed -n '10,20p' file.txt  # Print only lines 10 through 20",
             "sed -i 's/foo/bar/g' *.txt  # Replace 'foo' with 'bar' in all text files"
         ],

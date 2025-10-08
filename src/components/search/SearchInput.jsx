@@ -1,3 +1,8 @@
+/**
+ * @fileoverview Search input component with integrated filters
+ * Terminal-themed search bar with animated cursor and dynamic status messages
+ */
+
 import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import { Terminal, Filter, XCircle } from 'lucide-react';
 import { FaDatabase } from 'react-icons/fa6';
@@ -5,6 +10,28 @@ import { VscTerminalBash } from 'react-icons/vsc';
 import { FilterBar } from '../filters/FilterBar.jsx';
 import { CategoryFilters } from '../filters/CategoryFilters.jsx';
 
+/**
+ * SearchInput Component
+ * Terminal-styled search input with filters, animated cursor, and rotating status messages
+ *
+ * @component
+ * @param {Object} props - Component props
+ * @param {string} props.value - Current search query value
+ * @param {Function} props.onChange - Search input change handler
+ * @param {string} [props.placeholder] - Input placeholder text
+ * @param {Function} props.onFilterToggle - Filter toggle handler
+ * @param {Array<string>} props.selectedPlatforms - Selected platform filters
+ * @param {Function} props.onPlatformChange - Platform selection handler
+ * @param {Array<string>} props.selectedCategories - Selected category filters
+ * @param {Function} props.onCategoryChange - Category selection handler
+ * @param {boolean} props.showAdvancedFilters - Advanced filters visibility
+ * @param {Function} props.onAdvancedFiltersToggle - Advanced filters toggle
+ * @param {Function} props.onClearAllFilters - Clear all filters handler
+ * @param {number} [props.totalCommands=0] - Total commands count
+ * @param {Function} props.onSearchSubmit - Search submit handler
+ * @param {React.Ref} ref - Forward ref exposing focus method
+ * @returns {JSX.Element} Search input with integrated filters
+ */
 export const SearchInput = forwardRef(function SearchInput({
     value,
     onChange,

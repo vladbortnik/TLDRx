@@ -1,6 +1,22 @@
+/**
+ * @fileoverview Platform filter button component
+ * Individual platform toggle button with icon and glow effect
+ */
+
 import React from 'react';
 import { PLATFORM_ICONS, PLATFORM_COLORS } from '../../utils/ui-icons';
 
+/**
+ * PlatformFilterButton Component
+ * Displays a platform icon button with selection state and glow effects
+ *
+ * @component
+ * @param {Object} props - Component props
+ * @param {string} props.platform - Platform identifier (linux, macos, windows)
+ * @param {boolean} props.isSelected - Whether the platform is currently selected
+ * @param {Function} props.onClick - Click handler for platform toggle
+ * @returns {JSX.Element} Platform filter button
+ */
 export const PlatformFilterButton = React.memo(function PlatformFilterButton({ platform, isSelected, onClick }) {
   const IconComponent = PLATFORM_ICONS[platform];
   const iconColor = PLATFORM_COLORS[platform];

@@ -1,7 +1,23 @@
+/**
+ * @fileoverview Reusable Input component with consistent styling
+ * Implements accessible input patterns with focus states
+ */
+
 import * as React from "react";
 
 import { cn } from "./utils";
 
+/**
+ * Input Component
+ * Styled input field with focus states and accessibility features
+ *
+ * @component
+ * @param {Object} props - Component props
+ * @param {string} [props.className] - Additional CSS classes
+ * @param {string} [props.type] - Input type attribute
+ * @param {React.Ref} ref - Forward ref for input element
+ * @returns {JSX.Element} Input component
+ */
 const Input = React.forwardRef(({ className, type, ...props }, ref) => {
   return (
     <input

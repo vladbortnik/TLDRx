@@ -1,7 +1,15 @@
+/**
+ * @fileoverview Category filter buttons component
+ * Displays category badges with icons and color-coded gradients
+ */
+
 import React from 'react';
 import { CATEGORIES } from '../../utils/ui-icons';
 
-// Add group properties to imported categories for UI grouping
+/**
+ * Add group properties to imported categories for UI grouping
+ * @type {Array<Object>}
+ */
 const CATEGORIES_WITH_GROUPS = CATEGORIES.map(category => ({
   ...category,
   group: category.id === 'system' || category.id === 'security' || category.id === 'shell' ? 'system' :
@@ -10,6 +18,16 @@ const CATEGORIES_WITH_GROUPS = CATEGORIES.map(category => ({
          'automation'
 }));
 
+/**
+ * CategoryFilters Component
+ * Displays filterable category badges with icons and gradient styling
+ *
+ * @component
+ * @param {Object} props - Component props
+ * @param {Array<string>} [props.selectedCategories=[]] - Selected category filters
+ * @param {Function} props.onCategoryChange - Category selection change handler
+ * @returns {JSX.Element} Category filter buttons
+ */
 export const CategoryFilters = React.memo(function CategoryFilters({
   selectedCategories = [],
   onCategoryChange

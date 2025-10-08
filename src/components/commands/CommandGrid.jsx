@@ -15,19 +15,13 @@ import { CommandCard } from './CommandCard.jsx';
  * @component
  * @param {Object} props - Component props
  * @param {Array<Object>} props.commands - Filtered array of commands to display
- * @param {Array<Object>} props.allCommands - Full array of all commands (for context)
- * @param {Function} props.onCommandClick - Click handler for command interaction
  * @param {Function} props.onScrollToCommand - Callback to scroll to specific command
- * @param {string} props.searchQuery - Current search query for highlighting
  * @param {React.Ref} ref - Forward ref exposing scrollToIndex method
  * @returns {JSX.Element|null} Virtualized command grid or null if no commands
  */
 export const CommandGrid = forwardRef(function CommandGrid({
   commands,
-  allCommands,
-  onCommandClick,
-  onScrollToCommand,
-  searchQuery
+  onScrollToCommand
 }, ref) {
   const virtuosoRef = useRef(null);
 

@@ -1,14 +1,6 @@
 /**
- * == THIS FILE HAS BEEN MODIFIED TO SUPPORT NEW UI ==
- *
- * TL;DRx Commands Database - System Category
- *
- * Contains 43 commands related to a system.
- * Generated from the original commands.js file.
- *
- * @fileoverview System category commands for TL;DRx
- * @category system
- * @commands ??
+ * @fileoverview TL;DRx Commands Database - System Category
+ * System administration and management commands (43 commands)
  */
 
 /**

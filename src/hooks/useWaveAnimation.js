@@ -227,10 +227,9 @@ export function useWaveAnimation(preset = 'deep-ocean') {
   };
 
   // Accent wave for special elements
-  const getAccentWave = (offset = 0) => {
+  const getAccentWave = () => {
     const colors = getWaveColors();
-    const phase = wavePosition + offset;
-    
+
     return {
       background: `linear-gradient(115deg, 
         rgba(${colors.r1 - 5},${colors.g1},${colors.b1 - 5},${0.75 + waveIntensity * 0.15}), 

@@ -26,7 +26,7 @@ export async function copyToClipboard(text) {
     try {
       await navigator.clipboard.writeText(text);
       return true;
-    } catch (err) {
+    } catch {
       return legacyCopyToClipboard(text);
     }
   }
@@ -111,7 +111,7 @@ function fallbackCopyToClipboard(text) {
     let successful = false;
     try {
       successful = document.execCommand('copy');
-    } catch (execErr) {
+    } catch {
       console.warn('execCommand not available');
     }
 

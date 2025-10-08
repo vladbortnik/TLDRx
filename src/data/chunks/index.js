@@ -1,11 +1,7 @@
 /**
- * TL;DRx Commands Database - Index
- * 
- * This file combines all command chunks back into a single export
- * maintaining the same interface as the original commands.js file.
- * 
- * Generated chunks: 17
- * Total commands: 500
+ * @fileoverview TL;DRx Commands Database - Index
+ * Combines all command chunks into a single export maintaining the same interface
+ * Generated chunks: 17 | Total commands: 500
  */
 
 // Import all chunk files

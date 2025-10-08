@@ -119,7 +119,6 @@ function App({ mockCommands }) {
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
     const [showMiniSearch, setShowMiniSearch] = useState(false);
 
@@ -206,7 +205,7 @@ function App({ mockCommands }) {
 
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-    }, [isFilterOpen]);
+    }, []);
 
     // Use IntersectionObserver with a sentinel element to prevent flicker
     // Track scroll direction to prevent mini search from disappearing when scrolling up
@@ -383,7 +382,7 @@ function App({ mockCommands }) {
         setSelectedPlatforms([]);
         setSelectedCategories([]);
         setShowAdvancedFilters(false);
-    }, [selectedPlatforms, selectedCategories]);
+    }, []);
 
     /**
      * Handle related command click - immediately search and filter

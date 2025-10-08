@@ -10,11 +10,9 @@
  * @component
  * @param {Object} props - Component props
  * @param {number} props.count - Number of commands found
- * @param {Array<string>} [props.selectedPlatforms=[]] - Selected platform filters
- * @param {Array<string>} [props.selectedCategories=[]] - Selected category filters
  * @returns {JSX.Element} Results count display
  */
-export function ResultsCounter({ count, selectedPlatforms = [], selectedCategories = [] }) {
+export function ResultsCounter({ count }) {
   return (
     <div className="mb-4 mt-2">
       <p className="text-sm text-slate-400 font-medium pl-3">
