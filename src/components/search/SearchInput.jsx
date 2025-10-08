@@ -121,7 +121,7 @@ export const SearchInput = forwardRef(function SearchInput({
 
                         {/* Header with 3D cube icon - Click anywhere to focus input */}
                         <div
-                            className="border-b border-white/20 px-5 py-3 flex items-center justify-between pointer-events-none"
+                            className="border-b border-white/20 px-3 sm:px-5 py-2.5 sm:py-3 flex items-center justify-between pointer-events-none"
                             style={{
                                 background: 'linear-gradient(90deg, rgba(25,35,80,0.6), rgba(40,45,105,0.5), rgba(25,35,80,0.6))'
                             }}
@@ -170,12 +170,12 @@ export const SearchInput = forwardRef(function SearchInput({
                         </div>
 
                         {/* Search Input Area - Click handled by parent container */}
-                        <div className="p-5">
-                            <div className="flex items-center gap-3 group">
-                <span className="text-yellow-300 font-mono text-sm font-semibold pointer-events-none">
+                        <div className="p-3 sm:p-5">
+                            <div className="flex items-center gap-2 sm:gap-3 group">
+                <span className="text-yellow-300 font-mono text-xs sm:text-sm font-semibold pointer-events-none">
                   search
                 </span>
-                                <span className="text-white/70 font-mono pointer-events-none">→</span>
+                                <span className="text-white/70 font-mono text-sm sm:text-base pointer-events-none">→</span>
                                 <div className="flex-1 flex items-center">
                                     <input
                                         ref={inputRef}
@@ -193,7 +193,7 @@ export const SearchInput = forwardRef(function SearchInput({
                                             }
                                         }}
                                         placeholder={placeholder}
-                                        className="bg-transparent text-white font-mono outline-none flex-1 placeholder-white/50 text-base cursor-text pointer-events-auto"
+                                        className="bg-transparent text-white font-mono outline-none flex-1 placeholder-white/50 text-sm sm:text-base cursor-text pointer-events-auto"
                                         autoComplete="off"
                                         onClick={(e) => e.stopPropagation()}
                                         aria-label="Search commands"
@@ -226,15 +226,15 @@ export const SearchInput = forwardRef(function SearchInput({
                             </div>
 
                             {/* Status indicator and filters under search */}
-                            <div className="mt-3 flex items-center justify-between text-white/80 text-sm">
+                            <div className="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-white/80 text-sm">
                                 {/* Left side: Dynamic status messages */}
-                                <div className="flex flex-col gap-1">
+                                <div className="flex flex-col gap-1 min-w-0 flex-shrink">
                                     {/* Gradient wave animation for hint text */}
                                     <div className="flex items-center gap-2 animate-in slide-in-from-left duration-300">
-                                        <Terminal className="w-4 h-4" />
+                                        <Terminal className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
                                         <span
                                             key={currentMessageIndex}
-                                            className="animate-in fade-in duration-500 animate-hint-gradient"
+                                            className="animate-in fade-in duration-500 animate-hint-gradient text-xs sm:text-sm truncate"
                                         >
                                             {statusMessages[currentMessageIndex]}
                                         </span>
@@ -242,13 +242,15 @@ export const SearchInput = forwardRef(function SearchInput({
                                 </div>
 
                                 {/* Right side: Filter Bar */}
-                                <FilterBar
-                                    selectedPlatforms={selectedPlatforms}
-                                    selectedCategories={selectedCategories}
-                                    onPlatformChange={onPlatformChange}
-                                    onAdvancedFiltersToggle={onAdvancedFiltersToggle}
-                                    onClearAll={onClearAllFilters}
-                                />
+                                <div className="flex-shrink-0">
+                                    <FilterBar
+                                        selectedPlatforms={selectedPlatforms}
+                                        selectedCategories={selectedCategories}
+                                        onPlatformChange={onPlatformChange}
+                                        onAdvancedFiltersToggle={onAdvancedFiltersToggle}
+                                        onClearAll={onClearAllFilters}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>

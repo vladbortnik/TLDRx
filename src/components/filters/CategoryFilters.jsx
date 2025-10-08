@@ -38,10 +38,10 @@ export const CategoryFilters = React.memo(function CategoryFilters({
                 handleCategoryToggle(category.id);
               }}
               className={`
-                flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium
+                flex items-center gap-1.5 px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs sm:text-sm font-medium
                 transition-all duration-300 pointer-events-auto
                 transform hover:scale-105 active:scale-95
-                border border-white/20
+                border border-white/20 flex-shrink-0
                 ${isSelected
                   ? `bg-gradient-to-r ${category.color} text-white shadow-lg border-white/40`
                   : `bg-white/5 text-white/80 hover:bg-gradient-to-r hover:${category.color} hover:text-white hover:border-white/30 hover:opacity-60`
@@ -55,8 +55,8 @@ export const CategoryFilters = React.memo(function CategoryFilters({
                   : 'none'
               }}
             >
-              <IconComponent className="w-4 h-4" />
-              {category.name}
+              <IconComponent className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+              <span className="whitespace-nowrap">{category.name}</span>
             </button>
           );
         })}

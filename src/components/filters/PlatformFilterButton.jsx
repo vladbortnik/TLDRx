@@ -13,9 +13,9 @@ export const PlatformFilterButton = React.memo(function PlatformFilterButton({ p
         onClick(platform);
       }}
       className={`
-        relative w-10 h-10 rounded-lg transition-all duration-300
+        relative w-8 h-8 sm:w-10 sm:h-10 rounded-lg transition-all duration-300
         flex items-center justify-center pointer-events-auto
-        border-2
+        border-2 flex-shrink-0
         ${isSelected
           ? 'border-white bg-white/5 shadow-lg'
           : 'border-white/20 bg-white/5 hover:border-white/40 hover:bg-white/10'
@@ -33,7 +33,7 @@ export const PlatformFilterButton = React.memo(function PlatformFilterButton({ p
       }}
     >
       <IconComponent
-        className="w-5 h-5"
+        className="w-4 h-4 sm:w-5 sm:h-5"
         style={{ color: iconColor }}
       />
 

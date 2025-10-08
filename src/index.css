@@ -41,6 +41,42 @@
 html {
   scroll-padding-top: var(--total-sticky-height);
   scroll-behavior: smooth;
+  /* Mobile-optimized touch scrolling */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile-First PWA Optimizations */
+body {
+  /* Prevent text size adjustment on orientation change */
+  -webkit-text-size-adjust: 100%;
+  /* Prevent tap highlight on iOS */
+  -webkit-tap-highlight-color: transparent;
+  /* Safe area support for iOS devices with notches */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+/* Touch-friendly active states */
+.touch-manipulation {
+  /* Browser hint for touch optimization */
+  touch-action: manipulation;
+  /* Prevent callout on long press (iOS) */
+  -webkit-touch-callout: none;
+  /* Better touch response */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Smooth momentum scrolling for iOS */
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Remove 300ms tap delay on mobile */
+button,
+a,
+input,
+[role="button"] {
+  touch-action: manipulation;
 }
 
 /* 3D Animation Support */

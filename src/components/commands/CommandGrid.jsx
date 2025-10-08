@@ -60,7 +60,7 @@ export const CommandGrid = forwardRef(function CommandGrid({
         );
       }}
       components={{
-        Item: (props) => <div {...props} className="mb-6" />
+        Item: (props) => <div {...props} className="mb-4 sm:mb-6" />
       }}
     />
   );

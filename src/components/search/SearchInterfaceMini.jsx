@@ -108,7 +108,7 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
     return (
         <div className="relative w-full animate-in slide-in-from-top duration-300">
             {/* Add top margin/padding for better spacing */}
-            <div className="pt-2 pb-2 px-4">
+            <div className="pt-2 pb-2 px-2 sm:px-4">
                 <div
                     className="backdrop-blur-xl border border-white/30 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer hover:transform hover:scale-[1.02]"
                     style={{
@@ -119,14 +119,14 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
                 >
                     {/* Compact header bar with gradient background */}
                     <div
-                        className="px-4 py-2.5 border-b border-white/20"
+                        className="px-2 sm:px-4 py-2 sm:py-2.5 border-b border-white/20"
                         style={{
                             background: 'linear-gradient(90deg, rgba(25,35,80,0.6), rgba(40,45,105,0.5), rgba(25,35,80,0.6))'
                         }}
                     >
                         <div className="flex items-center justify-between">
                             {/* Left side: Logo and search input */}
-                            <div className="flex items-center gap-3 flex-1">
+                            <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
                                 {/* Logo area - acts as home button */}
                                 <div
                                     data-logo
@@ -156,7 +156,7 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
                                 <div className="h-4 w-px bg-white/30 hidden sm:block" />
 
                                 {/* Search Input Area */}
-                                <div className="flex items-center gap-2 flex-1">
+                                <div className="flex items-center gap-1 sm:gap-2 flex-1 min-w-0">
                                     <span className="text-yellow-300 font-mono text-sm font-semibold hidden sm:inline">
                                         search
                                     </span>
@@ -179,7 +179,7 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
                                             }
                                         }}
                                         placeholder="query (press Enter)"
-                                        className="bg-transparent text-white font-mono outline-none flex-1 placeholder-white/50 text-sm min-w-0"
+                                        className="bg-transparent text-white font-mono outline-none flex-1 placeholder-white/50 text-xs sm:text-sm min-w-0"
                                         autoComplete="off"
                                         onClick={(e) => e.stopPropagation()}
                                         aria-label="Search commands (mini)"
@@ -188,7 +188,7 @@ export const SearchInterfaceMini = forwardRef(function SearchInterfaceMini({
                             </div>
                             
                             {/* Right side: Status, filters, and cursor */}
-                            <div className="flex items-center gap-3 ml-2">
+                            <div className="flex items-center gap-2 sm:gap-3 ml-1 sm:ml-2 flex-shrink-0">
                                 {/* Dynamic status message on larger screens */}
                                 <div className="hidden md:flex items-center gap-2">
                                     <FaDatabase className="w-3 h-3 text-cyan-400" />

@@ -66,22 +66,31 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
   const descriptionShowTimeRef = useRef(null);
   const isHoveringRef = useRef(false);
   const highlightTimeoutRef = useRef(null);
-  const lastScreenSizeRef = useRef('desktop'); // Track last size to prevent unnecessary updates
+  const lastScreenSizeRef = useRef('mobile'); // Track last size to prevent unnecessary updates (mobile-first default)
 
   /**
-   * Responsive screen size detection
+   * Mobile-first responsive screen size detection
    * Updates screenSize state for responsive styling
    * FIXED: Uses ref to track previous value and prevent infinite loop
+   * 
+   * Breakpoints optimized for mobile-first PWA:
+   * - mobile: 0-640px (phones in portrait)
+   * - tablet: 640-1024px (tablets & phones in landscape)
+   * - desktop: 1024px+ (laptops, desktops, large screens)
    */
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
       let newSize;
-      if (width < 640) newSize = 'mobile';
-      else if (width < 768) newSize = 'tablet';
-      else if (width < 1024) newSize = 'laptop';
-      else if (width < 1440) newSize = 'desktop';
-      else newSize = 'wide';
+      
+      // Mobile-first breakpoints (CSS pixels, not physical pixels)
+      if (width < 640) {
+        newSize = 'mobile';
+      } else if (width < 1024) {
+        newSize = 'tablet';
+      } else {
+        newSize = 'desktop';
+      }
 
       // Only update if value changed - check against ref, not state
       if (lastScreenSizeRef.current !== newSize) {
@@ -279,11 +288,11 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
         />
 
         {/* Syntax Pattern - More prominent with better color */}
-        <div className="px-4 py-3 border-b border-white/10 bg-gradient-to-r from-indigo-900/20 to-blue-900/20">
+        <div className="px-3 sm:px-4 py-2.5 sm:py-3 border-b border-white/10 bg-gradient-to-r from-indigo-900/20 to-blue-900/20">
           <div className="flex items-center gap-2 mb-1">
             <span className="text-[10px] font-normal text-indigo-300/50 uppercase tracking-wider">Syntax</span>
           </div>
-          <code className="text-cyan-300 font-mono text-base font-medium whitespace-nowrap block overflow-x-auto"
+          <code className="text-cyan-300 font-mono text-sm sm:text-base font-medium whitespace-nowrap block overflow-x-auto"
                 style={{ fontFamily: "'Courier New', Courier, monospace" }}>
             {command?.syntaxPattern || 'No syntax available'}
           </code>
@@ -291,10 +300,10 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
 
         {/* Key Features Section - Collapsible */}
         {command?.keyFeatures && command.keyFeatures.length > 0 && (
-          <div className="px-4 py-2.5 border-b border-white/10">
+          <div className="px-3 sm:px-4 py-2.5 border-b border-white/10">
             <button
               onClick={() => toggleSection('keyFeatures')}
-              className="flex items-center justify-between w-full text-left group/header hover:bg-white/5 -mx-2 px-2 py-1 rounded-lg transition-all duration-200"
+              className="flex items-center justify-between w-full text-left group/header hover:bg-white/5 active:bg-white/10 -mx-2 px-2 py-2 sm:py-1.5 rounded-lg transition-all duration-200 touch-manipulation min-h-[44px] sm:min-h-0"
             >
               <div className="flex items-center gap-2">
                 {/* Chevron on the left as primary expandable indicator */}
@@ -345,46 +354,49 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
         )}
 
         {/* Examples Section - Always Expanded */}
-        <div className="px-4 py-2.5 border-b border-white/10">
+        <div className="px-3 sm:px-4 py-2.5 border-b border-white/10">
           <div className="space-y-1.5">
             {(command?.examples || []).map((example, index) => {
               const parsed = parseExample(example);
               return (
                 <div 
                   key={index}
-                  className="group/example relative p-2.5 rounded-lg bg-gradient-to-r from-slate-900/80 to-slate-800/80 border border-white/10 hover:border-green-400/30 transition-all duration-300 cursor-pointer"
+                  className="group/example relative p-2 sm:p-2.5 rounded-lg bg-gradient-to-r from-slate-900/80 to-slate-800/80 border border-white/10 hover:border-green-400/30 active:border-green-400/50 transition-all duration-300 cursor-pointer touch-manipulation"
                   onClick={() => copyExample(example, index)}
                 >
-                  {/* Terminal Prompt - Single Line */}
-                  <div className="flex items-center gap-3">
-                    <span className="text-green-400 font-mono text-sm flex-shrink-0">$</span>
-                    <div className="flex-1 min-w-0 flex items-baseline gap-2">
-                      <code className="text-green-400 font-mono text-sm font-medium"
+                  {/* Terminal Prompt - 2 lines on mobile, 1 line on desktop */}
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                    {/* First line: $ command + copy button */}
+                    <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
+                      <span className="text-green-400 font-mono text-sm flex-shrink-0">$</span>
+                      <code className="text-green-400 font-mono text-sm font-medium flex-1 break-all"
                             style={{ fontFamily: "'Courier New', Courier, monospace" }}>
                         {parsed.command}
                       </code>
-                      {parsed.comment && (
-                        <span className="text-gray-400 text-xs">
-                          # {parsed.comment}
-                        </span>
-                      )}
+                      
+                      {/* Copy Button - Shows on same line */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          copyExample(example, index);
+                        }}
+                        className="p-2 sm:p-1.5 hover:bg-white/10 active:bg-white/20 rounded-md transition-all duration-300 flex-shrink-0 touch-manipulation min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 flex items-center justify-center"
+                        title="Copy command"
+                      >
+                        {copiedExample === index ? (
+                          <span className="text-green-400 text-xs font-medium">✓</span>
+                        ) : (
+                          <Copy className="w-3.5 h-3.5 text-white/40 hover:text-white/70" />
+                        )}
+                      </button>
                     </div>
                     
-                    {/* Copy Button - Minimal, no background */}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        copyExample(example, index);
-                      }}
-                      className="p-1.5 hover:bg-white/10 rounded-md transition-all duration-300 flex-shrink-0"
-                      title="Copy command"
-                    >
-                      {copiedExample === index ? (
-                        <span className="text-green-400 text-xs font-medium">✓</span>
-                      ) : (
-                        <Copy className="w-3.5 h-3.5 text-white/40 hover:text-white/70" />
-                      )}
-                    </button>
+                    {/* Second line (mobile) / inline (desktop): comment */}
+                    {parsed.comment && (
+                      <span className="text-gray-400 text-xs pl-6 sm:pl-0 block sm:inline">
+                        # {parsed.comment}
+                      </span>
+                    )}
                   </div>
                 </div>
               );
@@ -442,24 +454,24 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
 
         {/* Warnings Section - Collapsible, initially collapsed */}
         {command?.warnings && command.warnings.length > 0 && (
-          <div className="px-4 py-2.5 border-b border-white/10">
+          <div className="px-3 sm:px-4 py-2.5 border-b border-white/10">
             <button
               onClick={() => toggleSection('warnings')}
-              className="flex items-center justify-between w-full text-left group/header hover:bg-white/5 -mx-2 px-2 py-1 rounded-lg transition-all duration-200"
+              className="flex items-center justify-between w-full text-left group/header hover:bg-white/5 active:bg-white/10 -mx-2 px-2 py-2 sm:py-1.5 rounded-lg transition-all duration-200 touch-manipulation min-h-[44px] sm:min-h-0"
             >
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-1 min-w-0">
                 {/* Chevron on the left as primary expandable indicator */}
                 {expandedSections.warnings ? (
-                  <ChevronUp className="w-4 h-4 text-red-400 transition-transform duration-200" />
+                  <ChevronUp className="w-4 h-4 text-red-400 transition-transform duration-200 flex-shrink-0" />
                 ) : (
-                  <ChevronDown className="w-4 h-4 text-white/50 group-hover/header:text-red-400 transition-all duration-200" />
+                  <ChevronDown className="w-4 h-4 text-white/50 group-hover/header:text-red-400 transition-all duration-200 flex-shrink-0" />
                 )}
-                <h3 className="flex items-center gap-1.5 text-xs font-semibold text-red-300">
-                  <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
+                <h3 className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-red-300">
+                  <AlertTriangle className="w-3.5 h-3.5 text-red-400 flex-shrink-0" />
                   Warnings
                 </h3>
               </div>
-              <span className="text-[10px] text-white/40">Click to {expandedSections.warnings ? 'collapse' : 'expand'}</span>
+              <span className="text-[10px] text-white/40 hidden sm:inline flex-shrink-0">Click to {expandedSections.warnings ? 'collapse' : 'expand'}</span>
             </button>
             
             {expandedSections.warnings && (
@@ -481,11 +493,11 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
         )}
 
         {/* Footer: Related Commands and Man Page Link */}
-        <div className="px-4 py-2 bg-gradient-to-r from-white/5 to-white/10">
-          <div className="flex items-center justify-between gap-2">
+        <div className="px-3 sm:px-4 py-3 sm:py-2.5 bg-gradient-to-r from-white/5 to-white/10">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-2">
             {/* Related Commands - Left side */}
             {command?.relatedCommands && command.relatedCommands.length > 0 ? (
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 {(command?.relatedCommands || []).map((related, index) => (
                   <div
                     key={index}
@@ -495,9 +507,9 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
                   >
                     <button
                       className={`
-                        px-2.5 py-1 rounded-lg font-mono font-medium text-xs
+                        px-2.5 py-1.5 sm:px-2.5 sm:py-1 rounded-md font-mono font-medium text-[11px]
                         bg-gradient-to-r ${getButtonStyle(index)}
-                        border transition-all duration-300 hover:scale-105 cursor-pointer
+                        border transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer touch-manipulation min-h-[40px] sm:min-h-0
                       `}
                       style={{ fontFamily: "'Courier New', Courier, monospace" }}
                       onClick={(e) => {
@@ -521,17 +533,17 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
               <div></div>
             )}
             
-            {/* Man Page Link - Right side */}
+            {/* Man Page Link - Right side (or bottom on mobile) */}
             <a
               href={command?.manPageUrl || '#'}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-gradient-to-r from-cyan-400/20 to-blue-500/20 border border-cyan-400/30 text-cyan-300 hover:from-cyan-400/30 hover:to-blue-500/30 transition-all duration-300 group flex-shrink-0"
+              className="flex items-center justify-center gap-2 px-4 py-2 sm:px-3 sm:py-1.5 rounded-lg bg-gradient-to-r from-cyan-400/20 to-blue-500/20 border border-cyan-400/40 text-cyan-300 hover:from-cyan-400/30 hover:to-blue-500/30 transition-all duration-300 group flex-shrink-0 touch-manipulation min-h-[44px] sm:min-h-0"
             >
               <ExternalLink 
-                className="w-3 h-3 group-hover:rotate-12 transition-transform" 
+                className="w-4 h-4 sm:w-3.5 sm:h-3.5 group-hover:rotate-12 transition-transform" 
               />
-              <span className="text-[10px] font-medium">Man Page</span>
+              <span className="text-xs sm:text-[11px] font-medium">Man Page</span>
             </a>
           </div>
         </div>

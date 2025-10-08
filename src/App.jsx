@@ -212,9 +212,13 @@ function App({ mockCommands }) {
     }, [isFilterOpen]);
 
     // Use IntersectionObserver with a sentinel element to prevent flicker
+    // Track scroll direction to prevent mini search from disappearing when scrolling up
     useEffect(() => {
         const sentinel = sentinelRef.current;
         if (!sentinel) return;
+
+        let lastScrollY = window.scrollY;
+        let isScrollingDown = false;
 
         const observer = new IntersectionObserver(
             ([entry]) => {
@@ -223,11 +227,22 @@ function App({ mockCommands }) {
                 const viewportHeight = window.innerHeight;
                 const scrollableDistance = documentHeight - viewportHeight;
                 
+                // Determine scroll direction
+                const currentScrollY = window.scrollY;
+                isScrollingDown = currentScrollY > lastScrollY;
+                lastScrollY = currentScrollY;
+                
                 // If we have enough scrollable content, allow the transition
                 if (scrollableDistance > 300) {
-                    setShowMiniSearch(!entry.isIntersecting);
+                    // Only hide full search when scrolling down AND sentinel is not visible
+                    // Keep mini search visible when scrolling up
+                    if (!entry.isIntersecting && isScrollingDown) {
+                        setShowMiniSearch(true);
+                    } else if (entry.isIntersecting && !isScrollingDown) {
+                        setShowMiniSearch(false);
+                    }
                 } else {
-                    // Not enough content - always show a full interface
+                    // Not enough content - always show full interface
                     setShowMiniSearch(false);
                 }
             },
@@ -464,7 +479,7 @@ function App({ mockCommands }) {
                 zIndex: 0
             }}
         >
-            <div className="container mx-auto max-w-6xl px-4 py-8">
+            <div className="container mx-auto max-w-6xl px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
                 {/* Header with static visibility (scroll behavior temporarily disabled) */}
                 <div data-header style={{ position: 'relative' }}>
                     <Header />
