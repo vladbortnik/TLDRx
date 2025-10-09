@@ -2,18 +2,97 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    
+    <!-- Favicon - VscTerminalBash icon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Primary Meta Tags -->
+    <title>TL;DRx</title>
+    <meta name="title" content="TL;DRx - Interactive Unix/Linux Command Reference" />
+    <meta name="description" content="Fast, interactive command reference for 500+ Unix/Linux commands. Fuzzy search, real examples, and instant lookup. Open source PWA that works offline." />
+    <meta name="keywords" content="linux commands, unix commands, bash, terminal, command line, shell, cli, developer tools, cheat sheet, command reference" />
+    <meta name="author" content="Vlad Bortnik" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
-    <meta name="description" content="TL;DRx - Interactive command reference for 500+ Unix/Linux commands with fuzzy search and examples" />
-    <meta name="theme-color" content="#10b981" />
+    <meta name="theme-color" content="#00a82d" />
+    <link rel="canonical" href="https://tldrx.vladbortnik.dev" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tldrx.vladbortnik.dev" />
+    <meta property="og:title" content="TL;DRx - Interactive Unix/Linux Command Reference" />
+    <meta property="og:description" content="Fast, interactive command reference for 500+ Unix/Linux commands with fuzzy search and real examples." />
+    <meta property="og:image" content="https://tldrx.vladbortnik.dev/icons/icon-512x512.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:site_name" content="TL;DRx" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://tldrx.vladbortnik.dev" />
+    <meta property="twitter:title" content="TL;DRx - Interactive Unix/Linux Command Reference" />
+    <meta property="twitter:description" content="Fast, interactive command reference for 500+ Unix/Linux commands with fuzzy search and real examples." />
+    <meta property="twitter:image" content="https://tldrx.vladbortnik.dev/icons/icon-512x512.png" />
+    <meta property="twitter:creator" content="@vladbortnik" />
     
     <!-- iOS PWA Support -->
     <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="TLDRx" />
     <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
     
-    <title>TL;DRx</title>
+    <!-- Structured Data (JSON-LD) for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "TL;DRx",
+      "alternateName": "TLDRx Command Reference",
+      "url": "https://tldrx.vladbortnik.dev",
+      "description": "Fast, interactive command reference for 500 Unix/Linux commands with fuzzy search and real examples. Open source PWA that works offline.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Vlad Bortnik",
+        "url": "https://vladbortnik.dev"
+      },
+      "creator": {
+        "@type": "Person",
+        "name": "Vlad Bortnik",
+        "url": "https://vladbortnik.dev"
+      },
+      "softwareVersion": "2.7.0",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "1"
+      },
+      "screenshot": "https://tldrx.vladbortnik.dev/icons/icon-512x512.png",
+      "featureList": [
+        "500 Unix/Linux command reference",
+        "Fuzzy search with intelligent ranking",
+        "Real command examples and syntax",
+        "Works offline (PWA)",
+        "Platform filtering (Linux, macOS, Windows)",
+        "Category organization",
+        "Copy command snippets",
+        "Fast, responsive interface"
+      ],
+      "keywords": "linux commands, unix commands, bash, terminal, command line, shell, cli, developer tools",
+      "license": "https://opensource.org/licenses/MIT"
+    }
+    </script>
+    
+    <!-- Umami Analytics (Privacy-friendly, GDPR compliant) -->
+    <script defer src="https://analytics.vladbortnik.dev/script.js" data-website-id="76386949-a6c8-4d47-910f-a78d8087f7eb"></script>
   </head>
   <body>
     <div id="root"></div>

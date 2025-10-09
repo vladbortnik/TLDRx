@@ -12,6 +12,7 @@ import React, {
   useMemo,
 } from "react";
 import PWAInstall from "./components/PWAInstall";
+import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { SearchInterface } from "./components/search/SearchInterface";
 import { SearchInterfaceMini } from "./components/search/SearchInterfaceMini";
@@ -602,6 +603,10 @@ function App({ mockCommands }) {
           )}
         </div>
       </div>
+      
+      {/* Footer - Outside main content, always visible at bottom */}
+      <Footer />
+      
       <PWAInstall />
     </div>
   );

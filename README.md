@@ -52,8 +52,6 @@
 
 ### 🌟 Live Demo: [TL;DRx](https://tldrx.vladbortnik.dev)
 
-**Experience it now:** 
-
 Try searching for commands like `grep`, `docker`, `ssh`, or `git` to see instant, intelligent results.
 
 ---
@@ -423,7 +421,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](./LICENSE
 ```
 MIT License
 
-Copyright (c) 2025 TL;DRx Development Team
+Copyright (c) 2025 Vlad Bortnik
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -502,7 +500,7 @@ Thank you to all contributors who have helped shape TL;DRx:
 
 ---
 
-**Built with ❤️ by the TL;DRx Development Team**
+**Built with ❤️ by [Vlad Bortnik](https://vladbortnik.dev)**
 
 *Making command-line mastery accessible to everyone.*
 

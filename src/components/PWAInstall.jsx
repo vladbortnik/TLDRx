@@ -90,9 +90,9 @@ export default function PWAInstall() {
           </svg>
         </div>
         <div className="flex-1">
-          <h3 className="text-white font-medium text-sm mb-1">Install TLDRx</h3>
+          <h3 className="text-white font-medium text-sm mb-1">Install TL;DRx</h3>
           <p className="text-slate-400 text-xs mb-3">
-            Get offline access to 577+ commands and install as a native app
+            Get offline access to 500 commands and install as a native app
           </p>
           <div className="flex gap-2">
             <button

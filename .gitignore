@@ -2,33 +2,6 @@
 .idea
 
 # Project Specific
-PLAN.md
-_*
-_TEMP/
-_TEMP-*
-_PLAN/
-_PLAN-*
-FIGMA-AI-AGENT-PROMPT.md
-_Command-Reference-Lookup-Tool
-_Command-Reference-Lookup-Tool-2
-_TLDR-DB-CLEAN
-.windsurf/
-scripts/
-_scripts/
-_scripts-temp/
-.cascade-rules
-_README/
-_Trash/
-.playwright-mcp/
-_Trash/CODEBASE_ANALYSIS.md
-_Trash/DEVTOOLS-PERFORMANCE-PROFILER.md
-_Trash/COMPREHENSIVE-CONTEXT-FOR-POST-COMPACT-RESTORATION.md
-_Trash/WAVE-INTEGRATION.md
-.qudo/
-
-# Claude Code
-CLAUDE.md
-.claude/
 
 # Logs
 logs

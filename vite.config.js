@@ -60,8 +60,8 @@ export default defineConfig(({ mode }) => {
         registerType: 'autoUpdate',
         includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
         manifest: {
-          name: 'TLDRx - Command Reference',
-          short_name: 'TLDRx',
+          name: 'TL;DRx - Command Reference',
+          short_name: 'TL;DRx',
           description: 'Interactive Unix/Linux command reference with 500+ commands',
           theme_color: '#0f172a',
           background_color: '#0f172a',

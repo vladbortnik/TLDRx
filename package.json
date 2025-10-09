@@ -1,7 +1,7 @@
 {
-  "name": "TL;DRx",
+  "name": "tldrx",
   "private": true,
-  "version": "2.3.0",
+  "version": "2.7.0",
   "type": "module",
   "description": "Commands Made Simple - Interactive Unix/Linux command reference with examples and use cases",
   "keywords": [
@@ -13,7 +13,7 @@
     "react",
     "vite"
   ],
-  "author": "TL;DR React Team",
+  "author": "Vlad Bortnik",
   "license": "MIT",
   "scripts": {
     "dev": "vite",

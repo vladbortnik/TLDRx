@@ -6,11 +6,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
+import { ErrorBoundary } from "./components/ErrorBoundary.jsx";
 import "./index.css";
 
 /**
  * Initialize and render the React application
  * Uses React 19's createRoot API with concurrent features
- * StrictMode is disabled in production for optimal performance
+ * Wrapped in ErrorBoundary for production error handling
  */
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <ErrorBoundary>
+    <App />
+  </ErrorBoundary>
+);
