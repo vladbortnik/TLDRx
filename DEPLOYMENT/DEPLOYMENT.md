@@ -10,6 +10,7 @@
 - [x] Production build tested locally (`npm run build`)
 - [x] No TypeScript/ESLint errors
 - [x] Dependencies audited (`npm audit`)
+- [x] Run `npm audit fix` if there are issues
 
 #### ✅ Performance Testing
 ```bash
@@ -30,13 +31,21 @@ npm run preview
 # - CLS (Cumulative Layout Shift): < 0.1
 
 # 5. Test offline functionality
-# DevTools → Application → Service Workers → Offline checkbox
+#   -- DevTools → Application → Service Workers → Offline checkbox
+#
+#   5.1. Reload the page - your app should still work fully (search, browse commands, etc.)
+#   5.2. Verify functionality:
+#     -- Search still works
+#     -- All 577 commands are accessible
+#     -- Command cards expand/collapse
+#     -- Copy buttons work
+#     -- UI renders correctly
 ```
 
 #### ✅ Cross-Browser Testing
-- [ ] Chrome (latest)
-- [ ] Firefox (latest)
-- [ ] Safari (macOS/iOS)
+- [x] Chrome (latest)
+- [x] Firefox (latest)
+- [x] Safari (macOS/iOS)
 - [ ] Edge (latest)
 - [ ] Mobile browsers (iOS Safari, Chrome Android)
 
