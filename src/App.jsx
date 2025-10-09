@@ -417,13 +417,17 @@ function App({ mockCommands }) {
    */
   const handleScrollToCommand = useCallback(
     (commandName) => {
-      // Scroll to top before filtering (prevents Virtuoso bug)
-      scrollToTopInstantly();
+      // Defer state updates to avoid React error #185
+      // (Cannot update component during another component's render)
+      setTimeout(() => {
+        // Scroll to top before filtering (prevents Virtuoso bug)
+        scrollToTopInstantly();
 
-      // Set display value
-      setSearchQuery(commandName);
-      // Immediately submit for filtering (no Enter needed)
-      setSubmittedSearchQuery(commandName);
+        // Set display value
+        setSearchQuery(commandName);
+        // Immediately submit for filtering (no Enter needed)
+        setSubmittedSearchQuery(commandName);
+      }, 0);
     },
     [scrollToTopInstantly]
   );

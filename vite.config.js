@@ -58,7 +58,7 @@ export default defineConfig(({ mode }) => {
       // INP issue was caused by rendering 500 cards, solved with React Virtuoso
       VitePWA({
         registerType: 'autoUpdate',
-        includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+        includeAssets: ['favicon.ico', 'favicon.svg', 'icons/*.png'],
         manifest: {
           name: 'TL;DRx - Command Reference',
           short_name: 'TL;DRx',
@@ -66,19 +66,20 @@ export default defineConfig(({ mode }) => {
           theme_color: '#0f172a',
           background_color: '#0f172a',
           display: 'standalone',
+          start_url: '/',
           icons: [
             {
-              src: 'icons/icon-192x192.png',
+              src: '/icons/icon-192x192.png',
               sizes: '192x192',
               type: 'image/png'
             },
             {
-              src: 'icons/icon-512x512.png',
+              src: '/icons/icon-512x512.png',
               sizes: '512x512',
               type: 'image/png'
             },
             {
-              src: 'icons/icon-512x512.png',
+              src: '/icons/icon-512x512.png',
               sizes: '512x512',
               type: 'image/png',
               purpose: 'any maskable'

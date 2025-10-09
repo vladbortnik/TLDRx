@@ -314,6 +314,7 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
             <button
               onClick={() => toggleSection('keyFeatures')}
               className="flex items-center justify-between w-full text-left group/header hover:bg-white/5 active:bg-white/10 -mx-2 px-2 py-2 sm:py-1.5 rounded-lg transition-all duration-200 touch-manipulation min-h-[44px] sm:min-h-0"
+              aria-label={expandedSections.keyFeatures ? 'Collapse Key Features section' : 'Expand Key Features section'}
             >
               <div className="flex items-center gap-2">
                 {/* Chevron on the left as primary expandable indicator */}
@@ -322,10 +323,10 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
                 ) : (
                   <ChevronDown className="w-4 h-4 text-white/50 group-hover/header:text-yellow-300/80 transition-all duration-200" />
                 )}
-                <h3 className="flex items-center gap-1.5 text-xs font-semibold text-yellow-200/80">
+                <h2 className="flex items-center gap-1.5 text-xs font-semibold text-yellow-200/80">
                   <Zap className="w-3.5 h-3.5 text-yellow-300/80" />
                   Key Features
-                </h3>
+                </h2>
               </div>
               <span className="text-[10px] text-white/40">Click to {expandedSections.keyFeatures ? 'collapse' : 'expand'}</span>
             </button>
@@ -392,6 +393,7 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
                         }}
                         className="p-2 sm:p-1.5 hover:bg-white/10 active:bg-white/20 rounded-md transition-all duration-300 flex-shrink-0 touch-manipulation min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 flex items-center justify-center"
                         title="Copy command"
+                        aria-label="Copy command to clipboard"
                       >
                         {copiedExample === index ? (
                           <span className="text-green-400 text-xs font-medium">✓</span>
@@ -420,6 +422,7 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
             <button
               onClick={() => toggleSection('warnings')}
               className="flex items-center justify-between w-full text-left group/header hover:bg-white/5 active:bg-white/10 -mx-2 px-2 py-2 sm:py-1.5 rounded-lg transition-all duration-200 touch-manipulation min-h-[44px] sm:min-h-0"
+              aria-label={expandedSections.warnings ? 'Collapse Warnings section' : 'Expand Warnings section'}
             >
               <div className="flex items-center gap-2 flex-1 min-w-0">
                 {/* Chevron on the left as primary expandable indicator */}
@@ -428,10 +431,10 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
                 ) : (
                   <ChevronDown className="w-4 h-4 text-white/50 group-hover/header:text-red-400 transition-all duration-200 flex-shrink-0" />
                 )}
-                <h3 className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-red-300">
+                <h2 className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-red-300">
                   <AlertTriangle className="w-3.5 h-3.5 text-red-400 flex-shrink-0" />
                   Warnings
-                </h3>
+                </h2>
               </div>
               <span className="text-[10px] text-white/40 hidden sm:inline flex-shrink-0">Click to {expandedSections.warnings ? 'collapse' : 'expand'}</span>
             </button>
