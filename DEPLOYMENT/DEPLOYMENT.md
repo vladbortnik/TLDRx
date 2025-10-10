@@ -47,7 +47,39 @@ npm run preview
 - [x] Firefox (latest)
 - [x] Safari (macOS/iOS)
 - [ ] Edge (latest)
-- [ ] Mobile browsers (iOS Safari, Chrome Android)
+- [x] Mobile browsers (iOS Safari: somewhat ok. Fix all issues in ver 3)
+
+```
+### Testing on Mobile Browsers
+
+#### tldr
+
+1. $ npm run build
+2. $ npm run preview -- --host 0.0.0.0
+3. Open provided URL (e.g., http://192.168.1.103:4173/) in yoor Mobile Browsers
+
+
+#### Instructions
+
+
+1. Find details:
+
+- System Settings → Network → Your connection → Details 
+- (or run ifconfig in terminal)
+- Look for something like 192.168.1.x or 10.0.0.x
+
+2. Start your dev server:
+
+- Make sure it's accessible on your network (not just localhost)
+- Use 0.0.0.0 as the host instead of localhost
+- Example: npm run dev -- --host 0.0.0.0
+
+3. Connect on iPhone:
+
+- Connect iPhone to the same Wi-Fi network
+- Open Safari and go to http://YOUR_IP:PORT
+- Example: http://192.168.1.5:3000
+```
 
 #### ✅ PWA Verification
 ```bash
