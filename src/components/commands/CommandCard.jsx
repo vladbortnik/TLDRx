@@ -126,8 +126,8 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
   }, []);
 
   /**
-   * Handle description hover with minimum 10-second display
-   * Description stays visible while hovering, but has minimum 10s display time
+   * Handle description hover with minimum 15-second display
+   * Description stays visible while hovering, but has minimum 15s display time
    */
   const handleDescriptionHover = useCallback((hovering) => {
     isHoveringRef.current = hovering;
@@ -143,7 +143,7 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
         descriptionTimeoutRef.current = null;
       }
     } else {
-      // Mouse left - check if 10 seconds have passed
+      // Mouse left - check if 15 seconds have passed
       if (descriptionShowTimeRef.current) {
         const elapsed = Date.now() - descriptionShowTimeRef.current;
         const remaining = Math.max(0, 15000 - elapsed);

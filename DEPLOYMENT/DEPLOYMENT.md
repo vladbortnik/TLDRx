@@ -10,7 +10,7 @@
 - [x] Production build tested locally (`npm run build`)
 - [x] No TypeScript/ESLint errors
 - [x] Dependencies audited (`npm audit`)
-- [x] Run `npm audit fix` if there are issues
+- [x] opt: Run `npm audit fix` if there are issues
 
 #### ✅ Performance Testing
 ```bash
@@ -46,7 +46,7 @@ npm run preview
 - [x] Chrome (latest)
 - [x] Firefox (latest)
 - [x] Safari (macOS/iOS)
-- [ ] Edge (latest)
+- [x] Edge (latest. macOS) 
 - [x] Mobile browsers (iOS Safari: somewhat ok. Fix all issues in ver 3)
 
 ```
@@ -80,6 +80,31 @@ npm run preview
 - Open Safari and go to http://YOUR_IP:PORT
 - Example: http://192.168.1.5:3000
 ```
+
+
+#### [info] Icons
+
+```
+Icons in Public Folder
+Here are all 8 icons found in the public directory:
+
+1. Icons Directory (/public/icons/)
+
+- icon-192x192.png (5 KB) - PWA app icon for mobile devices and smaller displays (192x192px standard size)
+- icon-512x512.png (14 KB) - PWA app icon for larger displays and splash screens (512x512px standard size)
+- icon-terminal.svg (2 KB) - Terminal-themed icon in SVG format, likely used for the app's branding/logo
+- icon.svg (3 KB) - General purpose SVG icon, probably the main app icon in vector format
+- tldr.png (116 KB) - Large PNG version of the TLDR brand/logo (main branding asset)
+- vsc-terminal-bash.svg (1 KB) - VS Code-style terminal/bash icon, likely used for UI elements or command indicators
+
+2. Public Root (/public/)
+
+-favicon.ico (4 KB) - Browser favicon in ICO format for legacy browser support
+-favicon.svg (2 KB) - Modern browser favicon in SVG format for better scaling and quality
+
+The PWA icons (192x192 and 512x512) are referenced in the manifest.json for installable app functionality, while the favicons appear in the browser tab.
+```
+
 
 #### ✅ PWA Verification
 ```bash
@@ -123,11 +148,11 @@ npx serve dist
 ### **Phase 3: Security & Configuration**
 
 #### ✅ Security Checklist
-- [ ] HTTPS enabled (required for PWA)
+- [x] HTTPS enabled (required for PWA)
 - [ ] Security headers configured (see below)
-- [ ] No API keys hardcoded in frontend
-- [ ] Environment variables properly secured
-- [ ] Dependencies have no critical vulnerabilities
+- [x] No API keys hardcoded in frontend
+- [x] Environment variables properly secured
+- [x] Dependencies have no critical vulnerabilities
 
 ---
 
