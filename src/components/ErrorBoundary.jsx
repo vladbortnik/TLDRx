@@ -33,7 +33,7 @@ export class ErrorBoundary extends React.Component {
   }
 
   /**
-   * Log error details to console (or error reporting service)
+   * Log error details to console and Sentry
    * @param {Error} error - The error that was thrown
    * @param {Object} errorInfo - Component stack trace
    */
@@ -45,8 +45,19 @@ export class ErrorBoundary extends React.Component {
       errorInfo: errorInfo
     });
 
-    // TODO: Send to error reporting service (e.g., Sentry)
-    // logErrorToService(error, errorInfo);
+    // Send to Sentry if available
+    if (window.Sentry) {
+      window.Sentry.captureException(error, {
+        contexts: {
+          react: {
+            componentStack: errorInfo.componentStack,
+          },
+        },
+        tags: {
+          errorBoundary: true,
+        },
+      });
+    }
   }
 
   /**
