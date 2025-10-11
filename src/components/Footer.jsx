@@ -37,24 +37,24 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Links */}
-          <div className="flex items-center gap-6">
+          {/* Links - Stacked for symmetry */}
+          <div className="text-center sm:text-right">
             <a
               href="https://github.com/vladbortnik/TLDRx"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors group"
+              className="flex items-center justify-center sm:justify-end gap-2 text-slate-400 hover:text-white transition-colors group"
               aria-label="View source on GitHub"
             >
               <Github className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              <span className="text-sm hidden sm:inline">View on GitHub</span>
+              <span className="text-sm">View on GitHub</span>
             </a>
             
             <a
               href="https://vladbortnik.dev"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-slate-400 hover:text-cyan-400 transition-colors"
+              className="text-sm text-purple-400/70 hover:text-purple-300 transition-colors inline-block mt-1"
             >
               By Vlad Bortnik
             </a>

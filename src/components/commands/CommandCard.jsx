@@ -498,18 +498,20 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
               <div></div>
             )}
             
-            {/* Man Page Link - Right side (or bottom on mobile) */}
-            <a
-              href={command?.manPageUrl || '#'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 px-4 py-2 sm:px-3 sm:py-1.5 rounded-lg bg-gradient-to-r from-cyan-400/20 to-blue-500/20 border border-cyan-400/40 text-cyan-300 hover:from-cyan-400/30 hover:to-blue-500/30 transition-all duration-300 group flex-shrink-0 touch-manipulation min-h-[44px] sm:min-h-0"
-            >
-              <ExternalLink 
-                className="w-4 h-4 sm:w-3.5 sm:h-3.5 group-hover:rotate-12 transition-transform" 
-              />
-              <span className="text-xs sm:text-[11px] font-medium">Man Page</span>
-            </a>
+            {/* Man Page Link - Right side (or bottom on mobile) - Only show if URL exists */}
+            {command?.manPageUrl && command.manPageUrl.trim() !== '' && (
+              <a
+                href={command.manPageUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 px-4 py-2 sm:px-3 sm:py-1.5 rounded-lg bg-gradient-to-r from-cyan-400/20 to-blue-500/20 border border-cyan-400/40 text-cyan-300 hover:from-cyan-400/30 hover:to-blue-500/30 transition-all duration-300 group flex-shrink-0 touch-manipulation min-h-[44px] sm:min-h-0"
+              >
+                <ExternalLink 
+                  className="w-4 h-4 sm:w-3.5 sm:h-3.5 group-hover:rotate-12 transition-transform" 
+                />
+                <span className="text-xs sm:text-[11px] font-medium">Man Page</span>
+              </a>
+            )}
           </div>
         </div>
       </div>

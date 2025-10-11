@@ -139,18 +139,6 @@ function App({ mockCommands }) {
   const fullSearchRef = useRef(null);
   const miniSearchRef = useRef(null);
 
-  /**
-   * Get the man page URL for a command
-   * @param {Object} command - Command object with manPageUrl field
-   * @returns {string} Man page URL from command data
-   */
-  const getManPageUrl = (command) => {
-    return (
-      command.manPageUrl ||
-      `https://man7.org/linux/man-pages/man1/${command.name}.1.html`
-    );
-  };
-
   useEffect(() => {
     /**
      * Asynchronously loads command data from the data module or uses mock data for testing.
@@ -175,7 +163,6 @@ function App({ mockCommands }) {
           ...command,
           platform: command.platform || ["linux"],
           category: command.category || "general",
-          manPageUrl: getManPageUrl(command),
         }));
         setCommands(enhancedCommands);
         setError(null);

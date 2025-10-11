@@ -39,7 +39,7 @@
 
 ## ✨ Overview
 
-**TL;DRx** is a next-generation Progressive Web App that transforms how developers interact with Unix/Linux command documentation. Built with React 19 and optimized for 2025's web standards, it delivers instant command lookup with **sub-50ms response times** and an intuitive, Matrix-inspired interface.
+TL;DRx is a next-generation Progressive Web App that transforms how developers interact with Unix/Linux command documentation. Built with React 19 and optimized for 2025's web standards, it delivers instant command lookup with sub-50ms response times, intelligent fuzzy search, and a Matrix-inspired interface. Install anywhere, works offline, 500+ commands at your fingertips.
 
 ### 🎯 Why TL;DRx?
 
