@@ -1,3 +1,27 @@
+---
+1. HOSTING
+
+- I ADDED THIS APP TO [vercel.com](https://vercel.com/) HOSTING.
+- UPDATED 1 CNAME RECORDS ON D.O.
+- Push to GitHub instantly updates the app on Vercel, with exception:
+- Exception: README.md and DEPLOYMENT/
+  - Command for exclusion (vercel.com => Settings => Git): 
+    - git diff HEAD~1 HEAD --quiet . ':(exclude)README.md' ':(exclude)DEPLOYMENT/'
+
+2. DNS
+- DO
+
+3. Live
+URL: https://tldrx.vladbortnik.dev
+
+4. Monitoring Software
+https://sentry.io       # Sentry Account is connected to Vercel
+
+5. Analytics
+Umami (self hosted; Docker on DO)
+
+---
+
 # 🚀 Deployment Guide for TL;DRx
 
 ## 📋 Pre-Deployment Checklist
@@ -207,33 +231,6 @@ npx serve dist
 - Vercel: 100GB bandwidth/month
 - Cloudflare: Unlimited bandwidth
 - Netlify: 100GB bandwidth/month
-
-====================================================================================
-====================================================================================
-====================================================================================
-
-
-## HOSTING
-
-I ADDED THIS APP TO THE "Versel" HOSTING.
-UPDATED 1 CNAME RECORDS ON D.O.
-URL: https://tldrx.vladbortnik.dev
-
-
-## Monitoring Software
-
-https://sentry.io
-
-
-## Analytics
-
-Udemy (self hosted)
-
-
-====================================================================================
-====================================================================================
-====================================================================================
-
 
 ## 🚀 Deployment Options
 
