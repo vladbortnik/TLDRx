@@ -1,6 +1,10 @@
 # WebStorm
 .idea
 
+# Claude
+.claude/
+.qodo/
+
 # Project Specific
 
 # Logs
