@@ -168,9 +168,12 @@ export const SearchInput = forwardRef(function SearchInput({
                                 {/* Dynamic command count with React Icons */}
                                 <div className="flex items-center gap-2">
                                     <FaDatabase className="w-4 h-4 text-cyan-400" />
-                                    <span className="bg-gradient-to-r from-sky-400 to-cyan-600 bg-clip-text text-transparent text-xs font-medium">
-                    {totalCommands.toLocaleString()} commands
-                  </span>
+                                    <span
+                                        data-testid="header-command-count"
+                                        className="bg-gradient-to-r from-sky-400 to-cyan-600 bg-clip-text text-transparent text-xs font-medium"
+                                    >
+                                        {totalCommands.toLocaleString()} commands
+                                    </span>
                                 </div>
 
                                 {/* Filter icon for OS and Category functionality */}

@@ -177,6 +177,14 @@ function App({ mockCommands }) {
     loadCommands().catch(console.error);
   }, [mockCommands]);
 
+  useEffect(() => {
+    if (import.meta.env.DEV) {
+      console.log("[tldrx] commands-state", {
+        totalCommands: commands.length,
+      });
+    }
+  }, [commands.length]);
+
   // Dynamic sticky height calculation for CSS scroll-padding-top
   useEffect(() => {
     const updateStickyHeight = () => {
@@ -364,6 +372,17 @@ function App({ mockCommands }) {
       return result;
     }
   }, [commands, submittedSearchQuery, selectedPlatforms, selectedCategories]);
+
+  useEffect(() => {
+    if (import.meta.env.DEV) {
+      console.log("[tldrx] displayCommands-state", {
+        count: displayCommands.length,
+        submittedSearchQuery,
+        selectedPlatforms,
+        selectedCategories,
+      });
+    }
+  }, [displayCommands.length, submittedSearchQuery, selectedPlatforms, selectedCategories]);
 
   /**
    * Handle command click for navigation

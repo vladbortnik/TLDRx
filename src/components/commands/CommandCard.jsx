@@ -275,6 +275,7 @@ export const CommandCard = React.memo(function CommandCard({ command, onScrollTo
     <div
       ref={cardRef}
       id={`command-${command?.name}`}
+      data-command-name={command?.name || 'unknown'}
       className="relative group"
     >
       {/* Main Card Container */}

@@ -3,8 +3,7 @@
  * Implements React Virtuoso for efficient rendering of large command lists
  */
 
-import React, { useRef, forwardRef, useImperativeHandle } from 'react';
-import { Virtuoso } from 'react-virtuoso';
+import React from 'react';
 import { CommandCard } from './CommandCard.jsx';
 
 /**
@@ -16,52 +15,30 @@ import { CommandCard } from './CommandCard.jsx';
  * @param {Object} props - Component props
  * @param {Array<Object>} props.commands - Filtered array of commands to display
  * @param {Function} props.onScrollToCommand - Callback to scroll to specific command
- * @param {React.Ref} ref - Forward ref exposing scrollToIndex method
- * @returns {JSX.Element|null} Virtualized command grid or null if no commands
+ * @returns {JSX.Element|null} Simple list of command cards or null if no commands
  */
-export const CommandGrid = forwardRef(function CommandGrid({
+export function CommandGrid({
   commands,
   onScrollToCommand
-}, ref) {
-  const virtuosoRef = useRef(null);
-
-  // Expose scrollToIndex method to a parent component
-  useImperativeHandle(ref, () => ({
-    scrollToIndex: (index, options) => {
-      virtuosoRef.current?.scrollToIndex({
-        index,
-        align: options?.align || 'start',
-        behavior: options?.behavior || 'smooth'
-      });
-    }
-  }));
-
+}) {
   if (!commands || commands.length === 0) {
     return null;
   }
 
   return (
-    <Virtuoso
-      ref={virtuosoRef}
-      useWindowScroll={true}
-      data={commands}
-      overscan={800}
-      itemContent={(index, command) => {
-        // Ensure we have a valid unique key
+    <div>
+      {commands.map((command, index) => {
         const commandKey = command?.name || `command-${index}`;
 
         return (
-          <CommandCard
-            key={commandKey}
-            data-command-name={command?.name || 'unknown'}
-            command={command}
-            onScrollToCommand={onScrollToCommand}
-          />
+          <div key={commandKey} className="mb-4 sm:mb-6">
+            <CommandCard
+              command={command}
+              onScrollToCommand={onScrollToCommand}
+            />
+          </div>
         );
-      }}
-      components={{
-        Item: (props) => <div {...props} className="mb-4 sm:mb-6" />
-      }}
-    />
+      })}
+    </div>
   );
-});
+}

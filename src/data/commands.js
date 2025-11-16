@@ -32089,5 +32089,17 @@ const commandsDatabase = [
   },
 ];
 
-export const commands = commandsDatabase;
-export default commandsDatabase;
+const subsetIndices = [
+  0, 7, 13, 21, 28, 35, 42, 49, 56, 63,
+  70, 77, 84, 91, 98, 105, 112, 119, 126, 133,
+  140, 147, 154, 161, 168, 175, 182, 189, 196, 203,
+  210, 217, 224, 231, 238, 245, 252, 259, 266, 273,
+  280, 287, 294, 301, 308, 315, 322, 329, 336, 343,
+];
+
+const trimmedCommandsDatabase = subsetIndices
+  .map((index) => commandsDatabase[index])
+  .filter(Boolean);
+
+export const commands = trimmedCommandsDatabase;
+export default trimmedCommandsDatabase;

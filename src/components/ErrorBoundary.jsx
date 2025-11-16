@@ -29,6 +29,7 @@ export class ErrorBoundary extends React.Component {
    * @returns {Object} New state object
    */
   static getDerivedStateFromError(error) {
+    void error;
     return { hasError: true };
   }
 
@@ -90,7 +91,7 @@ export class ErrorBoundary extends React.Component {
             </p>
 
             {/* Error Details (only in development) */}
-            {process.env.NODE_ENV === 'development' && this.state.error && (
+            {import.meta.env.DEV && this.state.error && (
               <details className="mb-6 text-left bg-slate-900/50 rounded-lg p-4 text-xs">
                 <summary className="cursor-pointer text-slate-300 font-mono mb-2">
                   Error Details (Dev Only)
