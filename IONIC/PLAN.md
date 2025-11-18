@@ -315,7 +315,7 @@ Each phase below is broken into:
 
 - [ ] **6.1.1 Isolate logic from existing `App.jsx`**
   - [x] Extract fuzzy search and `searchCommand` functions into a shared module, e.g., `src/logic/search.ts`/`.js`.
-  - [ ] Extract command loading logic (dynamic import and transformation) into a shared module, e.g., `src/logic/commands.ts`/`.js`.
+  - [x] Extract command loading logic (dynamic import and transformation) into a shared module, e.g., `src/logic/commands.ts`/`.js`.
   - [ ] Extract shared types/interfaces if needed.
 
 - [ ] **6.1.2 Write unit tests for extracted logic**

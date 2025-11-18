@@ -21,6 +21,7 @@ import { LoadingState } from "./components/ui/LoadingState";
 import { ResultsCounter } from "./components/search/ResultsCounter";
 import { CommandGrid } from "./components/commands/CommandGrid";
 import { searchCommand } from "./logic/search";
+import { loadCommandsFromModule } from "./logic/commands";
 import "./index.css";
 
 /**
@@ -67,16 +68,7 @@ function App({ mockCommands }) {
           return;
         }
 
-        // TEMP: Force production data for performance testing
-        const module = await import("./data/commands.js");
-        const rawCommands = module.commands || module.default;
-
-        // Transform commands for UI requirements
-        const enhancedCommands = rawCommands.map((command) => ({
-          ...command,
-          platform: command.platform || ["linux"],
-          category: command.category || "general",
-        }));
+        const enhancedCommands = await loadCommandsFromModule();
         setCommands(enhancedCommands);
         setError(null);
       } catch (err) {
