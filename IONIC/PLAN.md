@@ -324,10 +324,10 @@ Each phase below is broken into:
 
 ### 6.2 Build `TldrHomePage` with Ionic components
 
-- [ ] **6.2.1 Layout skeleton**
-  - [ ] Use `IonPage` as wrapper.
-  - [ ] Add `IonHeader` with `IonToolbar` and an appropriate `IonTitle`.
-  - [ ] Use `IonContent` as scrollable area.
+- [x] **6.2.1 Layout skeleton**
+  - [x] Use `IonPage` as wrapper.
+  - [x] Add `IonHeader` with `IonToolbar` and an appropriate `IonTitle`.
+  - [x] Use `IonContent` as scrollable area.
 
 - [ ] **6.2.2 Header & branding**
   - [ ] Decide how much of the Matrix/terminal branding to keep vs align with Ionic aesthetics.
