@@ -1,6 +1,9 @@
 import { describe, it, expect } from "vitest";
 import { fuzzySearch, searchCommand } from "../logic/search.js";
-import { enhanceCommands } from "../logic/commands.js";
+import {
+  enhanceCommands,
+  filterCommandsByPlatformAndCategory,
+} from "../logic/commands.js";
 
 const makeCommand = (overrides = {}) => ({
   name: "ls",
@@ -16,6 +19,13 @@ describe("fuzzySearch", () => {
   it("gives higher score for exact substring than no match", () => {
     const score = fuzzySearch("ls", "ls -la");
     expect(score).toBeGreaterThan(0);
+  });
+
+  it("is case-insensitive", () => {
+    const lowerScore = fuzzySearch("ls", "List files");
+    const upperScore = fuzzySearch("LS", "list files");
+    expect(lowerScore).toBeGreaterThan(0);
+    expect(upperScore).toBe(lowerScore);
   });
 });
 
@@ -57,5 +67,51 @@ describe("enhanceCommands", () => {
     const [enhanced] = enhanceCommands(raw);
     expect(enhanced.platform).toEqual(["macos"]);
     expect(enhanced.category).toBe("file");
+  });
+});
+
+describe("filterCommandsByPlatformAndCategory", () => {
+  const sampleCommands = [
+    { name: "ls", platform: ["linux", "macos"], category: "file" },
+    { name: "dir", platform: ["windows"], category: "file" },
+    { name: "curl", platform: ["linux"], category: "network" },
+  ];
+
+  it("returns empty array when commands is not an array", () => {
+    expect(
+      filterCommandsByPlatformAndCategory(null, ["linux"], ["file"])
+    ).toEqual([]);
+  });
+
+  it("returns all commands when no filters are selected", () => {
+    const result = filterCommandsByPlatformAndCategory(sampleCommands, [], []);
+    expect(result).toHaveLength(3);
+  });
+
+  it("filters by selected platforms", () => {
+    const result = filterCommandsByPlatformAndCategory(
+      sampleCommands,
+      ["windows"],
+      []
+    );
+    expect(result.map((c) => c.name)).toEqual(["dir"]);
+  });
+
+  it("filters by selected categories", () => {
+    const result = filterCommandsByPlatformAndCategory(
+      sampleCommands,
+      [],
+      ["network"]
+    );
+    expect(result.map((c) => c.name)).toEqual(["curl"]);
+  });
+
+  it("applies both platform and category filters together", () => {
+    const result = filterCommandsByPlatformAndCategory(
+      sampleCommands,
+      ["linux"],
+      ["file"]
+    );
+    expect(result.map((c) => c.name)).toEqual(["ls"]);
   });
 });

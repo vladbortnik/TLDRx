@@ -23,6 +23,44 @@ export const enhanceCommands = (rawCommands) => {
 };
 
 /**
+ * Filter commands by selected platforms and categories.
+ *
+ * @param {Array<Object>} commands - Full list of commands.
+ * @param {Array<string>} [selectedPlatforms] - Selected platform identifiers.
+ * @param {Array<string>} [selectedCategories] - Selected category identifiers.
+ * @returns {Array<Object>} Commands that match the provided filters.
+ */
+export const filterCommandsByPlatformAndCategory = (
+  commands,
+  selectedPlatforms = [],
+  selectedCategories = []
+) => {
+  if (!Array.isArray(commands)) {
+    return [];
+  }
+
+  let platformFilteredCommands = commands;
+  if (selectedPlatforms.length > 0) {
+    platformFilteredCommands = commands.filter(
+      (command) =>
+        command.platform &&
+        selectedPlatforms.some((selectedPlatId) =>
+          command.platform.includes(selectedPlatId)
+        )
+    );
+  }
+
+  let filteredCommands = platformFilteredCommands;
+  if (selectedCategories.length > 0) {
+    filteredCommands = platformFilteredCommands.filter((command) =>
+      selectedCategories.includes(command.category)
+    );
+  }
+
+  return filteredCommands;
+};
+
+/**
  * Load and normalize commands from the main data module.
  *
  * @returns {Promise<Array<Object>>} Promise that resolves to enhanced command list.

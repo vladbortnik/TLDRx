@@ -318,9 +318,9 @@ Each phase below is broken into:
   - [x] Extract command loading logic (dynamic import and transformation) into a shared module, e.g., `src/logic/commands.ts`/`.js`.
   - [ ] Extract shared types/interfaces if needed.
 
-- [ ] **6.1.2 Write unit tests for extracted logic**
-  - [ ] Add tests for fuzzy search edge cases.
-  - [ ] Add tests for command filtering by platform and category.
+- [x] **6.1.2 Write unit tests for extracted logic**
+  - [x] Add tests for fuzzy search edge cases.
+  - [x] Add tests for command filtering by platform and category.
 
 ### 6.2 Build `TldrHomePage` with Ionic components
 

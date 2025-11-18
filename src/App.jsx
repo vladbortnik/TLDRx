@@ -21,7 +21,10 @@ import { LoadingState } from "./components/ui/LoadingState";
 import { ResultsCounter } from "./components/search/ResultsCounter";
 import { CommandGrid } from "./components/commands/CommandGrid";
 import { searchCommand } from "./logic/search";
-import { loadCommandsFromModule } from "./logic/commands";
+import {
+  loadCommandsFromModule,
+  filterCommandsByPlatformAndCategory,
+} from "./logic/commands";
 import "./index.css";
 
 /**
@@ -230,25 +233,11 @@ function App({ mockCommands }) {
    * @returns {Array<Object>} Filtered and scored commands sorted by relevance
    */
   const displayCommands = useMemo(() => {
-    // First filter by platforms (multiple selection support)
-    let platformFilteredCommands = commands;
-    if (selectedPlatforms.length > 0) {
-      platformFilteredCommands = commands.filter(
-        (command) =>
-          command.platform &&
-          selectedPlatforms.some((selectedPlatId) =>
-            command.platform.includes(selectedPlatId)
-          )
-      );
-    }
-
-    // Then filter by categories (multiple selection support)
-    let filteredCommands = platformFilteredCommands;
-    if (selectedCategories.length > 0) {
-      filteredCommands = platformFilteredCommands.filter((command) =>
-        selectedCategories.includes(command.category)
-      );
-    }
+    const filteredCommands = filterCommandsByPlatformAndCategory(
+      commands,
+      selectedPlatforms,
+      selectedCategories
+    );
 
     // Then apply a search filter using the SUBMITTED query (Enter key or clear)
     if (submittedSearchQuery.trim() === "") {
