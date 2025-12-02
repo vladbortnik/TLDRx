@@ -35,7 +35,7 @@ import "./index.css";
  * @param {Array<Object>} [props.mockCommands] - Optional mock commands for testing
  * @returns {JSX.Element} The main application component
  */
-function App({ mockCommands }) {
+function App({ mockCommands, showHeader = true }) {
   const [commands, setCommands] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [submittedSearchQuery, setSubmittedSearchQuery] = useState("");
@@ -383,9 +383,11 @@ function App({ mockCommands }) {
     >
       <div className="container mx-auto max-w-6xl px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
         {/* Header with static visibility (scroll behavior temporarily disabled) */}
-        <div data-header style={{ position: "relative" }}>
-          <Header />
-        </div>
+        {showHeader && (
+          <div data-header style={{ position: "relative" }}>
+            <Header />
+          </div>
+        )}
 
         {/* Sentinel element for intersection observer - invisible trigger */}
         <div

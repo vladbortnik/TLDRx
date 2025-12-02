@@ -326,14 +326,13 @@ Each phase below is broken into:
 
 - [x] **6.2.1 Layout skeleton**
   - [x] Use `IonPage` as wrapper.
-  - [x] Add `IonHeader` with `IonToolbar` and an appropriate `IonTitle`.
   - [x] Use `IonContent` as scrollable area.
 
-- [ ] **6.2.2 Header & branding**
-  - [ ] Decide how much of the Matrix/terminal branding to keep vs align with Ionic aesthetics.
-  - [ ] Implement a header that:
-    - [ ] Shows TLDRx branding (title/subtitle).
-    - [ ] Uses Ionic typography and safe area handling.
+- [x] **6.2.2 Header & branding**
+  - [x] Decide how much of the Matrix/terminal branding to keep vs align with Ionic aesthetics.
+  - [x] Implement a header that:
+    - [x] Shows TLDRx branding (title/subtitle).
+    - [x] Uses Ionic typography and safe area handling.
 
 - [ ] **6.2.3 Search bar**
   - [ ] Replace custom input with `IonSearchbar` in the header or top of content.

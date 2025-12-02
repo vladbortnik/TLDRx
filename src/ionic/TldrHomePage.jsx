@@ -16,8 +16,9 @@ export default function TldrHomePage() {
   return (
     <IonPage>
       <IonContent fullscreen>
-        <App />
+        <App showHeader={false} />
       </IonContent>
     </IonPage>
   );
 }
+
