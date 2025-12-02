@@ -60,14 +60,14 @@ Try searching for commands like `grep`, `docker`, `ssh`, or `git` to see instant
 
 ### 🔥 Core Functionality
 
-| Feature | Description |
-|---------|-------------|
-| **500+ Commands** | Comprehensive library covering System, Security, Shell, File Operations, Text Processing, Networking, Development, and more |
-| **Intelligent Fuzzy Search** | 4-tier priority system ranks results by relevance with exact matches prioritized |
-| **Platform Filtering** | Multi-select filters for Linux, macOS, and Windows with OR logic |
-| **11 Categories** | Organized taxonomy for easy navigation and discovery |
-| **Virtual Scrolling** | React Virtuoso renders only visible cards for optimal performance |
-| **Offline Support** | Service worker caching enables full offline functionality |
+| Feature                      | Description                                                                                                                 |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **500+ Commands**            | Comprehensive library covering System, Security, Shell, File Operations, Text Processing, Networking, Development, and more |
+| **Intelligent Fuzzy Search** | 4-tier priority system ranks results by relevance with exact matches prioritized                                            |
+| **Platform Filtering**       | Multi-select filters for Linux, macOS, and Windows with OR logic                                                            |
+| **11 Categories**            | Organized taxonomy for easy navigation and discovery                                                                        |
+| **Virtual Scrolling**        | React Virtuoso renders only visible cards for optimal performance                                                           |
+| **Offline Support**          | Service worker caching enables full offline functionality                                                                   |
 
 ### 🎨 User Experience
 
@@ -126,14 +126,14 @@ The app will be available at **http://localhost:5173**
 
 ### Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server with hot reload |
-| `npm run build` | Build optimized production bundle |
-| `npm run preview` | Preview production build locally |
-| `npm run lint` | Run ESLint for code quality checks |
-| `npm run test` | Run Vitest unit tests |
-| `npm run test:watch` | Run tests in watch mode |
+| Command              | Description                              |
+| -------------------- | ---------------------------------------- |
+| `npm run dev`        | Start development server with hot reload |
+| `npm run build`      | Build optimized production bundle        |
+| `npm run preview`    | Preview production build locally         |
+| `npm run lint`       | Run ESLint for code quality checks       |
+| `npm run test`       | Run Vitest unit tests                    |
+| `npm run test:watch` | Run tests in watch mode                  |
 
 ### Building for Production
 
@@ -197,12 +197,12 @@ Each command card displays comprehensive information:
 
 ### 📈 Metrics Overview
 
-| Metric | Before | After | Improvement |
-|--------|--------|-------|-------------|
-| **INP** | 710ms | 47ms | 93.4% ⬇️ |
-| **Cards Rendered** | 500 | ~15 | 97% ⬇️ |
-| **Memory Usage** | High | Low | Optimized |
-| **Search Response** | Variable | <150ms | Consistent |
+| Metric              | Before   | After  | Improvement |
+| ------------------- | -------- | ------ | ----------- |
+| **INP**             | 710ms    | 47ms   | 93.4% ⬇️    |
+| **Cards Rendered**  | 500      | ~15    | 97% ⬇️      |
+| **Memory Usage**    | High     | Low    | Optimized   |
+| **Search Response** | Variable | <150ms | Consistent  |
 
 ### 🎯 2025 Web Standards Compliance
 
@@ -232,11 +232,11 @@ Traditional Rendering          Virtual Rendering
 
 ### 🎯 Core Framework
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| **React** | 19.1 | UI library with Compiler optimizations |
-| **Vite** | 7.1 | Lightning-fast build tool and dev server |
-| **Tailwind CSS** | 3.4 | Utility-first CSS framework |
+| Technology       | Version | Purpose                                  |
+| ---------------- | ------- | ---------------------------------------- |
+| **React**        | 19.1    | UI library with Compiler optimizations   |
+| **Vite**         | 7.1     | Lightning-fast build tool and dev server |
+| **Tailwind CSS** | 3.4     | Utility-first CSS framework              |
 
 ### 📦 Key Libraries
 
@@ -474,6 +474,20 @@ Thank you to all contributors who have helped shape TL;DRx:
 
 ---
 
+## ✍️ New: Personal Engineering Blog
+
+<div align="center">
+
+**I've opened a dedicated engineering blog to go deeper into the ideas behind TL;DRx and my other projects.**
+
+[👉 Visit the Blog on vladbortnik.dev](https://vladbortnik.dev)
+
+Short, no-fluff write-ups on performance, clean architecture, and real-world debugging stories.
+
+</div>
+
+---
+
 ## 📞 Contact & Support
 
 <div align="center">
@@ -504,7 +518,7 @@ Thank you to all contributors who have helped shape TL;DRx:
 
 **Built with ❤️ by [Vlad Bortnik](https://vladbortnik.dev)**
 
-*Making command-line mastery accessible to everyone.*
+_Making command-line mastery accessible to everyone._
 
 **2025 | Optimized for the Modern Web**
 
