@@ -1,10 +1,71 @@
-# TLDRx → Ionic & Capacitor Migration Plan
+# TLDRx → Ionic Migration – High-Level Strategy
 
-> **Goal:** Deep Ionic visual & navigation adoption so TLDRx feels like a native Ionic app, with Capacitor-based iOS/Android builds and an optional iOS App Store release.
->
-> **Strategy:** Build a **new Ionic-native UI** (IonApp/IonPage/IonHeader/IonContent, Ionic components) while **reusing the existing business logic** (data loading, fuzzy search, filters). Keep an incremental fallback option documented.
+> Goal: Make the main TL;DRx experience an Ionic-first UI (web + mobile shells) while reusing existing React logic and keeping performance.
+> This section is the current plan; the older detailed checklist is kept below as an appendix.
+
+## START HERE  =>  
+
+1. Checking online docs
+2. Checking the codebase structure and MANUALLY read each file (no compromises)
+3. Read the "IONIC/CONTEXT.md" file carefully
+4. Analyze everything very carefully (use 'sequential-thinking' tool)
+5. Refactor PLAN.md to align with current understanding
+6. Make more detailed PLAN.md with 'checkboxes' that you must update as you progress
+7. Use 'sequential-thinking' tool on every 
+9. Go over you plan again a
+
+
+## Mandatory Rules (User Demands & Constraints)
+
+These are **mandatory**, not recommendations. All Ionic work must follow them.
+
+- **Branch & Tech Stack**
+  - All migration work happens on the `ionic` branch.
+  - Do **not** upgrade core stack versions (React, Vite, Tailwind, etc.).
+  - Reuse existing React business logic; new UI layers should be Ionic components.
+
+- **Testing & Quality Gates**
+  - `npm run build` must succeed after every significant change.
+  - A minimal automated check (unit or E2E) for the main search flow on `/` must stay green.
+  - No step is considered done unless code + tests (or an equivalent automated check) exist.
+
+- **Planning & Reasoning**
+  - Use the `sequential-thinking` tool for non-trivial changes and planning loops.
+  - Consider alternative solutions before committing to an approach.
+
+- **Reporting Format**
+  - Status replies use the format: `Feature #X is implemented. Level of confidence is YY%. Proof is: ...`.
+  - Each reported step must have **confidence ≥ 95%**, backed by concrete evidence (diffs, tests, or runtime behavior).
+
+- **Execution Discipline**
+  - Focus on shipping visible results (code, UI, tests), not prose or speculative plans.
+  - Do not stop iterative work on this migration unless the user explicitly says so.
+
+## Phases (Strategy Only)
+
+1. **Baseline & Guardrails**
+   - Restore a minimal automated check (unit or E2E) that loads `/`, runs a search, and asserts both a non-zero result count and at least one command card.
+   - Treat `npm run build` plus that check as the gate for all later steps.
+
+2. **Ionic Shell (Existing)**
+   - Keep `main.jsx` → `IonicRoot` using `IonApp` + `IonReactRouter` + `IonRouterOutlet`.
+   - Routes: `/` and `/ionic` → Ionic home, `/legacy` → legacy React screen.
+
+3. **Ionic Main Screen**
+   - Create a real `IonicHomePage` that uses `IonPage`/`IonContent` (and optional `IonHeader`/`IonToolbar`) and reuses logic from `src/logic/search.js` and `src/logic/commands.js`.
+   - Gradually replace header, search bar, filters, and command list UI with Ionic components, keeping behavior and Playwright selectors compatible.
+   - Switch `/` to the Ionic page while keeping `/legacy` as fallback until stable, then remove `/legacy`.
+
+4. **Capacitor Shells**
+   - Once the Ionic main screen is stable, add Capacitor iOS/Android shells and sync the Vite build into them.
+   - Verify core flows on devices.
+
+5. **Mobile Polish**
+   - Only after shells work, refine safe areas, status bar, gestures, and performance on real devices.
 
 ---
+
+# (Archived) Detailed Plan – Previous Version
 
 ## 0. Background & Constraints
 
