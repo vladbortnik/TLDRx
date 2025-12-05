@@ -1,12 +1,12 @@
+# Project Specific
+IONIC/screenshots/
+
 # WebStorm
 .idea
 
 # Claude
 .claude/
 .qodo/
-
-# Project Specific
-IONIC/screenshots/
 
 # Logs
 logs
