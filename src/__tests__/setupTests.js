@@ -5,9 +5,9 @@
 
 import '@testing-library/jest-dom/vitest';
 
-// Provide a no-op scrollTo implementation for environments where it is missing.
-if (typeof window !== 'undefined' && typeof window.scrollTo !== 'function') {
-  console.warn('[tests] window.scrollTo is not defined in test environment, providing a no-op stub.');
+// Provide a stable no-op scrollTo implementation in the test environment
+// to avoid jsdom "Not implemented: window.scrollTo" errors.
+if (typeof window !== 'undefined') {
   window.scrollTo = () => {};
 }
 
@@ -40,11 +40,8 @@ class IntersectionObserverMock {
   }
 }
 
-if (typeof window !== 'undefined') {
-  if (!('IntersectionObserver' in window)) {
-    console.warn('[tests] IntersectionObserver is not defined, providing a basic mock.');
-    window.IntersectionObserver = IntersectionObserverMock;
-  }
+if (typeof window !== 'undefined' && !('IntersectionObserver' in window)) {
+  window.IntersectionObserver = IntersectionObserverMock;
 }
 
 if (!('IntersectionObserver' in globalThis)) {

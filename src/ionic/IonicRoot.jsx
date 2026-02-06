@@ -8,7 +8,7 @@ import { IonApp, IonRouterOutlet } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { Route } from "react-router-dom";
 import App from "../App.jsx";
-import TldrHomePage from "./TldrHomePage.jsx";
+import IonicHomePage from "./IonicHomePage.jsx";
 
 /**
  * IonicRoot component.
@@ -21,8 +21,8 @@ export default function IonicRoot() {
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>
-          <Route exact path="/" component={TldrHomePage} />
-          <Route path="/ionic" component={TldrHomePage} />
+          <Route exact path="/" component={IonicHomePage} />
+          <Route path="/ionic" component={IonicHomePage} />
           <Route path="/legacy" component={App} />
         </IonRouterOutlet>
       </IonReactRouter>

@@ -1,19 +1,33 @@
-# TLDRx → Ionic Migration – High-Level Strategy
+# THIS IS THE USER "MANDATORY RULES" YOU DARE TO DELETE
+
+------------------------------------------------------------------------------------------------------------------------
+1. [ ] - Checking online docs first (about Ionic, Capacitor, routing, etc.)
+2. [ ] - Checking the codebase structure and MANUALLY read each file (no compromises)
+3. [ ] - Read the "IONIC/CONTEXT.md" file carefully
+4. [ ] - Analyze Architecture, Assess the PLAN Success Rate (very carefully; use 'sequential-thinking' tool)
+5. [ ] - Refactor PLAN.md to align with your current understanding
+6. [ ] - Make more detailed PLAN.md with 'checkboxes'. You must update them as you progress
+7. [ ] - Use 'sequential-thinking' tool on every task.
+9. [ ] - Go over you plan again and again and again
+10. [ ] - Minimum confidence level is 95%. However, since you're always play 'dumb' and you like to be sorry, - not to make code work, - you must have proof and explanation of your level of confidence on each step.
+------------------------------------------------------------------------------------------------------------------------
+
+## TLDRx → Ionic Migration – High-Level Strategy
 
 > Goal: Make the main TL;DRx experience an Ionic-first UI (web + mobile shells) while reusing existing React logic and keeping performance.
 > This section is the current plan; the older detailed checklist is kept below as an appendix.
 
-## START HERE  =>  
+## START HERE – Live Checklist
 
-1. Checking online docs
-2. Checking the codebase structure and MANUALLY read each file (no compromises)
-3. Read the "IONIC/CONTEXT.md" file carefully
-4. Analyze everything very carefully (use 'sequential-thinking' tool)
-5. Refactor PLAN.md to align with current understanding
-6. Make more detailed PLAN.md with 'checkboxes' that you must update as you progress
-7. Use 'sequential-thinking' tool on every 
-9. Go over you plan again a
-
+- [x] Check relevant Ionic / routing / Capacitor docs.
+- [x] Inspect codebase structure and start manual reading of critical files.
+- [x] Read `IONIC/CONTEXT.md` carefully.
+- [x] Run at least one `sequential-thinking` analysis pass on the current state.
+- [ ] Continue manual reading of remaining source files over time (no compromises).
+- [ ] Keep this plan aligned with reality as the migration evolves.
+- [ ] Maintain a detailed, checkbox-based breakdown for each phase and update it as you progress.
+- [ ] Use `sequential-thinking` for every major architectural or planning decision.
+- [ ] Periodically review the plan and adjust next steps based on results.
 
 ## Mandatory Rules (User Demands & Constraints)
 
@@ -39,7 +53,9 @@ These are **mandatory**, not recommendations. All Ionic work must follow them.
 
 - **Execution Discipline**
   - Focus on shipping visible results (code, UI, tests), not prose or speculative plans.
-  - Do not stop iterative work on this migration unless the user explicitly says so.
+  - Do not stop iterative work on this migration unless the user click the 'force quit' button.
+  - Do not loop the same rounds. You can't get a new result from the same steps.
+  - So, if you did something twice with no result - you must stop and think. Use 'sequential-thinking' tool for that. You have to change your approach.
 
 ## Phases (Strategy Only)
 

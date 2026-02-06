@@ -21,7 +21,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:e2e": "node IONIC/playwright/tldrx-e2e.js"
   },
   "dependencies": {
     "@ionic/react": "^8.7.9",
